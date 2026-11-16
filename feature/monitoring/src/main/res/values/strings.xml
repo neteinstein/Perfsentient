@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monitoring_listener_label">Persentient notification counter</string>
+    <string name="monitoring_channel_name">Daily report</string>
+    <string name="monitoring_channel_description">End-of-day summary of your phone health</string>
+    <string name="monitoring_notification_title_good">✅ Your phone had a great day</string>
+    <string name="monitoring_notification_title_fair">⚠️ Your phone had a so-so day</string>
+    <string name="monitoring_notification_title_poor">🚨 Your phone needs attention</string>
+    <string name="monitoring_notification_body_clean">Health score %1$d/100 · no misbehaving apps found. Tap to see your daily report.</string>
+    <plurals name="monitoring_notification_body">
+        <item quantity="one">Health score %1$d/100 · %2$d app is misbehaving. Tap to see your daily report.</item>
+        <item quantity="other">Health score %1$d/100 · %2$d apps are misbehaving. Tap to see your daily report.</item>
+    </plurals>
+</resources>

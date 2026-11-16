@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Cancel superseded runs of the same PR / branch.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  JAVA_VERSION: "21"
+  GRADLE_OPTS: -Dorg.gradle.daemon=false
+
+# The four jobs below have no `needs:` – they run in parallel on separate runners.
+jobs:
+  build:
+    name: Compile (debug + R8 release)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Assemble debug and minified release
+        run: ./gradlew assembleDebug assembleRelease --stacktrace
+      - name: Upload APKs and R8 mapping
+        uses: actions/upload-artifact@v7
+        with:
+          name: apks
+          path: |
+            app/build/outputs/apk/**/*.apk
+            app/build/outputs/mapping/release/mapping.txt
+          retention-days: 7
+
+  unit-tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Run unit tests (JVM + Android debug)
+        run: ./gradlew test testDebugUnitTest --continue
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-reports
+          path: |
+            **/build/reports/tests/
+            **/build/test-results/
+          retention-days: 7
+
+  coverage:
+    name: Code coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Generate coverage reports
+        run: ./gradlew koverXmlReport koverHtmlReport
+      - name: Publish coverage summary
+        if: always()
+        run: python3 .github/scripts/coverage_summary.py build/reports/kover/report.xml >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report
+          path: build/reports/kover/
+          retention-days: 7
+      - name: Enforce coverage thresholds
+        run: ./gradlew koverVerify :core:domain:koverVerify
+
+  lint:
+    name: Lint (ktlint + Android Lint)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+      - uses: gradle/actions/setup-gradle@v6
+      - name: ktlint
+        run: ./gradlew ktlintCheck
+      - name: Android Lint
+        run: ./gradlew :app:lintDebug
+      - name: Upload lint reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lint-reports
+          path: |
+            app/build/reports/lint-results-*.*
+            **/build/reports/ktlint/
+          retention-days: 7

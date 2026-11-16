@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A pulse line inside a shield: "watching over your phone". 108dp adaptive canvas, 72dp safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:pathData="M54,26 L76,34 L76,54 C76,68 66,78 54,83 C42,78 32,68 32,54 L32,34 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="76"
+                android:endY="83"
+                android:startX="32"
+                android:startY="26"
+                android:type="linear">
+                <item android:color="#FF8A7BFF" android:offset="0" />
+                <item android:color="#FF4FD8C4" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:pathData="M38,56 L47,56 L51,46 L57,66 L61,52 L70,52"
+        android:strokeWidth="4.5"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

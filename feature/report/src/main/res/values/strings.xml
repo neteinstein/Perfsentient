@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_title">Today\'s health</string>
+    <string name="report_health_score">health score</string>
+    <plurals name="report_generated_at">
+        <item quantity="one">Updated %1$s · %2$d app analysed</item>
+        <item quantity="other">Updated %1$s · %2$d apps analysed</item>
+    </plurals>
+    <string name="report_analyse_now">Analyse now</string>
+    <string name="report_analysing">Analysing…</string>
+    <string name="report_generation_failed">Could not analyse right now. Please try again.</string>
+
+    <string name="report_summary_clean">No misbehaving apps found. Nice!</string>
+    <plurals name="report_summary_offenders">
+        <item quantity="one">%d app needs your attention</item>
+        <item quantity="other">%d apps need your attention</item>
+    </plurals>
+
+    <string name="report_setup_title">Let\'s get monitoring</string>
+    <string name="report_setup_desc">Grant a few permissions in Settings and Persentient will start watching for apps that drain your battery, spam you or show sneaky ads.</string>
+    <string name="report_setup_action">Finish setup</string>
+
+    <string name="report_empty_title">Monitoring is running</string>
+    <string name="report_empty_desc">Your first report arrives tonight at %1$s. Want a sneak peek? Analyse today so far.</string>
+
+    <string name="report_section_vitals">Device vitals</string>
+    <string name="report_section_history">Last 7 days</string>
+    <string name="report_section_offenders">Misbehaving apps</string>
+    <string name="report_section_issues">Device issues</string>
+    <string name="report_all_clear_title">All clear</string>
+    <string name="report_all_clear_desc">Every app behaved today.</string>
+
+    <string name="report_metric_screen_off_drain">Screen-off drain</string>
+    <string name="report_metric_drain">Battery drain</string>
+    <string name="report_metric_temperature">Peak battery temp</string>
+    <string name="report_metric_memory">Avg. memory used</string>
+    <string name="report_metric_background_data">Background data</string>
+    <string name="report_metric_screen_time">App screen time</string>
+    <string name="report_metric_not_enough_data">—</string>
+    <string name="report_metric_per_hour">%1$.1f%%/h</string>
+    <string name="report_metric_celsius">%1$.1f °C</string>
+    <string name="report_metric_percent">%1$d%%</string>
+
+    <plurals name="report_value_popups">
+        <item quantity="one">%1$d pop-up over other apps today</item>
+        <item quantity="other">%1$d pop-ups over other apps today</item>
+    </plurals>
+    <plurals name="report_value_after_call">
+        <item quantity="one">%1$d screen opened right after a call</item>
+        <item quantity="other">%1$d screens opened right after calls</item>
+    </plurals>
+    <string name="report_value_service_time">%1$s of background activity</string>
+    <plurals name="report_value_signals">
+        <item quantity="one">%1$d sign of background activity</item>
+        <item quantity="other">%1$d signs of background activity</item>
+    </plurals>
+    <plurals name="report_value_night">
+        <item quantity="one">%1$d wake-up while the screen was off</item>
+        <item quantity="other">%1$d wake-ups while the screen was off</item>
+    </plurals>
+    <string name="report_value_bytes_background">%1$s used in the background</string>
+    <plurals name="report_value_notifications">
+        <item quantity="one">%1$d notification today</item>
+        <item quantity="other">%1$d notifications today</item>
+    </plurals>
+    <string name="report_value_cache">%1$s of cache</string>
+    <string name="report_value_capability">Granted by you – review if unexpected</string>
+
+    <string name="report_issue_screen_off_drain">Battery drained %1$.1f%%/h with the screen off (healthy is under 1%%/h).</string>
+    <string name="report_issue_temperature">Battery reached %1$.1f °C. Heat accelerates battery wear.</string>
+    <string name="report_issue_thermal">The phone throttled performance to cool down.</string>
+    <plurals name="report_issue_memory">
+        <item quantity="one">Memory ran low %1$d time – apps were likely killed in background.</item>
+        <item quantity="other">Memory ran low %1$d times – apps were likely killed in background.</item>
+    </plurals>
+    <string name="report_issue_screen_off_drain_title">Battery drains while idle</string>
+    <string name="report_issue_temperature_title">Running hot</string>
+    <string name="report_issue_thermal_title">Thermal throttling</string>
+    <string name="report_issue_memory_title">Memory pressure</string>
+
+    <string name="report_sheet_open_app_info">Open app info</string>
+    <string name="report_sheet_hint">From App info you can force stop, restrict battery, revoke permissions or uninstall.</string>
+    <string name="report_duration_hm">%1$dh %2$02dm</string>
+    <string name="report_duration_m">%1$dm</string>
+</resources>
