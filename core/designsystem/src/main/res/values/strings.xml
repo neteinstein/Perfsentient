@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Behaviours -->
+    <string name="behavior_out_of_context_ads_title">Pop-up ads</string>
+    <string name="behavior_out_of_context_ads_desc">Briefly took over the screen while you were using another app, or right after unlocking. This is how out-of-context (disruptive) ads behave and it is banned by Google Play policy.</string>
+    <string name="behavior_after_call_ads_title">After-call ads</string>
+    <string name="behavior_after_call_ads_desc">Opened a screen right after a phone call ended. Adware listens for calls ending to push full-screen ads.</string>
+    <string name="behavior_overlay_abuse_title">Draws over other apps</string>
+    <string name="behavior_overlay_abuse_desc">Has the \"Display over other apps\" permission and stays busy in the background while you rarely open it. Overlays are the most abused permission by adware.</string>
+    <string name="behavior_hidden_icon_title">Hidden app</string>
+    <string name="behavior_hidden_icon_desc">Has no icon in your app drawer yet is active in the background. Hiding the icon is a classic adware trick to avoid being uninstalled.</string>
+    <string name="behavior_persistent_background_title">Always running</string>
+    <string name="behavior_persistent_background_desc">Kept a foreground service alive for hours while you barely used it. This keeps the CPU awake and drains battery.</string>
+    <string name="behavior_night_activity_title">Night owl</string>
+    <string name="behavior_night_activity_desc">Woke up or launched screens while your screen was off during the night.</string>
+    <string name="behavior_background_data_title">Background data hog</string>
+    <string name="behavior_background_data_desc">Transferred a lot of data while in the background. Android vitals flags more than 50 MB per day as excessive.</string>
+    <string name="behavior_notification_spam_title">Notification spam</string>
+    <string name="behavior_notification_spam_desc">Posted an unusually high number of notifications.</string>
+    <string name="behavior_accessibility_risk_title">Accessibility access</string>
+    <string name="behavior_accessibility_risk_desc">Has an enabled accessibility service, which can read your screen and act on your behalf. Only keep it for apps you fully trust.</string>
+    <string name="behavior_device_admin_title">Device administrator</string>
+    <string name="behavior_device_admin_desc">Is registered as device administrator, which makes it harder to uninstall.</string>
+    <string name="behavior_unrestricted_battery_title">Unrestricted battery</string>
+    <string name="behavior_unrestricted_battery_desc">Is exempt from battery optimisation and works heavily in the background.</string>
+    <string name="behavior_storage_bloat_title">Storage hog</string>
+    <string name="behavior_storage_bloat_desc">Keeps a very large cache. Clearing it frees space and can speed up the phone.</string>
+
+    <!-- Severity / verdict -->
+    <string name="severity_low">Low</string>
+    <string name="severity_medium">Medium</string>
+    <string name="severity_high">High</string>
+    <string name="verdict_good">Good</string>
+    <string name="verdict_fair">Fair</string>
+    <string name="verdict_poor">Poor</string>
+</resources>
