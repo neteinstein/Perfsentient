@@ -32,6 +32,8 @@ out/
 *.keystore
 keystore.properties
 google-services.json
+play-store-key.json
+__pycache__/
 secrets.properties
 
 # --- OS ------------------------------------------------------------------------

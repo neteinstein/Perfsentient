@@ -48,11 +48,15 @@ Requirements: JDK 21 and the Android SDK (platform 37).
 
 ```bash
 ./gradlew assembleDebug                 # debug APK
-./gradlew assembleRelease               # R8-minified release APK (debug-signed – configure your key before publishing)
+./gradlew assembleRelease               # R8-minified release APK (signed when a keystore is configured)
 ./gradlew test testDebugUnitTest        # unit tests
 ./gradlew koverHtmlReport               # coverage report in build/reports/kover/html
 ./gradlew ktlintCheck :app:lintDebug    # lint
 ```
+
+## Releases
+
+Every merge to `main` bumps the patch version and publishes a signed APK + AAB as a [GitHub release](../../releases). Google Play upload is wired up but disabled for now – see [PublishToStore.md](PublishToStore.md).
 
 ## Play Store notes
 
