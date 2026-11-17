@@ -1,6 +1,34 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.persentient.android.application)
     alias(libs.plugins.persentient.android.compose)
+}
+
+// Release signing: CI passes the keystore through env vars (see .github/workflows/release.yml);
+// locally an untracked keystore.properties can be used. Without either, release builds are
+// unsigned (the PR pipeline only checks that R8 succeeds).
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.inputStream().use(keystoreProperties::load)
+}
+val releaseKeystoreFilePath =
+    (System.getenv("KEYSTORE_FILE") ?: keystoreProperties.getProperty("storeFile"))?.takeIf { it.isNotBlank() }
+
+// The versionCode is derived from versionName so every release gets a unique, increasing code:
+// major.minor.patch -> MMmmmppp00 + build, e.g. 1.0.3 -> 10000300. `build` (0-99,
+// -PVERSION_CODE_BUILD) is only for re-uploading the same version to Play, which rejects a
+// reused versionCode.
+val versionCodeBuild = (project.findProperty("VERSION_CODE_BUILD") as String?)?.toInt() ?: 0
+
+fun versionCodeFor(
+    versionName: String,
+    build: Int,
+): Int {
+    val (major, minor, patch) = versionName.split('.').map(String::toInt)
+    require(minor < 100 && patch < 1000 && build in 0..99) { "Version $versionName+$build does not fit the versionCode scheme" }
+    return major * 10_000_000 + minor * 100_000 + patch * 100 + build
 }
 
 android {
@@ -8,9 +36,21 @@ android {
 
     defaultConfig {
         applicationId = "com.neteinstein.persentient"
-        versionCode = 1
+        // release.yml bumps the patch number in this line on every merge to main.
         versionName = "1.0.0"
+        versionCode = versionCodeFor(versionName!!, versionCodeBuild)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        create("release") {
+            if (releaseKeystoreFilePath != null) {
+                storeFile = file(releaseKeystoreFilePath)
+                storePassword = System.getenv("KEYSTORE_PASSWORD") ?: keystoreProperties.getProperty("storePassword")
+                keyAlias = System.getenv("KEY_ALIAS") ?: keystoreProperties.getProperty("keyAlias")
+                keyPassword = System.getenv("KEY_PASSWORD") ?: keystoreProperties.getProperty("keyPassword")
+            }
+        }
     }
 
     buildTypes {
@@ -26,9 +66,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
-            // Uses the debug key only so CI/local release builds are installable.
-            // Configure a real upload key via signingConfigs before publishing.
-            signingConfig = signingConfigs.getByName("debug")
+            if (releaseKeystoreFilePath != null) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
 

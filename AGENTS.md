@@ -81,8 +81,18 @@ Dependency rules (enforced by module boundaries):
 ## CI
 
 `.github/workflows/ci.yml` runs four **parallel** jobs on every PR: compile (debug + R8 release),
-unit tests, coverage (summary in the job page + threshold check) and lint. PRs follow
-`.github/pull_request_template.md` (ticket, description, how to test).
+unit tests (+ the Play upload script tests), coverage (summary in the job page + threshold check)
+and lint. PRs follow `.github/pull_request_template.md` (ticket, description, how to test).
+
+Releases (see [PublishToStore.md](PublishToStore.md)):
+
+- `.github/workflows/release.yml` runs on every merge to `main`: bumps the patch `versionName`
+  (commit `[skip ci]` back to `main`), builds the signed APK + AAB, verifies the release manifest
+  has no `INTERNET`, and creates GitHub release `vX.Y.Z`. Do **not** bump `versionName` by hand in PRs.
+- `versionCode` is derived from `versionName` (`major*10000000 + minor*100000 + patch*100 + build`).
+- Google Play upload (`release.yml` internal track + manual `publish-play-store.yml`) is **disabled**
+  unless the repository variable `PLAY_STORE_UPLOAD_ENABLED` is `true`.
+- Pin third-party GitHub Actions to a commit SHA with the tag in a comment.
 
 ## Gotchas
 
