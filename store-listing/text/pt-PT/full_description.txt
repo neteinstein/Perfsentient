@@ -25,6 +25,14 @@ O CONTROLO É SEU
 • Confie nas apps que sabe que estão bem. As apps de confiança ficam fora dos relatórios, não baixam a pontuação e aparecem com outra cor
 • Mude de ideias quando quiser: toque numa app de confiança para deixar de confiar nela
 
+MODO PARENTAL
+Vai preparar um telemóvel para uma criança? Ative o Modo parental nas Definições e indique a idade dela. Um separador Ajuda parental passa a listar as apps instaladas sobre as quais organizações de proteção de crianças, reguladores e investigações alertam para essa idade:
+• Jogos e mundos de avatares com chat aberto, onde adultos aliciaram crianças
+• Apps de mensagens e redes sociais referidas em alertas de sextorsão
+• Videochamadas aleatórias, apps de encontros para adultos e de perguntas anónimas
+• Companheiros de IA, transmissões em direto com presentes pagos, cofres secretos que escondem fotos ou apps, e apostas
+Cada alerta explica porque a app foi assinalada, mostra a idade recomendada e a idade mínima, e diz-lhe o que pode fazer. Marque uma app como analisada depois de a configurarem juntos. O Modo parental não precisa de permissões extra e a idade que indicar nunca sai do telemóvel.
+
 PRIVADO POR DESIGN
 • Tudo é analisado no seu telemóvel
 • A app não tem qualquer permissão de internet, por isso não pode enviar os seus dados para lado nenhum
@@ -33,5 +41,8 @@ PRIVADO POR DESIGN
 
 COMO FUNCIONA
 O Perfsentient precisa de duas permissões que ativa nas definições do Android: Acesso de utilização (para ver que apps correm e durante quanto tempo) e Acesso a notificações (para contar notificações por app). O separador Definições explica cada uma e leva-o diretamente ao ecrã certo. Uma verificação leve corre a cada 15 minutos, com consumo de bateria quase nulo, e o relatório chega à hora que escolher.
+
+IDIOMAS
+Português, inglês, francês, espanhol, italiano, romeno e alemão. No Android 13 ou posterior pode escolher o idioma da app nas definições do Android.
 
 O Perfsentient não remove apps por si. Diz-lhe quais deve verificar e porquê.

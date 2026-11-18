@@ -1,0 +1,3 @@
+• Nouveau Mode parental : indiquez l'âge de votre enfant dans les Paramètres et un onglet Aide parentale signale les applis installées connues pour le grooming, la sextorsion, les contacts avec des inconnus ou les contenus pour adultes, avec ce que vous pouvez faire
+• Désormais en français, portugais, espagnol, italien, roumain et allemand
+• Sur Android 13 et plus, choisissez la langue de l'appli dans les paramètres d'Android

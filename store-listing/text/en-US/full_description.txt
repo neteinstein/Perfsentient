@@ -25,6 +25,14 @@ YOU STAY IN CONTROL
 • Trust the apps you know are fine. Trusted apps are left out of your reports and do not lower your score, and are shown in a different colour
 • Change your mind at any time: tap a trusted app to stop trusting it
 
+PARENTAL MODE
+Setting up a phone for a child? Turn on Parental mode in Settings and enter their age. A Parental help tab then lists the installed apps that child-safety organisations, regulators and investigations warn about for that age:
+• Games and avatar worlds with open chat, where adults have groomed children
+• Messaging and social apps named in sextortion warnings
+• Random video chat, adult dating and anonymous Q&A apps
+• AI companions, live streaming with paid gifts, secret vaults that hide photos or apps, and gambling
+Each warning explains why the app is flagged, shows the suggested and minimum age, and tells you what you can do. Mark an app as reviewed once you have set it up together. Parental mode needs no extra permission, and the age you enter never leaves the phone.
+
 PRIVATE BY DESIGN
 • Everything is analysed on your phone
 • The app has no internet permission at all, so it cannot send your data anywhere
@@ -33,5 +41,8 @@ PRIVATE BY DESIGN
 
 HOW IT WORKS
 Perfsentient needs two permissions that you turn on in Android settings: Usage access (to see which apps run and for how long) and Notification access (to count notifications per app). The Settings tab explains each one and takes you straight to the right screen. A light check runs every 15 minutes, using almost no battery, and your report arrives at the time you choose.
+
+AVAILABLE IN
+English, Portuguese, French, Spanish, Italian, Romanian and German. On Android 13 and later you can choose the app's language in Android settings.
 
 Perfsentient does not remove apps for you. It tells you which ones to look at, and why.

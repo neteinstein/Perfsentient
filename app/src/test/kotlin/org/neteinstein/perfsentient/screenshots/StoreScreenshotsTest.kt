@@ -67,7 +67,8 @@ class StoreScreenshotsTest {
             compose.onNode(hasScrollAction()).performScrollToIndex(scrollToIndex)
             compose.mainClock.advanceTimeBy(1_500)
         }
-        val bitmap = compose.onRoot().captureToImage().asAndroidBitmap()
+        // Opaque bitmap -> the PNG encoder writes 24-bit RGB without alpha, as Google Play requires for screenshots.
+        val bitmap = compose.onRoot().captureToImage().asAndroidBitmap().apply { setHasAlpha(false) }
         val file = File(outDir, "$name.png")
         file.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
         assertTrue("$name should not be empty", file.length() > 10_000)

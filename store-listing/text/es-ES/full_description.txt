@@ -1,0 +1,48 @@
+¿Tu móvil va lento, se calienta o se llena de anuncios de la nada? Perfsentient encuentra las apps culpables.
+
+Perfsentient observa cómo se comporta tu móvil todo el día, en segundo plano. Cada noche recibes un informe de salud sencillo con una puntuación, las apps que se han portado mal y una explicación clara de lo que hizo cada una.
+
+QUÉ DETECTA
+• Anuncios emergentes: apps que ocupan la pantalla mientras usas otra cosa
+• Anuncios tras llamadas: anuncios a pantalla completa al terminar una llamada
+• Superposición abusiva: apps que se muestran sobre otras y siguen activas en segundo plano
+• Apps ocultas: activas en segundo plano pero sin icono en el cajón de apps
+• Apps siempre activas: servicios que mantienen despierta la CPU y gastan batería
+• Apps nocturnas: se activan con la pantalla apagada
+• Apps que consumen datos en segundo plano
+• Spam de notificaciones
+• Accesos de riesgo: servicios de accesibilidad, administradores del dispositivo, batería sin restricciones
+• Apps que acaparan almacenamiento (caché enorme)
+
+TU INFORME DIARIO
+• Una puntuación de salud de 0 a 100 y un veredicto claro: buena, regular o mala
+• Constantes del móvil: consumo de batería, consumo con la pantalla apagada, temperatura y presión de memoria
+• Una tendencia de 7 días para ver si las cosas mejoran
+• Toca cualquier app para ver exactamente qué hizo y abrir su información para desinstalarla o restringirla
+
+TÚ TIENES EL CONTROL
+• La pestaña Apps muestra todas las apps señaladas ahora o en el pasado
+• Confía en las apps que sabes que están bien: quedan fuera de tus informes, no bajan tu puntuación y se muestran en otro color
+• Cambia de opinión cuando quieras: toca una app de confianza para dejar de confiar en ella
+
+MODO PARENTAL
+¿Vas a preparar un móvil para un menor? Activa el Modo parental en Ajustes e indica su edad. Una pestaña Ayuda parental muestra entonces las apps instaladas sobre las que organizaciones de protección de la infancia, reguladores e investigaciones advierten para esa edad:
+• Juegos y mundos de avatares con chat abierto, donde adultos han captado a menores (grooming)
+• Apps de mensajería y redes sociales citadas en alertas de sextorsión
+• Videochat aleatorio, apps de citas para adultos y de preguntas anónimas
+• Compañeros de IA, retransmisiones en directo con regalos de pago, bóvedas secretas que ocultan fotos o apps, y apuestas
+Cada aviso explica por qué se ha señalado la app, muestra la edad recomendada y la mínima, y te dice qué puedes hacer. Marca una app como revisada cuando la hayáis configurado juntos. El Modo parental no necesita permisos extra y la edad que indiques nunca sale del teléfono.
+
+PRIVADO POR DISEÑO
+• Todo se analiza en tu móvil
+• La app no tiene ningún permiso de Internet, así que no puede enviar tus datos a ninguna parte
+• Sin cuenta, sin anuncios, sin analíticas
+• Las notificaciones solo se cuentan por app. Su contenido nunca se lee
+
+CÓMO FUNCIONA
+Perfsentient necesita dos permisos que activas en los ajustes de Android: acceso a datos de uso (para ver qué apps se ejecutan y durante cuánto tiempo) y acceso a notificaciones (para contarlas por app). La pestaña Ajustes explica cada uno y te lleva directamente a la pantalla correcta. Una comprobación ligera se ejecuta cada 15 minutos, casi sin gastar batería, y tu informe llega a la hora que elijas.
+
+IDIOMAS
+Español, inglés, portugués, francés, italiano, rumano y alemán. En Android 13 o posterior puedes elegir el idioma de la app en los ajustes de Android.
+
+Perfsentient no elimina apps por ti. Te dice cuáles revisar y por qué.

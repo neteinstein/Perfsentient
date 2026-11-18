@@ -32,6 +32,11 @@ Why each sensitive input is *not* "collected":
 | Per-app network byte counts | Local statistics from `NetworkStatsManager`. No traffic is inspected. |
 | Battery, temperature, memory samples | Local only. |
 | Trusted apps list | Package names and labels the user chose, stored in a local database. |
+| Child's age (parental mode, optional) | A single number the parent enters, kept in local app preferences to compare installed apps against. Never transmitted. |
+| Reviewed apps (parental mode) | Package names the parent marked as reviewed, kept in local app preferences. |
+
+Parental mode does not make the app *child-directed*: it is a tool for the parent's own device checks, the
+app collects nothing, and the Target audience stays 18+ (see [`README.md`](README.md#play-console-fields-not-covered-by-a-file)).
 
 ## Security practices section
 

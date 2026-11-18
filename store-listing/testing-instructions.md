@@ -15,8 +15,11 @@ useful once two special accesses are granted, still answer **"Yes, provide acces
 > When all three show a green tick the monitoring status says "Active".
 > Go back to the Report tab and tap "Analyse now" to generate today's report immediately (normally it is
 > generated at the time set in Settings, 21:30 by default). The Apps tab lists every app that was flagged now
-> or in the past. Tap one to trust it (whitelist) or stop trusting it. Everything runs on the device; the app
-> has no internet permission.
+> or in the past. Tap one to trust it (whitelist) or stop trusting it. Optional parental mode: in Settings turn
+> on "Parental mode", pick an age (for example 10) and open the new "Parental help" tab; it lists installed apps
+> that child-safety organisations flag for that age (needs no extra permission). Everything runs on the device;
+> the app has no internet permission. The app is available in English, Portuguese, French, Spanish, Italian,
+> Romanian and German.
 
 On a fresh device there may be nothing to flag. To see findings quickly, use a device with a few ad-supported
 or sideloaded apps, or ask the developer for a build seeded with sample data.
@@ -33,6 +36,13 @@ or sideloaded apps, or ask the developer for a build seeded with sample data.
       its sheet with **Trust** or **Stop trusting**; the colour flips immediately.
 - [ ] A trusted app that was uninstalled still appears in the Apps tab and can be removed from the allowlist.
 - [ ] Settings: report time picker, theme (light / dark / dynamic) work; changes survive process death.
+- [ ] **Parental mode**: turning it on asks for the age; Cancel leaves it off. With it on, the **Parental help**
+      tab appears between Apps and Settings; install e.g. a dating or random-video-chat app and it is listed with
+      a severity; the sheet's **Open app info** and **Mark as reviewed** work; changing the age updates the list;
+      turning the mode off removes the tab (and lands on Settings).
+- [ ] **Languages**: switch the system or per-app language (Android 13+: Settings › Apps › Perfsentient ›
+      Language) to pt, fr, es, it, ro and de: every screen and the daily notification are translated, nothing is
+      cut off in the navigation bar.
 - [ ] Revoke Usage access in system settings, return to the app: it degrades gracefully (no crash).
 - [ ] Rotate / resize (foldable, tablet, split-screen): navigation rail on large screens, no clipped content.
 - [ ] Edge-to-edge: nothing hidden behind the status or navigation bars; predictive back works.

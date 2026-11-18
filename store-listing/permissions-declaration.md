@@ -15,11 +15,14 @@ Suggested text for the "Describe your use" field:
 > hogs, notification spam, risky accessibility or device-admin access. To do that it must see the complete
 > list of installed apps, including apps without a launcher icon (a hidden icon is itself one of the signals
 > we report). A narrower `<queries>` list cannot work because the apps we need to inspect are unknown in
-> advance. The list is processed only on the device and is never transmitted: the app has no INTERNET
-> permission.
+> advance. The optional parental mode uses the same audit to warn a parent about installed apps that
+> child-safety organisations flag for the child's age (for example random video chat or adult dating apps).
+> The list is processed only on the device and is never transmitted: the app has no INTERNET permission.
 
 Notes for the reviewer: the permission is used by `AppInventoryDataSource` in `core:data`. The app name
-and package are shown to the user in the report and in the Apps tab.
+and package are shown to the user in the report and in the Apps tab. When parental mode is on,
+`AppInventoryDataSource.installedAppLabels` looks up only the ~100 package names of the built-in parental
+catalogue (`ParentalAppCatalog`) to fill the Parental help tab; nothing about the result leaves the device.
 
 **Video link:** the form asks for a short video of the app being opened and the core feature in use. Upload
 [`video/review/review-walkthrough.mp4`](video/review/README.md) to YouTube as *Unlisted* and paste the link.

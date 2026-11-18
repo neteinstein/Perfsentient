@@ -16,8 +16,10 @@ store-listing/
 ├── permissions-declaration.md   QUERY_ALL_PACKAGES declaration + special accesses
 ├── testing-instructions.md      App access instructions + internal-track QA checklist
 ├── text/
-│   ├── en-US/                   title, short_description, full_description, release_notes
-│   └── pt-PT/                   same four files, in European Portuguese
+│   ├── en-US/                   title, short_description, full_description, release_notes (default)
+│   ├── pt-PT/                   same four files, in European Portuguese
+│   ├── fr-FR/ es-ES/ it-IT/     French, Spanish, Italian
+│   └── ro/ de-DE/               Romanian, German
 ├── graphics/                    icon-512.png, feature-graphic-1024x500.png
 ├── screenshots/                 phone/ (+ tablets) PNGs, in upload order
 └── video/                       brag launch video (mp4 + README autoplay GIF)
@@ -33,7 +35,10 @@ store-listing/
 | Full description | `text/<locale>/full_description.txt` | 4000 |
 | What's new | `text/<locale>/release_notes.txt` | 500 |
 
-Paste each file verbatim for its locale (`en-US` is the default language, add `pt-PT` as a translation).
+Paste each file verbatim for its locale. `en-US` is the default language; add the others under
+**Main store listing → Manage translations** with these Play language codes: `pt-PT` (Portuguese – Portugal),
+`fr-FR`, `es-ES`, `it-IT`, `ro` (Romanian) and `de-DE`. They match the languages the app itself is translated
+into. Screenshots and graphics are shared (Play reuses the default language's images).
 Re-check lengths after editing:
 
 ```bash
@@ -51,11 +56,14 @@ PY
 
 - **App category:** Tools (alternative: Productivity)
 - **Tags:** device performance, battery, security, app manager
-- **Content rating:** Everyone. Run the questionnaire: no user-generated content, no ads, no web access.
+- **Content rating:** Everyone. Run the questionnaire: no user-generated content, no ads, no web access. The
+  Parental help copy mentions online risks (grooming, sextortion, adult content) only as safety information for
+  parents; it shows no such content.
 - **Contact email:** the address you use for the developer account (shown publicly)
 - **Privacy policy URL:** `https://github.com/neteinstein/Perfsentient/blob/main/store-listing/PrivacyPolicy.md`
 - **Website:** `https://github.com/neteinstein/Perfsentient`
-- **Target audience:** 18+ (not designed for children)
+- **Target audience:** 18+ (not designed for children). Parental mode is a tool *for parents*; it does not make
+  the app child-directed, so the Families policy does not apply.
 - **Ads:** No
 - **App access:** instructions in [`testing-instructions.md`](testing-instructions.md)
 - **Data safety:** answers in [`data-safety.md`](data-safety.md)

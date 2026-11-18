@@ -1,0 +1,48 @@
+Ist Ihr Handy langsam, heiß oder voller Werbung aus dem Nichts? Perfsentient findet die Apps dahinter.
+
+Perfsentient beobachtet den ganzen Tag im Hintergrund, wie sich Ihr Handy verhält. Jeden Abend erhalten Sie einen einfachen Gesundheitsbericht mit einem Wert, den auffälligen Apps und einer verständlichen Erklärung, was jede davon getan hat.
+
+WAS ES ERKENNT
+• Pop-up-Werbung: Apps, die den Bildschirm übernehmen, während Sie etwas anderes nutzen
+• Werbung nach Anrufen: Vollbildwerbung, sobald ein Anruf endet
+• Overlay-Missbrauch: Apps, die sich über andere legen und im Hintergrund aktiv bleiben
+• Versteckte Apps: im Hintergrund aktiv, aber ohne Symbol in der App-Übersicht
+• Dauerläufer: Dienste, die die CPU wach halten und den Akku leeren
+• Nachteulen: Apps, die bei ausgeschaltetem Display aufwachen
+• Datenfresser im Hintergrund
+• Benachrichtigungsspam
+• Riskante Zugriffe: Bedienungshilfen, Geräteadministratoren, Akku ohne Einschränkung
+• Speicherfresser (riesiger Cache)
+
+IHR TAGESBERICHT
+• Ein Gesundheitswert von 0 bis 100 und ein klares Urteil: gut, mittel oder schlecht
+• Gerätewerte: Akkuverbrauch, Verbrauch bei ausgeschaltetem Display, Temperatur und Speicherknappheit
+• Ein 7-Tage-Verlauf, damit Sie sehen, ob es besser wird
+• Tippen Sie auf eine App, um genau zu sehen, was sie getan hat, und öffnen Sie die App-Info, um sie zu deinstallieren oder einzuschränken
+
+SIE BEHALTEN DIE KONTROLLE
+• Der Tab Apps zeigt jede App, die jetzt oder früher aufgefallen ist
+• Vertrauen Sie Apps, von denen Sie wissen, dass sie in Ordnung sind: Sie werden aus Ihren Berichten ausgenommen, senken Ihren Wert nicht und erscheinen in einer anderen Farbe
+• Ändern Sie Ihre Meinung jederzeit: Tippen Sie auf eine vertraute App, um ihr nicht mehr zu vertrauen
+
+ELTERNMODUS
+Richten Sie ein Handy für ein Kind ein? Schalten Sie in den Einstellungen den Elternmodus ein und geben Sie sein Alter an. Ein Tab Eltern listet dann die installierten Apps, vor denen Kinderschutzorganisationen, Behörden und Recherchen für dieses Alter warnen:
+• Spiele und Avatar-Welten mit offenem Chat, in denen Erwachsene Kinder angesprochen haben (Cybergrooming)
+• Messenger und soziale Netzwerke, die in Sextortion-Warnungen genannt werden
+• Zufalls-Videochats, Dating-Apps für Erwachsene und Apps für anonyme Fragen
+• KI-Begleiter, Livestreams mit bezahlten Geschenken, geheime Tresore, die Fotos oder Apps verstecken, und Glücksspiel
+Jede Warnung erklärt, warum die App markiert ist, zeigt das empfohlene und das Mindestalter und sagt Ihnen, was Sie tun können. Markieren Sie eine App als geprüft, wenn Sie sie gemeinsam eingerichtet haben. Der Elternmodus braucht keine zusätzliche Berechtigung, und das eingegebene Alter verlässt nie das Handy.
+
+PRIVAT AUS PRINZIP
+• Alles wird auf Ihrem Handy analysiert
+• Die App hat keinerlei Internetberechtigung und kann Ihre Daten daher nirgendwohin senden
+• Kein Konto, keine Werbung, keine Analysen
+• Benachrichtigungen werden nur pro App gezählt. Ihr Inhalt wird nie gelesen
+
+SO FUNKTIONIERT ES
+Perfsentient braucht zwei Berechtigungen, die Sie in den Android-Einstellungen einschalten: Zugriff auf Nutzungsdaten (um zu sehen, welche Apps wie lange laufen) und Benachrichtigungszugriff (um Benachrichtigungen pro App zu zählen). Der Tab Einstellungen erklärt beide und führt Sie direkt zum richtigen Bildschirm. Alle 15 Minuten läuft eine leichte Prüfung, die kaum Akku verbraucht, und Ihr Bericht kommt zur gewünschten Uhrzeit.
+
+SPRACHEN
+Deutsch, Englisch, Portugiesisch, Französisch, Spanisch, Italienisch und Rumänisch. Ab Android 13 können Sie die Sprache der App in den Android-Einstellungen wählen.
+
+Perfsentient löscht keine Apps für Sie. Es sagt Ihnen, welche Sie sich ansehen sollten, und warum.

@@ -41,7 +41,7 @@
   <img src="store-listing/screenshots/phone/01-report.png" alt="Report: today's health score" width="19%">
   <img src="store-listing/screenshots/phone/02-offenders.png" alt="Report: the apps that misbehaved" width="19%">
   <img src="store-listing/screenshots/phone/03-apps.png" alt="Apps tab: flagged apps and trusted apps in teal" width="19%">
-  <img src="store-listing/screenshots/phone/04-settings.png" alt="Settings: permissions and trusted apps" width="19%">
+  <img src="store-listing/screenshots/phone/07-parental.png" alt="Parental help: apps flagged for the child's age" width="19%">
   <img src="store-listing/screenshots/phone/06-apps-dark.png" alt="Apps tab in the dark theme" width="19%">
 </p>
 

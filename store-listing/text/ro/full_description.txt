@@ -1,0 +1,48 @@
+Telefonul e lent, se încălzește sau e plin de reclame apărute de nicăieri? Perfsentient găsește aplicațiile vinovate.
+
+Perfsentient urmărește cum se comportă telefonul toată ziua, în fundal. În fiecare seară primiți un raport de sănătate simplu, cu un scor, aplicațiile care s-au comportat urât și o explicație clară a ceea ce a făcut fiecare.
+
+CE DETECTEAZĂ
+• Reclame pop-up: aplicații care preiau ecranul în timp ce folosiți altceva
+• Reclame după apeluri: reclame pe tot ecranul la finalul unui apel
+• Suprapuneri abuzive: aplicații afișate peste altele, active în fundal
+• Aplicații ascunse: active în fundal, dar fără pictogramă în lista de aplicații
+• Aplicații mereu active: servicii care țin procesorul treaz și consumă bateria
+• Aplicații active noaptea: se trezesc cu ecranul stins
+• Aplicații care consumă date în fundal
+• Spam de notificări
+• Acces riscant: servicii de accesibilitate, administratori de dispozitiv, baterie fără restricții
+• Aplicații care ocupă mult spațiu (cache uriaș)
+
+RAPORTUL ZILNIC
+• Un scor de sănătate de la 0 la 100 și un verdict clar: bună, acceptabilă sau slabă
+• Semne vitale: consumul bateriei, consumul cu ecranul stins, temperatura și presiunea pe memorie
+• O tendință pe 7 zile, ca să vedeți dacă lucrurile se îmbunătățesc
+• Atingeți o aplicație pentru a vedea exact ce a făcut și a-i deschide informațiile, ca s-o dezinstalați sau restricționați
+
+CONTROLUL E AL DVS.
+• Fila Aplicații arată toate aplicațiile semnalate acum sau în trecut
+• Marcați de încredere aplicațiile despre care știți că sunt în regulă: sunt excluse din rapoarte, nu vă scad scorul și apar în altă culoare
+• Vă puteți răzgândi oricând: atingeți o aplicație de încredere pentru a renunța
+
+MOD PARENTAL
+Pregătiți un telefon pentru un copil? Activați Modul parental din Setări și introduceți vârsta lui. O filă Părinți va lista aplicațiile instalate despre care organizațiile pentru protecția copilului, autoritățile și anchetele avertizează pentru acea vârstă:
+• Jocuri și lumi de avatare cu chat deschis, unde adulți au racolat copii
+• Aplicații de mesagerie și rețele sociale menționate în avertismente despre sextorsiune
+• Chat video aleatoriu, aplicații de întâlniri pentru adulți și de întrebări anonime
+• Companioni AI, transmisiuni live cu cadouri plătite, seifuri secrete care ascund poze sau aplicații și jocuri de noroc
+Fiecare avertisment explică de ce a fost semnalată aplicația, arată vârsta recomandată și pe cea minimă și vă spune ce puteți face. Marcați o aplicație ca verificată după ce ați configurat-o împreună. Modul parental nu cere permisiuni suplimentare, iar vârsta introdusă nu părăsește niciodată telefonul.
+
+PRIVAT PRIN DESIGN
+• Totul este analizat pe telefonul dvs.
+• Aplicația nu are nicio permisiune de internet, deci nu vă poate trimite datele nicăieri
+• Fără cont, fără reclame, fără statistici
+• Notificările sunt doar numărate pe aplicație. Conținutul lor nu este citit niciodată
+
+CUM FUNCȚIONEAZĂ
+Perfsentient are nevoie de două permisiuni pe care le activați în setările Android: acces la datele de utilizare (pentru a vedea ce aplicații rulează și cât timp) și acces la notificări (pentru a le număra pe aplicație). Fila Setări explică fiecare permisiune și vă duce direct la ecranul potrivit. O verificare ușoară rulează la fiecare 15 minute, cu un consum de baterie aproape nul, iar raportul sosește la ora aleasă de dvs.
+
+LIMBI
+Română, engleză, portugheză, franceză, spaniolă, italiană și germană. Pe Android 13 și versiunile ulterioare puteți alege limba aplicației din setările Android.
+
+Perfsentient nu elimină aplicații în locul dvs. Vă spune pe care să le verificați și de ce.

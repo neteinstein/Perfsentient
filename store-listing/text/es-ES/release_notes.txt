@@ -1,0 +1,3 @@
+• Nuevo Modo parental: indica la edad del menor en Ajustes y una pestaña Ayuda parental señala las apps instaladas conocidas por grooming, sextorsión, contacto con desconocidos o contenido adulto, con lo que puedes hacer en cada caso
+• Ahora en español, portugués, francés, italiano, rumano y alemán
+• En Android 13 o posterior, elige el idioma de la app en los ajustes de Android

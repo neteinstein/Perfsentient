@@ -1,0 +1,3 @@
+• Neuer Elternmodus: Geben Sie in den Einstellungen das Alter Ihres Kindes an, und ein Tab Eltern markiert installierte Apps, die für Cybergrooming, Sextortion, Kontakt mit Fremden oder Inhalte für Erwachsene bekannt sind, samt Tipps, was Sie tun können
+• Jetzt auf Deutsch, Portugiesisch, Französisch, Spanisch, Italienisch und Rumänisch
+• Ab Android 13 lässt sich die App-Sprache in den Android-Einstellungen wählen

@@ -1,4 +1,3 @@
-• Novo separador Apps: veja todas as apps sinalizadas agora ou no passado
-• Confie numa app (lista de permitidas) ou deixe de confiar, no separador Apps ou no relatório
-• As apps de confiança aparecem com outra cor e deixam de baixar a pontuação
-• Melhorias de desempenho e estabilidade
+• Novo Modo parental: indique a idade da criança nas Definições e um separador Ajuda parental assinala apps instaladas conhecidas por aliciamento, sextorsão, contacto com desconhecidos ou conteúdo adulto, com o que pode fazer em cada caso
+• Agora em português, francês, espanhol, italiano, romeno e alemão
+• No Android 13 ou posterior, escolha o idioma da app nas definições do Android
