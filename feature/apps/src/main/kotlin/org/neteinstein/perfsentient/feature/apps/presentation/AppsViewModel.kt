@@ -2,15 +2,15 @@ package org.neteinstein.perfsentient.feature.apps.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import org.neteinstein.perfsentient.core.domain.usecase.ObserveFlaggedAppsUseCase
-import org.neteinstein.perfsentient.core.domain.usecase.TrustAppUseCase
-import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
-import org.neteinstein.perfsentient.core.model.FlaggedApp
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.neteinstein.perfsentient.core.domain.usecase.ObserveFlaggedAppsUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.TrustAppUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
+import org.neteinstein.perfsentient.core.model.FlaggedApp
 
 data class AppsUiState(
     val isLoading: Boolean = true,

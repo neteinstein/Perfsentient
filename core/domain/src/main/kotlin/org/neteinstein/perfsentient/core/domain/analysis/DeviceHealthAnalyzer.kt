@@ -1,13 +1,13 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 import org.neteinstein.perfsentient.core.common.MILLIS_IN_HOUR
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.DeviceMetrics
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.VitalSample
-import kotlin.math.roundToInt
-import kotlin.math.roundToLong
 
 /** Computes device-wide metrics from periodic vital samples and flags device-level issues. */
 class DeviceHealthAnalyzer(private val thresholds: DetectionThresholds) {

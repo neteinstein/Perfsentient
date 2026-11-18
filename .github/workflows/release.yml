@@ -4,8 +4,9 @@ name: Build & Release
 #   1. bump the patch version in app/build.gradle.kts (committed back to main with [skip ci]),
 #   2. build the signed, R8-minified APK and App Bundle,
 #   3. create a GitHub release vX.Y.Z with Perfsentient_vX.Y.Z.apk and Perfsentient_vX.Y.Z.aab,
-#   4. upload the bundle to Google Play's internal track -- DISABLED until the repository
-#      variable PLAY_STORE_UPLOAD_ENABLED is set to 'true' (see store-listing/publishing.md).
+#   4. upload the bundle to Google Play's internal track (needs the PLAY_STORE_SERVICE_ACCOUNT_JSON
+#      secret; set the repository variable PLAY_STORE_UPLOAD_ENABLED to 'false' to skip it,
+#      see store-listing/publishing.md).
 # publish-play-store.yml is the manual way to (re)upload the bundle to another track.
 
 on:
@@ -36,15 +37,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - name: Check signing secrets
+      - name: Check signing and Play Store secrets
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          PLAY_STORE_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_STORE_SERVICE_ACCOUNT_JSON }}
+          PLAY_STORE_UPLOAD_ENABLED: ${{ vars.PLAY_STORE_UPLOAD_ENABLED }}
         run: |
-          # Fail before bumping the version rather than publish an unsigned release.
-          for name in KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
+          # Fail before bumping the version rather than publish an unsigned release, or a
+          # release that never reaches Play.
+          required="KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD"
+          if [ "$PLAY_STORE_UPLOAD_ENABLED" != "false" ]; then
+            required="$required PLAY_STORE_SERVICE_ACCOUNT_JSON"
+          fi
+          for name in $required; do
             if [ -z "${!name}" ]; then
               echo "::error::Repository secret $name is not set. See store-listing/publishing.md." >&2
               exit 1
@@ -179,22 +187,22 @@ jobs:
           path: app/build/outputs/mapping/release/mapping.txt
           retention-days: 90
 
-      # ---- Google Play upload: disabled until the PLAY_STORE_UPLOAD_ENABLED variable is 'true' ----
+      # ---- Google Play upload: on unless the PLAY_STORE_UPLOAD_ENABLED variable is 'false' ----
 
       - name: Play Store upload is disabled
-        if: vars.PLAY_STORE_UPLOAD_ENABLED != 'true'
+        if: vars.PLAY_STORE_UPLOAD_ENABLED == 'false'
         run: |
-          echo "::notice::Play Store upload skipped: set the repository variable PLAY_STORE_UPLOAD_ENABLED=true to enable it (see store-listing/publishing.md)."
-          echo "Play Store upload skipped (PLAY_STORE_UPLOAD_ENABLED is not 'true')." >> "$GITHUB_STEP_SUMMARY"
+          echo "::notice::Play Store upload skipped: the repository variable PLAY_STORE_UPLOAD_ENABLED is 'false' (see store-listing/publishing.md)."
+          echo "Play Store upload skipped (PLAY_STORE_UPLOAD_ENABLED is 'false')." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Decode Play Store service account key
-        if: vars.PLAY_STORE_UPLOAD_ENABLED == 'true'
+        if: vars.PLAY_STORE_UPLOAD_ENABLED != 'false'
         env:
           PLAY_STORE_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_STORE_SERVICE_ACCOUNT_JSON }}
-        run: echo "$PLAY_STORE_SERVICE_ACCOUNT_JSON" > play-store-key.json
+        run: printf '%s' "$PLAY_STORE_SERVICE_ACCOUNT_JSON" > play-store-key.json
 
       - name: Set up the Play upload script
-        if: vars.PLAY_STORE_UPLOAD_ENABLED == 'true'
+        if: vars.PLAY_STORE_UPLOAD_ENABLED != 'false'
         run: |
           # A virtualenv: the runner's system Python refuses pip installs (PEP 668).
           python3 -m venv "$RUNNER_TEMP/play-venv"
@@ -203,7 +211,7 @@ jobs:
 
       # The script picks Play's changesNotSentForReview flag per upload; see its docstring.
       - name: Upload App Bundle to the internal track
-        if: vars.PLAY_STORE_UPLOAD_ENABLED == 'true'
+        if: vars.PLAY_STORE_UPLOAD_ENABLED != 'false'
         run: >-
           "$RUNNER_TEMP/play-venv/bin/python" .github/scripts/play_publish.py
           --key play-store-key.json

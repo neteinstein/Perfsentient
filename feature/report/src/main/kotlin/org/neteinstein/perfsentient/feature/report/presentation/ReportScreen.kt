@@ -37,6 +37,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.koin.compose.viewmodel.koinViewModel
 import org.neteinstein.perfsentient.core.designsystem.component.SectionHeader
 import org.neteinstein.perfsentient.core.designsystem.component.staggeredEntrance
 import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
@@ -51,7 +52,6 @@ import org.neteinstein.perfsentient.feature.report.presentation.component.Report
 import org.neteinstein.perfsentient.feature.report.presentation.component.SetupCard
 import org.neteinstein.perfsentient.feature.report.presentation.component.TrustedAppsHiddenNote
 import org.neteinstein.perfsentient.feature.report.presentation.component.VitalsGrid
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun ReportRoute(onOpenSettings: () -> Unit, modifier: Modifier = Modifier, viewModel: ReportViewModel = koinViewModel()) {

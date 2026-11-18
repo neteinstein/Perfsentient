@@ -1,6 +1,11 @@
 package org.neteinstein.perfsentient.feature.settings
 
 import app.cash.turbine.test
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Rule
+import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObservePermissionsUseCase
@@ -21,11 +26,6 @@ import org.neteinstein.perfsentient.core.testing.FakeSettingsRepository
 import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
 import org.neteinstein.perfsentient.core.testing.MainDispatcherRule
 import org.neteinstein.perfsentient.feature.settings.presentation.SettingsViewModel
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
-import org.junit.Rule
-import org.junit.Test
 
 class SettingsViewModelTest {
     @get:Rule

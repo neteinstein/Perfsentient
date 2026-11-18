@@ -1,5 +1,8 @@
 package org.neteinstein.perfsentient.core.domain.usecase
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import org.neteinstein.perfsentient.core.common.MILLIS_IN_HOUR
 import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.domain.repository.MonitoringScheduler
@@ -8,9 +11,6 @@ import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.allRequiredGranted
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 
 enum class MonitoringState { ACTIVE, WAITING_FOR_PERMISSIONS }
 

@@ -1,12 +1,12 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
+import java.time.ZoneOffset
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.VitalSample
 import org.neteinstein.perfsentient.core.testing.TestData
-import java.time.ZoneOffset
 
 internal fun input(
     apps: List<AppProfile> = emptyList(),

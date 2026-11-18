@@ -1,6 +1,13 @@
 package org.neteinstein.perfsentient.feature.report
 
 import app.cash.turbine.test
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
+import org.junit.Rule
+import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
@@ -31,13 +38,6 @@ import org.neteinstein.perfsentient.core.testing.TestData
 import org.neteinstein.perfsentient.core.testing.TestDispatcherProvider
 import org.neteinstein.perfsentient.feature.report.presentation.ReportEvent
 import org.neteinstein.perfsentient.feature.report.presentation.ReportViewModel
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertTrue
-import org.junit.Rule
-import org.junit.Test
 
 class ReportViewModelTest {
     @get:Rule

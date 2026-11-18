@@ -1,5 +1,8 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertSame
+import org.junit.Test
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
@@ -7,9 +10,6 @@ import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.testing.TestData.finding
 import org.neteinstein.perfsentient.core.testing.TestData.report
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertSame
-import org.junit.Test
 
 class TrustedAppsFilterTest {
     private val calculator = HealthScoreCalculator()

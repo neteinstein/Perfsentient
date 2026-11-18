@@ -1,5 +1,8 @@
 package org.neteinstein.perfsentient.core.data.mapper
 
+import java.time.LocalDate
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import org.neteinstein.perfsentient.core.data.local.entity.ReportEntity
 import org.neteinstein.perfsentient.core.data.local.entity.VitalSampleEntity
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -11,9 +14,6 @@ import org.neteinstein.perfsentient.core.model.Finding
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.model.VitalSample
-import java.time.LocalDate
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 
 @Serializable
 internal data class ReportDto(

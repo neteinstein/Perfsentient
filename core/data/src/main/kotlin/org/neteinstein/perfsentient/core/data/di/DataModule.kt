@@ -5,6 +5,10 @@ import android.app.usage.UsageStatsManager
 import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.dsl.bind
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.module
 import org.neteinstein.perfsentient.core.common.DefaultDispatcherProvider
 import org.neteinstein.perfsentient.core.common.DispatcherProvider
 import org.neteinstein.perfsentient.core.common.SystemTimeProvider
@@ -30,10 +34,6 @@ import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
 import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.module.dsl.bind
-import org.koin.core.module.dsl.singleOf
-import org.koin.dsl.module
 
 private val Context.settingsDataStore by preferencesDataStore(name = "settings")
 

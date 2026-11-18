@@ -2,6 +2,10 @@ package org.neteinstein.perfsentient
 
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Rule
+import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.SyncMonitoringUseCase
 import org.neteinstein.perfsentient.core.model.ThemeMode
@@ -10,10 +14,6 @@ import org.neteinstein.perfsentient.core.testing.FakeMonitoringScheduler
 import org.neteinstein.perfsentient.core.testing.FakePermissionRepository
 import org.neteinstein.perfsentient.core.testing.FakeSettingsRepository
 import org.neteinstein.perfsentient.core.testing.MainDispatcherRule
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Rule
-import org.junit.Test
 
 class MainViewModelTest {
     @get:Rule

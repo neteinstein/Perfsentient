@@ -7,12 +7,14 @@ Two workflows handle distribution:
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| **Build & Release** (`.github/workflows/release.yml`) | Every push/merge to `main` | Bumps the patch version, builds the signed R8 APK + App Bundle, checks the release manifest has no `INTERNET` permission, creates GitHub release `vX.Y.Z` with `Perfsentient_vX.Y.Z.apk` / `.aab`, keeps the R8 `mapping.txt` as a build artifact and (**once enabled**) uploads the bundle to the Play **internal** track. |
+| **Build & Release** (`.github/workflows/release.yml`) | Every push/merge to `main` | Bumps the patch version, builds the signed R8 APK + App Bundle, checks the release manifest has no `INTERNET` permission, creates GitHub release `vX.Y.Z` with `Perfsentient_vX.Y.Z.apk` / `.aab`, keeps the R8 `mapping.txt` as a build artifact and uploads the bundle to the Play **internal** track. |
 | **Publish to Play Store** (`.github/workflows/publish-play-store.yml`) | Manual (`workflow_dispatch`) | Rebuilds the bundle from `main` and uploads it to `internal`, `alpha`, `beta` or `production`. |
 
-> **The Play Store upload is currently disabled.** Both workflows only upload when the repository
-> **variable** `PLAY_STORE_UPLOAD_ENABLED` is `true`. Until then `release.yml` skips the upload
-> (and says so in the job summary), and `publish-play-store.yml` fails at its first step.
+> **The Play Store upload is enabled.** Both workflows upload with the repository secret
+> `PLAY_STORE_SERVICE_ACCOUNT_JSON` and fail at their first step (before `release.yml` bumps the
+> version) if it is missing. To pause uploads, set the repository **variable**
+> `PLAY_STORE_UPLOAD_ENABLED` to `false`: `release.yml` then skips the upload (and says so in the job
+> summary), and `publish-play-store.yml` fails at its first step.
 
 ## Versioning
 
@@ -41,13 +43,14 @@ repeated `versionCode`.
 | `KEY_ALIAS` | Key alias (e.g. `upload`) |
 | `KEY_PASSWORD` | Key password |
 
-`release.yml` fails at its first step (before bumping the version) if any of these is missing.
+`release.yml` fails at its first step (before bumping the version) if any of these, or
+`PLAY_STORE_SERVICE_ACCOUNT_JSON` (step 2), is missing.
 
 Local signed builds: create an untracked `keystore.properties` in the repo root
 (`storeFile`, `storePassword`, `keyAlias`, `keyPassword`) or export `KEYSTORE_FILE`,
 `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`. Without either, release builds are unsigned.
 
-## 2. Enabling the Play Store upload (later)
+## 2. Play Store upload
 
 ### Prerequisites
 - A Google Play Developer account with the app `org.neteinstein.perfsentient` created.
@@ -62,11 +65,12 @@ Local signed builds: create an untracked `keystore.properties` in the repo root
 2. In Play Console → *Users and permissions → Invite new users*, paste the service-account email, *App permissions → Add app* → `org.neteinstein.perfsentient`, grant **Release to production, exclude devices, and use Play App Signing** and **Manage store presence**, then *Invite user*.
 3. Add the repository secret `PLAY_STORE_SERVICE_ACCOUNT_JSON` with the full JSON key contents.
 
-### Switch it on
-*Settings → Secrets and variables → Actions → **Variables** → New repository variable*:
-`PLAY_STORE_UPLOAD_ENABLED` = `true`. No code change needed; delete the variable (or set it to anything else) to disable again.
+### On / off
+The upload is **on** by default: every merge to `main` uploads to the **internal** track.
+To pause it without a code change, add *Settings → Secrets and variables → Actions → **Variables***
+`PLAY_STORE_UPLOAD_ENABLED` = `false`; delete the variable (or set it to anything else) to resume.
 
-From then on every merge to `main` also uploads to the **internal** track. To promote to another track run **Publish to Play Store** manually with the track and `build_number` `1` (raise it on repeats – the automatic upload already used `build` 0 for that version).
+To promote to another track run **Publish to Play Store** manually with the track and `build_number` `1` (raise it on repeats – the automatic upload already used `build` 0 for that version).
 
 ## How the upload works
 
@@ -74,9 +78,10 @@ From then on every merge to `main` also uploads to the **internal** track. To pr
 
 ## Troubleshooting
 
-- **"Repository secret … is not set"** – add the signing secrets from step 1.
+- **"Repository secret … is not set"** – add the signing secrets from step 1 and `PLAY_STORE_SERVICE_ACCOUNT_JSON` from step 2 (or set `PLAY_STORE_UPLOAD_ENABLED` to `false` to release without Play).
 - **`git push to main failed`** – branch protection blocks the bot's version-bump commit; allow `github-actions[bot]`.
 - **403 / "does not have permission"** – the service account lacks app permissions in Play Console.
+- **404 / "Package not found"** – the app doesn't exist in Play Console yet: do the first upload manually (see Prerequisites).
 - **"versionCode … has already been used"** – run *Publish to Play Store* with a higher `build_number`, or merge another change.
 - **"sensitive permissions that have not been declared"** – submit the `QUERY_ALL_PACKAGES` declaration in Play Console, then re-run the manual workflow.
 - **"Release manifest declares android.permission.INTERNET"** – a dependency added network access; remove it or keep the `tools:node="remove"` entry in `app/src/main/AndroidManifest.xml`.

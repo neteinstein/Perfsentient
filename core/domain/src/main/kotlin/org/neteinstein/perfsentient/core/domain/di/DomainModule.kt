@@ -1,5 +1,8 @@
 package org.neteinstein.perfsentient.core.domain.di
 
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.module
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
@@ -21,9 +24,6 @@ import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateDynamicColorUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateReportTimeUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
-import org.koin.core.module.dsl.factoryOf
-import org.koin.core.module.dsl.singleOf
-import org.koin.dsl.module
 
 val domainModule = module {
     single { DetectionThresholds() }

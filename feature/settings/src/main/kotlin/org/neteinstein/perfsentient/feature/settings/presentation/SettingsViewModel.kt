@@ -2,6 +2,11 @@ package org.neteinstein.perfsentient.feature.settings.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObservePermissionsUseCase
@@ -17,11 +22,6 @@ import org.neteinstein.perfsentient.core.model.ReportTime
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UserSettings
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 
 data class SettingsUiState(
     val permissions: List<PermissionState> = emptyList(),

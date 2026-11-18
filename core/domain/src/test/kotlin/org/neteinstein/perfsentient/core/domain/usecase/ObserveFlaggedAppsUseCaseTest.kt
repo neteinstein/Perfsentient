@@ -1,12 +1,6 @@
 package org.neteinstein.perfsentient.core.domain.usecase
 
 import app.cash.turbine.test
-import org.neteinstein.perfsentient.core.model.BehaviorType
-import org.neteinstein.perfsentient.core.model.Severity
-import org.neteinstein.perfsentient.core.model.TrustedApp
-import org.neteinstein.perfsentient.core.testing.FakeReportRepository
-import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
-import org.neteinstein.perfsentient.core.testing.TestData
 import java.time.LocalDate
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -15,6 +9,12 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.neteinstein.perfsentient.core.model.BehaviorType
+import org.neteinstein.perfsentient.core.model.Severity
+import org.neteinstein.perfsentient.core.model.TrustedApp
+import org.neteinstein.perfsentient.core.testing.FakeReportRepository
+import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
+import org.neteinstein.perfsentient.core.testing.TestData
 
 class ObserveFlaggedAppsUseCaseTest {
     private val reports = FakeReportRepository()

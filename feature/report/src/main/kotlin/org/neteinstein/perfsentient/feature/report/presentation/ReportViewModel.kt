@@ -2,16 +2,6 @@ package org.neteinstein.perfsentient.feature.report.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
-import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
-import org.neteinstein.perfsentient.core.domain.usecase.ObserveLatestReportUseCase
-import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
-import org.neteinstein.perfsentient.core.domain.usecase.ObserveReportHistoryUseCase
-import org.neteinstein.perfsentient.core.domain.usecase.ObserveSettingsUseCase
-import org.neteinstein.perfsentient.core.domain.usecase.TrustAppUseCase
-import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
-import org.neteinstein.perfsentient.core.model.DailyReport
-import org.neteinstein.perfsentient.core.model.ReportTime
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -22,6 +12,16 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
+import org.neteinstein.perfsentient.core.domain.usecase.ObserveLatestReportUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.ObserveReportHistoryUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.ObserveSettingsUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.TrustAppUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
+import org.neteinstein.perfsentient.core.model.DailyReport
+import org.neteinstein.perfsentient.core.model.ReportTime
 
 data class ReportUiState(
     val isLoading: Boolean = true,

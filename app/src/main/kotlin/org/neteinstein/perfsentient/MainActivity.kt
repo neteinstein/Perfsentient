@@ -13,12 +13,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.neteinstein.perfsentient.core.designsystem.theme.PerfsentienceTheme
 import org.neteinstein.perfsentient.core.designsystem.theme.isDark
 import org.neteinstein.perfsentient.feature.monitoring.MonitoringContract
 import org.neteinstein.perfsentient.ui.PerfsentienceAppUi
-import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModel()

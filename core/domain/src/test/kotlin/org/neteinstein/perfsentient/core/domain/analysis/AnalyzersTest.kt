@@ -1,5 +1,8 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
@@ -10,9 +13,6 @@ import org.neteinstein.perfsentient.core.testing.TestData.finding
 import org.neteinstein.perfsentient.core.testing.TestData.network
 import org.neteinstein.perfsentient.core.testing.TestData.usage
 import org.neteinstein.perfsentient.core.testing.TestData.vital
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
-import org.junit.Test
 
 class AnalyzersTest {
     private val thresholds = DetectionThresholds()

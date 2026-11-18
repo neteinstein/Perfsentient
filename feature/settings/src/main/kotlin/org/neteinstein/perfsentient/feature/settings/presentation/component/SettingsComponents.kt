@@ -57,6 +57,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import java.util.Locale
 import org.neteinstein.perfsentient.core.designsystem.behavior.presentation
 import org.neteinstein.perfsentient.core.designsystem.component.AppIcon
 import org.neteinstein.perfsentient.core.designsystem.component.AuroraBackground
@@ -76,7 +77,6 @@ import org.neteinstein.perfsentient.core.model.UserSettings
 import org.neteinstein.perfsentient.feature.settings.R
 import org.neteinstein.perfsentient.feature.settings.presentation.SettingsUiState
 import org.neteinstein.perfsentient.feature.settings.presentation.presentation
-import java.util.Locale
 
 @Composable
 internal fun MonitoringStatusCard(state: SettingsUiState, modifier: Modifier = Modifier) {

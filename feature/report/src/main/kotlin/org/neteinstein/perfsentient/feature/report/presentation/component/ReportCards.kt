@@ -57,6 +57,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import java.time.format.TextStyle
 import org.neteinstein.perfsentient.core.designsystem.behavior.label
 import org.neteinstein.perfsentient.core.designsystem.behavior.presentation
 import org.neteinstein.perfsentient.core.designsystem.component.AnimatedCheck
@@ -77,7 +78,6 @@ import org.neteinstein.perfsentient.feature.report.presentation.describeValue
 import org.neteinstein.perfsentient.feature.report.presentation.formatBytes
 import org.neteinstein.perfsentient.feature.report.presentation.formatDuration
 import org.neteinstein.perfsentient.feature.report.presentation.title
-import java.time.format.TextStyle
 
 @Composable
 internal fun SetupCard(onOpenSettings: () -> Unit, modifier: Modifier = Modifier) {

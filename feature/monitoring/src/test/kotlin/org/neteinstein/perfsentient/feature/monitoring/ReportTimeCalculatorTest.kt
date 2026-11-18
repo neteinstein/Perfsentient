@@ -1,12 +1,12 @@
 package org.neteinstein.perfsentient.feature.monitoring
 
-import org.neteinstein.perfsentient.core.model.ReportTime
-import org.neteinstein.perfsentient.feature.monitoring.scheduler.ReportTimeCalculator
 import java.time.Duration
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.feature.monitoring.scheduler.ReportTimeCalculator
 
 class ReportTimeCalculatorTest {
     private fun at(hour: Int, minute: Int) = ZonedDateTime.of(2026, 11, 16, hour, minute, 0, 0, ZoneOffset.UTC)

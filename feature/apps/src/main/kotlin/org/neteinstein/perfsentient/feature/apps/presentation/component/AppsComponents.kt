@@ -33,6 +33,9 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import org.neteinstein.perfsentient.core.designsystem.behavior.label
 import org.neteinstein.perfsentient.core.designsystem.behavior.presentation
 import org.neteinstein.perfsentient.core.designsystem.component.AppIcon
@@ -41,9 +44,6 @@ import org.neteinstein.perfsentient.core.designsystem.component.SurfaceCard
 import org.neteinstein.perfsentient.core.designsystem.theme.PerfsentienceTheme
 import org.neteinstein.perfsentient.core.model.FlaggedApp
 import org.neteinstein.perfsentient.feature.apps.R
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 private fun LocalDate.display(): String = format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
 

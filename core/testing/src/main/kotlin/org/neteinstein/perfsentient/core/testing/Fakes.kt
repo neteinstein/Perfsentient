@@ -1,5 +1,10 @@
 package org.neteinstein.perfsentient.core.testing
 
+import java.time.LocalDate
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
 import org.neteinstein.perfsentient.core.domain.repository.MonitoringScheduler
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
@@ -23,11 +28,6 @@ import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.UserSettings
 import org.neteinstein.perfsentient.core.model.VitalSample
-import java.time.LocalDate
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
 
 class FakePermissionRepository(granted: Boolean = false) : PermissionRepository {
     var systemGrants: MutableMap<PermissionType, Boolean> = PermissionType.entries.associateWith { granted }.toMutableMap()

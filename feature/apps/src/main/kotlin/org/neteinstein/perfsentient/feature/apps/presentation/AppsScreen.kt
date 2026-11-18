@@ -25,12 +25,12 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.koin.compose.viewmodel.koinViewModel
 import org.neteinstein.perfsentient.core.designsystem.component.SectionHeader
 import org.neteinstein.perfsentient.feature.apps.R
 import org.neteinstein.perfsentient.feature.apps.presentation.component.AppDetailsSheet
 import org.neteinstein.perfsentient.feature.apps.presentation.component.AppRow
 import org.neteinstein.perfsentient.feature.apps.presentation.component.AppsEmptyCard
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun AppsRoute(modifier: Modifier = Modifier, viewModel: AppsViewModel = koinViewModel()) {

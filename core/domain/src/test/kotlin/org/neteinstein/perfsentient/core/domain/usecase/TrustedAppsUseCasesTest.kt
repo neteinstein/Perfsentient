@@ -1,6 +1,12 @@
 package org.neteinstein.perfsentient.core.domain.usecase
 
 import app.cash.turbine.test
+import java.time.LocalDate
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
+import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.analysis.HealthScoreCalculator
 import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -8,12 +14,6 @@ import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.testing.FakeReportRepository
 import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
 import org.neteinstein.perfsentient.core.testing.TestData
-import java.time.LocalDate
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
-import org.junit.Test
 
 class TrustedAppsUseCasesTest {
     private val trusted = FakeTrustedAppsRepository()

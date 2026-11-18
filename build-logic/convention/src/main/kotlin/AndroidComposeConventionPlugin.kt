@@ -1,11 +1,11 @@
 import com.android.build.api.dsl.CommonExtension
-import org.neteinstein.perfsentient.buildlogic.lib
-import org.neteinstein.perfsentient.buildlogic.libs
-import org.neteinstein.perfsentient.buildlogic.pluginId
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.neteinstein.perfsentient.buildlogic.lib
+import org.neteinstein.perfsentient.buildlogic.libs
+import org.neteinstein.perfsentient.buildlogic.pluginId
 
 /** Enables Jetpack Compose (compiler plugin + BOM) on an Android module. */
 class AndroidComposeConventionPlugin : Plugin<Project> {

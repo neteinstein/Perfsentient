@@ -4,15 +4,15 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import org.neteinstein.perfsentient.core.model.ReportTime
-import org.neteinstein.perfsentient.core.testing.FakeTimeProvider
-import org.neteinstein.perfsentient.feature.monitoring.scheduler.WorkManagerMonitoringScheduler
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
 import java.util.concurrent.TimeUnit
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.testing.FakeTimeProvider
+import org.neteinstein.perfsentient.feature.monitoring.scheduler.WorkManagerMonitoringScheduler
 
 class WorkManagerMonitoringSchedulerTest {
     private val workManager = mockk<WorkManager>(relaxed = true)

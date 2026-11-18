@@ -1,7 +1,5 @@
 package org.neteinstein.perfsentient.core.testing
 
-import org.neteinstein.perfsentient.core.common.DispatcherProvider
-import org.neteinstein.perfsentient.core.common.TimeProvider
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -14,6 +12,8 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
+import org.neteinstein.perfsentient.core.common.DispatcherProvider
+import org.neteinstein.perfsentient.core.common.TimeProvider
 
 class FakeTimeProvider(
     var instant: Instant = LocalDateTime.of(2026, 11, 16, 21, 30).toInstant(ZoneOffset.UTC),

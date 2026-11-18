@@ -6,13 +6,13 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.model.ReportTime
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.UserSettings
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
 
 class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : SettingsRepository {
 

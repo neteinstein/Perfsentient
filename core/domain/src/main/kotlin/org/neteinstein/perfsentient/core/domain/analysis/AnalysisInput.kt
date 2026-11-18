@@ -1,12 +1,12 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
+import java.time.ZoneId
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DeviceContext
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.VitalSample
-import java.time.ZoneId
 
 /** Everything a detector may look at for the analysed window. */
 data class AnalysisInput(

@@ -1,5 +1,10 @@
 package org.neteinstein.perfsentient.core.domain.usecase
 
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
@@ -17,11 +22,6 @@ import org.neteinstein.perfsentient.core.testing.FakeUsageRepository
 import org.neteinstein.perfsentient.core.testing.FakeVitalsRepository
 import org.neteinstein.perfsentient.core.testing.TestData
 import org.neteinstein.perfsentient.core.testing.TestDispatcherProvider
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
-import org.junit.Test
 
 class GenerateDailyReportUseCaseTest {
     private val time = FakeTimeProvider()

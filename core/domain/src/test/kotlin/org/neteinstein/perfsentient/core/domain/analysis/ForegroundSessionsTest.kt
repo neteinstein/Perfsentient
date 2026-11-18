@@ -1,13 +1,13 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
-import org.neteinstein.perfsentient.core.model.UsageEventType
-import org.neteinstein.perfsentient.core.testing.TestData.SYSTEM_UI
-import org.neteinstein.perfsentient.core.testing.TestData.event
-import org.neteinstein.perfsentient.core.testing.TestData.resumed
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.neteinstein.perfsentient.core.model.UsageEventType
+import org.neteinstein.perfsentient.core.testing.TestData.SYSTEM_UI
+import org.neteinstein.perfsentient.core.testing.TestData.event
+import org.neteinstein.perfsentient.core.testing.TestData.resumed
 
 class ForegroundSessionsTest {
     @Test

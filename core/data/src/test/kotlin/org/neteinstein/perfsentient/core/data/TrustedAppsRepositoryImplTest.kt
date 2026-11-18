@@ -3,8 +3,6 @@ package org.neteinstein.perfsentient.core.data
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import org.neteinstein.perfsentient.core.data.repository.TrustedAppsRepositoryImpl
-import org.neteinstein.perfsentient.core.model.TrustedApp
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -14,6 +12,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
+import org.neteinstein.perfsentient.core.data.repository.TrustedAppsRepositoryImpl
+import org.neteinstein.perfsentient.core.model.TrustedApp
 
 class TrustedAppsRepositoryImplTest {
     @get:Rule

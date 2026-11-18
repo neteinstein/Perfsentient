@@ -3,8 +3,6 @@ package org.neteinstein.perfsentient.feature.monitoring.notification
 import android.app.Notification
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import org.neteinstein.perfsentient.core.common.TimeProvider
-import org.neteinstein.perfsentient.core.domain.usecase.RecordNotificationUseCase
 import java.time.LocalDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +11,8 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.neteinstein.perfsentient.core.common.TimeProvider
+import org.neteinstein.perfsentient.core.domain.usecase.RecordNotificationUseCase
 
 /**
  * Counts how many *new* notifications each app posts per day. Notification content is never

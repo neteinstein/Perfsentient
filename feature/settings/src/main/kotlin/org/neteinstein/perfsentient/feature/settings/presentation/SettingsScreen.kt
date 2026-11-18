@@ -35,6 +35,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.koin.compose.viewmodel.koinViewModel
 import org.neteinstein.perfsentient.core.designsystem.component.SectionHeader
 import org.neteinstein.perfsentient.core.designsystem.component.staggeredEntrance
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -47,7 +48,6 @@ import org.neteinstein.perfsentient.feature.settings.presentation.component.Perm
 import org.neteinstein.perfsentient.feature.settings.presentation.component.ReportTimeCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.TrustedAppCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.TrustedAppsEmptyCard
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SettingsRoute(modifier: Modifier = Modifier, viewModel: SettingsViewModel = koinViewModel()) {
