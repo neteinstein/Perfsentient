@@ -1,8 +1,8 @@
 import com.android.build.api.dsl.LibraryExtension
-import com.neteinstein.perfsentient.buildlogic.configureKotlinAndroid
-import com.neteinstein.perfsentient.buildlogic.configureQuality
-import com.neteinstein.perfsentient.buildlogic.lib
-import com.neteinstein.perfsentient.buildlogic.libs
+import org.neteinstein.perfsentient.buildlogic.configureKotlinAndroid
+import org.neteinstein.perfsentient.buildlogic.configureQuality
+import org.neteinstein.perfsentient.buildlogic.lib
+import org.neteinstein.perfsentient.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

@@ -3,5 +3,5 @@ plugins {
 }
 
 android {
-    namespace = "com.neteinstein.perfsentient.feature.apps"
+    namespace = "org.neteinstein.perfsentient.feature.apps"
 }
