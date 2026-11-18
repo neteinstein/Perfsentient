@@ -6,20 +6,26 @@ import com.neteinstein.perfsentience.core.domain.analysis.AnalysisInput
 import com.neteinstein.perfsentience.core.domain.analysis.BehaviorAnalyzer
 import com.neteinstein.perfsentience.core.domain.analysis.DeviceHealthAnalyzer
 import com.neteinstein.perfsentience.core.domain.analysis.HealthScoreCalculator
+import com.neteinstein.perfsentience.core.domain.analysis.TrustedAppsFilter
 import com.neteinstein.perfsentience.core.domain.repository.AppInventoryRepository
 import com.neteinstein.perfsentience.core.domain.repository.NotificationStatsRepository
 import com.neteinstein.perfsentience.core.domain.repository.ReportRepository
+import com.neteinstein.perfsentience.core.domain.repository.TrustedAppsRepository
 import com.neteinstein.perfsentience.core.domain.repository.UsageRepository
 import com.neteinstein.perfsentience.core.domain.repository.VitalsRepository
 import com.neteinstein.perfsentience.core.model.DailyReport
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
 /**
  * Collects today's telemetry, runs every detector, scores the day and persists the report.
  * Used both by the end-of-day worker and by the "analyse now" button.
+ *
+ * The stored report keeps every finding; the returned one leaves out trusted apps (see [TrustedAppsFilter]).
  */
 class GenerateDailyReportUseCase(
     private val usageRepository: UsageRepository,
@@ -27,9 +33,11 @@ class GenerateDailyReportUseCase(
     private val vitalsRepository: VitalsRepository,
     private val notificationStatsRepository: NotificationStatsRepository,
     private val reportRepository: ReportRepository,
+    private val trustedAppsRepository: TrustedAppsRepository,
     private val behaviorAnalyzer: BehaviorAnalyzer,
     private val deviceHealthAnalyzer: DeviceHealthAnalyzer,
     private val scoreCalculator: HealthScoreCalculator,
+    private val trustedAppsFilter: TrustedAppsFilter,
     private val timeProvider: TimeProvider,
     private val dispatchers: DispatcherProvider,
 ) {
@@ -77,7 +85,7 @@ class GenerateDailyReportUseCase(
         )
         reportRepository.save(report)
         reportRepository.deleteOlderThan(today.minusDays(REPORT_RETENTION_DAYS))
-        report
+        trustedAppsFilter.apply(report, trustedAppsRepository.trustedPackages().first())
     }
 
     private companion object {
@@ -85,10 +93,26 @@ class GenerateDailyReportUseCase(
     }
 }
 
-class ObserveLatestReportUseCase(private val repository: ReportRepository) {
-    operator fun invoke(): Flow<DailyReport?> = repository.observeLatest()
+/** The most recent report, without the findings of trusted apps. */
+class ObserveLatestReportUseCase(
+    private val reportRepository: ReportRepository,
+    private val trustedAppsRepository: TrustedAppsRepository,
+    private val trustedAppsFilter: TrustedAppsFilter,
+) {
+    operator fun invoke(): Flow<DailyReport?> = combine(
+        reportRepository.observeLatest(),
+        trustedAppsRepository.trustedPackages(),
+    ) { report, trusted -> report?.let { trustedAppsFilter.apply(it, trusted) } }
 }
 
-class ObserveReportHistoryUseCase(private val repository: ReportRepository) {
-    operator fun invoke(days: Int = 7): Flow<List<DailyReport>> = repository.observeHistory(days)
+/** The last [days] reports, newest first, re-scored without trusted apps. */
+class ObserveReportHistoryUseCase(
+    private val reportRepository: ReportRepository,
+    private val trustedAppsRepository: TrustedAppsRepository,
+    private val trustedAppsFilter: TrustedAppsFilter,
+) {
+    operator fun invoke(days: Int = 7): Flow<List<DailyReport>> = combine(
+        reportRepository.observeHistory(days),
+        trustedAppsRepository.trustedPackages(),
+    ) { reports, trusted -> reports.map { trustedAppsFilter.apply(it, trusted) } }
 }

@@ -4,12 +4,15 @@ import com.neteinstein.perfsentience.core.domain.analysis.BehaviorAnalyzer
 import com.neteinstein.perfsentience.core.domain.analysis.DetectionThresholds
 import com.neteinstein.perfsentience.core.domain.analysis.DeviceHealthAnalyzer
 import com.neteinstein.perfsentience.core.domain.analysis.HealthScoreCalculator
+import com.neteinstein.perfsentience.core.domain.analysis.TrustedAppsFilter
 import com.neteinstein.perfsentience.core.model.BehaviorType
+import com.neteinstein.perfsentience.core.model.TrustedApp
 import com.neteinstein.perfsentience.core.model.Verdict
 import com.neteinstein.perfsentience.core.testing.FakeAppInventoryRepository
 import com.neteinstein.perfsentience.core.testing.FakeNotificationStatsRepository
 import com.neteinstein.perfsentience.core.testing.FakeReportRepository
 import com.neteinstein.perfsentience.core.testing.FakeTimeProvider
+import com.neteinstein.perfsentience.core.testing.FakeTrustedAppsRepository
 import com.neteinstein.perfsentience.core.testing.FakeUsageRepository
 import com.neteinstein.perfsentience.core.testing.FakeVitalsRepository
 import com.neteinstein.perfsentience.core.testing.TestData
@@ -27,7 +30,9 @@ class GenerateDailyReportUseCaseTest {
     private val vitals = FakeVitalsRepository()
     private val notifications = FakeNotificationStatsRepository()
     private val reports = FakeReportRepository()
+    private val trusted = FakeTrustedAppsRepository()
     private val thresholds = DetectionThresholds()
+    private val calculator = HealthScoreCalculator()
 
     private val useCase = GenerateDailyReportUseCase(
         usageRepository = usage,
@@ -35,9 +40,11 @@ class GenerateDailyReportUseCaseTest {
         vitalsRepository = vitals,
         notificationStatsRepository = notifications,
         reportRepository = reports,
+        trustedAppsRepository = trusted,
         behaviorAnalyzer = BehaviorAnalyzer(thresholds),
         deviceHealthAnalyzer = DeviceHealthAnalyzer(thresholds),
-        scoreCalculator = HealthScoreCalculator(),
+        scoreCalculator = calculator,
+        trustedAppsFilter = TrustedAppsFilter(calculator),
         timeProvider = time,
         dispatchers = TestDispatcherProvider(),
     )
@@ -69,5 +76,20 @@ class GenerateDailyReportUseCaseTest {
         assertEquals(listOf("adware", "spammer"), report.offenders.map { it.packageName })
         assertTrue(report.findings.any { it.type == BehaviorType.NOTIFICATION_SPAM })
         assertTrue(report.findings.any { it.type == BehaviorType.BACKGROUND_DATA })
+    }
+
+    @Test
+    fun `trusted apps are left out of the returned report but kept in storage`() = runTest {
+        inventory.apps = listOf(TestData.app("adware", overlay = true, launcher = false, installer = null), TestData.app("spammer"))
+        repeat(150) { notifications.increment("spammer", time.today()) }
+        trusted.trust(TrustedApp("spammer", "Spammer"))
+
+        val report = useCase()
+
+        assertEquals(listOf("adware"), report.offenders.map { it.packageName })
+        assertEquals(1, report.hiddenTrustedApps)
+        val stored = reports.observeLatest().first()!!
+        assertTrue("raw findings are persisted", stored.findings.any { it.packageName == "spammer" })
+        assertTrue(report.score > stored.score)
     }
 }

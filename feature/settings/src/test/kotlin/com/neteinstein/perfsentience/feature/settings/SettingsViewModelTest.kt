@@ -5,16 +5,20 @@ import com.neteinstein.perfsentience.core.domain.usecase.MonitoringState
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveMonitoringStateUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObservePermissionsUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveSettingsUseCase
+import com.neteinstein.perfsentience.core.domain.usecase.ObserveTrustedAppsUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.SyncMonitoringUseCase
+import com.neteinstein.perfsentience.core.domain.usecase.UntrustAppUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.UpdateDynamicColorUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.UpdateReportTimeUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.UpdateThemeModeUseCase
 import com.neteinstein.perfsentience.core.model.PermissionType
 import com.neteinstein.perfsentience.core.model.ReportTime
 import com.neteinstein.perfsentience.core.model.ThemeMode
+import com.neteinstein.perfsentience.core.model.TrustedApp
 import com.neteinstein.perfsentience.core.testing.FakeMonitoringScheduler
 import com.neteinstein.perfsentience.core.testing.FakePermissionRepository
 import com.neteinstein.perfsentience.core.testing.FakeSettingsRepository
+import com.neteinstein.perfsentience.core.testing.FakeTrustedAppsRepository
 import com.neteinstein.perfsentience.core.testing.MainDispatcherRule
 import com.neteinstein.perfsentience.feature.settings.presentation.SettingsViewModel
 import kotlinx.coroutines.test.runTest
@@ -30,6 +34,9 @@ class SettingsViewModelTest {
     private val permissions = FakePermissionRepository()
     private val settings = FakeSettingsRepository()
     private val scheduler = FakeMonitoringScheduler()
+    private val trusted = FakeTrustedAppsRepository(
+        listOf(TrustedApp("com.zeta.vpn", "Zeta VPN"), TrustedApp("com.alpha.chat", "alpha chat")),
+    )
 
     // Lazy: must be created after MainDispatcherRule installed the test Main dispatcher.
     private val viewModel by lazy {
@@ -37,10 +44,12 @@ class SettingsViewModelTest {
             observePermissions = ObservePermissionsUseCase(permissions),
             observeSettings = ObserveSettingsUseCase(settings),
             observeMonitoringState = ObserveMonitoringStateUseCase(permissions, settings),
+            observeTrustedApps = ObserveTrustedAppsUseCase(trusted),
             syncMonitoring = SyncMonitoringUseCase(permissions, settings, scheduler),
             updateThemeMode = UpdateThemeModeUseCase(settings),
             updateDynamicColor = UpdateDynamicColorUseCase(settings),
             updateReportTime = UpdateReportTimeUseCase(settings, scheduler),
+            untrustApp = UntrustAppUseCase(trusted),
         )
     }
 
@@ -71,6 +80,16 @@ class SettingsViewModelTest {
             assertEquals(ThemeMode.LIGHT, state.settings.themeMode)
             assertTrue(state.settings.useDynamicColor)
             assertEquals(ReportTime(23, 5), state.settings.reportTime)
+        }
+    }
+
+    @Test
+    fun `trusted apps are listed by label and can be removed`() = runTest {
+        viewModel.uiState.test {
+            assertEquals(listOf("alpha chat", "Zeta VPN"), expectMostRecentItem().trustedApps.map { it.label })
+
+            viewModel.onUntrustApp("com.zeta.vpn")
+            assertEquals(listOf("com.alpha.chat"), expectMostRecentItem().trustedApps.map { it.packageName })
         }
     }
 }

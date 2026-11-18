@@ -112,6 +112,8 @@ data class DailyReport(
     val deviceIssues: List<DeviceIssue>,
     val findings: List<Finding>,
     val appsAnalysed: Int,
+    /** Apps whose findings were left out because the user trusts them. Computed on read, never stored. */
+    val hiddenTrustedApps: Int = 0,
 ) {
     val offenders: List<AppAssessment>
         get() = findings

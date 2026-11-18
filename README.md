@@ -34,6 +34,7 @@
 - 🔔 **One notification a day.** At a time you choose, it tells you whether the day was good or bad and how many apps caused trouble. Tap it to open the report.
 - 🕵️ **Catches ad tricks.** Pop-up ads, ads after a phone call, apps drawing over other apps, and apps that hide their launcher icon.
 - 🔋 **Finds battery and data hogs.** Apps that run all day in the background, wake up at night, or use a lot of mobile data you never asked for.
+- ✅ **Trusted apps.** If a flagged app is one you rely on (a VPN, a busy chat app), tap **Trust this app**. It's left out of your reports and score from then on, and you can manage the list in Settings.
 - 🔒 **Stays on your phone.** The app has no `INTERNET` permission, so it can't send anything anywhere. The release build checks this.
 - 🎨 **Modern Android.** Material 3 with dynamic colour, light and dark themes, edge-to-edge, predictive back, and a layout that adapts to tablets and foldables.
 

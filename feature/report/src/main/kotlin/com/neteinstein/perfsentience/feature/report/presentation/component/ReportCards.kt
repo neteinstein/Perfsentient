@@ -6,7 +6,6 @@ import android.provider.Settings
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,7 +22,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Android
 import androidx.compose.material.icons.rounded.BatteryChargingFull
 import androidx.compose.material.icons.rounded.BatteryStd
 import androidx.compose.material.icons.rounded.CloudSync
@@ -33,6 +31,7 @@ import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Shield
 import androidx.compose.material.icons.rounded.Timer
 import androidx.compose.material.icons.rounded.Verified
+import androidx.compose.material.icons.rounded.VerifiedUser
 import androidx.compose.material.icons.rounded.WarningAmber
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,30 +40,27 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.drawable.toBitmap
 import com.neteinstein.perfsentience.core.designsystem.behavior.label
 import com.neteinstein.perfsentience.core.designsystem.behavior.presentation
 import com.neteinstein.perfsentience.core.designsystem.component.AnimatedCheck
+import com.neteinstein.perfsentience.core.designsystem.component.AppIcon
 import com.neteinstein.perfsentience.core.designsystem.component.MetricTile
 import com.neteinstein.perfsentience.core.designsystem.component.ScoreBar
 import com.neteinstein.perfsentience.core.designsystem.component.ScoreBars
@@ -82,8 +78,6 @@ import com.neteinstein.perfsentience.feature.report.presentation.formatBytes
 import com.neteinstein.perfsentience.feature.report.presentation.formatDuration
 import com.neteinstein.perfsentience.feature.report.presentation.title
 import java.time.format.TextStyle
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 @Composable
 internal fun SetupCard(onOpenSettings: () -> Unit, modifier: Modifier = Modifier) {
@@ -219,7 +213,7 @@ internal fun AppOffenderCard(assessment: AppAssessment, onClick: () -> Unit, mod
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun OffenderDetailsSheet(assessment: AppAssessment, onDismiss: () -> Unit) {
+internal fun OffenderDetailsSheet(assessment: AppAssessment, onTrust: () -> Unit, onDismiss: () -> Unit) {
     val context = LocalContext.current
     val status = PerfsentienceTheme.status
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
@@ -280,27 +274,29 @@ internal fun OffenderDetailsSheet(assessment: AppAssessment, onDismiss: () -> Un
                 },
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.report_sheet_open_app_info)) }
+            Spacer(Modifier.height(8.dp))
+            OutlinedButton(onClick = onTrust, modifier = Modifier.fillMaxWidth()) {
+                Icon(Icons.Rounded.VerifiedUser, contentDescription = null, modifier = Modifier.size(18.dp))
+                Spacer(Modifier.width(8.dp))
+                Text(stringResource(R.string.report_sheet_trust_app))
+            }
+            Spacer(Modifier.height(6.dp))
+            Text(
+                stringResource(R.string.report_sheet_trust_hint),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }
 
+/** "N trusted apps hidden" – a reminder that the allowlist is filtering this report, linking to Settings. */
 @Composable
-private fun AppIcon(packageName: String, size: Int = 44) {
-    val context = LocalContext.current
-    val sizePx = with(LocalDensity.current) { size.dp.roundToPx() }
-    val bitmap by produceState<ImageBitmap?>(initialValue = null, packageName) {
-        value = withContext(Dispatchers.IO) {
-            runCatching { context.packageManager.getApplicationIcon(packageName).toBitmap(sizePx, sizePx).asImageBitmap() }.getOrNull()
-        }
-    }
-    val shape = RoundedCornerShape((size / 3.5f).dp)
-    val current = bitmap
-    if (current != null) {
-        Image(current, contentDescription = null, modifier = Modifier.size(size.dp).clip(shape))
-    } else {
-        Box(Modifier.size(size.dp).background(MaterialTheme.colorScheme.surfaceVariant, shape), contentAlignment = Alignment.Center) {
-            Icon(Icons.Rounded.Android, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
+internal fun TrustedAppsHiddenNote(count: Int, onManage: () -> Unit, modifier: Modifier = Modifier) {
+    TextButton(onClick = onManage, modifier = modifier) {
+        Icon(Icons.Rounded.VerifiedUser, contentDescription = null, modifier = Modifier.size(18.dp))
+        Spacer(Modifier.width(8.dp))
+        Text(pluralStringResource(R.plurals.report_trusted_hidden, count, count))
     }
 }
 

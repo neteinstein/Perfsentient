@@ -4,15 +4,19 @@ import com.neteinstein.perfsentience.core.domain.analysis.BehaviorAnalyzer
 import com.neteinstein.perfsentience.core.domain.analysis.DetectionThresholds
 import com.neteinstein.perfsentience.core.domain.analysis.DeviceHealthAnalyzer
 import com.neteinstein.perfsentience.core.domain.analysis.HealthScoreCalculator
+import com.neteinstein.perfsentience.core.domain.analysis.TrustedAppsFilter
 import com.neteinstein.perfsentience.core.domain.usecase.GenerateDailyReportUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveLatestReportUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveMonitoringStateUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObservePermissionsUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveReportHistoryUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveSettingsUseCase
+import com.neteinstein.perfsentience.core.domain.usecase.ObserveTrustedAppsUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.RecordNotificationUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.RecordVitalSampleUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.SyncMonitoringUseCase
+import com.neteinstein.perfsentience.core.domain.usecase.TrustAppUseCase
+import com.neteinstein.perfsentience.core.domain.usecase.UntrustAppUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.UpdateDynamicColorUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.UpdateReportTimeUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.UpdateThemeModeUseCase
@@ -25,6 +29,7 @@ val domainModule = module {
     single { BehaviorAnalyzer(thresholds = get()) }
     singleOf(::DeviceHealthAnalyzer)
     single { HealthScoreCalculator() }
+    singleOf(::TrustedAppsFilter)
 
     factoryOf(::GenerateDailyReportUseCase)
     factoryOf(::ObserveLatestReportUseCase)
@@ -38,4 +43,7 @@ val domainModule = module {
     factoryOf(::UpdateThemeModeUseCase)
     factoryOf(::UpdateDynamicColorUseCase)
     factoryOf(::UpdateReportTimeUseCase)
+    factoryOf(::ObserveTrustedAppsUseCase)
+    factoryOf(::TrustAppUseCase)
+    factoryOf(::UntrustAppUseCase)
 }

@@ -8,6 +8,7 @@ import com.neteinstein.perfsentience.core.model.NetworkUsage
 import com.neteinstein.perfsentience.core.model.PermissionState
 import com.neteinstein.perfsentience.core.model.ReportTime
 import com.neteinstein.perfsentience.core.model.ThemeMode
+import com.neteinstein.perfsentience.core.model.TrustedApp
 import com.neteinstein.perfsentience.core.model.UsageEventRecord
 import com.neteinstein.perfsentience.core.model.UserSettings
 import com.neteinstein.perfsentience.core.model.VitalSample
@@ -32,6 +33,16 @@ interface SettingsRepository {
     suspend fun setReportTime(time: ReportTime)
 
     suspend fun setMonitoringEnabled(enabled: Boolean)
+}
+
+/** The user's allowlist: apps that are never flagged in reports. */
+interface TrustedAppsRepository {
+    val trustedApps: Flow<List<TrustedApp>>
+
+    /** Adds [app] to the allowlist, replacing the stored label if it was already there. */
+    suspend fun trust(app: TrustedApp)
+
+    suspend fun untrust(packageName: String)
 }
 
 interface UsageRepository {

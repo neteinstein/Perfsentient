@@ -39,6 +39,11 @@
     <string name="settings_ok">Set</string>
     <string name="settings_cancel">Cancel</string>
 
+    <string name="settings_section_trusted">Trusted apps</string>
+    <string name="settings_section_trusted_desc">Apps you trust are left out of your reports and don\'t lower your score.</string>
+    <string name="settings_trusted_empty">No trusted apps yet. Tap a flagged app in your report and choose \"Trust this app\" to stop flagging it.</string>
+    <string name="settings_trusted_remove">Stop trusting %1$s</string>
+
     <string name="settings_section_appearance">Appearance</string>
     <string name="settings_theme_system">System</string>
     <string name="settings_theme_light">Light</string>

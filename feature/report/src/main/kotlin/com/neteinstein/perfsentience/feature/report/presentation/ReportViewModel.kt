@@ -8,6 +8,8 @@ import com.neteinstein.perfsentience.core.domain.usecase.ObserveLatestReportUseC
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveMonitoringStateUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveReportHistoryUseCase
 import com.neteinstein.perfsentience.core.domain.usecase.ObserveSettingsUseCase
+import com.neteinstein.perfsentience.core.domain.usecase.TrustAppUseCase
+import com.neteinstein.perfsentience.core.domain.usecase.UntrustAppUseCase
 import com.neteinstein.perfsentience.core.model.DailyReport
 import com.neteinstein.perfsentience.core.model.ReportTime
 import kotlinx.coroutines.CancellationException
@@ -32,6 +34,9 @@ data class ReportUiState(
 
 sealed interface ReportEvent {
     data object GenerationFailed : ReportEvent
+
+    /** Shown as a snackbar with an "Undo" action. */
+    data class AppTrusted(val packageName: String, val label: String) : ReportEvent
 }
 
 class ReportViewModel(
@@ -40,6 +45,8 @@ class ReportViewModel(
     observeMonitoringState: ObserveMonitoringStateUseCase,
     observeSettings: ObserveSettingsUseCase,
     private val generateDailyReport: GenerateDailyReportUseCase,
+    private val trustApp: TrustAppUseCase,
+    private val untrustApp: UntrustAppUseCase,
 ) : ViewModel() {
 
     private val generating = MutableStateFlow(false)
@@ -77,6 +84,18 @@ class ReportViewModel(
                 generating.value = false
             }
         }
+    }
+
+    /** Adds the app to the allowlist: it disappears from the report and the score is recomputed. */
+    fun onTrustApp(packageName: String, label: String) {
+        viewModelScope.launch {
+            trustApp(packageName, label)
+            eventChannel.send(ReportEvent.AppTrusted(packageName, label))
+        }
+    }
+
+    fun onUndoTrust(packageName: String) {
+        viewModelScope.launch { untrustApp(packageName) }
     }
 
     private companion object {
