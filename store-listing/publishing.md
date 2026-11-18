@@ -1,5 +1,8 @@
 # Releasing & publishing to Google Play
 
+> Part of the [`store-listing`](README.md) folder. The listing texts, graphics, data-safety answers and
+> declarations for Play Console are next to this file.
+
 Two workflows handle distribution:
 
 | Workflow | Trigger | What it does |

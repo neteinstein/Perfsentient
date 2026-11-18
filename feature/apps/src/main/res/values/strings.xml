@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_title">Apps</string>
+    <string name="apps_subtitle">Every app flagged now or in the last 30 days. Tap one to trust or un-trust it.</string>
+    <string name="apps_empty">No app has been flagged yet. Apps that misbehave will show up here.</string>
+    <string name="apps_trusted_chip">Trusted</string>
+    <string name="apps_never_flagged">Not flagged recently</string>
+    <string name="apps_last_flagged">Last flagged %1$s</string>
+    <plurals name="apps_days_flagged">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+    <string name="apps_sheet_trust">Trust this app</string>
+    <string name="apps_sheet_trust_hint">Trusted apps are left out of your reports and don\'t lower your score.</string>
+    <string name="apps_sheet_untrust">Stop trusting this app</string>
+    <string name="apps_sheet_untrust_hint">This app is trusted. Stop trusting it and its findings show up in your reports again.</string>
+    <string name="apps_sheet_no_findings">No findings in the last 30 days.</string>
+    <string name="apps_sheet_flagged_summary">%1$s · %2$s</string>
+</resources>

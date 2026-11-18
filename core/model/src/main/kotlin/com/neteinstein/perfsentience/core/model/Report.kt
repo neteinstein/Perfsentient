@@ -121,3 +121,19 @@ data class DailyReport(
             .map { (pkg, list) -> AppAssessment(pkg, list.first().appLabel, list.sortedByDescending { it.severity }) }
             .sortedWith(compareByDescending<AppAssessment> { it.worstSeverity }.thenByDescending { it.penalty })
 }
+
+/**
+ * An app that was flagged in the retained report history (or is on the allowlist), with its
+ * [isTrusted] state. Used by the Apps tab. [findings] holds the latest finding per behaviour
+ * type; it is empty for a trusted app that is no longer in any retained report.
+ */
+data class FlaggedApp(
+    val packageName: String,
+    val appLabel: String,
+    val findings: List<Finding>,
+    val lastFlagged: LocalDate?,
+    val daysFlagged: Int,
+    val isTrusted: Boolean,
+) {
+    val worstSeverity: Severity? get() = findings.maxOfOrNull { it.severity }
+}

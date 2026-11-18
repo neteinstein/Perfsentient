@@ -1,0 +1,95 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  :root { --ink:#140A4A; --violet:#5B4BDB; --lav:#C6BFFF; --teal:#4FD8C4; --red:#FF8A8E; --amber:#FFC857; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; width:1920px; height:1080px; overflow:hidden; background:var(--ink); font-family: Roboto, "Helvetica Neue", Arial, sans-serif; color:#fff; }
+  #bg { position:absolute; inset:0; background: radial-gradient(1400px 900px at 20% 0%, #3A2DB2 0%, #261A80 40%, #140A4A 100%); }
+  .abs { position:absolute; will-change: transform, opacity; }
+  .big { font-weight:800; letter-spacing:-3px; line-height:1.02; }
+  .sub { font-weight:500; color:var(--lav); }
+  .phone { width:480px; height:960px; border-radius:48px; border:10px solid #0b0a14; overflow:hidden; background:#000; box-shadow:0 40px 90px rgba(0,0,0,.55); }
+  .phone img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+  .chip { display:inline-block; padding:10px 22px; border-radius:999px; font-weight:600; font-size:30px; }
+</style>
+<div id="bg"></div>
+<div id="stage"></div>
+<script>
+const W = 1920, H = 1080, BEAT = 0.5;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const easeOut = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const easeBack = (x) => { x = clamp(x); const c = 1.70158; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const ICON = `<svg viewBox="18 18 72 72" width="100%" height="100%"><defs><linearGradient id="g" x1="32" y1="26" x2="76" y2="83" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8A7BFF"/><stop offset="1" stop-color="#4FD8C4"/></linearGradient></defs><rect width="108" height="108" fill="#140A4A"/><path d="M54,26 L76,34 L76,54 C76,68 66,78 54,83 C42,78 32,68 32,54 L32,34 Z" fill="url(#g)"/><path d="M38,56 L47,56 L51,46 L57,66 L61,52 L70,52" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const SHOT = (f) => `shots/${f}`;
+
+// Each scene: [start, end, render(localTime) -> html]. Inactive scenes are display:none (not rendered at all).
+const style = (o) => Object.entries(o).map(([k, v]) => `${k}:${v}`).join(';');
+const line = (txt, t, a, o = {}) => {            // pops in at time a on a beat, rises 40px
+  const p = easeBack(seg(t, a, a + 0.28));
+  return `<div class="abs big" style="${style({ ...o, opacity: clamp(p * 1.4), transform: `translateY(${(1 - p) * 40}px) scale(${0.96 + 0.04 * p})` })}">${txt}</div>`;
+};
+const phone = (file, x, y, t, a, rot = 0, extra = '') => {
+  const p = easeOut(seg(t, a, a + 0.6));
+  return `<div class="abs phone" style="${style({ left: x + 'px', top: y + (1 - p) * 120 + 'px', opacity: p, transform: `rotate(${rot}deg)` })}"><img src="${SHOT(file)}">${extra}</div>`;
+};
+
+const scenes = [
+  // 1. Hook, 0-3s: one line per beat pair, hard cuts
+  [0, 3, (t) => {
+    const words = [['Slow.', '#fff'], ['Hot.', 'var(--amber)'], ['Ads out of<br>nowhere.', 'var(--red)']];
+    const i = Math.min(2, Math.floor(t / 1.0));
+    const lt = t - i;
+    return line(words[i][0], lt, 0, { left: '0', right: '0', top: i === 2 ? '300px' : '380px', 'text-align': 'center', 'font-size': i === 2 ? '190px' : '230px', color: words[i][1] });
+  }],
+  // 2. Reveal, 3-6s
+  [3, 6, (t) => {
+    const p = easeBack(seg(t, 0, 0.5));
+    return `<div class="abs" style="${style({ left: '760px', top: '210px', width: '400px', height: '400px', 'border-radius': '90px', overflow: 'hidden', transform: `scale(${0.4 + 0.6 * p})`, opacity: clamp(p * 2), 'box-shadow': '0 0 120px rgba(79,216,196,.35)' })}">${ICON}</div>` +
+      line('Perfsentient', t, 0.5, { left: '0', right: '0', top: '650px', 'text-align': 'center', 'font-size': '120px' }) +
+      line('<span class="sub" style="font-size:54px;letter-spacing:0">finds the apps behind it.</span>', t, 1.5, { left: '0', right: '0', top: '810px', 'text-align': 'center' });
+  }],
+  // 3. Highlight 1, 6-11s: report then offenders
+  [6, 11, (t) => {
+    const swap = easeOut(seg(t, 2.8, 3.3));
+    return phone('01-report.png', 300, 60, t, 0, -3) +
+      `<div class="abs" style="${style({ left: '300px', top: '60px', opacity: swap, transform: 'rotate(-3deg)' })}"><div class="phone"><img src="${SHOT('02-offenders.png')}"></div></div>` +
+      line('A daily<br>health score.', t, 0.5, { left: '900px', top: '250px', 'font-size': '104px' }) +
+      line('<span class="sub" style="font-size:52px;letter-spacing:0;line-height:1.2">And exactly who<br>dragged it down.</span>', t, 3.2, { left: "900px", top: "540px" });
+  }],
+  // 4. Highlight 2, 11-16s: Apps tab, trusted in teal
+  [11, 16, (t) => {
+    const ring = 0.5 + 0.5 * Math.sin(t * Math.PI * 2);
+    const hl = seg(t, 2.0, 2.5);
+    return phone('03-apps.png', 1140, 60, t, 0, 3,
+      `<div class="abs" style="${style({ left: '14px', right: '14px', top: '578px', height: '226px', border: '5px solid var(--teal)', 'border-radius': '34px', opacity: hl * (0.55 + 0.45 * ring) })}"></div>`) +
+      line('Trust the ones<br>you know.', t, 0.5, { left: '140px', top: '230px', 'font-size': '104px' }) +
+      `<div class="abs" style="${style({ left: '140px', top: '560px', opacity: easeOut(seg(t, 1.5, 2.0)) })}"><span class="chip" style="background:rgba(255,138,142,.18);color:var(--red)">Flagged</span> <span class="chip" style="background:rgba(79,216,196,.2);color:var(--teal)">Trusted</span></div>` +
+      line('<span class="sub" style="font-size:52px;letter-spacing:0;line-height:1.2">Change your mind<br>any time.</span>', t, 3.0, { left: '140px', top: '680px' });
+  }],
+  // 5. Outro, 16-20s: dark pair + punchline
+  [16, 20, (t) => {
+    return phone('05-report-dark.png', 1000, 100, t, 0.2, -4) + phone('06-apps-dark.png', 1330, 160, t, 0.5, 4) +
+      line('100% on-device.', t, 0.3, { left: '120px', top: '230px', 'font-size': '96px' }) +
+      line('<span style="color:var(--teal)">No internet<br>permission.</span>', t, 1.0, { left: '120px', top: '360px', 'font-size': '96px' }) +
+      `<div class="abs" style="${style({ left: '120px', top: '660px', width: '120px', height: '120px', 'border-radius': '28px', overflow: 'hidden', opacity: easeOut(seg(t, 1.8, 2.2)) })}">${ICON}</div>` +
+      line('Perfsentient', t, 1.9, { left: '270px', top: '665px', 'font-size': '78px' }) +
+      `<div class="abs" style="${style({ left: '270px', top: '760px', opacity: easeOut(seg(t, 2.4, 2.9)), 'font-size': '34px', color: 'var(--lav)' })}">github.com/neteinstein/Perfsentient</div>`;
+  }],
+];
+
+// A short dip through the background at each scene boundary (cut lands on the beat, content leaves just before).
+window.renderAt = (t) => {
+  let html = '';
+  for (const [a, b, fn] of scenes) {
+    if (t >= a && t < b) {
+      const lt = t - a;
+      const fadeIn = seg(lt, 0, 0.12), fadeOut = 1 - seg(lt, b - a - 0.12, b - a);
+      html += `<div style="position:absolute;inset:0;opacity:${Math.min(fadeIn, fadeOut)}">${fn(lt)}</div>`;
+    }
+  }
+  document.getElementById('stage').innerHTML = html;
+  return document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode().catch(() => {}))));
+};
+window.DURATION = 20;
+</script>

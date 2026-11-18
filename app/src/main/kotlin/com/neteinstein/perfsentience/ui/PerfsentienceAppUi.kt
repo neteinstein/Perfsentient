@@ -10,8 +10,10 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material.icons.outlined.Insights
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.rounded.Apps
 import androidx.compose.material.icons.rounded.Insights
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon
@@ -25,6 +27,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.neteinstein.perfsentience.AppTab
 import com.neteinstein.perfsentience.R
+import com.neteinstein.perfsentience.feature.apps.presentation.AppsRoute
 import com.neteinstein.perfsentience.feature.report.presentation.ReportRoute
 import com.neteinstein.perfsentience.feature.settings.presentation.SettingsRoute
 
@@ -32,6 +35,7 @@ private data class TabSpec(val tab: AppTab, val label: Int, val selectedIcon: Im
 
 private val Tabs = listOf(
     TabSpec(AppTab.REPORT, R.string.tab_report, Icons.Rounded.Insights, Icons.Outlined.Insights),
+    TabSpec(AppTab.APPS, R.string.tab_apps, Icons.Rounded.Apps, Icons.Outlined.Apps),
     TabSpec(AppTab.SETTINGS, R.string.tab_settings, Icons.Rounded.Settings, Icons.Outlined.Settings),
 )
 
@@ -71,6 +75,7 @@ fun PerfsentienceAppUi(selectedTab: AppTab, onTabSelected: (AppTab) -> Unit, mod
             ) { tab ->
                 when (tab) {
                     AppTab.REPORT -> ReportRoute(onOpenSettings = { onTabSelected(AppTab.SETTINGS) })
+                    AppTab.APPS -> AppsRoute()
                     AppTab.SETTINGS -> SettingsRoute()
                 }
             }

@@ -88,6 +88,7 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.core.designsystem)
     implementation(projects.feature.report)
+    implementation(projects.feature.apps)
     implementation(projects.feature.settings)
     implementation(projects.feature.monitoring)
 
@@ -111,4 +112,10 @@ dependencies {
     testImplementation(libs.koin.test.junit4)
     testImplementation(libs.androidx.work.runtime)
     testImplementation(projects.core.testing)
+
+    // StoreScreenshotsTest renders the real UI with Robolectric (native graphics) for the README / Play listing.
+    testImplementation(libs.robolectric)
+    testImplementation(platform(libs.compose.bom))
+    testImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.test.manifest)
 }

@@ -26,7 +26,27 @@
   <a href="#-build">Build</a>
 </p>
 
+<p align="center">
+  <a href="store-listing/video/brag.mp4">
+    <img src="store-listing/video/brag-preview.gif" alt="Perfsentient launch video (click for the full video with sound)" width="720">
+  </a><br>
+  <sub>20-second launch video, made with <a href="https://github.com/latent-spaces/brag">brag</a>. Click for the full version with sound.</sub>
+</p>
+
 ---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="store-listing/screenshots/phone/01-report.png" alt="Report: today's health score" width="19%">
+  <img src="store-listing/screenshots/phone/02-offenders.png" alt="Report: the apps that misbehaved" width="19%">
+  <img src="store-listing/screenshots/phone/03-apps.png" alt="Apps tab: flagged apps and trusted apps in teal" width="19%">
+  <img src="store-listing/screenshots/phone/04-settings.png" alt="Settings: permissions and trusted apps" width="19%">
+  <img src="store-listing/screenshots/phone/06-apps-dark.png" alt="Apps tab in the dark theme" width="19%">
+</p>
+
+<sub>Rendered from the app's real Compose screens with fictional sample data (not device captures). See
+<a href="store-listing/screenshots/README.md">how they are made</a>.</sub>
 
 ## ✨ Highlights
 
@@ -34,7 +54,8 @@
 - 🔔 **One notification a day.** At a time you choose, it tells you whether the day was good or bad and how many apps caused trouble. Tap it to open the report.
 - 🕵️ **Catches ad tricks.** Pop-up ads, ads after a phone call, apps drawing over other apps, and apps that hide their launcher icon.
 - 🔋 **Finds battery and data hogs.** Apps that run all day in the background, wake up at night, or use a lot of mobile data you never asked for.
-- ✅ **Trusted apps.** If a flagged app is one you rely on (a VPN, a busy chat app), tap **Trust this app**. It's left out of your reports and score from then on, and you can manage the list in Settings.
+- ✅ **Trusted apps (whitelist).** If a flagged app is one you rely on (a VPN, a busy chat app), tap **Trust this app** in the report. It's left out of your reports and score from then on.
+- 📱 **Apps tab.** Every app flagged now or in the last 30 days in one list. Trusted apps are tinted teal. Tap any app to trust it or stop trusting it.
 - 🔒 **Stays on your phone.** The app has no `INTERNET` permission, so it can't send anything anywhere. The release build checks this.
 - 🎨 **Modern Android.** Material 3 with dynamic colour, light and dark themes, edge-to-edge, predictive back, and a layout that adapts to tablets and foldables.
 
@@ -108,11 +129,12 @@ Clean Architecture + MVVM, with one Gradle module per feature. Koin for DI, Coro
 ```mermaid
 flowchart TD
     app[":app"] --> report[":feature:report"]
+    app --> apps[":feature:apps"]
     app --> settings[":feature:settings"]
     app --> monitoring[":feature:monitoring"]
     app --> data[":core:data"]
-    report & settings & monitoring --> domain[":core:domain"]
-    report & settings & monitoring --> ds[":core:designsystem"]
+    report & apps & settings & monitoring --> domain[":core:domain"]
+    report & apps & settings & monitoring --> ds[":core:designsystem"]
     data -. implements .-> domain
     domain --> model[":core:model"]
     domain --> common[":core:common"]
@@ -123,7 +145,7 @@ flowchart TD
 | `core:domain` | Pure Kotlin: use cases, repository interfaces and the detectors in `analysis/` |
 | `core:data` | Room, DataStore and the Android system data sources (usage, network, storage, vitals) |
 | `core:designsystem` | Aurora theme (light/dark/dynamic), animated gauge, chips and cards |
-| `feature:*` | Report tab, Settings tab, and the background monitoring (workers, scheduler, notification listener) |
+| `feature:*` | Report tab, Apps tab, Settings tab, and the background monitoring (workers, scheduler, notification listener) |
 
 Features never depend on each other. See [AGENTS.md](AGENTS.md) for the full module map, conventions and quality gates.
 
@@ -153,9 +175,10 @@ Requires **JDK 21** and the Android SDK (platform 37).
 
 - **Every PR:** four parallel jobs: compile (debug + R8 release), unit tests, coverage (with a summary on the job page) and lint.
 - **Every merge to `main`:** bumps the patch version, builds the signed APK + AAB, checks there's no `INTERNET` permission, and publishes a [GitHub release](https://github.com/neteinstein/Perfsentient/releases).
-- **Google Play:** the upload is set up but switched off for now. See [PublishToStore.md](PublishToStore.md).
+- **Google Play:** the upload is set up but switched off for now. Everything for the listing is in [`store-listing/`](store-listing/README.md), the pipeline in [store-listing/publishing.md](store-listing/publishing.md).
 
 ## 🏪 Play Store notes
 
 - `PACKAGE_USAGE_STATS` and notification access are special permissions that the user turns on in system settings.
+- Listing texts, graphics, Data safety answers and declarations: [`store-listing/`](store-listing/README.md).
 - `QUERY_ALL_PACKAGES` needs the *Package visibility* declaration in Play Console. The core purpose is auditing installed apps, like antivirus and security apps do.
