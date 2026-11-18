@@ -4,7 +4,7 @@ Two workflows handle distribution:
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| **Build & Release** (`.github/workflows/release.yml`) | Every push/merge to `main` | Bumps the patch version, builds the signed R8 APK + App Bundle, checks the release manifest has no `INTERNET` permission, creates GitHub release `vX.Y.Z` with `Perfsentience_vX.Y.Z.apk` / `.aab`, keeps the R8 `mapping.txt` as a build artifact and (**once enabled**) uploads the bundle to the Play **internal** track. |
+| **Build & Release** (`.github/workflows/release.yml`) | Every push/merge to `main` | Bumps the patch version, builds the signed R8 APK + App Bundle, checks the release manifest has no `INTERNET` permission, creates GitHub release `vX.Y.Z` with `Perfsentient_vX.Y.Z.apk` / `.aab`, keeps the R8 `mapping.txt` as a build artifact and (**once enabled**) uploads the bundle to the Play **internal** track. |
 | **Publish to Play Store** (`.github/workflows/publish-play-store.yml`) | Manual (`workflow_dispatch`) | Rebuilds the bundle from `main` and uploads it to `internal`, `alpha`, `beta` or `production`. |
 
 > **The Play Store upload is currently disabled.** Both workflows only upload when the repository
@@ -48,7 +48,7 @@ Local signed builds: create an untracked `keystore.properties` in the repo root
 
 ### Prerequisites
 - A Google Play Developer account with the app `com.neteinstein.perfsentience` created.
-- The **first upload must be manual**: download `Perfsentience_vX.Y.Z.aab` from a GitHub release and upload it in Play Console (internal testing is enough). Enrol in **Play App Signing** – the keystore above becomes the *upload* key.
+- The **first upload must be manual**: download `Perfsentient_vX.Y.Z.aab` from a GitHub release and upload it in Play Console (internal testing is enough). Enrol in **Play App Signing** – the keystore above becomes the *upload* key.
 - Store listing, content rating, data safety ("no data collected / shared", everything on-device) and a privacy policy URL completed.
 - **Policy declarations** (Policy and programs → App content):
   - *Sensitive app permissions → Package visibility (`QUERY_ALL_PACKAGES`)*: core use case "auditing installed apps for misbehaviour (security / antivirus-like)".

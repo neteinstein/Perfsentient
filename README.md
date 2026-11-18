@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="docs/banner.svg" alt="Perfsentience: your phone's watchdog" width="100%">
+  <img src="docs/banner.svg" alt="Perfsentient: your phone's watchdog" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://github.com/neteinstein/Perfsentience/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/neteinstein/Perfsentience/actions/workflows/ci.yml/badge.svg"></a>
-  <a href="https://github.com/neteinstein/Perfsentience/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/neteinstein/Perfsentience?color=5B4BDB&label=release"></a>
+  <a href="https://github.com/neteinstein/Perfsentient/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/neteinstein/Perfsentient/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/neteinstein/Perfsentient/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/neteinstein/Perfsentient?color=5B4BDB&label=release"></a>
   <img alt="Android 12L+" src="https://img.shields.io/badge/Android-12L%2B%20(API%2032)-3DDC84?logo=android&logoColor=white">
   <img alt="targetSdk 37" src="https://img.shields.io/badge/targetSdk-37-00897B">
   <img alt="Kotlin 2.4" src="https://img.shields.io/badge/Kotlin-2.4-7F52FF?logo=kotlin&logoColor=white">
@@ -14,12 +14,12 @@
 
 <p align="center">
   <b>Find the app that's draining your battery, showing pop-up ads or hiding its icon.</b><br>
-  Perfsentience watches your phone in the background, works everything out on the device, and gives you<br>
+  Perfsentient watches your phone in the background, works everything out on the device, and gives you<br>
   <b>one plain report a day</b>: a health score, the apps that misbehaved, and the evidence.
 </p>
 
 <p align="center">
-  <a href="https://github.com/neteinstein/Perfsentience/releases/latest"><b>⬇️ Download the APK</b></a> ·
+  <a href="https://github.com/neteinstein/Perfsentient/releases/latest"><b>⬇️ Download the APK</b></a> ·
   <a href="#-what-it-catches">What it catches</a> ·
   <a href="#-setup">Setup</a> ·
   <a href="#-privacy">Privacy</a> ·
@@ -78,7 +78,7 @@ flowchart LR
 
 ## 🚀 Setup
 
-1. **Install:** download `Perfsentience_vX.Y.Z.apk` from the [latest release](https://github.com/neteinstein/Perfsentience/releases/latest) and open it on your phone (Android 12L / API 32 or newer). You may need to allow installing apps from your browser or file manager.
+1. **Install:** download `Perfsentient_vX.Y.Z.apk` from the [latest release](https://github.com/neteinstein/Perfsentient/releases/latest) and open it on your phone (Android 12L / API 32 or newer). You may need to allow installing apps from your browser or file manager.
 2. **Grant access:** open the **Settings** tab. Each permission says *what* it's for and *why*. Tap **Grant** and the button turns into a green tick.
 
    | Permission | Why |
@@ -151,7 +151,7 @@ Requires **JDK 21** and the Android SDK (platform 37).
 ## 🚢 CI/CD
 
 - **Every PR:** four parallel jobs: compile (debug + R8 release), unit tests, coverage (with a summary on the job page) and lint.
-- **Every merge to `main`:** bumps the patch version, builds the signed APK + AAB, checks there's no `INTERNET` permission, and publishes a [GitHub release](https://github.com/neteinstein/Perfsentience/releases).
+- **Every merge to `main`:** bumps the patch version, builds the signed APK + AAB, checks there's no `INTERNET` permission, and publishes a [GitHub release](https://github.com/neteinstein/Perfsentient/releases).
 - **Google Play:** the upload is set up but switched off for now. See [PublishToStore.md](PublishToStore.md).
 
 ## 🏪 Play Store notes

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Perfsentience</string>
+    <string name="app_name">Perfsentient</string>
     <string name="tab_report">Report</string>
     <string name="tab_settings">Settings</string>
 </resources>
