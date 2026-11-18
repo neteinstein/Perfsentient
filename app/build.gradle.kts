@@ -37,7 +37,7 @@ android {
     defaultConfig {
         applicationId = "com.neteinstein.perfsentience"
         // release.yml bumps the patch number in this line on every merge to main.
-        versionName = "1.0.2"
+        versionName = "1.0.3"
         versionCode = versionCodeFor(versionName!!, versionCodeBuild)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
