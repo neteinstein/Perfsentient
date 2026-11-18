@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PACKAGE_NAME: com.neteinstein.perfsentience
+  PACKAGE_NAME: com.neteinstein.perfsentient
 
 jobs:
   build-and-release:

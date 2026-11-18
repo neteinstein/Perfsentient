@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.neteinstein.perfsentience.feature.monitoring"
+    namespace = "com.neteinstein.perfsentient.feature.monitoring"
 }
 
 dependencies {

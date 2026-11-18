@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.neteinstein.perfsentience.core.data"
+    namespace = "com.neteinstein.perfsentient.core.data"
 }
 
 room {
