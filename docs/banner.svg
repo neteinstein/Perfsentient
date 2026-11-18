@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-labelledby="t d">
+  <title id="t">Perfsentience</title>
+  <desc id="d">Perfsentience logo: a shield with a heartbeat line, next to the tagline "Your phone's watchdog".</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#140A4A"/>
+      <stop offset="0.55" stop-color="#13111F"/>
+      <stop offset="1" stop-color="#003731"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8A7BFF"/>
+      <stop offset="1" stop-color="#4FD8C4"/>
+    </linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C6BFFF"/>
+      <stop offset="0.5" stop-color="#4FD8C4"/>
+      <stop offset="1" stop-color="#FFB1C8"/>
+    </linearGradient>
+    <radialGradient id="glowV" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#5B4BDB" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#5B4BDB" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowT" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00897B" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#00897B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowC" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#D0386F" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#D0386F" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="1280" height="400" rx="28"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1280" height="400" fill="url(#bg)"/>
+
+    <!-- Aurora blobs drifting slowly -->
+    <ellipse cx="220" cy="80" rx="360" ry="220" fill="url(#glowV)">
+      <animate attributeName="cx" values="220;300;220" dur="14s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="1100" cy="340" rx="380" ry="230" fill="url(#glowT)">
+      <animate attributeName="cx" values="1100;1000;1100" dur="16s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="900" cy="40" rx="260" ry="160" fill="url(#glowC)">
+      <animate attributeName="cy" values="40;90;40" dur="12s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <!-- Faint grid -->
+    <g stroke="#FFFFFF" stroke-opacity="0.04">
+      <path d="M0 80H1280M0 160H1280M0 240H1280M0 320H1280"/>
+      <path d="M160 0V400M320 0V400M480 0V400M640 0V400M800 0V400M960 0V400M1120 0V400"/>
+    </g>
+
+    <!-- Background heartbeat running across the banner -->
+    <path d="M0 362 H140 L165 362 L180 342 L198 382 L215 334 L232 362 H1040 L1062 362 L1078 348 L1094 376 L1110 362 H1280"
+          fill="none" stroke="#4FD8C4" stroke-opacity="0.35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          stroke-dasharray="1600" stroke-dashoffset="1600">
+      <animate attributeName="stroke-dashoffset" values="1600;0;0;-1600" keyTimes="0;0.45;0.6;1" dur="6s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Logo: the launcher icon's shield + pulse, scaled up -->
+    <g transform="translate(110 70) scale(4.1) translate(-32 -26)">
+      <path d="M54,26 L76,34 L76,54 C76,68 66,78 54,83 C42,78 32,68 32,54 L32,34 Z" fill="url(#shield)"/>
+      <path d="M38,56 L47,56 L51,46 L57,66 L61,52 L70,52" fill="none" stroke="#FFFFFF" stroke-width="4.5"
+            stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60">
+        <animate attributeName="stroke-dashoffset" values="60;0;0;60" keyTimes="0;0.35;0.85;1" dur="3s" repeatCount="indefinite"/>
+      </path>
+    </g>
+
+    <!-- Wordmark -->
+    <text x="440" y="190" font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="92" font-weight="800"
+          letter-spacing="-2" fill="url(#word)">Perfsentience</text>
+    <text x="444" y="245" font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="500"
+          fill="#E6E1F5">Your phone's watchdog. One honest report a day.</text>
+
+    <!-- Pills -->
+    <g font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="600">
+      <rect x="444" y="272" width="168" height="38" rx="19" fill="#FFFFFF" fill-opacity="0.08" stroke="#4FD8C4" stroke-opacity="0.6"/>
+      <text x="528" y="297" text-anchor="middle" fill="#B2F5EA">100% on-device</text>
+      <rect x="626" y="272" width="186" height="38" rx="19" fill="#FFFFFF" fill-opacity="0.08" stroke="#C6BFFF" stroke-opacity="0.6"/>
+      <text x="719" y="297" text-anchor="middle" fill="#E4DFFF">No INTERNET perm</text>
+      <rect x="826" y="272" width="200" height="38" rx="19" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFB1C8" stroke-opacity="0.6"/>
+      <text x="926" y="297" text-anchor="middle" fill="#FFD9E2">Catches sneaky ads</text>
+    </g>
+  </g>
+</svg>

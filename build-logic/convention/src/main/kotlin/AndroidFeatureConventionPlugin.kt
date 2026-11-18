@@ -1,5 +1,5 @@
-import com.neteinstein.persentient.buildlogic.lib
-import com.neteinstein.persentient.buildlogic.libs
+import com.neteinstein.perfsentience.buildlogic.lib
+import com.neteinstein.perfsentience.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -12,8 +12,8 @@ import org.gradle.kotlin.dsl.project
 class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("persentient.android.library")
-            pluginManager.apply("persentient.android.compose")
+            pluginManager.apply("perfsentience.android.library")
+            pluginManager.apply("perfsentience.android.compose")
 
             dependencies {
                 add("implementation", project(":core:common"))

@@ -8,7 +8,7 @@
         tools:node="remove" />
 
     <application
-        android:name=".PersentientApplication"
+        android:name=".PerfsentienceApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,14 +17,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Persentient"
+        android:theme="@style/Theme.Perfsentience"
         tools:targetApi="37">
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.Persentient.Starting">
+            android:theme="@style/Theme.Perfsentience.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

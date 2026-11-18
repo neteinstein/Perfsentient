@@ -17,7 +17,7 @@
     </plurals>
 
     <string name="report_setup_title">Let\'s get monitoring</string>
-    <string name="report_setup_desc">Grant a few permissions in Settings and Persentient will start watching for apps that drain your battery, spam you or show sneaky ads.</string>
+    <string name="report_setup_desc">Grant a few permissions in Settings and Perfsentience will start watching for apps that drain your battery, spam you or show sneaky ads.</string>
     <string name="report_setup_action">Finish setup</string>
 
     <string name="report_empty_title">Monitoring is running</string>

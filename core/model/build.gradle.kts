@@ -1,3 +1,3 @@
 plugins {
-    alias(libs.plugins.persentient.jvm.library)
+    alias(libs.plugins.perfsentience.jvm.library)
 }

@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.persentient.android.feature)
+    alias(libs.plugins.perfsentience.android.feature)
 }
 
 android {
-    namespace = "com.neteinstein.persentient.feature.report"
+    namespace = "com.neteinstein.perfsentience.feature.report"
 }

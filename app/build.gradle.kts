@@ -1,8 +1,8 @@
 import java.util.Properties
 
 plugins {
-    alias(libs.plugins.persentient.android.application)
-    alias(libs.plugins.persentient.android.compose)
+    alias(libs.plugins.perfsentience.android.application)
+    alias(libs.plugins.perfsentience.android.compose)
 }
 
 // Release signing: CI passes the keystore through env vars (see .github/workflows/release.yml);
@@ -32,10 +32,10 @@ fun versionCodeFor(
 }
 
 android {
-    namespace = "com.neteinstein.persentient"
+    namespace = "com.neteinstein.perfsentience"
 
     defaultConfig {
-        applicationId = "com.neteinstein.persentient"
+        applicationId = "com.neteinstein.perfsentience"
         // release.yml bumps the patch number in this line on every merge to main.
         versionName = "1.0.1"
         versionCode = versionCodeFor(versionName!!, versionCodeBuild)

@@ -1,12 +1,12 @@
 plugins {
-    alias(libs.plugins.persentient.android.library)
+    alias(libs.plugins.perfsentience.android.library)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
 }
 
 android {
-    namespace = "com.neteinstein.persentient.core.data"
+    namespace = "com.neteinstein.perfsentience.core.data"
 }
 
 room {

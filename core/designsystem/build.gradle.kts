@@ -1,10 +1,10 @@
 plugins {
-    alias(libs.plugins.persentient.android.library)
-    alias(libs.plugins.persentient.android.compose)
+    alias(libs.plugins.perfsentience.android.library)
+    alias(libs.plugins.perfsentience.android.compose)
 }
 
 android {
-    namespace = "com.neteinstein.persentient.core.designsystem"
+    namespace = "com.neteinstein.perfsentience.core.designsystem"
 }
 
 dependencies {
