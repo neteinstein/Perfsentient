@@ -2,6 +2,7 @@ package org.neteinstein.perfsentient.screenshots
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.view.View
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -87,9 +88,7 @@ class ReviewVideoFramesTest {
         tap(compose.onAllNodesWithText("Apps").onLast())
         animate(900)
         hold(2_500)
-        marker("scroll-apps")
         dragUntil("Coupon Hunter", targetTop = 0.45f)
-        hold(1_500)
         marker("hidden")
         tap(compose.onAllNodesWithText("Coupon Hunter").onLast())
         animate(900)
@@ -145,19 +144,28 @@ class ReviewVideoFramesTest {
     /** Static stretches: a lower capture rate keeps the infinite animations alive without thousands of frames. */
     private fun hold(ms: Long) = repeat((ms / HOLD_MS).toInt()) { frame(HOLD_MS) }
 
-    /** The activity window plus any dialog window on top of it (the bottom sheet is its own window). */
+    /**
+     * The activity window plus any window on top of it (the bottom sheet is a dialog window). Robolectric's
+     * `captureToImage` cannot read a dialog surface, so extra windows are drawn from their views instead.
+     */
     private fun composite(): Bitmap {
-        val roots = compose.onAllNodes(isRoot())
-        val count = roots.fetchSemanticsNodes().size
-        val base = roots[0].captureToImage().asAndroidBitmap().copy(Bitmap.Config.ARGB_8888, true)
+        val base = compose.onAllNodes(isRoot())[0].captureToImage().asAndroidBitmap().copy(Bitmap.Config.ARGB_8888, true)
         val canvas = Canvas(base)
-        for (i in 1 until count) {
-            val layer = roots[i].captureToImage().asAndroidBitmap()
-            val left = (base.width - layer.width).toFloat().coerceAtLeast(0f)
-            val top = (base.height - layer.height).toFloat().coerceAtLeast(0f)
-            canvas.drawBitmap(layer, left, top, null)
+        windowViews().drop(1).filter { it.isShown && it.width > 0 && it.height > 0 }.forEach { view ->
+            val layer = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+            view.draw(Canvas(layer))
+            val location = IntArray(2).also(view::getLocationOnScreen)
+            canvas.drawBitmap(layer, location[0].toFloat(), location[1].toFloat(), null)
         }
         return base
+    }
+
+    /** Every window's root view, in the order they were added (bottom to top). */
+    private fun windowViews(): List<View> {
+        val global = Class.forName("android.view.WindowManagerGlobal")
+        val instance = global.getMethod("getInstance").invoke(null)
+        val views = global.getDeclaredField("mViews").apply { isAccessible = true }.get(instance)
+        return (views as List<*>).filterIsInstance<View>()
     }
 
     private fun lastRoot(): SemanticsNodeInteraction {
@@ -184,14 +192,17 @@ class ReviewVideoFramesTest {
 
     private fun tapEvent(x: Float, y: Float) = event("""{"t":$timeMs,"type":"tap","x":${x.toInt()},"y":${y.toInt()}}""")
 
+    /** Top of the on-screen node with [text]; lazy lists keep off-screen items around with empty bounds. */
     private fun topOf(text: String): Float? =
-        compose.onAllNodesWithText(text).fetchSemanticsNodes().lastOrNull()?.boundsInRoot?.top
+        compose.onAllNodesWithText(text).fetchSemanticsNodes().lastOrNull { it.boundsInRoot.height > 0f }?.boundsInRoot?.top
 
     /** A finger drag, frame by frame, until [text] is visible with its top at [targetTop] of the screen height. */
     private fun dragUntil(text: String, targetTop: Float) {
         val list = compose.onNode(hasScrollAction())
         val start = Offset(width * 0.5f, height * 0.72f)
         val goal = height * targetTop
+        // Already in place: touching down and lifting without moving would be a tap.
+        if ((topOf(text) ?: Float.MAX_VALUE) <= goal + 1f) return
         event("""{"t":$timeMs,"type":"drag-start","x":${start.x.toInt()},"y":${start.y.toInt()}}""")
         list.performTouchInput { down(start) }
         var moved = 0f
@@ -218,7 +229,7 @@ class ReviewVideoFramesTest {
         val titleTop = requireNotNull(topOf(title)) { "$title not on screen" }
         val buttons = compose.onAllNodesWithText("Why is this needed?")
         val nodes = buttons.fetchSemanticsNodes()
-        val index = nodes.indices.filter { nodes[it].boundsInRoot.top > titleTop }
+        val index = nodes.indices.filter { nodes[it].boundsInRoot.height > 0f && nodes[it].boundsInRoot.top > titleTop }
             .minBy { nodes[it].boundsInRoot.top }
         return buttons[index]
     }

@@ -6,7 +6,7 @@ For **App content → Sensitive app permissions → Package visibility (QUERY_AL
 > you described being used. If it isn't obvious from the user interface how the QUERY_ALL_PACKAGES permission is
 > being used in your app, provide a voice-over or captions to help explain.
 
-`review-walkthrough.mp4` is that video: 1920×1080, 30 fps, about 70 s, with on-screen captions (no voice-over).
+`review-walkthrough.mp4` is that video: 1920×1080, 30 fps, about 60 s, with on-screen captions (no voice-over).
 
 | Time | Step | Shown |
 |---|---|---|
