@@ -1,8 +1,9 @@
 name: Publish to Play Store
 
-# Manual only. Once enabled, every merge to main uploads the bundle to the internal track from
+# Manual only. Every merge to main already uploads the bundle to the internal track from
 # release.yml; use this to upload the current main to another track.
-# DISABLED until the repository variable PLAY_STORE_UPLOAD_ENABLED is set to 'true'.
+# Needs the PLAY_STORE_SERVICE_ACCOUNT_JSON secret; refuses to run while the repository variable
+# PLAY_STORE_UPLOAD_ENABLED is 'false'.
 on:
   workflow_dispatch:
     inputs:
@@ -41,10 +42,24 @@ jobs:
 
     steps:
       - name: Check that Play Store upload is enabled
-        if: vars.PLAY_STORE_UPLOAD_ENABLED != 'true'
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          PLAY_STORE_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_STORE_SERVICE_ACCOUNT_JSON }}
+          PLAY_STORE_UPLOAD_ENABLED: ${{ vars.PLAY_STORE_UPLOAD_ENABLED }}
         run: |
-          echo "::error::Play Store upload is disabled. Set the repository variable PLAY_STORE_UPLOAD_ENABLED=true first (see store-listing/publishing.md)." >&2
-          exit 1
+          if [ "$PLAY_STORE_UPLOAD_ENABLED" = "false" ]; then
+            echo "::error::Play Store upload is disabled: the repository variable PLAY_STORE_UPLOAD_ENABLED is 'false'. Delete it to enable uploads (see store-listing/publishing.md)." >&2
+            exit 1
+          fi
+          for name in KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD PLAY_STORE_SERVICE_ACCOUNT_JSON; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Repository secret $name is not set. See store-listing/publishing.md." >&2
+              exit 1
+            fi
+          done
 
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -77,7 +92,7 @@ jobs:
       - name: Decode Play Store service account key
         env:
           PLAY_STORE_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_STORE_SERVICE_ACCOUNT_JSON }}
-        run: echo "$PLAY_STORE_SERVICE_ACCOUNT_JSON" > play-store-key.json
+        run: printf '%s' "$PLAY_STORE_SERVICE_ACCOUNT_JSON" > play-store-key.json
 
       - name: Set up the Play upload script
         run: |

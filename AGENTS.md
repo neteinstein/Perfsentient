@@ -91,8 +91,9 @@ Releases (see [store-listing/publishing.md](store-listing/publishing.md)):
   (commit `[skip ci]` back to `main`), builds the signed APK + AAB, verifies the release manifest
   has no `INTERNET`, and creates GitHub release `vX.Y.Z`. Do **not** bump `versionName` by hand in PRs.
 - `versionCode` is derived from `versionName` (`major*10000000 + minor*100000 + patch*100 + build`).
-- Google Play upload (`release.yml` internal track + manual `publish-play-store.yml`) is **disabled**
-  unless the repository variable `PLAY_STORE_UPLOAD_ENABLED` is `true`.
+- Google Play upload (`release.yml` internal track + manual `publish-play-store.yml`) is **enabled** and
+  uses the `PLAY_STORE_SERVICE_ACCOUNT_JSON` secret; setting the repository variable
+  `PLAY_STORE_UPLOAD_ENABLED` to `false` pauses it.
 - Pin third-party GitHub Actions to a commit SHA with the tag in a comment.
 
 ## Gotchas
