@@ -89,6 +89,7 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.feature.report)
     implementation(projects.feature.apps)
+    implementation(projects.feature.parental)
     implementation(projects.feature.settings)
     implementation(projects.feature.monitoring)
 

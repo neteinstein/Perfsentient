@@ -61,6 +61,12 @@ class AppInventoryDataSource(private val context: Context) {
         }
     }
 
+    /** Labels of the installed apps among [packageNames]; one cheap lookup per package, no stats. */
+    fun installedAppLabels(packageNames: Set<String>): Map<String, String> = packageNames.mapNotNull { pkg ->
+        val app = runCatching { applicationInfo(pkg) }.getOrNull() ?: return@mapNotNull null
+        pkg to runCatching { app.loadLabel(pm).toString() }.getOrDefault(pkg)
+    }.toMap()
+
     fun deviceContext(): DeviceContext {
         val telecom = context.getSystemService(TelecomManager::class.java)
         val dialers = buildSet {
@@ -84,6 +90,14 @@ class AppInventoryDataSource(private val context: Context) {
             @Suppress("DEPRECATION")
             pm.getInstalledPackages(flags.toInt())
         }
+    }
+
+    /** Throws [PackageManager.NameNotFoundException] when [pkg] is not installed. */
+    private fun applicationInfo(pkg: String): ApplicationInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        pm.getApplicationInfo(pkg, PackageManager.ApplicationInfoFlags.of(0))
+    } else {
+        @Suppress("DEPRECATION")
+        pm.getApplicationInfo(pkg, 0)
     }
 
     private fun packagesFor(intent: Intent): Set<String> {

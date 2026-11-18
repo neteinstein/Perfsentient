@@ -2,18 +2,85 @@ package org.neteinstein.perfsentient.screenshots
 
 import java.time.LocalDate
 import java.time.ZoneOffset
+import org.neteinstein.perfsentient.AppTab
 import org.neteinstein.perfsentient.core.model.BehaviorType
+import org.neteinstein.perfsentient.core.model.ConcerningApp
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.DeviceMetrics
 import org.neteinstein.perfsentient.core.model.Finding
+import org.neteinstein.perfsentient.core.model.ParentalConcern
+import org.neteinstein.perfsentient.core.model.ParentalRiskCategory
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
+import org.neteinstein.perfsentient.core.testing.TestData
 
 /** Fictional data for the store screenshots. Every app name and number here is made up. */
 internal object SampleData {
     val today: LocalDate = LocalDate.of(2026, 11, 16)
+
+    /** The tabs of the published store screenshots and review video (parental mode off). */
+    val coreTabs = listOf(AppTab.REPORT, AppTab.APPS, AppTab.SETTINGS)
+
+    const val CHILD_AGE = 11
+
+    private fun concerning(
+        pkg: String,
+        category: ParentalRiskCategory,
+        minimumAge: Int,
+        recommendedAge: Int,
+        vararg concerns: ParentalConcern,
+    ) = ConcerningApp(pkg.substringAfterLast('.'), setOf(pkg), category, minimumAge, recommendedAge, Severity.MEDIUM, concerns.toSet())
+
+    /** A fictional parental catalogue, so screenshots never show real app names. */
+    val parentalCatalog = listOf(
+        concerning(
+            "com.example.blockparty",
+            ParentalRiskCategory.GAMES_WITH_CHAT,
+            0,
+            13,
+            ParentalConcern.GROOMING_REPORTS,
+            ParentalConcern.STRANGER_CONTACT,
+            ParentalConcern.SPENDING,
+        ),
+        concerning(
+            "com.example.pixelchat",
+            ParentalRiskCategory.PRIVATE_MESSAGING,
+            13,
+            16,
+            ParentalConcern.SEXTORTION_REPORTS,
+            ParentalConcern.STRANGER_CONTACT,
+            ParentalConcern.DISAPPEARING_MESSAGES,
+            ParentalConcern.LOCATION_SHARING,
+        ),
+        concerning(
+            "com.example.swipemates",
+            ParentalRiskCategory.FRIEND_FINDING,
+            13,
+            17,
+            ParentalConcern.STRANGER_CONTACT,
+            ParentalConcern.LOCATION_SHARING,
+        ),
+        concerning(
+            "com.example.calcvault",
+            ParentalRiskCategory.HIDDEN_VAULTS,
+            0,
+            18,
+            ParentalConcern.HIDES_CONTENT,
+            ParentalConcern.BYPASSES_CONTROLS,
+        ),
+    )
+
+    val installedApps = listOf(
+        TestData.app("com.example.blockparty", label = "Block Party"),
+        TestData.app("com.example.pixelchat", label = "Pixel Chat"),
+        TestData.app("com.example.swipemates", label = "SwipeMates"),
+        TestData.app("com.example.calcvault", label = "Calc+ Vault"),
+        TestData.app("com.example.notes", label = "Notes"),
+    )
+
+    val reviewedParentalApps = setOf("com.example.calcvault")
 
     private fun finding(pkg: String, label: String, type: BehaviorType, severity: Severity, value: Long) =
         Finding(pkg, label, type, severity, value)

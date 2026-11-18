@@ -8,6 +8,7 @@ import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceContext
 import org.neteinstein.perfsentient.core.model.NetworkUsage
+import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.ReportTime
 import org.neteinstein.perfsentient.core.model.ThemeMode
@@ -33,6 +34,15 @@ interface SettingsRepository {
     suspend fun setReportTime(time: ReportTime)
 
     suspend fun setMonitoringEnabled(enabled: Boolean)
+
+    suspend fun setParentalSettings(parental: ParentalSettings)
+}
+
+/** Concerning apps the parent already reviewed (e.g. set up the app's own controls) in parental mode. */
+interface ParentalReviewRepository {
+    val reviewedPackages: Flow<Set<String>>
+
+    suspend fun setReviewed(packageName: String, reviewed: Boolean)
 }
 
 /** The user's allowlist: apps that are never flagged in reports. */
@@ -55,6 +65,9 @@ interface UsageRepository {
 
 interface AppInventoryRepository {
     suspend fun getInstalledApps(): List<AppProfile>
+
+    /** Labels of the apps among [packageNames] that are installed, keyed by package name. Cheap: no usage or storage stats. */
+    suspend fun getInstalledAppLabels(packageNames: Set<String>): Map<String, String>
 
     suspend fun getDeviceContext(): DeviceContext
 }

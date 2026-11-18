@@ -44,6 +44,7 @@ import org.neteinstein.perfsentient.feature.settings.R
 import org.neteinstein.perfsentient.feature.settings.presentation.component.AppearanceCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.BehaviorInfoCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.MonitoringStatusCard
+import org.neteinstein.perfsentient.feature.settings.presentation.component.ParentalModeCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.PermissionCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.ReportTimeCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.TrustedAppCard
@@ -63,6 +64,7 @@ fun SettingsRoute(modifier: Modifier = Modifier, viewModel: SettingsViewModel = 
         onDynamicColorToggled = viewModel::onDynamicColorToggled,
         onReportTimeSelected = viewModel::onReportTimeSelected,
         onUntrustApp = viewModel::onUntrustApp,
+        onParentalModeChanged = viewModel::onParentalModeChanged,
         modifier = modifier,
     )
 }
@@ -75,6 +77,7 @@ internal fun SettingsScreen(
     onDynamicColorToggled: (Boolean) -> Unit,
     onReportTimeSelected: (Int, Int) -> Unit,
     onUntrustApp: (packageName: String) -> Unit,
+    onParentalModeChanged: (enabled: Boolean, childAge: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -143,6 +146,15 @@ internal fun SettingsScreen(
         item(key = "report_header") { SectionHeader(stringResource(R.string.settings_section_report)) }
         item(key = "report_time") {
             ReportTimeCard(time = state.settings.reportTime, onTimeSelected = onReportTimeSelected)
+        }
+        item(key = "parental_header") {
+            SectionHeader(
+                title = stringResource(R.string.settings_section_parental),
+                subtitle = stringResource(R.string.settings_section_parental_desc),
+            )
+        }
+        item(key = "parental") {
+            ParentalModeCard(parental = state.settings.parental, onParentalModeChanged = onParentalModeChanged)
         }
         item(key = "trusted_header") {
             SectionHeader(

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="parental_title">Parental help</string>
+    <string name="parental_subtitle">Apps on this phone, checked against your child\'s age.</string>
+
+    <!-- Summary card -->
+    <plurals name="parental_summary_count">
+        <item quantity="one">%1$d app needs a look</item>
+        <item quantity="other">%1$d apps need a look</item>
+    </plurals>
+    <string name="parental_summary_clean">Nothing concerning found</string>
+    <string name="parental_summary_clean_desc">None of the apps on this phone are on the watch list for this age. Keep talking with your child about who they meet online.</string>
+    <string name="parental_summary_desc">These apps are known for risks such as grooming, sextortion or adult content, and aren\'t considered right for this age.</string>
+    <string name="parental_checked_for_age">Checked for age %1$d</string>
+    <plurals name="parental_high_risk_count">
+        <item quantity="one">%1$d high risk</item>
+        <item quantity="other">%1$d high risk</item>
+    </plurals>
+    <plurals name="parental_reviewed_count">
+        <item quantity="one">%1$d reviewed</item>
+        <item quantity="other">%1$d reviewed</item>
+    </plurals>
+    <string name="parental_change_age">Change age</string>
+
+    <!-- Lists -->
+    <string name="parental_section_warnings">Needs a look</string>
+    <string name="parental_section_warnings_desc">Tap an app to see why it\'s flagged and what you can do.</string>
+    <string name="parental_section_reviewed">Reviewed</string>
+    <string name="parental_section_reviewed_desc">Apps you already looked at. They stay listed so nothing is hidden.</string>
+    <string name="parental_reviewed_chip">Reviewed</string>
+    <string name="parental_suggested_age">Suggested age %1$d+</string>
+    <string name="parental_minimum_age">Minimum age %1$d</string>
+    <string name="parental_below_minimum_chip">Under minimum age</string>
+    <plurals name="parental_more_concerns">
+        <item quantity="one">+%1$d more</item>
+        <item quantity="other">+%1$d more</item>
+    </plurals>
+
+    <!-- Detail sheet -->
+    <string name="parental_sheet_below_minimum">Your child is younger than the minimum age in this app\'s own terms (%1$d).</string>
+    <string name="parental_sheet_why">Why it\'s flagged</string>
+    <string name="parental_sheet_what_to_do">What you can do</string>
+    <string name="parental_sheet_open_app_info">Open app info</string>
+    <string name="parental_sheet_open_app_info_hint">Manage permissions or uninstall it in Android settings.</string>
+    <string name="parental_sheet_mark_reviewed">Mark as reviewed</string>
+    <string name="parental_sheet_mark_reviewed_hint">Moves it to Reviewed, for example after you set up the app\'s own parental controls or talked it through with your child.</string>
+    <string name="parental_sheet_unreview">Move back to warnings</string>
+
+    <!-- Disabled -->
+    <string name="parental_disabled">Parental mode is off</string>
+    <string name="parental_disabled_desc">Turn it on in Settings to check this phone\'s apps against your child\'s age.</string>
+    <string name="parental_open_settings">Open Settings</string>
+
+    <!-- Guidance cards -->
+    <string name="parental_signs_title">Warning signs of grooming</string>
+    <string name="parental_signs_text">• A new older \"friend\" met in a game or app\n• Gifts, game currency or money you can\'t explain\n• Being asked to move a chat to another app, keep secrets or send photos\n• Hiding the screen, using the phone late at night\n• Seeming anxious, withdrawn or upset after being online</string>
+    <string name="parental_help_title">If something feels wrong</string>
+    <string name="parental_help_text">• Stay calm and thank them for telling you: they are not in trouble.\n• Don\'t delete anything: take screenshots of chats and usernames.\n• Block and report the account in the app.\n• Never pay or send more images if someone is threatening to share photos.\n• Report it: NCMEC CyberTipline (US), CEOP (UK) or your local police. Take It Down (takeitdown.ncmec.org) helps remove nude images of under-18s.</string>
+    <string name="parental_about_title">How this works</string>
+    <string name="parental_about_text">Perfsentient compares the apps installed on this phone with a built-in list of apps that child-safety organisations, regulators and investigations have raised concerns about. Suggested ages combine each app\'s own terms, its Google Play content rating and guidance from groups such as Common Sense Media, eSafety and the NSPCC. It is a guide, not a verdict: you know your child best. Nothing leaves this phone.</string>
+
+    <!-- Categories -->
+    <string name="parental_category_games_title">Game with open chat</string>
+    <string name="parental_category_games_desc">Players can chat, talk and trade with people they don\'t know. Groomers use games to befriend children, offer gifts or game currency, and then move the chat to a private app.</string>
+    <string name="parental_category_games_guide">• Use the game\'s parental controls to turn off chat or limit it to friends.\n• Play together sometimes and ask who they talk to.\n• Agree that people met in a game don\'t get other usernames, photos or where they live.\n• Require approval or set a limit for purchases.</string>
+
+    <string name="parental_category_worlds_title">Avatar world or social VR</string>
+    <string name="parental_category_worlds_desc">Users meet as avatars in shared rooms with voice and text chat. Investigations found adults, sexual role-play and private rooms where children can be isolated.</string>
+    <string name="parental_category_worlds_guide">• Check the age setting and turn on any teen or junior mode.\n• Limit voice chat and private messages to friends.\n• Keep headsets and phones in shared rooms.\n• Talk about what to do if someone asks them to go somewhere private.</string>
+
+    <string name="parental_category_social_title">Social media</string>
+    <string name="parental_category_social_desc">Feeds built to keep scrolling, with messages and comments from strangers. Australia bans accounts under 16 on the largest platforms, and sextortion gangs mostly approach teens through Instagram and Snapchat.</string>
+    <string name="parental_category_social_guide">• Make the account private and limit messages to people they follow.\n• Use the app\'s teen account or family supervision tools.\n• Turn off location in posts.\n• Agree on screen-time limits and keep phones out of bedrooms at night.</string>
+
+    <string name="parental_category_messaging_title">Private messaging</string>
+    <string name="parental_category_messaging_desc">Private, encrypted or disappearing chats. This is where groomers and sextortion scammers try to move a conversation that started somewhere else.</string>
+    <string name="parental_category_messaging_guide">• Allow messages and group invites from contacts or friends only.\n• Turn off location sharing (for example Ghost Mode on Snap Map).\n• Use family supervision tools where they exist, such as Snapchat or Discord Family Center.\n• Make it clear they can always tell you if someone asks for photos or secrecy, without losing their phone.</string>
+
+    <string name="parental_category_friend_finding_title">Friend-finding or swipe app</string>
+    <string name="parental_category_friend_finding_desc">Swipe to meet strangers, often nearby. Works like a dating app for teens and is a known starting point for sextortion.</string>
+    <string name="parental_category_friend_finding_guide">• Ask why they want to meet new people and look at the app together.\n• Turn off location and hide the profile from people nearby.\n• Never move a chat to another app or send photos to someone met here.\n• Consider removing it: there is no truly safe \"Tinder for teens\".</string>
+
+    <string name="parental_category_video_chat_title">Random video chat</string>
+    <string name="parental_category_video_chat_desc">Connects to random strangers on live video. Meant for adults, with frequent nudity and no reliable age checks.</string>
+    <string name="parental_category_video_chat_guide">• These apps aren\'t suitable for children: remove it.\n• Talk calmly about what they may have seen, and don\'t punish honesty.\n• If they were asked to do something sexual on camera, keep the evidence and report it.</string>
+
+    <string name="parental_category_anonymous_title">Anonymous messages and Q&amp;A</string>
+    <string name="parental_category_anonymous_desc">Lets people send anonymous questions and messages, which makes bullying easy. US regulators acted against NGL and Sendit, including for sending teens fake messages.</string>
+    <string name="parental_category_anonymous_guide">• Talk about how anonymous messages can be cruel, and are sometimes fake.\n• Check for paid \"see who sent this\" subscriptions.\n• Consider removing it, especially after hurtful messages.</string>
+
+    <string name="parental_category_streaming_title">Live streaming</string>
+    <string name="parental_category_streaming_desc">Broadcast live to strangers who can comment and send paid gifts. Gifts and attention are used to pressure young streamers into doing more on camera.</string>
+    <string name="parental_category_streaming_guide">• Don\'t let younger children stream publicly; keep streams to friends.\n• Turn off gifts, payouts and private messages where possible.\n• Never stream from a bedroom or show their school or address.\n• Set a spending limit for virtual coins.</string>
+
+    <string name="parental_category_dating_title">Adult dating app</string>
+    <string name="parental_category_dating_desc">For adults only (18+). Matches people nearby and is used to arrange sexual contact.</string>
+    <string name="parental_category_dating_guide">• A child shouldn\'t have this app: remove it.\n• Calmly find out how they came to use it and who they talked to.\n• If an adult contacted them sexually, keep the messages and report it to the police.</string>
+
+    <string name="parental_category_ai_title">AI companion or role-play bot</string>
+    <string name="parental_category_ai_desc">AI characters that act as friends or partners. Testing by Common Sense Media and Stanford found sexual role-play and harmful advice; they recommend no use under 18.</string>
+    <string name="parental_category_ai_guide">• Explain that the characters aren\'t real and can be wrong or manipulative.\n• Watch for late-night use and pulling away from real friends.\n• Consider removing it. If they are struggling, help them find a real person to talk to.</string>
+
+    <string name="parental_category_vault_title">Secret vault or app hider</string>
+    <string name="parental_category_vault_desc">Hides photos, videos, chats or other apps, often disguised as a calculator. It can be harmless privacy, but it is also used to hide contact with strangers or images used for sextortion.</string>
+    <string name="parental_category_vault_guide">• Talk about it openly rather than secretly searching it.\n• Ask what they want to keep private and why.\n• Make sure they know they won\'t be in trouble for telling you if someone is pressuring them for images.</string>
+
+    <string name="parental_category_gambling_title">Gambling or casino game</string>
+    <string name="parental_category_gambling_desc">Real-money betting or casino-style games. Gambling young raises the risk of gambling problems later in life.</string>
+    <string name="parental_category_gambling_guide">• Real-money betting is not allowed for minors: remove it and check for linked payment cards.\n• For casino-style games, block in-app purchases.\n• Talk about how these games are designed to keep you playing.</string>
+
+    <string name="parental_category_bypass_title">Filter bypass tool</string>
+    <string name="parental_category_bypass_desc">Routes traffic around network filters and parental controls, and opens hidden websites, some of which host illegal content.</string>
+    <string name="parental_category_bypass_guide">• Ask what they use it for: privacy is a fair reason for older teens.\n• Check whether your parental controls still work while it is installed.\n• For younger children, remove it.</string>
+
+    <!-- Concerns -->
+    <string name="parental_concern_grooming_title">Grooming cases</string>
+    <string name="parental_concern_grooming_desc">Police, courts or child-safety groups have documented adults grooming children here.</string>
+    <string name="parental_concern_sextortion_title">Sextortion</string>
+    <string name="parental_concern_sextortion_desc">Named in research and law-enforcement warnings about criminals who trick teens into sharing images and then blackmail them.</string>
+    <string name="parental_concern_safety_action_title">Legal action</string>
+    <string name="parental_concern_safety_action_desc">Sued, investigated by regulators or pulled from app stores over child safety.</string>
+    <string name="parental_concern_adult_title">Adult content</string>
+    <string name="parental_concern_adult_desc">Sexual or other adult content is easy to find or is sent by other users.</string>
+    <string name="parental_concern_strangers_title">Strangers</string>
+    <string name="parental_concern_strangers_desc">People your child doesn\'t know can message, call or play with them.</string>
+    <string name="parental_concern_live_video_title">Live video</string>
+    <string name="parental_concern_live_video_desc">Live video with people your child doesn\'t know. It isn\'t checked before it is shown.</string>
+    <string name="parental_concern_anonymity_title">Anonymous</string>
+    <string name="parental_concern_anonymity_desc">Users don\'t need a real identity, so it is hard to know who is on the other side.</string>
+    <string name="parental_concern_disappearing_title">Disappearing messages</string>
+    <string name="parental_concern_disappearing_desc">Messages vanish after being seen, so there is nothing to look back at.</string>
+    <string name="parental_concern_location_title">Location</string>
+    <string name="parental_concern_location_desc">Can show where your child is or match them with people nearby.</string>
+    <string name="parental_concern_bullying_title">Bullying</string>
+    <string name="parental_concern_bullying_desc">Known for anonymous abuse and pile-ons.</string>
+    <string name="parental_concern_ai_title">AI role-play</string>
+    <string name="parental_concern_ai_desc">AI characters act as friends or partners and can hold sexual or harmful conversations.</string>
+    <string name="parental_concern_hides_title">Hides content</string>
+    <string name="parental_concern_hides_desc">Hides photos, chats or other apps behind a disguise or PIN.</string>
+    <string name="parental_concern_bypass_title">Bypasses controls</string>
+    <string name="parental_concern_bypass_desc">Can get around parental controls or network filters.</string>
+    <string name="parental_concern_gambling_title">Gambling</string>
+    <string name="parental_concern_gambling_desc">Real-money betting or casino-style games.</string>
+    <string name="parental_concern_violence_title">Violence</string>
+    <string name="parental_concern_violence_desc">Realistic violence and weapons.</string>
+    <string name="parental_concern_spending_title">In-app spending</string>
+    <string name="parental_concern_spending_desc">Virtual currency, gifts or loot boxes bought with real money. Gifts are also a grooming tactic.</string>
+    <string name="parental_concern_compulsive_title">Endless feed</string>
+    <string name="parental_concern_compulsive_desc">Built to keep scrolling, which can crowd out sleep and offline time.</string>
+</resources>

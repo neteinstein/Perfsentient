@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.map
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
 import org.neteinstein.perfsentient.core.domain.repository.MonitoringScheduler
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
+import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
@@ -20,6 +21,7 @@ import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceContext
 import org.neteinstein.perfsentient.core.model.GrantMode
 import org.neteinstein.perfsentient.core.model.NetworkUsage
+import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.PermissionType
 import org.neteinstein.perfsentient.core.model.ReportTime
@@ -68,6 +70,19 @@ class FakeSettingsRepository(initial: UserSettings = UserSettings()) : SettingsR
 
     override suspend fun setMonitoringEnabled(enabled: Boolean) {
         state.value = state.value.copy(monitoringEnabled = enabled)
+    }
+
+    override suspend fun setParentalSettings(parental: ParentalSettings) {
+        state.value = state.value.copy(parental = parental)
+    }
+}
+
+class FakeParentalReviewRepository(initial: Set<String> = emptySet()) : ParentalReviewRepository {
+    val state = MutableStateFlow(initial)
+    override val reviewedPackages: Flow<Set<String>> = state
+
+    override suspend fun setReviewed(packageName: String, reviewed: Boolean) {
+        state.value = if (reviewed) state.value + packageName else state.value - packageName
     }
 }
 
@@ -124,7 +139,15 @@ class FakeAppInventoryRepository(
     var apps: List<AppProfile> = emptyList(),
     var context: DeviceContext = TestData.deviceContext(),
 ) : AppInventoryRepository {
+    var labelLookups = 0
+        private set
+
     override suspend fun getInstalledApps(): List<AppProfile> = apps
+
+    override suspend fun getInstalledAppLabels(packageNames: Set<String>): Map<String, String> {
+        labelLookups++
+        return apps.filter { it.packageName in packageNames }.associate { it.packageName to it.label }
+    }
 
     override suspend fun getDeviceContext(): DeviceContext = context
 }

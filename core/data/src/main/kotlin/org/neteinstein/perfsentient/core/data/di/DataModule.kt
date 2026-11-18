@@ -16,6 +16,7 @@ import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.data.local.PerfsentienceDatabase
 import org.neteinstein.perfsentient.core.data.repository.AppInventoryRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.NotificationStatsRepositoryImpl
+import org.neteinstein.perfsentient.core.data.repository.ParentalReviewRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.PermissionRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.ReportRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.SettingsRepositoryImpl
@@ -28,6 +29,7 @@ import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
+import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
@@ -64,6 +66,7 @@ val dataModule = module {
     single<PermissionRepository> { PermissionRepositoryImpl(androidContext()) }
     singleOf(::SettingsRepositoryImpl) { bind<SettingsRepository>() }
     singleOf(::TrustedAppsRepositoryImpl) { bind<TrustedAppsRepository>() }
+    singleOf(::ParentalReviewRepositoryImpl) { bind<ParentalReviewRepository>() }
     singleOf(::UsageRepositoryImpl) { bind<UsageRepository>() }
     singleOf(::AppInventoryRepositoryImpl) { bind<AppInventoryRepository>() }
     singleOf(::VitalsRepositoryImpl) { bind<VitalsRepository>() }

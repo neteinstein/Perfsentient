@@ -18,4 +18,5 @@ data class UserSettings(
     val useDynamicColor: Boolean = false,
     val reportTime: ReportTime = ReportTime.DEFAULT,
     val monitoringEnabled: Boolean = false,
+    val parental: ParentalSettings = ParentalSettings(),
 )

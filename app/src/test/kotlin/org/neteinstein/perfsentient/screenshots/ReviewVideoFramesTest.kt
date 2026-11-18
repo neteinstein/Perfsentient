@@ -71,7 +71,7 @@ class ReviewVideoFramesTest {
         compose.mainClock.autoAdvance = false
         compose.setContent {
             PerfsentienceTheme(darkTheme = false, dynamicColor = false) {
-                PerfsentienceAppUi(selectedTab = selected, onTabSelected = { selected = it })
+                PerfsentienceAppUi(tabs = SampleData.coreTabs, selectedTab = selected, onTabSelected = { selected = it })
             }
         }
 

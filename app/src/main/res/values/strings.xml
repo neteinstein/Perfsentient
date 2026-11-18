@@ -3,5 +3,6 @@
     <string name="app_name">Perfsentient</string>
     <string name="tab_report">Report</string>
     <string name="tab_apps">Apps</string>
+    <string name="tab_parental">Parental help</string>
     <string name="tab_settings">Settings</string>
 </resources>

@@ -36,5 +36,6 @@ include(":core:testing")
 
 include(":feature:report")
 include(":feature:apps")
+include(":feature:parental")
 include(":feature:settings")
 include(":feature:monitoring")

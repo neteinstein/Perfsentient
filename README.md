@@ -56,6 +56,7 @@
 - 🔋 **Finds battery and data hogs.** Apps that run all day in the background, wake up at night, or use a lot of mobile data you never asked for.
 - ✅ **Trusted apps (whitelist).** If a flagged app is one you rely on (a VPN, a busy chat app), tap **Trust this app** in the report. It's left out of your reports and score from then on.
 - 📱 **Apps tab.** Every app flagged now or in the last 30 days in one list. Trusted apps are tinted teal. Tap any app to trust it or stop trusting it.
+- 👪 **Parental mode.** Turn it on in Settings, enter your child's age, and a **Parental help** tab appears. It flags installed apps that child-safety groups, regulators and investigations warn about for that age (grooming on Roblox and Discord, sextortion on Snapchat, Instagram and Wizz, random video chat, dating, AI companions, secret vaults…), explains why, and says what you can do. The list and its sources are in [docs/parental-help-research.md](docs/parental-help-research.md).
 - 🔒 **Stays on your phone.** The app has no `INTERNET` permission, so it can't send anything anywhere. The release build checks this.
 - 🎨 **Modern Android.** Material 3 with dynamic colour, light and dark themes, edge-to-edge, predictive back, and a layout that adapts to tablets and foldables.
 
@@ -130,11 +131,12 @@ Clean Architecture + MVVM, with one Gradle module per feature. Koin for DI, Coro
 flowchart TD
     app[":app"] --> report[":feature:report"]
     app --> apps[":feature:apps"]
+    app --> parental[":feature:parental"]
     app --> settings[":feature:settings"]
     app --> monitoring[":feature:monitoring"]
     app --> data[":core:data"]
-    report & apps & settings & monitoring --> domain[":core:domain"]
-    report & apps & settings & monitoring --> ds[":core:designsystem"]
+    report & apps & parental & settings & monitoring --> domain[":core:domain"]
+    report & apps & parental & settings & monitoring --> ds[":core:designsystem"]
     data -. implements .-> domain
     domain --> model[":core:model"]
     domain --> common[":core:common"]
@@ -142,10 +144,10 @@ flowchart TD
 
 | Module | Role |
 |---|---|
-| `core:domain` | Pure Kotlin: use cases, repository interfaces and the detectors in `analysis/` |
+| `core:domain` | Pure Kotlin: use cases, repository interfaces, the detectors in `analysis/` and the parental catalogue in `parental/` |
 | `core:data` | Room, DataStore and the Android system data sources (usage, network, storage, vitals) |
 | `core:designsystem` | Aurora theme (light/dark/dynamic), animated gauge, chips and cards |
-| `feature:*` | Report tab, Apps tab, Settings tab, and the background monitoring (workers, scheduler, notification listener) |
+| `feature:*` | Report tab, Apps tab, Parental help tab, Settings tab, and the background monitoring (workers, scheduler, notification listener) |
 
 Features never depend on each other. See [AGENTS.md](AGENTS.md) for the full module map, conventions and quality gates.
 

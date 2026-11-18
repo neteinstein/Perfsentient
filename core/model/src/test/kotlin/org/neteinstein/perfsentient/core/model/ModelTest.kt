@@ -63,4 +63,40 @@ class ModelTest {
         assertEquals(22, offenders.first().penalty)
         assertEquals(BehaviorType.OVERLAY_ABUSE, offenders.first().findings.first().type)
     }
+
+    @Test
+    fun `parental settings default to off for a ten year old`() {
+        assertEquals(ParentalSettings(enabled = false, childAge = 10), UserSettings().parental)
+        assertEquals(17, ParentalSettings(true, 17).childAge)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `parental settings reject adults`() {
+        ParentalSettings(enabled = true, childAge = 18)
+    }
+
+    @Test
+    fun `a warning knows when the child is below the platform minimum age`() {
+        val app = ConcerningApp(
+            "chat",
+            setOf("com.chat"),
+            ParentalRiskCategory.PRIVATE_MESSAGING,
+            minimumAge = 13,
+            recommendedAge = 16,
+            baseSeverity = Severity.MEDIUM,
+            concerns = setOf(ParentalConcern.STRANGER_CONTACT),
+        )
+        assertTrue(ParentalWarning("com.chat", "Chat", app, Severity.HIGH, childAge = 12, isReviewed = false).isBelowMinimumAge)
+        assertFalse(ParentalWarning("com.chat", "Chat", app, Severity.MEDIUM, childAge = 13, isReviewed = false).isBelowMinimumAge)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `a concerning app needs a package`() {
+        ConcerningApp("x", emptySet(), ParentalRiskCategory.DATING, 18, 18, Severity.HIGH, setOf(ParentalConcern.ADULT_CONTENT))
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `a concerning app needs a concern`() {
+        ConcerningApp("x", setOf("com.x"), ParentalRiskCategory.DATING, 18, 18, Severity.HIGH, emptySet())
+    }
 }

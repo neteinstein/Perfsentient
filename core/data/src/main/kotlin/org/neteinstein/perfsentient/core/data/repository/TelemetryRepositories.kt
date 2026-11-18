@@ -48,6 +48,9 @@ class AppInventoryRepositoryImpl(
 ) : AppInventoryRepository {
     override suspend fun getInstalledApps(): List<AppProfile> = withContext(dispatchers.io) { dataSource.installedApps() }
 
+    override suspend fun getInstalledAppLabels(packageNames: Set<String>): Map<String, String> =
+        withContext(dispatchers.io) { dataSource.installedAppLabels(packageNames) }
+
     override suspend fun getDeviceContext(): DeviceContext = withContext(dispatchers.io) { dataSource.deviceContext() }
 }
 

@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
+import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.ReportTime
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.UserSettings
@@ -26,6 +27,12 @@ class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : Se
                     ReportTime(prefs[REPORT_HOUR] ?: defaults.reportTime.hour, prefs[REPORT_MINUTE] ?: defaults.reportTime.minute)
                 }.getOrDefault(defaults.reportTime),
                 monitoringEnabled = prefs[MONITORING] ?: defaults.monitoringEnabled,
+                parental = runCatching {
+                    ParentalSettings(
+                        enabled = prefs[PARENTAL_ENABLED] ?: defaults.parental.enabled,
+                        childAge = prefs[CHILD_AGE] ?: defaults.parental.childAge,
+                    )
+                }.getOrDefault(defaults.parental),
             )
         }
         .distinctUntilChanged()
@@ -49,11 +56,20 @@ class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : Se
         dataStore.edit { it[MONITORING] = enabled }
     }
 
+    override suspend fun setParentalSettings(parental: ParentalSettings) {
+        dataStore.edit {
+            it[PARENTAL_ENABLED] = parental.enabled
+            it[CHILD_AGE] = parental.childAge
+        }
+    }
+
     private companion object {
         val THEME = stringPreferencesKey("theme_mode")
         val DYNAMIC_COLOR = booleanPreferencesKey("dynamic_color")
         val REPORT_HOUR = intPreferencesKey("report_hour")
         val REPORT_MINUTE = intPreferencesKey("report_minute")
         val MONITORING = booleanPreferencesKey("monitoring_enabled")
+        val PARENTAL_ENABLED = booleanPreferencesKey("parental_enabled")
+        val CHILD_AGE = intPreferencesKey("parental_child_age")
     }
 }

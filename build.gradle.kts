@@ -22,6 +22,7 @@ dependencies {
     kover(projects.core.designsystem)
     kover(projects.feature.report)
     kover(projects.feature.apps)
+    kover(projects.feature.parental)
     kover(projects.feature.settings)
     kover(projects.feature.monitoring)
 }

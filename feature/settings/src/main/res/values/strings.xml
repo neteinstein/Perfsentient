@@ -39,6 +39,23 @@
     <string name="settings_ok">Set</string>
     <string name="settings_cancel">Cancel</string>
 
+    <string name="settings_section_parental">Parental mode</string>
+    <string name="settings_section_parental_desc">Setting up a phone for a child? Check its apps against their age.</string>
+    <string name="settings_parental_title">Parental mode</string>
+    <string name="settings_parental_desc">Flags apps known for grooming, sextortion, contact with strangers or adult content that aren\'t right for your child\'s age, and adds a Parental help tab.</string>
+    <string name="settings_parental_child_age">Child\'s age</string>
+    <plurals name="settings_parental_age_years">
+        <item quantity="one">%1$d year</item>
+        <item quantity="other">%1$d years</item>
+    </plurals>
+    <string name="settings_parental_change">Change</string>
+    <string name="settings_parental_age_title">How old is your child?</string>
+    <string name="settings_parental_age_desc">Apps on this phone are checked against this age. It is stored only on this phone.</string>
+    <string name="settings_parental_age_younger">Younger</string>
+    <string name="settings_parental_age_older">Older</string>
+    <string name="settings_parental_turn_on">Turn on</string>
+    <string name="settings_parental_save">Save</string>
+
     <string name="settings_section_trusted">Trusted apps</string>
     <string name="settings_section_trusted_desc">Apps you trust are left out of your reports and don\'t lower your score.</string>
     <string name="settings_trusted_empty">No trusted apps yet. Tap a flagged app in your report and choose \"Trust this app\" to stop flagging it.</string>

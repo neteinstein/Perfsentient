@@ -7,6 +7,7 @@ import org.neteinstein.perfsentient.core.data.di.dataModule
 import org.neteinstein.perfsentient.core.domain.di.domainModule
 import org.neteinstein.perfsentient.feature.apps.di.appsModule
 import org.neteinstein.perfsentient.feature.monitoring.di.monitoringModule
+import org.neteinstein.perfsentient.feature.parental.di.parentalModule
 import org.neteinstein.perfsentient.feature.report.di.reportModule
 import org.neteinstein.perfsentient.feature.settings.di.settingsModule
 
@@ -21,6 +22,7 @@ val appModules = listOf(
     monitoringModule,
     reportModule,
     appsModule,
+    parentalModule,
     settingsModule,
     appModule,
 )

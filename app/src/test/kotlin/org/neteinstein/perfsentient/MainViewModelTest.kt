@@ -8,6 +8,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.SyncMonitoringUseCase
+import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.UserSettings
 import org.neteinstein.perfsentient.core.testing.FakeMonitoringScheduler
@@ -44,6 +45,19 @@ class MainViewModelTest {
         assertEquals(AppTab.REPORT, viewModel.selectedTab.value)
         viewModel.selectTab(AppTab.SETTINGS)
         assertEquals(AppTab.SETTINGS, viewModel.selectedTab.value)
+    }
+
+    @Test
+    fun `the parental help tab sits in the middle and only while parental mode is on`() {
+        val off = MainUiState.Ready(UserSettings())
+        assertEquals(listOf(AppTab.REPORT, AppTab.APPS, AppTab.SETTINGS), off.tabs)
+        // Turning parental mode off while on its tab falls back to Settings, where the switch is.
+        assertEquals(AppTab.SETTINGS, off.visibleTab(AppTab.PARENTAL))
+        assertEquals(AppTab.APPS, off.visibleTab(AppTab.APPS))
+
+        val on = MainUiState.Ready(UserSettings(parental = ParentalSettings(enabled = true, childAge = 12)))
+        assertEquals(listOf(AppTab.REPORT, AppTab.APPS, AppTab.PARENTAL, AppTab.SETTINGS), on.tabs)
+        assertEquals(AppTab.PARENTAL, on.visibleTab(AppTab.PARENTAL))
     }
 
     @Test
