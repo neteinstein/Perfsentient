@@ -1,8 +1,8 @@
-import com.neteinstein.perfsentient.buildlogic.configureKotlinJvm
-import com.neteinstein.perfsentient.buildlogic.configureQuality
-import com.neteinstein.perfsentient.buildlogic.lib
-import com.neteinstein.perfsentient.buildlogic.libs
-import com.neteinstein.perfsentient.buildlogic.pluginId
+import org.neteinstein.perfsentient.buildlogic.configureKotlinJvm
+import org.neteinstein.perfsentient.buildlogic.configureQuality
+import org.neteinstein.perfsentient.buildlogic.lib
+import org.neteinstein.perfsentient.buildlogic.libs
+import org.neteinstein.perfsentient.buildlogic.pluginId
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

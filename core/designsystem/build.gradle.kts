@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.neteinstein.perfsentient.core.designsystem"
+    namespace = "org.neteinstein.perfsentient.core.designsystem"
 }
 
 dependencies {

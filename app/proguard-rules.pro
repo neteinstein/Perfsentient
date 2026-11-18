@@ -21,7 +21,7 @@
 }
 
 # Enums are persisted by name (DataStore / Room JSON payload) – keep their names stable.
--keepclassmembers enum com.neteinstein.perfsentient.core.model.** {
+-keepclassmembers enum org.neteinstein.perfsentient.core.model.** {
     <fields>;
     public static **[] values();
     public static ** valueOf(java.lang.String);

@@ -77,7 +77,7 @@
 | 🌡️ | **Device issues** | Battery drain with the screen off, temperature, thermal throttling and memory pressure, sampled every 15 minutes |
 
 Each finding has a severity, and the severities feed the day's health score. The thresholds are in
-[`DetectionThresholds`](core/domain/src/main/kotlin/com/neteinstein/perfsentient/core/domain/analysis/DetectionThresholds.kt).
+[`DetectionThresholds`](core/domain/src/main/kotlin/org/neteinstein/perfsentient/core/domain/analysis/DetectionThresholds.kt).
 
 ## ⚙️ How it works
 

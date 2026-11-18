@@ -3,5 +3,5 @@ plugins {
 }
 
 android {
-    namespace = "com.neteinstein.perfsentient.feature.report"
+    namespace = "org.neteinstein.perfsentient.feature.report"
 }
