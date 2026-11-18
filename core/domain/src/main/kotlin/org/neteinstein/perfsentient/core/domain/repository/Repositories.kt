@@ -1,5 +1,8 @@
 package org.neteinstein.perfsentient.core.domain.repository
 
+import java.time.LocalDate
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DailyReport
@@ -12,9 +15,6 @@ import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.UserSettings
 import org.neteinstein.perfsentient.core.model.VitalSample
-import java.time.LocalDate
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 
 interface PermissionRepository {
     val permissions: StateFlow<List<PermissionState>>

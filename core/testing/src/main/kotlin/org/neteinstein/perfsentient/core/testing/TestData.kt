@@ -1,5 +1,6 @@
 package org.neteinstein.perfsentient.core.testing
 
+import java.time.LocalDate
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -13,7 +14,6 @@ import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.UsageEventType
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.model.VitalSample
-import java.time.LocalDate
 
 /** Builders with sensible defaults so tests only spell out what matters. */
 object TestData {

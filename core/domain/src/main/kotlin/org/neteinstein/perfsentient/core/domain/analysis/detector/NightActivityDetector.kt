@@ -1,5 +1,6 @@
 package org.neteinstein.perfsentient.core.domain.analysis.detector
 
+import java.time.Instant
 import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorDetector
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
@@ -8,7 +9,6 @@ import org.neteinstein.perfsentient.core.domain.analysis.severityFor
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.Finding
 import org.neteinstein.perfsentient.core.model.UsageEventType
-import java.time.Instant
 
 /**
  * Apps that start services or even launch activities while the screen is off during the

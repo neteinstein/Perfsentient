@@ -5,10 +5,10 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
+import kotlinx.coroutines.flow.Flow
 import org.neteinstein.perfsentient.core.data.local.entity.NotificationCountEntity
 import org.neteinstein.perfsentient.core.data.local.entity.ReportEntity
 import org.neteinstein.perfsentient.core.data.local.entity.VitalSampleEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface VitalSampleDao {

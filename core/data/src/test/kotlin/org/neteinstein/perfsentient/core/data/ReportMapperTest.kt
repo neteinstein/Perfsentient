@@ -1,5 +1,9 @@
 package org.neteinstein.perfsentient.core.data
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Test
 import org.neteinstein.perfsentient.core.data.local.entity.ReportEntity
 import org.neteinstein.perfsentient.core.data.mapper.toDomain
 import org.neteinstein.perfsentient.core.data.mapper.toEntity
@@ -10,10 +14,6 @@ import org.neteinstein.perfsentient.core.model.DeviceMetrics
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.testing.TestData
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
-import org.junit.Assert.assertTrue
-import org.junit.Test
 
 class ReportMapperTest {
     @Test

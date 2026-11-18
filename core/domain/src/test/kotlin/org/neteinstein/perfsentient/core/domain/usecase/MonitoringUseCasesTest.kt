@@ -1,6 +1,12 @@
 package org.neteinstein.perfsentient.core.domain.usecase
 
 import app.cash.turbine.test
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Test
 import org.neteinstein.perfsentient.core.model.ReportTime
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.UserSettings
@@ -11,12 +17,6 @@ import org.neteinstein.perfsentient.core.testing.FakeSettingsRepository
 import org.neteinstein.perfsentient.core.testing.FakeTimeProvider
 import org.neteinstein.perfsentient.core.testing.FakeVitalsRepository
 import org.neteinstein.perfsentient.core.testing.TestData
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
-import org.junit.Test
 
 class MonitoringUseCasesTest {
     private val permissions = FakePermissionRepository()

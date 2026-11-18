@@ -1,10 +1,6 @@
 package org.neteinstein.perfsentient.core.data
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import org.neteinstein.perfsentient.core.data.repository.SettingsRepositoryImpl
-import org.neteinstein.perfsentient.core.model.ReportTime
-import org.neteinstein.perfsentient.core.model.ThemeMode
-import org.neteinstein.perfsentient.core.model.UserSettings
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -13,6 +9,10 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
+import org.neteinstein.perfsentient.core.data.repository.SettingsRepositoryImpl
+import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.model.ThemeMode
+import org.neteinstein.perfsentient.core.model.UserSettings
 
 class SettingsRepositoryImplTest {
     @get:Rule

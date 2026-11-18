@@ -1,5 +1,8 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.analysis.detector.AfterCallAdsDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.BackgroundDataDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.CapabilityRiskDetector
@@ -21,9 +24,6 @@ import org.neteinstein.perfsentient.core.testing.TestData.event
 import org.neteinstein.perfsentient.core.testing.TestData.network
 import org.neteinstein.perfsentient.core.testing.TestData.resumed
 import org.neteinstein.perfsentient.core.testing.TestData.usage
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
-import org.junit.Test
 
 class DetectorsTest {
     private val thresholds = DetectionThresholds()

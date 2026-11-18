@@ -1,5 +1,11 @@
 package org.neteinstein.perfsentient.core.domain.usecase
 
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withContext
 import org.neteinstein.perfsentient.core.common.DispatcherProvider
 import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
@@ -14,12 +20,6 @@ import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
 import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.DailyReport
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.withContext
 
 /**
  * Collects today's telemetry, runs every detector, scores the day and persists the report.

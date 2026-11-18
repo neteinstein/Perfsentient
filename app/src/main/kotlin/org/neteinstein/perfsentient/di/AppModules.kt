@@ -1,5 +1,7 @@
 package org.neteinstein.perfsentient.di
 
+import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.module
 import org.neteinstein.perfsentient.MainViewModel
 import org.neteinstein.perfsentient.core.data.di.dataModule
 import org.neteinstein.perfsentient.core.domain.di.domainModule
@@ -7,8 +9,6 @@ import org.neteinstein.perfsentient.feature.apps.di.appsModule
 import org.neteinstein.perfsentient.feature.monitoring.di.monitoringModule
 import org.neteinstein.perfsentient.feature.report.di.reportModule
 import org.neteinstein.perfsentient.feature.settings.di.settingsModule
-import org.koin.core.module.dsl.viewModelOf
-import org.koin.dsl.module
 
 val appModule = module {
     viewModelOf(::MainViewModel)

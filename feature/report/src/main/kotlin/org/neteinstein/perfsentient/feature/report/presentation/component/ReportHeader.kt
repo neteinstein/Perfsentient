@@ -34,6 +34,10 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import org.neteinstein.perfsentient.core.designsystem.behavior.label
 import org.neteinstein.perfsentient.core.designsystem.component.AuroraBackground
 import org.neteinstein.perfsentient.core.designsystem.component.HealthGauge
@@ -41,10 +45,6 @@ import org.neteinstein.perfsentient.core.designsystem.component.StatusChip
 import org.neteinstein.perfsentient.core.designsystem.theme.PerfsentienceTheme
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.feature.report.R
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 @Composable
 internal fun ReportHeader(

@@ -3,13 +3,13 @@ package org.neteinstein.perfsentient.feature.monitoring.worker
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.first
 import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.RecordVitalSampleUseCase
 import org.neteinstein.perfsentient.feature.monitoring.notification.ReportNotifier
 import org.neteinstein.perfsentient.feature.monitoring.scheduler.WorkManagerMonitoringScheduler
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.flow.first
 
 /** Records a device-vitals sample (battery, temperature, memory, screen state). */
 class VitalsSamplerWorker(

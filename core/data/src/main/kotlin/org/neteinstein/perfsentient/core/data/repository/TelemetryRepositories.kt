@@ -1,5 +1,9 @@
 package org.neteinstein.perfsentient.core.data.repository
 
+import java.time.LocalDate
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import org.neteinstein.perfsentient.core.common.DispatcherProvider
 import org.neteinstein.perfsentient.core.data.local.dao.NotificationCountDao
 import org.neteinstein.perfsentient.core.data.local.dao.ReportDao
@@ -22,10 +26,6 @@ import org.neteinstein.perfsentient.core.model.DeviceContext
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.VitalSample
-import java.time.LocalDate
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 
 class UsageRepositoryImpl(
     private val usageStats: UsageStatsDataSource,

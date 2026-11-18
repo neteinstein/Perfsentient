@@ -1,8 +1,8 @@
 package org.neteinstein.perfsentient.core.data.mapper
 
-import org.neteinstein.perfsentient.core.model.TrustedApp
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
+import org.neteinstein.perfsentient.core.model.TrustedApp
 
 @Serializable
 internal data class TrustedAppDto(val packageName: String, val label: String)

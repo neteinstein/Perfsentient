@@ -1,13 +1,13 @@
 package org.neteinstein.perfsentient.core.domain.usecase
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.FlaggedApp
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.TrustedApp
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
 
 /**
  * Every app flagged in the retained report history, plus every trusted app, so the user can

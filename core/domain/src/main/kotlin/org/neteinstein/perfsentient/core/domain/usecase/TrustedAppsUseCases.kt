@@ -1,10 +1,10 @@
 package org.neteinstein.perfsentient.core.domain.usecase
 
-import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
-import org.neteinstein.perfsentient.core.model.TrustedApp
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
+import org.neteinstein.perfsentient.core.model.TrustedApp
 
 /** The allowlist, sorted by label for display. */
 class ObserveTrustedAppsUseCase(private val repository: TrustedAppsRepository) {

@@ -5,13 +5,13 @@ import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import org.neteinstein.perfsentient.core.data.mapper.toTrustedApps
 import org.neteinstein.perfsentient.core.data.mapper.toTrustedAppsJson
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.model.TrustedApp
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
 
 /** Stores the allowlist next to the other user preferences, so it is included in backups. */
 class TrustedAppsRepositoryImpl(private val dataStore: DataStore<Preferences>) : TrustedAppsRepository {

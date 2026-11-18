@@ -1,5 +1,15 @@
 package org.neteinstein.perfsentient.core.data
 
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.mockk
+import java.time.LocalDate
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Test
 import org.neteinstein.perfsentient.core.data.local.dao.NotificationCountDao
 import org.neteinstein.perfsentient.core.data.local.dao.ReportDao
 import org.neteinstein.perfsentient.core.data.local.dao.VitalSampleDao
@@ -16,16 +26,6 @@ import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.testing.TestData
 import org.neteinstein.perfsentient.core.testing.TestDispatcherProvider
-import io.mockk.coEvery
-import io.mockk.coVerify
-import io.mockk.every
-import io.mockk.mockk
-import java.time.LocalDate
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Test
 
 class TelemetryRepositoriesTest {
     private val dispatchers = TestDispatcherProvider()

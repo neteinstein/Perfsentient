@@ -1,6 +1,12 @@
 package org.neteinstein.perfsentient.feature.apps
 
 import app.cash.turbine.test
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Rule
+import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveFlaggedAppsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.TrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
@@ -9,12 +15,6 @@ import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
 import org.neteinstein.perfsentient.core.testing.MainDispatcherRule
 import org.neteinstein.perfsentient.core.testing.TestData
 import org.neteinstein.perfsentient.feature.apps.presentation.AppsViewModel
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
-import org.junit.Rule
-import org.junit.Test
 
 class AppsViewModelTest {
     @get:Rule

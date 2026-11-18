@@ -1,5 +1,7 @@
 package org.neteinstein.perfsentient.screenshots
 
+import java.time.LocalDate
+import java.time.ZoneOffset
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceIssue
@@ -8,8 +10,6 @@ import org.neteinstein.perfsentient.core.model.DeviceMetrics
 import org.neteinstein.perfsentient.core.model.Finding
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
-import java.time.LocalDate
-import java.time.ZoneOffset
 
 /** Fictional data for the store screenshots. Every app name and number here is made up. */
 internal object SampleData {

@@ -1,8 +1,8 @@
 package org.neteinstein.perfsentient.feature.monitoring.scheduler
 
-import org.neteinstein.perfsentient.core.model.ReportTime
 import java.time.Duration
 import java.time.ZonedDateTime
+import org.neteinstein.perfsentient.core.model.ReportTime
 
 /** Pure helper: how long until the next occurrence of [time] (always in the future). */
 internal object ReportTimeCalculator {
