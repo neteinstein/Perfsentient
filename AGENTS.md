@@ -30,7 +30,8 @@ core/data              -> (Android) repository implementations, Room, DataStore,
 core/designsystem      -> (Android) theme (light/dark/dynamic), animated components, behaviour copy
 core/testing           -> (JVM) fakes, builders and rules shared by all unit tests
 feature/report         -> Tab 1: daily report UI + ReportViewModel
-feature/settings       -> Tab 2: permissions, report time, appearance + SettingsViewModel
+feature/apps           -> Tab 2: every app flagged now/in the past, trust (whitelist) toggle + AppsViewModel
+feature/settings       -> Tab 3: permissions, report time, appearance + SettingsViewModel
 feature/monitoring     -> WorkManager workers, scheduler, notification + NotificationListenerService
 ```
 
@@ -84,7 +85,7 @@ Dependency rules (enforced by module boundaries):
 unit tests (+ the Play upload script tests), coverage (summary in the job page + threshold check)
 and lint. PRs follow `.github/pull_request_template.md` (ticket, description, how to test).
 
-Releases (see [PublishToStore.md](PublishToStore.md)):
+Releases (see [store-listing/publishing.md](store-listing/publishing.md)):
 
 - `.github/workflows/release.yml` runs on every merge to `main`: bumps the patch `versionName`
   (commit `[skip ci]` back to `main`), builds the signed APK + AAB, verifies the release manifest

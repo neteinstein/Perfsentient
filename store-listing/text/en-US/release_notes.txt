@@ -1,0 +1,4 @@
+• New Apps tab: see every app flagged now or in the past
+• Trust (whitelist) an app, or stop trusting it, from the Apps tab or from your report
+• Trusted apps show in a different colour and no longer lower your score
+• Performance and stability improvements

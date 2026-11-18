@@ -1,0 +1,37 @@
+Is your phone slow, hot or full of ads out of nowhere? Perfsentient finds the apps behind it.
+
+Perfsentient watches how your phone behaves, all day, in the background. Every evening you get a simple health report with a score and the apps that misbehaved, with a plain-language explanation of what each one did.
+
+WHAT IT CATCHES
+• Pop-up ads: apps that take over the screen while you use something else
+• After-call ads: full-screen ads that appear when a phone call ends
+• Overlay abuse: apps that draw over other apps and stay busy in the background
+• Hidden apps: active in the background but with no icon in your app drawer
+• Always-running apps: services that keep the CPU awake and drain the battery
+• Night owls: apps that wake up while your screen is off
+• Background data hogs: apps that transfer lots of data when you are not looking
+• Notification spam
+• Risky access: accessibility services, device administrators, unrestricted battery use
+• Storage hogs: very large caches
+
+YOUR DAILY REPORT
+• A health score from 0 to 100 and a clear verdict: good, fair or poor
+• Phone vitals: battery drain, screen-off drain, temperature and memory pressure
+• A 7-day trend, so you can see if things are getting better
+• Tap any app to see exactly what it did and open its App info to uninstall or restrict it
+
+YOU STAY IN CONTROL
+• The Apps tab lists every app flagged now or in the past
+• Trust the apps you know are fine. Trusted apps are left out of your reports and do not lower your score, and are shown in a different colour
+• Change your mind at any time: tap a trusted app to stop trusting it
+
+PRIVATE BY DESIGN
+• Everything is analysed on your phone
+• The app has no internet permission at all, so it cannot send your data anywhere
+• No account, no ads, no analytics
+• Notifications are only counted per app. Their content is never read
+
+HOW IT WORKS
+Perfsentient needs two permissions that you turn on in Android settings: Usage access (to see which apps run and for how long) and Notification access (to count notifications per app). The Settings tab explains each one and takes you straight to the right screen. A light check runs every 15 minutes, using almost no battery, and your report arrives at the time you choose.
+
+Perfsentient does not remove apps for you. It tells you which ones to look at, and why.

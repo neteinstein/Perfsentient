@@ -35,5 +35,6 @@ include(":core:designsystem")
 include(":core:testing")
 
 include(":feature:report")
+include(":feature:apps")
 include(":feature:settings")
 include(":feature:monitoring")

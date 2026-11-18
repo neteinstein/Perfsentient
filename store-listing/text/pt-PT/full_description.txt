@@ -1,0 +1,37 @@
+O seu telemóvel está lento, quente ou cheio de anúncios do nada? O Perfsentient descobre as apps responsáveis.
+
+O Perfsentient observa o comportamento do telemóvel o dia todo, em segundo plano. Todas as noites recebe um relatório de saúde simples, com uma pontuação e as apps que se portaram mal, e uma explicação em linguagem clara do que cada uma fez.
+
+O QUE DETETA
+• Anúncios pop-up: apps que ocupam o ecrã enquanto usa outra coisa
+• Anúncios após chamadas: anúncios em ecrã inteiro quando uma chamada termina
+• Abuso de sobreposição: apps que desenham por cima de outras e ficam ativas em segundo plano
+• Apps escondidas: ativas em segundo plano mas sem ícone na lista de apps
+• Apps sempre ativas: serviços que mantêm o processador acordado e gastam bateria
+• Apps noctívagas: acordam enquanto o ecrã está desligado
+• Apps que gastam dados em segundo plano
+• Spam de notificações
+• Acessos de risco: serviços de acessibilidade, administradores do dispositivo, bateria sem restrições
+• Apps que ocupam muito armazenamento (cache enorme)
+
+O SEU RELATÓRIO DIÁRIO
+• Uma pontuação de saúde de 0 a 100 e um veredito claro: boa, razoável ou fraca
+• Sinais vitais: consumo de bateria, consumo com o ecrã desligado, temperatura e pressão de memória
+• Uma tendência de 7 dias, para ver se as coisas estão a melhorar
+• Toque numa app para ver exatamente o que fez e abrir as suas Informações da app para desinstalar ou restringir
+
+O CONTROLO É SEU
+• O separador Apps lista todas as apps sinalizadas agora ou no passado
+• Confie nas apps que sabe que estão bem. As apps de confiança ficam fora dos relatórios, não baixam a pontuação e aparecem com outra cor
+• Mude de ideias quando quiser: toque numa app de confiança para deixar de confiar nela
+
+PRIVADO POR DESIGN
+• Tudo é analisado no seu telemóvel
+• A app não tem qualquer permissão de internet, por isso não pode enviar os seus dados para lado nenhum
+• Sem conta, sem anúncios, sem análises
+• As notificações são apenas contadas por app. O conteúdo nunca é lido
+
+COMO FUNCIONA
+O Perfsentient precisa de duas permissões que ativa nas definições do Android: Acesso de utilização (para ver que apps correm e durante quanto tempo) e Acesso a notificações (para contar notificações por app). O separador Definições explica cada uma e leva-o diretamente ao ecrã certo. Uma verificação leve corre a cada 15 minutos, com consumo de bateria quase nulo, e o relatório chega à hora que escolher.
+
+O Perfsentient não remove apps por si. Diz-lhe quais deve verificar e porquê.

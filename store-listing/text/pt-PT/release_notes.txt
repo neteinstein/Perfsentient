@@ -1,0 +1,4 @@
+• Novo separador Apps: veja todas as apps sinalizadas agora ou no passado
+• Confie numa app (lista de permitidas) ou deixe de confiar, no separador Apps ou no relatório
+• As apps de confiança aparecem com outra cor e deixam de baixar a pontuação
+• Melhorias de desempenho e estabilidade

@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-enum class AppTab { REPORT, SETTINGS }
+enum class AppTab { REPORT, APPS, SETTINGS }
 
 sealed interface MainUiState {
     data object Loading : MainUiState

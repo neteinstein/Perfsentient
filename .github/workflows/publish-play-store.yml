@@ -43,7 +43,7 @@ jobs:
       - name: Check that Play Store upload is enabled
         if: vars.PLAY_STORE_UPLOAD_ENABLED != 'true'
         run: |
-          echo "::error::Play Store upload is disabled. Set the repository variable PLAY_STORE_UPLOAD_ENABLED=true first (see PublishToStore.md)." >&2
+          echo "::error::Play Store upload is disabled. Set the repository variable PLAY_STORE_UPLOAD_ENABLED=true first (see store-listing/publishing.md)." >&2
           exit 1
 
       - name: Checkout code

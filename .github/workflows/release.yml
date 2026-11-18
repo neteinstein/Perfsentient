@@ -5,7 +5,7 @@ name: Build & Release
 #   2. build the signed, R8-minified APK and App Bundle,
 #   3. create a GitHub release vX.Y.Z with Perfsentient_vX.Y.Z.apk and Perfsentient_vX.Y.Z.aab,
 #   4. upload the bundle to Google Play's internal track -- DISABLED until the repository
-#      variable PLAY_STORE_UPLOAD_ENABLED is set to 'true' (see PublishToStore.md).
+#      variable PLAY_STORE_UPLOAD_ENABLED is set to 'true' (see store-listing/publishing.md).
 # publish-play-store.yml is the manual way to (re)upload the bundle to another track.
 
 on:
@@ -46,7 +46,7 @@ jobs:
           # Fail before bumping the version rather than publish an unsigned release.
           for name in KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
             if [ -z "${!name}" ]; then
-              echo "::error::Repository secret $name is not set. See PublishToStore.md." >&2
+              echo "::error::Repository secret $name is not set. See store-listing/publishing.md." >&2
               exit 1
             fi
           done
@@ -184,7 +184,7 @@ jobs:
       - name: Play Store upload is disabled
         if: vars.PLAY_STORE_UPLOAD_ENABLED != 'true'
         run: |
-          echo "::notice::Play Store upload skipped: set the repository variable PLAY_STORE_UPLOAD_ENABLED=true to enable it (see PublishToStore.md)."
+          echo "::notice::Play Store upload skipped: set the repository variable PLAY_STORE_UPLOAD_ENABLED=true to enable it (see store-listing/publishing.md)."
           echo "Play Store upload skipped (PLAY_STORE_UPLOAD_ENABLED is not 'true')." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Decode Play Store service account key
