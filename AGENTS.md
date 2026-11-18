@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Guidance for AI coding agents (and humans) working on **Perfsentience** – an on-device Android app
+Guidance for AI coding agents (and humans) working on **Perfsentient** – an on-device Android app
 that monitors phone performance and flags misbehaving apps (pop-up/after-call ads, overlay abuse,
 hidden icons, background hogs, notification spam, …).
 

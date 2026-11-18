@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/banner.svg" alt="Perfsentience: your phone's watchdog" width="100%">
+  <img src="docs/banner.svg" alt="Perfsentient: your phone's watchdog" width="100%">
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 <p align="center">
   <b>Find the app that's draining your battery, showing pop-up ads or hiding its icon.</b><br>
-  Perfsentience watches your phone in the background, works everything out on the device, and gives you<br>
+  Perfsentient watches your phone in the background, works everything out on the device, and gives you<br>
   <b>one plain report a day</b>: a health score, the apps that misbehaved, and the evidence.
 </p>
 
@@ -78,7 +78,7 @@ flowchart LR
 
 ## 🚀 Setup
 
-1. **Install:** download `Perfsentience_vX.Y.Z.apk` from the [latest release](https://github.com/neteinstein/Perfsentience/releases/latest) and open it on your phone (Android 12L / API 32 or newer). You may need to allow installing apps from your browser or file manager.
+1. **Install:** download `Perfsentient_vX.Y.Z.apk` from the [latest release](https://github.com/neteinstein/Perfsentience/releases/latest) and open it on your phone (Android 12L / API 32 or newer). You may need to allow installing apps from your browser or file manager.
 2. **Grant access:** open the **Settings** tab. Each permission says *what* it's for and *why*. Tap **Grant** and the button turns into a green tick.
 
    | Permission | Why |

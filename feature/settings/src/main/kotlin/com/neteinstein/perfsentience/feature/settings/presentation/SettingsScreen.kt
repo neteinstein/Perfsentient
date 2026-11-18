@@ -158,7 +158,7 @@ internal fun SettingsScreen(
         }
         item(key = "footer") {
             Text(
-                text = "Perfsentience • on-device • no internet permission",
+                text = "Perfsentient • on-device • no internet permission",
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settings_title">Settings</string>
-    <string name="settings_subtitle">Grant access once – Perfsentience does the rest, on-device.</string>
+    <string name="settings_subtitle">Grant access once – Perfsentient does the rest, on-device.</string>
 
     <string name="settings_monitoring_active">Monitoring active</string>
     <string name="settings_monitoring_active_desc">Watching for misbehaving apps. Your report arrives every day at %1$s.</string>
@@ -12,7 +12,7 @@
     </plurals>
 
     <string name="settings_section_permissions">Permissions</string>
-    <string name="settings_section_permissions_desc">Everything stays on your phone – Perfsentience has no internet access.</string>
+    <string name="settings_section_permissions_desc">Everything stays on your phone – Perfsentient has no internet access.</string>
     <string name="settings_permission_grant">Grant</string>
     <string name="settings_permission_granted">Granted</string>
     <string name="settings_permission_required">Required</string>
@@ -21,10 +21,10 @@
 
     <string name="permission_usage_title">Usage access</string>
     <string name="permission_usage_desc">See which apps run, for how long, and how much data they use.</string>
-    <string name="permission_usage_why">Lets Perfsentience read app usage events (to spot pop-up and after-call ads), foreground-service time (apps that never stop), per-app background data (Android\'s network stats) and cache sizes. It is granted in Settings › Usage access. Perfsentience never sees what you do inside apps.</string>
+    <string name="permission_usage_why">Lets Perfsentient read app usage events (to spot pop-up and after-call ads), foreground-service time (apps that never stop), per-app background data (Android\'s network stats) and cache sizes. It is granted in Settings › Usage access. Perfsentient never sees what you do inside apps.</string>
     <string name="permission_notifications_title">Notifications</string>
     <string name="permission_notifications_desc">Deliver your end-of-day health report.</string>
-    <string name="permission_notifications_why">Android 13+ requires your consent before an app can post notifications. Perfsentience only sends one notification per day with your phone health score.</string>
+    <string name="permission_notifications_why">Android 13+ requires your consent before an app can post notifications. Perfsentient only sends one notification per day with your phone health score.</string>
     <string name="permission_notification_access_title">Notification access</string>
     <string name="permission_notification_access_desc">Count how many notifications each app posts.</string>
     <string name="permission_notification_access_why">Used only to count notifications per app so notification spam can be detected. Notification content (titles, messages) is never read, stored or shared.</string>

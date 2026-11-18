@@ -3,7 +3,7 @@ name: Build & Release
 # On every merge to main:
 #   1. bump the patch version in app/build.gradle.kts (committed back to main with [skip ci]),
 #   2. build the signed, R8-minified APK and App Bundle,
-#   3. create a GitHub release vX.Y.Z with Perfsentience_vX.Y.Z.apk and Perfsentience_vX.Y.Z.aab,
+#   3. create a GitHub release vX.Y.Z with Perfsentient_vX.Y.Z.apk and Perfsentient_vX.Y.Z.aab,
 #   4. upload the bundle to Google Play's internal track -- DISABLED until the repository
 #      variable PLAY_STORE_UPLOAD_ENABLED is set to 'true' (see PublishToStore.md).
 # publish-play-store.yml is the manual way to (re)upload the bundle to another track.
@@ -110,7 +110,7 @@ jobs:
       - name: Verify the release is on-device only
         run: |
           set -euo pipefail
-          # Perfsentience promises to never leave the device (see AGENTS.md). Fail the release
+          # Perfsentient promises to never leave the device (see AGENTS.md). Fail the release
           # rather than ship a build whose merged manifest gained network access from a library.
           manifest=$(find app/build/intermediates -path '*release*' -name AndroidManifest.xml -print -quit)
           test -n "$manifest"
@@ -123,9 +123,9 @@ jobs:
 
       - name: Rename APK and copy AAB
         run: |
-          mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/Perfsentience_v${{ steps.bump.outputs.new_version }}.apk
+          mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/Perfsentient_v${{ steps.bump.outputs.new_version }}.apk
           # Copy (not move): the Play upload step below still reads the original app-release.aab.
-          cp app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/Perfsentience_v${{ steps.bump.outputs.new_version }}.aab
+          cp app/build/outputs/bundle/release/app-release.aab app/build/outputs/bundle/release/Perfsentient_v${{ steps.bump.outputs.new_version }}.aab
 
       - name: Generate release notes
         env:
@@ -154,8 +154,8 @@ jobs:
           cat >> release_notes.md <<'NOTES'
 
           ---
-          **Installing:** download `Perfsentience_v*.apk` below and open it on your phone (Android 12L / API 32 or newer). You may need to allow installing apps from your browser or file manager.
-          After installing, open **Settings** in the app and grant the listed permissions: monitoring starts automatically and your first report arrives that evening. Everything stays on your phone – Perfsentience has no internet permission.
+          **Installing:** download `Perfsentient_v*.apk` below and open it on your phone (Android 12L / API 32 or newer). You may need to allow installing apps from your browser or file manager.
+          After installing, open **Settings** in the app and grant the listed permissions: monitoring starts automatically and your first report arrives that evening. Everything stays on your phone – Perfsentient has no internet permission.
           The `.aab` file is the Google Play bundle, attached for manual Play Console uploads.
           NOTES
 
@@ -166,8 +166,8 @@ jobs:
           target_commitish: ${{ steps.bump.outputs.new_sha }}
           name: Release v${{ steps.bump.outputs.new_version }}
           files: |
-            app/build/outputs/apk/release/Perfsentience_v${{ steps.bump.outputs.new_version }}.apk
-            app/build/outputs/bundle/release/Perfsentience_v${{ steps.bump.outputs.new_version }}.aab
+            app/build/outputs/apk/release/Perfsentient_v${{ steps.bump.outputs.new_version }}.apk
+            app/build/outputs/bundle/release/Perfsentient_v${{ steps.bump.outputs.new_version }}.aab
           body_path: release_notes.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
