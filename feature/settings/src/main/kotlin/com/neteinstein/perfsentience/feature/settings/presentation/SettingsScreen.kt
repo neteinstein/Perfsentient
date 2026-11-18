@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -44,6 +45,8 @@ import com.neteinstein.perfsentience.feature.settings.presentation.component.Beh
 import com.neteinstein.perfsentience.feature.settings.presentation.component.MonitoringStatusCard
 import com.neteinstein.perfsentience.feature.settings.presentation.component.PermissionCard
 import com.neteinstein.perfsentience.feature.settings.presentation.component.ReportTimeCard
+import com.neteinstein.perfsentience.feature.settings.presentation.component.TrustedAppCard
+import com.neteinstein.perfsentience.feature.settings.presentation.component.TrustedAppsEmptyCard
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -59,6 +62,7 @@ fun SettingsRoute(modifier: Modifier = Modifier, viewModel: SettingsViewModel = 
         onThemeModeSelected = viewModel::onThemeModeSelected,
         onDynamicColorToggled = viewModel::onDynamicColorToggled,
         onReportTimeSelected = viewModel::onReportTimeSelected,
+        onUntrustApp = viewModel::onUntrustApp,
         modifier = modifier,
     )
 }
@@ -70,6 +74,7 @@ internal fun SettingsScreen(
     onThemeModeSelected: (com.neteinstein.perfsentience.core.model.ThemeMode) -> Unit,
     onDynamicColorToggled: (Boolean) -> Unit,
     onReportTimeSelected: (Int, Int) -> Unit,
+    onUntrustApp: (packageName: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -138,6 +143,19 @@ internal fun SettingsScreen(
         item(key = "report_header") { SectionHeader(stringResource(R.string.settings_section_report)) }
         item(key = "report_time") {
             ReportTimeCard(time = state.settings.reportTime, onTimeSelected = onReportTimeSelected)
+        }
+        item(key = "trusted_header") {
+            SectionHeader(
+                title = stringResource(R.string.settings_section_trusted),
+                subtitle = stringResource(R.string.settings_section_trusted_desc),
+            )
+        }
+        if (state.trustedApps.isEmpty()) {
+            item(key = "trusted_empty") { TrustedAppsEmptyCard() }
+        } else {
+            items(state.trustedApps, key = { "trusted_${it.packageName}" }) { app ->
+                TrustedAppCard(app = app, onRemove = { onUntrustApp(app.packageName) }, modifier = Modifier.animateItem())
+            }
         }
         item(key = "appearance_header") { SectionHeader(stringResource(R.string.settings_section_appearance)) }
         item(key = "appearance") {

@@ -15,6 +15,7 @@ import com.neteinstein.perfsentience.core.data.repository.NotificationStatsRepos
 import com.neteinstein.perfsentience.core.data.repository.PermissionRepositoryImpl
 import com.neteinstein.perfsentience.core.data.repository.ReportRepositoryImpl
 import com.neteinstein.perfsentience.core.data.repository.SettingsRepositoryImpl
+import com.neteinstein.perfsentience.core.data.repository.TrustedAppsRepositoryImpl
 import com.neteinstein.perfsentience.core.data.repository.UsageRepositoryImpl
 import com.neteinstein.perfsentience.core.data.repository.VitalsRepositoryImpl
 import com.neteinstein.perfsentience.core.data.source.AppInventoryDataSource
@@ -26,6 +27,7 @@ import com.neteinstein.perfsentience.core.domain.repository.NotificationStatsRep
 import com.neteinstein.perfsentience.core.domain.repository.PermissionRepository
 import com.neteinstein.perfsentience.core.domain.repository.ReportRepository
 import com.neteinstein.perfsentience.core.domain.repository.SettingsRepository
+import com.neteinstein.perfsentience.core.domain.repository.TrustedAppsRepository
 import com.neteinstein.perfsentience.core.domain.repository.UsageRepository
 import com.neteinstein.perfsentience.core.domain.repository.VitalsRepository
 import org.koin.android.ext.koin.androidContext
@@ -61,6 +63,7 @@ val dataModule = module {
 
     single<PermissionRepository> { PermissionRepositoryImpl(androidContext()) }
     singleOf(::SettingsRepositoryImpl) { bind<SettingsRepository>() }
+    singleOf(::TrustedAppsRepositoryImpl) { bind<TrustedAppsRepository>() }
     singleOf(::UsageRepositoryImpl) { bind<UsageRepository>() }
     singleOf(::AppInventoryRepositoryImpl) { bind<AppInventoryRepository>() }
     singleOf(::VitalsRepositoryImpl) { bind<VitalsRepository>() }

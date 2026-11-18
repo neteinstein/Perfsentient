@@ -6,6 +6,7 @@ import com.neteinstein.perfsentience.core.domain.repository.NotificationStatsRep
 import com.neteinstein.perfsentience.core.domain.repository.PermissionRepository
 import com.neteinstein.perfsentience.core.domain.repository.ReportRepository
 import com.neteinstein.perfsentience.core.domain.repository.SettingsRepository
+import com.neteinstein.perfsentience.core.domain.repository.TrustedAppsRepository
 import com.neteinstein.perfsentience.core.domain.repository.UsageRepository
 import com.neteinstein.perfsentience.core.domain.repository.VitalsRepository
 import com.neteinstein.perfsentience.core.model.AppProfile
@@ -18,6 +19,7 @@ import com.neteinstein.perfsentience.core.model.PermissionState
 import com.neteinstein.perfsentience.core.model.PermissionType
 import com.neteinstein.perfsentience.core.model.ReportTime
 import com.neteinstein.perfsentience.core.model.ThemeMode
+import com.neteinstein.perfsentience.core.model.TrustedApp
 import com.neteinstein.perfsentience.core.model.UsageEventRecord
 import com.neteinstein.perfsentience.core.model.UserSettings
 import com.neteinstein.perfsentience.core.model.VitalSample
@@ -66,6 +68,19 @@ class FakeSettingsRepository(initial: UserSettings = UserSettings()) : SettingsR
 
     override suspend fun setMonitoringEnabled(enabled: Boolean) {
         state.value = state.value.copy(monitoringEnabled = enabled)
+    }
+}
+
+class FakeTrustedAppsRepository(initial: List<TrustedApp> = emptyList()) : TrustedAppsRepository {
+    val state = MutableStateFlow(initial)
+    override val trustedApps: Flow<List<TrustedApp>> = state
+
+    override suspend fun trust(app: TrustedApp) {
+        state.value = state.value.filterNot { it.packageName == app.packageName } + app
+    }
+
+    override suspend fun untrust(packageName: String) {
+        state.value = state.value.filterNot { it.packageName == packageName }
     }
 }
 

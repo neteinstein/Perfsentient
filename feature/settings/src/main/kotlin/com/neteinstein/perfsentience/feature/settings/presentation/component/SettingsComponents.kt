@@ -23,12 +23,15 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ExpandMore
+import androidx.compose.material.icons.rounded.RemoveCircleOutline
 import androidx.compose.material.icons.rounded.Schedule
+import androidx.compose.material.icons.rounded.VerifiedUser
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SegmentedButton
@@ -52,8 +55,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.neteinstein.perfsentience.core.designsystem.behavior.presentation
+import com.neteinstein.perfsentience.core.designsystem.component.AppIcon
 import com.neteinstein.perfsentience.core.designsystem.component.AuroraBackground
 import com.neteinstein.perfsentience.core.designsystem.component.GrantButton
 import com.neteinstein.perfsentience.core.designsystem.component.PulsingDot
@@ -66,6 +71,7 @@ import com.neteinstein.perfsentience.core.model.GrantMode
 import com.neteinstein.perfsentience.core.model.PermissionState
 import com.neteinstein.perfsentience.core.model.ReportTime
 import com.neteinstein.perfsentience.core.model.ThemeMode
+import com.neteinstein.perfsentience.core.model.TrustedApp
 import com.neteinstein.perfsentience.core.model.UserSettings
 import com.neteinstein.perfsentience.feature.settings.R
 import com.neteinstein.perfsentience.feature.settings.presentation.SettingsUiState
@@ -283,6 +289,48 @@ internal fun BehaviorInfoCard(behavior: BehaviorType, modifier: Modifier = Modif
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 8.dp),
+            )
+        }
+    }
+}
+
+@Composable
+internal fun TrustedAppCard(app: TrustedApp, onRemove: () -> Unit, modifier: Modifier = Modifier) {
+    SurfaceCard(modifier = modifier.fillMaxWidth(), contentPadding = 16) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            AppIcon(app.packageName, size = 40)
+            Spacer(Modifier.width(14.dp))
+            Column(Modifier.weight(1f)) {
+                Text(app.label, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(
+                    app.packageName,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+            IconButton(onClick = onRemove) {
+                Icon(
+                    Icons.Rounded.RemoveCircleOutline,
+                    contentDescription = stringResource(R.string.settings_trusted_remove, app.label),
+                    tint = MaterialTheme.colorScheme.error,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+internal fun TrustedAppsEmptyCard(modifier: Modifier = Modifier) {
+    SurfaceCard(modifier = modifier.fillMaxWidth(), contentPadding = 16) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(Icons.Rounded.VerifiedUser, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
+            Spacer(Modifier.width(14.dp))
+            Text(
+                stringResource(R.string.settings_trusted_empty),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }

@@ -80,6 +80,14 @@
 
     <string name="report_sheet_open_app_info">Open app info</string>
     <string name="report_sheet_hint">From App info you can force stop, restrict battery, revoke permissions or uninstall.</string>
+    <string name="report_sheet_trust_app">Trust this app</string>
+    <string name="report_sheet_trust_hint">Trusted apps are left out of your reports and don\'t lower your score. You can undo this in Settings.</string>
+    <string name="report_trusted_message">%1$s is now trusted</string>
+    <string name="report_trusted_undo">Undo</string>
+    <plurals name="report_trusted_hidden">
+        <item quantity="one">%1$d trusted app hidden · Manage</item>
+        <item quantity="other">%1$d trusted apps hidden · Manage</item>
+    </plurals>
     <string name="report_duration_hm">%1$dh %2$02dm</string>
     <string name="report_duration_m">%1$dm</string>
 </resources>
