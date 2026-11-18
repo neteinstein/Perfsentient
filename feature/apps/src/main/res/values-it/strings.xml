@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_title">App</string>
+    <string name="apps_subtitle">Tutte le app segnalate ora o negli ultimi 30 giorni. Toccane una per considerarla attendibile o no.</string>
+    <string name="apps_empty">Nessuna app è stata ancora segnalata. Le app che si comportano male compariranno qui.</string>
+    <string name="apps_trusted_chip">Attendibile</string>
+    <string name="apps_never_flagged">Non segnalata di recente</string>
+    <string name="apps_last_flagged">Ultima segnalazione: %1$s</string>
+    <plurals name="apps_days_flagged">
+        <item quantity="one">%1$d giorno</item>
+        <item quantity="many">%1$d giorni</item>
+        <item quantity="other">%1$d giorni</item>
+    </plurals>
+    <string name="apps_sheet_trust">Considera attendibile</string>
+    <string name="apps_sheet_trust_hint">Le app attendibili sono escluse dai report e non abbassano il punteggio.</string>
+    <string name="apps_sheet_untrust">Non considerare più attendibile</string>
+    <string name="apps_sheet_untrust_hint">Questa app è attendibile. Se cambi idea, i suoi problemi tornano a comparire nei report.</string>
+    <string name="apps_sheet_no_findings">Nessun problema negli ultimi 30 giorni.</string>
+    <string name="apps_sheet_flagged_summary">%1$s · %2$s</string>
+</resources>

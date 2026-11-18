@@ -36,7 +36,7 @@
     <string name="report_metric_memory">Avg. memory used</string>
     <string name="report_metric_background_data">Background data</string>
     <string name="report_metric_screen_time">App screen time</string>
-    <string name="report_metric_not_enough_data">—</string>
+    <string name="report_metric_not_enough_data" translatable="false">—</string>
     <string name="report_metric_per_hour">%1$.1f%%/h</string>
     <string name="report_metric_celsius">%1$.1f °C</string>
     <string name="report_metric_percent">%1$d%%</string>

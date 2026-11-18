@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monitoring_listener_label">Compteur de notifications Perfsentient</string>
+    <string name="monitoring_channel_name">Rapport quotidien</string>
+    <string name="monitoring_channel_description">Bilan de santé de votre téléphone en fin de journée</string>
+    <string name="monitoring_notification_title_good">✅ Votre téléphone a passé une excellente journée</string>
+    <string name="monitoring_notification_title_fair">⚠️ Votre téléphone a passé une journée moyenne</string>
+    <string name="monitoring_notification_title_poor">🚨 Votre téléphone a besoin d\'attention</string>
+    <string name="monitoring_notification_body_clean">Score de santé %1$d/100 · aucune appli problématique. Touchez pour voir votre rapport quotidien.</string>
+    <plurals name="monitoring_notification_body">
+        <item quantity="one">Score de santé %1$d/100 · %2$d appli pose problème. Touchez pour voir votre rapport quotidien.</item>
+        <item quantity="many">Score de santé %1$d/100 · %2$d applis posent problème. Touchez pour voir votre rapport quotidien.</item>
+        <item quantity="other">Score de santé %1$d/100 · %2$d applis posent problème. Touchez pour voir votre rapport quotidien.</item>
+    </plurals>
+</resources>

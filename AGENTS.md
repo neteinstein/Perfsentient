@@ -50,6 +50,10 @@ Dependency rules (enforced by module boundaries):
 - **Composables**: a stateful `XRoute` (gets the VM from `koinViewModel()`) wraps a stateless `XScreen(state, callbacks)`. Pass `Modifier` as the first optional parameter. No business logic in composables.
 - **Dispatchers/time** are injected (`DispatcherProvider`, `TimeProvider`) – never call `Dispatchers.IO` or `Instant.now()` directly in domain/data code.
 - **Strings** live in each module's `res/values/strings.xml`; use plurals for counts. No hard-coded user-facing text.
+  The app is translated into Portuguese (pt-PT style, `values-pt`), French, Spanish, Italian, Romanian and German
+  (`values-fr|es|it|ro|de`): every new or changed string must be updated in all six (Lint `MissingTranslation` is an error).
+  Plurals need each language's categories: `one`/`many`/`other` for pt, fr, es, it; `one`/`few`/`other` for ro; `one`/`other` for de.
+  Brand-only strings use `translatable="false"`. `generateLocaleConfig` exposes the languages in Android 13+ per-app language settings.
 - **Parental catalogue**: concerning apps live in `core/domain/parental/ParentalAppCatalog` (verified package names, ages,
   concerns); every addition needs a source in `docs/parental-help-research.md`. Copy/icons are in `feature/parental`'s `ParentalPresentation.kt`.
 - **Detection heuristics** go in `core/domain/analysis/detector`, implement `BehaviorDetector`, use thresholds from `DetectionThresholds`, are registered in `BehaviorAnalyzer.defaultDetectors` and **must** have unit tests (positive, negative and severity-escalation cases). Add UI copy/icon in `core/designsystem/behavior/BehaviorPresentation.kt`.

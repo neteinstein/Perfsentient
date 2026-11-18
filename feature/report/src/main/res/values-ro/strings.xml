@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_title">Sănătatea de azi</string>
+    <string name="report_health_score">scor de sănătate</string>
+    <plurals name="report_generated_at">
+        <item quantity="one">Actualizat la %1$s · %2$d aplicație analizată</item>
+        <item quantity="few">Actualizat la %1$s · %2$d aplicații analizate</item>
+        <item quantity="other">Actualizat la %1$s · %2$d de aplicații analizate</item>
+    </plurals>
+    <string name="report_analyse_now">Analizează acum</string>
+    <string name="report_analysing">Se analizează…</string>
+    <string name="report_generation_failed">Analiza nu este posibilă acum. Încercați din nou.</string>
+    <string name="report_summary_clean">Nicio aplicație problematică. Excelent!</string>
+    <plurals name="report_summary_offenders">
+        <item quantity="one">%d aplicație necesită atenția dvs.</item>
+        <item quantity="few">%d aplicații necesită atenția dvs.</item>
+        <item quantity="other">%d de aplicații necesită atenția dvs.</item>
+    </plurals>
+    <string name="report_setup_title">Să începem monitorizarea</string>
+    <string name="report_setup_desc">Acordați câteva permisiuni în Setări, iar Perfsentient va începe să urmărească aplicațiile care consumă bateria, trimit spam sau afișează reclame ascunse.</string>
+    <string name="report_setup_action">Finalizați configurarea</string>
+    <string name="report_empty_title">Monitorizarea rulează</string>
+    <string name="report_empty_desc">Primul raport sosește în seara asta la %1$s. Vreți o previzualizare? Analizați ziua de până acum.</string>
+    <string name="report_section_vitals">Semnele vitale ale dispozitivului</string>
+    <string name="report_section_history">Ultimele 7 zile</string>
+    <string name="report_section_offenders">Aplicații problematice</string>
+    <string name="report_section_issues">Probleme ale dispozitivului</string>
+    <string name="report_all_clear_title">Totul e în regulă</string>
+    <string name="report_all_clear_desc">Toate aplicațiile s-au comportat bine azi.</string>
+    <string name="report_metric_screen_off_drain">Consum cu ecranul stins</string>
+    <string name="report_metric_drain">Consumul bateriei</string>
+    <string name="report_metric_temperature">Temp. max. a bateriei</string>
+    <string name="report_metric_memory">Memorie medie folosită</string>
+    <string name="report_metric_background_data">Date în fundal</string>
+    <string name="report_metric_screen_time">Timp petrecut în aplicații</string>
+    <string name="report_metric_per_hour">%1$.1f%%/h</string>
+    <string name="report_metric_celsius">%1$.1f °C</string>
+    <string name="report_metric_percent">%1$d%%</string>
+    <plurals name="report_value_popups">
+        <item quantity="one">%1$d pop-up peste alte aplicații azi</item>
+        <item quantity="few">%1$d pop-up-uri peste alte aplicații azi</item>
+        <item quantity="other">%1$d de pop-up-uri peste alte aplicații azi</item>
+    </plurals>
+    <plurals name="report_value_after_call">
+        <item quantity="one">%1$d ecran deschis imediat după un apel</item>
+        <item quantity="few">%1$d ecrane deschise imediat după apeluri</item>
+        <item quantity="other">%1$d de ecrane deschise imediat după apeluri</item>
+    </plurals>
+    <string name="report_value_service_time">%1$s de activitate în fundal</string>
+    <plurals name="report_value_signals">
+        <item quantity="one">%1$d semn de activitate în fundal</item>
+        <item quantity="few">%1$d semne de activitate în fundal</item>
+        <item quantity="other">%1$d de semne de activitate în fundal</item>
+    </plurals>
+    <plurals name="report_value_night">
+        <item quantity="one">%1$d activare cu ecranul stins</item>
+        <item quantity="few">%1$d activări cu ecranul stins</item>
+        <item quantity="other">%1$d de activări cu ecranul stins</item>
+    </plurals>
+    <string name="report_value_bytes_background">%1$s folosiți în fundal</string>
+    <plurals name="report_value_notifications">
+        <item quantity="one">%1$d notificare azi</item>
+        <item quantity="few">%1$d notificări azi</item>
+        <item quantity="other">%1$d de notificări azi</item>
+    </plurals>
+    <string name="report_value_cache">%1$s de cache</string>
+    <string name="report_value_capability">Acordat de dvs. – verificați dacă e neașteptat</string>
+    <string name="report_issue_screen_off_drain">Bateria s-a descărcat cu %1$.1f%%/h cu ecranul stins (normal este sub 1%%/h).</string>
+    <string name="report_issue_temperature">Bateria a ajuns la %1$.1f °C. Căldura grăbește uzura bateriei.</string>
+    <string name="report_issue_thermal">Telefonul și-a redus performanța pentru a se răci.</string>
+    <plurals name="report_issue_memory">
+        <item quantity="one">Memorie insuficientă: %1$d episod – probabil unele aplicații au fost închise în fundal.</item>
+        <item quantity="few">Memorie insuficientă: %1$d episoade – probabil unele aplicații au fost închise în fundal.</item>
+        <item quantity="other">Memorie insuficientă: %1$d de episoade – probabil unele aplicații au fost închise în fundal.</item>
+    </plurals>
+    <string name="report_issue_screen_off_drain_title">Bateria se descarcă în repaus</string>
+    <string name="report_issue_temperature_title">Temperatură ridicată</string>
+    <string name="report_issue_thermal_title">Limitare termică</string>
+    <string name="report_issue_memory_title">Memorie insuficientă</string>
+    <string name="report_sheet_open_app_info">Deschide informațiile aplicației</string>
+    <string name="report_sheet_hint">Din informațiile aplicației puteți forța oprirea, restricționa bateria, revoca permisiuni sau dezinstala.</string>
+    <string name="report_sheet_trust_app">Marchează de încredere</string>
+    <string name="report_sheet_trust_hint">Aplicațiile de încredere sunt excluse din rapoarte și nu vă scad scorul. Puteți anula din Setări.</string>
+    <string name="report_trusted_message">%1$s este acum de încredere</string>
+    <string name="report_trusted_undo">Anulează</string>
+    <plurals name="report_trusted_hidden">
+        <item quantity="one">%1$d aplicație de încredere ascunsă · Gestionați</item>
+        <item quantity="few">%1$d aplicații de încredere ascunse · Gestionați</item>
+        <item quantity="other">%1$d de aplicații de încredere ascunse · Gestionați</item>
+    </plurals>
+    <string name="report_duration_hm">%1$d h %2$02d min</string>
+    <string name="report_duration_m">%1$d min</string>
+</resources>

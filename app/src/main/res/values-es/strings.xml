@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_report">Informe</string>
+    <string name="tab_apps">Apps</string>
+    <string name="tab_parental">Ayuda parental</string>
+    <string name="tab_settings">Ajustes</string>
+</resources>

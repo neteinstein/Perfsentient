@@ -69,5 +69,6 @@
     <string name="settings_dynamic_color_desc">Use colours from your wallpaper</string>
 
     <string name="settings_section_detection">What we look for</string>
+    <string name="settings_footer">Perfsentient • on-device • no internet permission</string>
     <string name="settings_section_detection_desc">Heuristics based on Google Play policy, Android vitals and published adware research.</string>
 </resources>

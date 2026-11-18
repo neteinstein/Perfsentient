@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="behavior_out_of_context_ads_title">Publicités intrusives</string>
+    <string name="behavior_out_of_context_ads_desc">A brièvement pris le contrôle de l\'écran pendant que vous utilisiez une autre appli, ou juste après le déverrouillage. C\'est le comportement des publicités hors contexte (intrusives), interdites par le règlement de Google Play.</string>
+    <string name="behavior_after_call_ads_title">Publicités après appel</string>
+    <string name="behavior_after_call_ads_desc">A ouvert un écran juste après la fin d\'un appel. Les logiciels publicitaires surveillent la fin des appels pour afficher des publicités en plein écran.</string>
+    <string name="behavior_overlay_abuse_title">Superposition aux applis</string>
+    <string name="behavior_overlay_abuse_desc">Dispose de l\'autorisation \"Superposition aux autres applis\" et reste active en arrière-plan alors que vous l\'ouvrez rarement. C\'est l\'autorisation la plus détournée par les logiciels publicitaires.</string>
+    <string name="behavior_hidden_icon_title">Appli masquée</string>
+    <string name="behavior_hidden_icon_desc">N\'a pas d\'icône dans votre liste d\'applis mais reste active en arrière-plan. Masquer l\'icône est une astuce classique des logiciels publicitaires pour éviter d\'être désinstallés.</string>
+    <string name="behavior_persistent_background_title">Toujours active</string>
+    <string name="behavior_persistent_background_desc">A maintenu un service de premier plan actif pendant des heures alors que vous l\'avez à peine utilisée. Cela empêche le processeur de se mettre en veille et vide la batterie.</string>
+    <string name="behavior_night_activity_title">Oiseau de nuit</string>
+    <string name="behavior_night_activity_desc">S\'est réveillée ou a ouvert des écrans pendant la nuit alors que l\'écran était éteint.</string>
+    <string name="behavior_background_data_title">Gourmande en données</string>
+    <string name="behavior_background_data_desc">A transféré beaucoup de données en arrière-plan. Android Vitals considère plus de 50 Mo par jour comme excessif.</string>
+    <string name="behavior_notification_spam_title">Spam de notifications</string>
+    <string name="behavior_notification_spam_desc">A publié un nombre inhabituellement élevé de notifications.</string>
+    <string name="behavior_accessibility_risk_title">Accès d\'accessibilité</string>
+    <string name="behavior_accessibility_risk_desc">Dispose d\'un service d\'accessibilité activé, capable de lire votre écran et d\'agir à votre place. Ne le gardez que pour des applis de toute confiance.</string>
+    <string name="behavior_device_admin_title">Administrateur de l\'appareil</string>
+    <string name="behavior_device_admin_desc">Est enregistrée comme administrateur de l\'appareil, ce qui la rend plus difficile à désinstaller.</string>
+    <string name="behavior_unrestricted_battery_title">Batterie sans restriction</string>
+    <string name="behavior_unrestricted_battery_desc">Est exemptée de l\'optimisation de la batterie et travaille beaucoup en arrière-plan.</string>
+    <string name="behavior_storage_bloat_title">Gourmande en stockage</string>
+    <string name="behavior_storage_bloat_desc">Conserve un cache très volumineux. Le vider libère de l\'espace et peut accélérer le téléphone.</string>
+    <string name="severity_low">Faible</string>
+    <string name="severity_medium">Moyen</string>
+    <string name="severity_high">Élevé</string>
+    <string name="verdict_good">Bon</string>
+    <string name="verdict_fair">Moyen</string>
+    <string name="verdict_poor">Mauvais</string>
+</resources>

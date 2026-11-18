@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monitoring_listener_label">Perfsentient-Benachrichtigungszähler</string>
+    <string name="monitoring_channel_name">Tagesbericht</string>
+    <string name="monitoring_channel_description">Tageszusammenfassung zum Zustand Ihres Handys</string>
+    <string name="monitoring_notification_title_good">✅ Ihr Handy hatte einen tollen Tag</string>
+    <string name="monitoring_notification_title_fair">⚠️ Ihr Handy hatte einen durchwachsenen Tag</string>
+    <string name="monitoring_notification_title_poor">🚨 Ihr Handy braucht Aufmerksamkeit</string>
+    <string name="monitoring_notification_body_clean">Gesundheitswert %1$d/100 · keine auffälligen Apps. Tippen Sie, um den Tagesbericht zu sehen.</string>
+    <plurals name="monitoring_notification_body">
+        <item quantity="one">Gesundheitswert %1$d/100 · %2$d App verhält sich auffällig. Tippen Sie, um den Tagesbericht zu sehen.</item>
+        <item quantity="other">Gesundheitswert %1$d/100 · %2$d Apps verhalten sich auffällig. Tippen Sie, um den Tagesbericht zu sehen.</item>
+    </plurals>
+</resources>

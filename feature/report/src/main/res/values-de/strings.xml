@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_title">Zustand heute</string>
+    <string name="report_health_score">Gesundheitswert</string>
+    <plurals name="report_generated_at">
+        <item quantity="one">Aktualisiert um %1$s · %2$d App analysiert</item>
+        <item quantity="other">Aktualisiert um %1$s · %2$d Apps analysiert</item>
+    </plurals>
+    <string name="report_analyse_now">Jetzt analysieren</string>
+    <string name="report_analysing">Wird analysiert…</string>
+    <string name="report_generation_failed">Analyse gerade nicht möglich. Bitte versuchen Sie es erneut.</string>
+    <string name="report_summary_clean">Keine auffälligen Apps. Super!</string>
+    <plurals name="report_summary_offenders">
+        <item quantity="one">%d App braucht Ihre Aufmerksamkeit</item>
+        <item quantity="other">%d Apps brauchen Ihre Aufmerksamkeit</item>
+    </plurals>
+    <string name="report_setup_title">Los geht\'s mit der Überwachung</string>
+    <string name="report_setup_desc">Erteilen Sie in den Einstellungen ein paar Berechtigungen, dann achtet Perfsentient auf Apps, die den Akku leeren, Spam senden oder heimlich Werbung zeigen.</string>
+    <string name="report_setup_action">Einrichtung abschließen</string>
+    <string name="report_empty_title">Überwachung läuft</string>
+    <string name="report_empty_desc">Ihr erster Bericht kommt heute Abend um %1$s. Schon neugierig? Analysieren Sie den bisherigen Tag.</string>
+    <string name="report_section_vitals">Gerätewerte</string>
+    <string name="report_section_history">Letzte 7 Tage</string>
+    <string name="report_section_offenders">Auffällige Apps</string>
+    <string name="report_section_issues">Geräteprobleme</string>
+    <string name="report_all_clear_title">Alles in Ordnung</string>
+    <string name="report_all_clear_desc">Alle Apps haben sich heute benommen.</string>
+    <string name="report_metric_screen_off_drain">Verbrauch bei Display aus</string>
+    <string name="report_metric_drain">Akkuverbrauch</string>
+    <string name="report_metric_temperature">Max. Akkutemperatur</string>
+    <string name="report_metric_memory">Ø Speichernutzung</string>
+    <string name="report_metric_background_data">Hintergrunddaten</string>
+    <string name="report_metric_screen_time">Bildschirmzeit in Apps</string>
+    <string name="report_metric_per_hour">%1$.1f %%/h</string>
+    <string name="report_metric_celsius">%1$.1f °C</string>
+    <string name="report_metric_percent">%1$d %%</string>
+    <plurals name="report_value_popups">
+        <item quantity="one">%1$d Pop-up über anderen Apps heute</item>
+        <item quantity="other">%1$d Pop-ups über anderen Apps heute</item>
+    </plurals>
+    <plurals name="report_value_after_call">
+        <item quantity="one">%1$d Bildschirm direkt nach einem Anruf geöffnet</item>
+        <item quantity="other">%1$d Bildschirme direkt nach Anrufen geöffnet</item>
+    </plurals>
+    <string name="report_value_service_time">%1$s Hintergrundaktivität</string>
+    <plurals name="report_value_signals">
+        <item quantity="one">%1$d Anzeichen von Hintergrundaktivität</item>
+        <item quantity="other">%1$d Anzeichen von Hintergrundaktivität</item>
+    </plurals>
+    <plurals name="report_value_night">
+        <item quantity="one">%1$d Aufwachen bei ausgeschaltetem Display</item>
+        <item quantity="other">%1$d Aufwachvorgänge bei ausgeschaltetem Display</item>
+    </plurals>
+    <string name="report_value_bytes_background">%1$s im Hintergrund verbraucht</string>
+    <plurals name="report_value_notifications">
+        <item quantity="one">%1$d Benachrichtigung heute</item>
+        <item quantity="other">%1$d Benachrichtigungen heute</item>
+    </plurals>
+    <string name="report_value_cache">%1$s Cache</string>
+    <string name="report_value_capability">Von Ihnen erteilt – prüfen Sie, falls unerwartet</string>
+    <string name="report_issue_screen_off_drain">Der Akku verlor bei ausgeschaltetem Display %1$.1f %%/h (gesund ist unter 1 %%/h).</string>
+    <string name="report_issue_temperature">Der Akku erreichte %1$.1f °C. Hitze lässt den Akku schneller altern.</string>
+    <string name="report_issue_thermal">Das Handy hat die Leistung gedrosselt, um abzukühlen.</string>
+    <plurals name="report_issue_memory">
+        <item quantity="one">Der Speicher wurde %1$d Mal knapp – vermutlich wurden Apps im Hintergrund beendet.</item>
+        <item quantity="other">Der Speicher wurde %1$d Mal knapp – vermutlich wurden Apps im Hintergrund beendet.</item>
+    </plurals>
+    <string name="report_issue_screen_off_drain_title">Akku entlädt sich im Ruhezustand</string>
+    <string name="report_issue_temperature_title">Zu warm</string>
+    <string name="report_issue_thermal_title">Thermische Drosselung</string>
+    <string name="report_issue_memory_title">Speicherknappheit</string>
+    <string name="report_sheet_open_app_info">App-Info öffnen</string>
+    <string name="report_sheet_hint">In der App-Info können Sie das Beenden erzwingen, den Akku einschränken, Berechtigungen entziehen oder deinstallieren.</string>
+    <string name="report_sheet_trust_app">Dieser App vertrauen</string>
+    <string name="report_sheet_trust_hint">Vertraute Apps werden aus Ihren Berichten ausgenommen und senken Ihren Wert nicht. Sie können das in den Einstellungen rückgängig machen.</string>
+    <string name="report_trusted_message">%1$s ist jetzt vertraut</string>
+    <string name="report_trusted_undo">Rückgängig</string>
+    <plurals name="report_trusted_hidden">
+        <item quantity="one">%1$d vertraute App ausgeblendet · Verwalten</item>
+        <item quantity="other">%1$d vertraute Apps ausgeblendet · Verwalten</item>
+    </plurals>
+    <string name="report_duration_hm">%1$d Std. %2$02d Min.</string>
+    <string name="report_duration_m">%1$d Min.</string>
+</resources>

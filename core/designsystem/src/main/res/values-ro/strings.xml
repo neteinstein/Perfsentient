@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="behavior_out_of_context_ads_title">Reclame pop-up</string>
+    <string name="behavior_out_of_context_ads_desc">A preluat pentru scurt timp ecranul în timp ce foloseați altă aplicație sau imediat după deblocare. Așa se comportă reclamele în afara contextului (deranjante), interzise de politica Google Play.</string>
+    <string name="behavior_after_call_ads_title">Reclame după apeluri</string>
+    <string name="behavior_after_call_ads_desc">A deschis un ecran imediat după terminarea unui apel. Adware-ul urmărește finalul apelurilor pentru a afișa reclame pe tot ecranul.</string>
+    <string name="behavior_overlay_abuse_title">Afișare peste alte aplicații</string>
+    <string name="behavior_overlay_abuse_desc">Are permisiunea \"Afișare peste alte aplicații\" și rămâne activă în fundal, deși o deschideți rar. Este permisiunea cea mai folosită abuziv de adware.</string>
+    <string name="behavior_hidden_icon_title">Aplicație ascunsă</string>
+    <string name="behavior_hidden_icon_desc">Nu are pictogramă în lista de aplicații, dar este activă în fundal. Ascunderea pictogramei este un truc clasic al adware-ului pentru a evita dezinstalarea.</string>
+    <string name="behavior_persistent_background_title">Mereu activă</string>
+    <string name="behavior_persistent_background_desc">A ținut activ un serviciu în prim-plan ore întregi, deși abia ați folosit-o. Asta ține procesorul treaz și consumă bateria.</string>
+    <string name="behavior_night_activity_title">Activă noaptea</string>
+    <string name="behavior_night_activity_desc">S-a activat sau a deschis ecrane noaptea, cu ecranul stins.</string>
+    <string name="behavior_background_data_title">Consumă date în fundal</string>
+    <string name="behavior_background_data_desc">A transferat multe date în fundal. Android vitals consideră excesiv peste 50 MB pe zi.</string>
+    <string name="behavior_notification_spam_title">Spam de notificări</string>
+    <string name="behavior_notification_spam_desc">A afișat un număr neobișnuit de mare de notificări.</string>
+    <string name="behavior_accessibility_risk_title">Acces de accesibilitate</string>
+    <string name="behavior_accessibility_risk_desc">Are un serviciu de accesibilitate activat, care vă poate citi ecranul și poate acționa în locul dvs. Păstrați-l doar pentru aplicații în care aveți încredere deplină.</string>
+    <string name="behavior_device_admin_title">Administrator de dispozitiv</string>
+    <string name="behavior_device_admin_desc">Este înregistrată ca administrator de dispozitiv, ceea ce o face mai greu de dezinstalat.</string>
+    <string name="behavior_unrestricted_battery_title">Baterie fără restricții</string>
+    <string name="behavior_unrestricted_battery_desc">Este exceptată de la optimizarea bateriei și lucrează intens în fundal.</string>
+    <string name="behavior_storage_bloat_title">Ocupă mult spațiu</string>
+    <string name="behavior_storage_bloat_desc">Păstrează un cache foarte mare. Golirea lui eliberează spațiu și poate accelera telefonul.</string>
+    <string name="severity_low">Scăzut</string>
+    <string name="severity_medium">Mediu</string>
+    <string name="severity_high">Ridicat</string>
+    <string name="verdict_good">Bună</string>
+    <string name="verdict_fair">Acceptabilă</string>
+    <string name="verdict_poor">Slabă</string>
+</resources>

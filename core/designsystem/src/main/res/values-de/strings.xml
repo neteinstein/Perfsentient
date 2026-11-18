@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="behavior_out_of_context_ads_title">Pop-up-Werbung</string>
+    <string name="behavior_out_of_context_ads_desc">Hat kurz den Bildschirm übernommen, während Sie eine andere App genutzt haben, oder direkt nach dem Entsperren. So verhält sich kontextfremde (störende) Werbung, die laut Google-Play-Richtlinien verboten ist.</string>
+    <string name="behavior_after_call_ads_title">Werbung nach Anrufen</string>
+    <string name="behavior_after_call_ads_desc">Hat direkt nach dem Ende eines Anrufs einen Bildschirm geöffnet. Adware wartet auf das Gesprächsende, um Vollbildwerbung anzuzeigen.</string>
+    <string name="behavior_overlay_abuse_title">Über anderen Apps</string>
+    <string name="behavior_overlay_abuse_desc">Hat die Berechtigung \"Über anderen Apps einblenden\" und ist im Hintergrund aktiv, obwohl Sie sie selten öffnen. Diese Berechtigung wird von Adware am häufigsten missbraucht.</string>
+    <string name="behavior_hidden_icon_title">Versteckte App</string>
+    <string name="behavior_hidden_icon_desc">Hat kein Symbol in der App-Übersicht, ist aber im Hintergrund aktiv. Das Symbol zu verstecken ist ein klassischer Adware-Trick, um nicht deinstalliert zu werden.</string>
+    <string name="behavior_persistent_background_title">Läuft ständig</string>
+    <string name="behavior_persistent_background_desc">Hat stundenlang einen Vordergrunddienst aktiv gehalten, obwohl Sie sie kaum genutzt haben. Das hält die CPU wach und leert den Akku.</string>
+    <string name="behavior_night_activity_title">Nachteule</string>
+    <string name="behavior_night_activity_desc">Ist nachts bei ausgeschaltetem Bildschirm aufgewacht oder hat Bildschirme geöffnet.</string>
+    <string name="behavior_background_data_title">Datenfresser im Hintergrund</string>
+    <string name="behavior_background_data_desc">Hat im Hintergrund viele Daten übertragen. Android Vitals stuft mehr als 50 MB pro Tag als übermäßig ein.</string>
+    <string name="behavior_notification_spam_title">Benachrichtigungsspam</string>
+    <string name="behavior_notification_spam_desc">Hat ungewöhnlich viele Benachrichtigungen gesendet.</string>
+    <string name="behavior_accessibility_risk_title">Bedienungshilfen-Zugriff</string>
+    <string name="behavior_accessibility_risk_desc">Hat einen aktiven Bedienungshilfendienst, der Ihren Bildschirm lesen und in Ihrem Namen handeln kann. Behalten Sie ihn nur bei Apps, denen Sie voll vertrauen.</string>
+    <string name="behavior_device_admin_title">Geräteadministrator</string>
+    <string name="behavior_device_admin_desc">Ist als Geräteadministrator registriert und lässt sich dadurch schwerer deinstallieren.</string>
+    <string name="behavior_unrestricted_battery_title">Akku ohne Einschränkung</string>
+    <string name="behavior_unrestricted_battery_desc">Ist von der Akkuoptimierung ausgenommen und arbeitet viel im Hintergrund.</string>
+    <string name="behavior_storage_bloat_title">Speicherfresser</string>
+    <string name="behavior_storage_bloat_desc">Hat einen sehr großen Cache. Ihn zu leeren schafft Platz und kann das Handy beschleunigen.</string>
+    <string name="severity_low">Niedrig</string>
+    <string name="severity_medium">Mittel</string>
+    <string name="severity_high">Hoch</string>
+    <string name="verdict_good">Gut</string>
+    <string name="verdict_fair">Mittel</string>
+    <string name="verdict_poor">Schlecht</string>
+</resources>
