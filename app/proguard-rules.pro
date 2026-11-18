@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------------------------
-# Persentient R8 configuration.
+# Perfsentience R8 configuration.
 # Library modules ship their own consumer rules (core/data, feature/monitoring); AndroidX, Room,
 # WorkManager, Koin and kotlinx.serialization bundle the rules they need.
 # ---------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
 }
 
 # Enums are persisted by name (DataStore / Room JSON payload) – keep their names stable.
--keepclassmembers enum com.neteinstein.persentient.core.model.** {
+-keepclassmembers enum com.neteinstein.perfsentience.core.model.** {
     <fields>;
     public static **[] values();
     public static ** valueOf(java.lang.String);

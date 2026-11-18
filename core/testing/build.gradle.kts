@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.persentient.jvm.library)
+    alias(libs.plugins.perfsentience.jvm.library)
 }
 
 // Shared test doubles (fakes, rules, builders) used by every module's unit tests.

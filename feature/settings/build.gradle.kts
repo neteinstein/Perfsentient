@@ -1,9 +1,9 @@
 plugins {
-    alias(libs.plugins.persentient.android.feature)
+    alias(libs.plugins.perfsentience.android.feature)
 }
 
 android {
-    namespace = "com.neteinstein.persentient.feature.settings"
+    namespace = "com.neteinstein.perfsentience.feature.settings"
 }
 
 dependencies {

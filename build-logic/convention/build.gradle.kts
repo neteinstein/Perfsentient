@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.neteinstein.persentient.buildlogic"
+group = "com.neteinstein.perfsentience.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -28,23 +28,23 @@ dependencies {
 gradlePlugin {
     plugins {
         register("androidApplication") {
-            id = libs.plugins.persentient.android.application.get().pluginId
+            id = libs.plugins.perfsentience.android.application.get().pluginId
             implementationClass = "AndroidApplicationConventionPlugin"
         }
         register("androidLibrary") {
-            id = libs.plugins.persentient.android.library.get().pluginId
+            id = libs.plugins.perfsentience.android.library.get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
         }
         register("androidCompose") {
-            id = libs.plugins.persentient.android.compose.get().pluginId
+            id = libs.plugins.perfsentience.android.compose.get().pluginId
             implementationClass = "AndroidComposeConventionPlugin"
         }
         register("androidFeature") {
-            id = libs.plugins.persentient.android.feature.get().pluginId
+            id = libs.plugins.perfsentience.android.feature.get().pluginId
             implementationClass = "AndroidFeatureConventionPlugin"
         }
         register("jvmLibrary") {
-            id = libs.plugins.persentient.jvm.library.get().pluginId
+            id = libs.plugins.perfsentience.jvm.library.get().pluginId
             implementationClass = "JvmLibraryConventionPlugin"
         }
     }

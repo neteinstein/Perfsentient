@@ -107,8 +107,8 @@ kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintGradle" }
 
 # Convention plugins (build-logic)
-persentient-android-application = { id = "persentient.android.application" }
-persentient-android-library = { id = "persentient.android.library" }
-persentient-android-compose = { id = "persentient.android.compose" }
-persentient-android-feature = { id = "persentient.android.feature" }
-persentient-jvm-library = { id = "persentient.jvm.library" }
+perfsentience-android-application = { id = "perfsentience.android.application" }
+perfsentience-android-library = { id = "perfsentience.android.library" }
+perfsentience-android-compose = { id = "perfsentience.android.compose" }
+perfsentience-android-feature = { id = "perfsentience.android.feature" }
+perfsentience-jvm-library = { id = "perfsentience.jvm.library" }

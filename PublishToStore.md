@@ -4,7 +4,7 @@ Two workflows handle distribution:
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| **Build & Release** (`.github/workflows/release.yml`) | Every push/merge to `main` | Bumps the patch version, builds the signed R8 APK + App Bundle, checks the release manifest has no `INTERNET` permission, creates GitHub release `vX.Y.Z` with `Persentient_vX.Y.Z.apk` / `.aab`, keeps the R8 `mapping.txt` as a build artifact and (**once enabled**) uploads the bundle to the Play **internal** track. |
+| **Build & Release** (`.github/workflows/release.yml`) | Every push/merge to `main` | Bumps the patch version, builds the signed R8 APK + App Bundle, checks the release manifest has no `INTERNET` permission, creates GitHub release `vX.Y.Z` with `Perfsentience_vX.Y.Z.apk` / `.aab`, keeps the R8 `mapping.txt` as a build artifact and (**once enabled**) uploads the bundle to the Play **internal** track. |
 | **Publish to Play Store** (`.github/workflows/publish-play-store.yml`) | Manual (`workflow_dispatch`) | Rebuilds the bundle from `main` and uploads it to `internal`, `alpha`, `beta` or `production`. |
 
 > **The Play Store upload is currently disabled.** Both workflows only upload when the repository
@@ -26,14 +26,14 @@ repeated `versionCode`.
 
 1. Create an upload keystore once and keep it safe (losing it means you can't update the app):
    ```bash
-   keytool -genkeypair -v -keystore persentient-upload.jks -alias upload \
+   keytool -genkeypair -v -keystore perfsentience-upload.jks -alias upload \
      -keyalg RSA -keysize 4096 -validity 10000
    ```
 2. Add these **repository secrets** (*Settings → Secrets and variables → Actions → Secrets*):
 
 | Secret | Value |
 |---|---|
-| `KEYSTORE_BASE64` | `base64 -i persentient-upload.jks \| tr -d '\n'` |
+| `KEYSTORE_BASE64` | `base64 -i perfsentience-upload.jks \| tr -d '\n'` |
 | `KEYSTORE_PASSWORD` | Keystore password |
 | `KEY_ALIAS` | Key alias (e.g. `upload`) |
 | `KEY_PASSWORD` | Key password |
@@ -47,8 +47,8 @@ Local signed builds: create an untracked `keystore.properties` in the repo root
 ## 2. Enabling the Play Store upload (later)
 
 ### Prerequisites
-- A Google Play Developer account with the app `com.neteinstein.persentient` created.
-- The **first upload must be manual**: download `Persentient_vX.Y.Z.aab` from a GitHub release and upload it in Play Console (internal testing is enough). Enrol in **Play App Signing** – the keystore above becomes the *upload* key.
+- A Google Play Developer account with the app `com.neteinstein.perfsentience` created.
+- The **first upload must be manual**: download `Perfsentience_vX.Y.Z.aab` from a GitHub release and upload it in Play Console (internal testing is enough). Enrol in **Play App Signing** – the keystore above becomes the *upload* key.
 - Store listing, content rating, data safety ("no data collected / shared", everything on-device) and a privacy policy URL completed.
 - **Policy declarations** (Policy and programs → App content):
   - *Sensitive app permissions → Package visibility (`QUERY_ALL_PACKAGES`)*: core use case "auditing installed apps for misbehaviour (security / antivirus-like)".
@@ -56,7 +56,7 @@ Local signed builds: create an untracked `keystore.properties` in the repo root
 
 ### Service account
 1. In [Google Cloud Console](https://console.cloud.google.com/) → *IAM & Admin → Service Accounts*, create e.g. `play-store-publisher` (no project roles) and download a **JSON key**.
-2. In Play Console → *Users and permissions → Invite new users*, paste the service-account email, *App permissions → Add app* → `com.neteinstein.persentient`, grant **Release to production, exclude devices, and use Play App Signing** and **Manage store presence**, then *Invite user*.
+2. In Play Console → *Users and permissions → Invite new users*, paste the service-account email, *App permissions → Add app* → `com.neteinstein.perfsentience`, grant **Release to production, exclude devices, and use Play App Signing** and **Manage store presence**, then *Invite user*.
 3. Add the repository secret `PLAY_STORE_SERVICE_ACCOUNT_JSON` with the full JSON key contents.
 
 ### Switch it on

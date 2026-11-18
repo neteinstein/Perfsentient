@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="monitoring_listener_label">Persentient notification counter</string>
+    <string name="monitoring_listener_label">Perfsentience notification counter</string>
     <string name="monitoring_channel_name">Daily report</string>
     <string name="monitoring_channel_description">End-of-day summary of your phone health</string>
     <string name="monitoring_notification_title_good">✅ Your phone had a great day</string>

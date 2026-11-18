@@ -23,7 +23,7 @@ dependencyResolutionManagement {
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "Persentient"
+rootProject.name = "Perfsentience"
 
 include(":app")
 
