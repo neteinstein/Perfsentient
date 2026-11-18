@@ -32,10 +32,10 @@ fun versionCodeFor(
 }
 
 android {
-    namespace = "com.neteinstein.perfsentience"
+    namespace = "com.neteinstein.perfsentient"
 
     defaultConfig {
-        applicationId = "com.neteinstein.perfsentience"
+        applicationId = "com.neteinstein.perfsentient"
         // release.yml bumps the patch number in this line on every merge to main.
         versionName = "1.0.5"
         versionCode = versionCodeFor(versionName!!, versionCodeBuild)

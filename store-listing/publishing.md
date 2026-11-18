@@ -50,7 +50,7 @@ Local signed builds: create an untracked `keystore.properties` in the repo root
 ## 2. Enabling the Play Store upload (later)
 
 ### Prerequisites
-- A Google Play Developer account with the app `com.neteinstein.perfsentience` created.
+- A Google Play Developer account with the app `com.neteinstein.perfsentient` created.
 - The **first upload must be manual**: download `Perfsentient_vX.Y.Z.aab` from a GitHub release and upload it in Play Console (internal testing is enough). Enrol in **Play App Signing** – the keystore above becomes the *upload* key.
 - Store listing, content rating, data safety ("no data collected / shared", everything on-device) and a privacy policy URL completed.
 - **Policy declarations** (Policy and programs → App content):
@@ -59,7 +59,7 @@ Local signed builds: create an untracked `keystore.properties` in the repo root
 
 ### Service account
 1. In [Google Cloud Console](https://console.cloud.google.com/) → *IAM & Admin → Service Accounts*, create e.g. `play-store-publisher` (no project roles) and download a **JSON key**.
-2. In Play Console → *Users and permissions → Invite new users*, paste the service-account email, *App permissions → Add app* → `com.neteinstein.perfsentience`, grant **Release to production, exclude devices, and use Play App Signing** and **Manage store presence**, then *Invite user*.
+2. In Play Console → *Users and permissions → Invite new users*, paste the service-account email, *App permissions → Add app* → `com.neteinstein.perfsentient`, grant **Release to production, exclude devices, and use Play App Signing** and **Manage store presence**, then *Invite user*.
 3. Add the repository secret `PLAY_STORE_SERVICE_ACCOUNT_JSON` with the full JSON key contents.
 
 ### Switch it on

@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.neteinstein.perfsentience.buildlogic"
+group = "com.neteinstein.perfsentient.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21

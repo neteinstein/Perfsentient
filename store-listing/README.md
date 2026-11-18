@@ -1,6 +1,6 @@
 # Play Store listing
 
-Everything needed to publish **Perfsentient** (`com.neteinstein.perfsentience`) on
+Everything needed to publish **Perfsentient** (`com.neteinstein.perfsentient`) on
 [Google Play](https://play.google.com/console) lives in this folder: the listing texts, graphics,
 screenshots, promo video, the Data safety and permission-declaration answers, the privacy policy, and the
 release/upload pipeline guide.

@@ -1,7 +1,7 @@
 import com.android.build.api.dsl.CommonExtension
-import com.neteinstein.perfsentience.buildlogic.lib
-import com.neteinstein.perfsentience.buildlogic.libs
-import com.neteinstein.perfsentience.buildlogic.pluginId
+import com.neteinstein.perfsentient.buildlogic.lib
+import com.neteinstein.perfsentient.buildlogic.libs
+import com.neteinstein.perfsentient.buildlogic.pluginId
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.neteinstein.perfsentience.feature.settings"
+    namespace = "com.neteinstein.perfsentient.feature.settings"
 }
 
 dependencies {
