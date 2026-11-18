@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_title">Apps</string>
+    <string name="apps_subtitle">Alle Apps, die jetzt oder in den letzten 30 Tagen auffielen. Tippen Sie auf eine, um ihr zu vertrauen oder nicht.</string>
+    <string name="apps_empty">Noch keine App ist aufgefallen. Apps, die sich danebenbenehmen, erscheinen hier.</string>
+    <string name="apps_trusted_chip">Vertraut</string>
+    <string name="apps_never_flagged">In letzter Zeit unauffällig</string>
+    <string name="apps_last_flagged">Zuletzt aufgefallen am %1$s</string>
+    <plurals name="apps_days_flagged">
+        <item quantity="one">%1$d Tag</item>
+        <item quantity="other">%1$d Tage</item>
+    </plurals>
+    <string name="apps_sheet_trust">Dieser App vertrauen</string>
+    <string name="apps_sheet_trust_hint">Vertraute Apps werden aus Ihren Berichten ausgenommen und senken Ihren Wert nicht.</string>
+    <string name="apps_sheet_untrust">Dieser App nicht mehr vertrauen</string>
+    <string name="apps_sheet_untrust_hint">Sie vertrauen dieser App. Wenn Sie das aufheben, erscheinen ihre Auffälligkeiten wieder in den Berichten.</string>
+    <string name="apps_sheet_no_findings">Keine Auffälligkeiten in den letzten 30 Tagen.</string>
+    <string name="apps_sheet_flagged_summary">%1$s · %2$s</string>
+</resources>

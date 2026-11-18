@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_title">Applis</string>
+    <string name="apps_subtitle">Toutes les applis signalées maintenant ou au cours des 30 derniers jours. Touchez-en une pour lui faire confiance ou non.</string>
+    <string name="apps_empty">Aucune appli n\'a encore été signalée. Les applis qui se comportent mal apparaîtront ici.</string>
+    <string name="apps_trusted_chip">Approuvée</string>
+    <string name="apps_never_flagged">Pas signalée récemment</string>
+    <string name="apps_last_flagged">Dernier signalement le %1$s</string>
+    <plurals name="apps_days_flagged">
+        <item quantity="one">%1$d jour</item>
+        <item quantity="many">%1$d jours</item>
+        <item quantity="other">%1$d jours</item>
+    </plurals>
+    <string name="apps_sheet_trust">Faire confiance à cette appli</string>
+    <string name="apps_sheet_trust_hint">Les applis approuvées sont exclues de vos rapports et ne font pas baisser votre score.</string>
+    <string name="apps_sheet_untrust">Ne plus faire confiance à cette appli</string>
+    <string name="apps_sheet_untrust_hint">Vous faites confiance à cette appli. Si vous changez d\'avis, ses problèmes réapparaîtront dans vos rapports.</string>
+    <string name="apps_sheet_no_findings">Aucun problème au cours des 30 derniers jours.</string>
+    <string name="apps_sheet_flagged_summary">%1$s · %2$s</string>
+</resources>

@@ -36,7 +36,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val state by viewModel.uiState.collectAsStateWithLifecycle()
             val selectedTab by viewModel.selectedTab.collectAsStateWithLifecycle()
-            val settings = (state as? MainUiState.Ready)?.settings ?: return@setContent
+            val ready = state as? MainUiState.Ready ?: return@setContent
+            val settings = ready.settings
             val dark = settings.themeMode.isDark()
 
             // Edge-to-edge with transparent bars; icon contrast follows the in-app theme.
@@ -51,7 +52,11 @@ class MainActivity : ComponentActivity() {
             }
 
             PerfsentienceTheme(darkTheme = dark, dynamicColor = settings.useDynamicColor) {
-                PerfsentienceAppUi(selectedTab = selectedTab, onTabSelected = viewModel::selectTab)
+                PerfsentienceAppUi(
+                    tabs = ready.tabs,
+                    selectedTab = ready.visibleTab(selectedTab),
+                    onTabSelected = viewModel::selectTab,
+                )
             }
         }
     }

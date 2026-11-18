@@ -12,12 +12,20 @@ import org.neteinstein.perfsentient.core.domain.usecase.ObserveSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.SyncMonitoringUseCase
 import org.neteinstein.perfsentient.core.model.UserSettings
 
-enum class AppTab { REPORT, APPS, SETTINGS }
+/** Navigation tabs, in display order. PARENTAL sits in the middle and only exists while parental mode is on. */
+enum class AppTab { REPORT, APPS, PARENTAL, SETTINGS }
 
 sealed interface MainUiState {
     data object Loading : MainUiState
 
-    data class Ready(val settings: UserSettings) : MainUiState
+    data class Ready(val settings: UserSettings) : MainUiState {
+        /** Tabs to show: the Parental help tab is added while parental mode is on. */
+        val tabs: List<AppTab>
+            get() = AppTab.entries.filter { it != AppTab.PARENTAL || settings.parental.enabled }
+
+        /** [selected] if it is shown, otherwise Settings (e.g. right after parental mode was turned off there). */
+        fun visibleTab(selected: AppTab): AppTab = if (selected in tabs) selected else AppTab.SETTINGS
+    }
 }
 
 class MainViewModel(

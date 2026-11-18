@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_title">Aplicații</string>
+    <string name="apps_subtitle">Toate aplicațiile semnalate acum sau în ultimele 30 de zile. Atingeți una pentru a o marca de încredere sau nu.</string>
+    <string name="apps_empty">Nicio aplicație nu a fost semnalată încă. Aplicațiile problematice vor apărea aici.</string>
+    <string name="apps_trusted_chip">De încredere</string>
+    <string name="apps_never_flagged">Nesemnalată recent</string>
+    <string name="apps_last_flagged">Ultima semnalare: %1$s</string>
+    <plurals name="apps_days_flagged">
+        <item quantity="one">%1$d zi</item>
+        <item quantity="few">%1$d zile</item>
+        <item quantity="other">%1$d de zile</item>
+    </plurals>
+    <string name="apps_sheet_trust">Marchează de încredere</string>
+    <string name="apps_sheet_trust_hint">Aplicațiile de încredere sunt excluse din rapoarte și nu vă scad scorul.</string>
+    <string name="apps_sheet_untrust">Nu mai avea încredere</string>
+    <string name="apps_sheet_untrust_hint">Aveți încredere în această aplicație. Dacă renunțați, problemele ei vor apărea din nou în rapoarte.</string>
+    <string name="apps_sheet_no_findings">Nicio problemă în ultimele 30 de zile.</string>
+    <string name="apps_sheet_flagged_summary">%1$s · %2$s</string>
+</resources>

@@ -26,7 +26,7 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 
 /**
- * Renders the real app UI (all three tabs, light and dark) with fictional sample data and writes PNGs
+ * Renders the real app UI (every tab, light and dark) with fictional sample data and writes PNGs
  * to `build/screenshots/` (override with `-Dscreenshots.dir=...`). They are used for the README and the
  * Play Store listing; see `store-listing/screenshots/README.md`. The test also doubles as a smoke test
  * that every tab renders. 1080x2160 px (360x720 dp at xxhdpi).
@@ -47,12 +47,18 @@ class StoreScreenshotsTest {
     @After
     fun tearDown() = stopKoin()
 
-    private fun capture(name: String, tab: AppTab, dark: Boolean, scrollToIndex: Int? = null) {
+    private fun capture(
+        name: String,
+        tab: AppTab,
+        dark: Boolean,
+        scrollToIndex: Int? = null,
+        tabs: List<AppTab> = SampleData.coreTabs,
+    ) {
         var selected by mutableStateOf(tab)
         compose.mainClock.autoAdvance = false
         compose.setContent {
             PerfsentienceTheme(darkTheme = dark, dynamicColor = false) {
-                PerfsentienceAppUi(selectedTab = selected, onTabSelected = { selected = it })
+                PerfsentienceAppUi(tabs = tabs, selectedTab = selected, onTabSelected = { selected = it })
             }
         }
         // Let entrance animations finish; infinite ones (pulsing dot, aurora) never settle on their own.
@@ -84,6 +90,12 @@ class StoreScreenshotsTest {
 
     @Test
     fun appsDark() = capture("06-apps-dark", AppTab.APPS, dark = true, scrollToIndex = 3)
+
+    @Test
+    fun parentalLight() = capture("07-parental", AppTab.PARENTAL, dark = false, tabs = AppTab.entries)
+
+    @Test
+    fun parentalDark() = capture("08-parental-dark", AppTab.PARENTAL, dark = true, scrollToIndex = 3, tabs = AppTab.entries)
 
     private companion object {
         const val OFFENDERS_INDEX = 4

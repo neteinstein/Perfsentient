@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_report">Raport</string>
+    <string name="tab_apps">Aplicații</string>
+    <string name="tab_parental">Părinți</string>
+    <string name="tab_settings">Setări</string>
+</resources>

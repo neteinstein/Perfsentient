@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_title">Santé du jour</string>
+    <string name="report_health_score">score de santé</string>
+    <plurals name="report_generated_at">
+        <item quantity="one">Mis à jour à %1$s · %2$d appli analysée</item>
+        <item quantity="many">Mis à jour à %1$s · %2$d applis analysées</item>
+        <item quantity="other">Mis à jour à %1$s · %2$d applis analysées</item>
+    </plurals>
+    <string name="report_analyse_now">Analyser maintenant</string>
+    <string name="report_analysing">Analyse en cours…</string>
+    <string name="report_generation_failed">Impossible d\'analyser pour le moment. Veuillez réessayer.</string>
+    <string name="report_summary_clean">Aucune appli problématique. Bravo !</string>
+    <plurals name="report_summary_offenders">
+        <item quantity="one">%d appli requiert votre attention</item>
+        <item quantity="many">%d applis requièrent votre attention</item>
+        <item quantity="other">%d applis requièrent votre attention</item>
+    </plurals>
+    <string name="report_setup_title">Lançons la surveillance</string>
+    <string name="report_setup_desc">Accordez quelques autorisations dans les Paramètres et Perfsentient surveillera les applis qui vident votre batterie, vous spamment ou affichent des publicités sournoises.</string>
+    <string name="report_setup_action">Terminer la configuration</string>
+    <string name="report_empty_title">Surveillance en cours</string>
+    <string name="report_empty_desc">Votre premier rapport arrive ce soir à %1$s. Un aperçu ? Analysez la journée jusqu\'ici.</string>
+    <string name="report_section_vitals">Signes vitaux de l\'appareil</string>
+    <string name="report_section_history">7 derniers jours</string>
+    <string name="report_section_offenders">Applis problématiques</string>
+    <string name="report_section_issues">Problèmes de l\'appareil</string>
+    <string name="report_all_clear_title">Tout va bien</string>
+    <string name="report_all_clear_desc">Toutes les applis se sont bien comportées aujourd\'hui.</string>
+    <string name="report_metric_screen_off_drain">Conso. écran éteint</string>
+    <string name="report_metric_drain">Conso. de la batterie</string>
+    <string name="report_metric_temperature">Temp. max. batterie</string>
+    <string name="report_metric_memory">Mémoire moy. utilisée</string>
+    <string name="report_metric_background_data">Données en arrière-plan</string>
+    <string name="report_metric_screen_time">Temps d\'écran des applis</string>
+    <string name="report_metric_per_hour">%1$.1f %%/h</string>
+    <string name="report_metric_celsius">%1$.1f °C</string>
+    <string name="report_metric_percent">%1$d %%</string>
+    <plurals name="report_value_popups">
+        <item quantity="one">%1$d affichage par-dessus d\'autres applis aujourd\'hui</item>
+        <item quantity="many">%1$d affichages par-dessus d\'autres applis aujourd\'hui</item>
+        <item quantity="other">%1$d affichages par-dessus d\'autres applis aujourd\'hui</item>
+    </plurals>
+    <plurals name="report_value_after_call">
+        <item quantity="one">%1$d écran ouvert juste après un appel</item>
+        <item quantity="many">%1$d écrans ouverts juste après des appels</item>
+        <item quantity="other">%1$d écrans ouverts juste après des appels</item>
+    </plurals>
+    <string name="report_value_service_time">%1$s d\'activité en arrière-plan</string>
+    <plurals name="report_value_signals">
+        <item quantity="one">%1$d signe d\'activité en arrière-plan</item>
+        <item quantity="many">%1$d signes d\'activité en arrière-plan</item>
+        <item quantity="other">%1$d signes d\'activité en arrière-plan</item>
+    </plurals>
+    <plurals name="report_value_night">
+        <item quantity="one">%1$d réveil pendant que l\'écran était éteint</item>
+        <item quantity="many">%1$d réveils pendant que l\'écran était éteint</item>
+        <item quantity="other">%1$d réveils pendant que l\'écran était éteint</item>
+    </plurals>
+    <string name="report_value_bytes_background">%1$s utilisés en arrière-plan</string>
+    <plurals name="report_value_notifications">
+        <item quantity="one">%1$d notification aujourd\'hui</item>
+        <item quantity="many">%1$d notifications aujourd\'hui</item>
+        <item quantity="other">%1$d notifications aujourd\'hui</item>
+    </plurals>
+    <string name="report_value_cache">%1$s de cache</string>
+    <string name="report_value_capability">Accordé par vous – vérifiez si c\'est inattendu</string>
+    <string name="report_issue_screen_off_drain">La batterie s\'est vidée de %1$.1f %%/h écran éteint (moins de 1 %%/h est sain).</string>
+    <string name="report_issue_temperature">La batterie a atteint %1$.1f °C. La chaleur accélère l\'usure de la batterie.</string>
+    <string name="report_issue_thermal">Le téléphone a réduit ses performances pour refroidir.</string>
+    <plurals name="report_issue_memory">
+        <item quantity="one">La mémoire a manqué %1$d fois – des applis ont sans doute été fermées en arrière-plan.</item>
+        <item quantity="many">La mémoire a manqué %1$d fois – des applis ont sans doute été fermées en arrière-plan.</item>
+        <item quantity="other">La mémoire a manqué %1$d fois – des applis ont sans doute été fermées en arrière-plan.</item>
+    </plurals>
+    <string name="report_issue_screen_off_drain_title">Batterie qui se vide au repos</string>
+    <string name="report_issue_temperature_title">Surchauffe</string>
+    <string name="report_issue_thermal_title">Bridage thermique</string>
+    <string name="report_issue_memory_title">Mémoire saturée</string>
+    <string name="report_sheet_open_app_info">Ouvrir les infos de l\'appli</string>
+    <string name="report_sheet_hint">Depuis les infos de l\'appli, vous pouvez forcer l\'arrêt, restreindre la batterie, révoquer des autorisations ou désinstaller.</string>
+    <string name="report_sheet_trust_app">Faire confiance à cette appli</string>
+    <string name="report_sheet_trust_hint">Les applis approuvées sont exclues de vos rapports et ne font pas baisser votre score. Vous pouvez annuler cela dans les Paramètres.</string>
+    <string name="report_trusted_message">%1$s est maintenant approuvée</string>
+    <string name="report_trusted_undo">Annuler</string>
+    <plurals name="report_trusted_hidden">
+        <item quantity="one">%1$d appli approuvée masquée · Gérer</item>
+        <item quantity="many">%1$d applis approuvées masquées · Gérer</item>
+        <item quantity="other">%1$d applis approuvées masquées · Gérer</item>
+    </plurals>
+    <string name="report_duration_hm">%1$d h %2$02d min</string>
+    <string name="report_duration_m">%1$d min</string>
+</resources>

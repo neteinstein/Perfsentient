@@ -39,6 +39,9 @@ To do its job the App reads the following **on the device only**. None of it lea
 - Daily reports (score, verdict, findings per app): kept for **30 days**.
 - Your settings (report time, theme) and your **trusted apps** list (package names and labels of apps you chose
   to trust).
+- If you turn on **parental mode**: the child's age you entered (a single number) and the package names of the
+  apps you marked as reviewed. The list of apps parental mode looks for is built into the App; checking it
+  happens on the phone.
 
 All of it is in a private database on your phone. Android cloud backup and device transfer **exclude** the
 database. Clearing the App's storage or uninstalling it removes everything.
@@ -58,7 +61,8 @@ None. The App contains no third-party analytics, advertising or tracking SDKs an
 
 ## 5. Children
 
-The App is not directed at children and collects no personal information from anyone.
+The App is not directed at children and collects no personal information from anyone. Parental mode, which
+helps parents check a child's phone, stores only the age the parent enters, on the phone itself.
 
 ## 6. Your choices
 

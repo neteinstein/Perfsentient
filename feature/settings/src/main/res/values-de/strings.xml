@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_subtitle">Einmal Zugriff erteilen – Perfsentient erledigt den Rest, direkt auf dem Gerät.</string>
+    <string name="settings_monitoring_active">Überwachung aktiv</string>
+    <string name="settings_monitoring_active_desc">Achtet auf auffällige Apps. Ihr Bericht kommt jeden Tag um %1$s.</string>
+    <string name="settings_monitoring_waiting">Einrichtung nötig</string>
+    <plurals name="settings_monitoring_waiting_desc">
+        <item quantity="one">%1$d von %2$d Berechtigung erteilt. Die Überwachung startet automatisch, sobald alle erteilt sind.</item>
+        <item quantity="other">%1$d von %2$d Berechtigungen erteilt. Die Überwachung startet automatisch, sobald alle erteilt sind.</item>
+    </plurals>
+    <string name="settings_section_permissions">Berechtigungen</string>
+    <string name="settings_section_permissions_desc">Alles bleibt auf Ihrem Handy – Perfsentient hat keinen Internetzugriff.</string>
+    <string name="settings_permission_grant">Erteilen</string>
+    <string name="settings_permission_granted">Erteilt</string>
+    <string name="settings_permission_required">Erforderlich</string>
+    <string name="settings_permission_automatic">Automatisch</string>
+    <string name="settings_permission_why">Wozu wird das benötigt?</string>
+    <string name="permission_usage_title">Zugriff auf Nutzungsdaten</string>
+    <string name="permission_usage_desc">Sehen, welche Apps laufen, wie lange und wie viele Daten sie verbrauchen.</string>
+    <string name="permission_usage_why">Damit kann Perfsentient App-Nutzungsereignisse lesen (um Pop-up-Werbung und Werbung nach Anrufen zu erkennen), die Laufzeit von Vordergrunddiensten (Apps, die nie aufhören), Hintergrunddaten pro App (Android-Netzwerkstatistik) und Cache-Größen. Erteilt wird das unter Einstellungen › Zugriff auf Nutzungsdaten. Perfsentient sieht nie, was Sie in Apps tun.</string>
+    <string name="permission_notifications_title">Benachrichtigungen</string>
+    <string name="permission_notifications_desc">Ihren Tagesbericht zum Zustand zustellen.</string>
+    <string name="permission_notifications_why">Ab Android 13 brauchen Apps Ihre Zustimmung, um Benachrichtigungen zu senden. Perfsentient sendet nur eine Benachrichtigung pro Tag mit dem Gesundheitswert Ihres Handys.</string>
+    <string name="permission_notification_access_title">Benachrichtigungszugriff</string>
+    <string name="permission_notification_access_desc">Zählen, wie viele Benachrichtigungen jede App sendet.</string>
+    <string name="permission_notification_access_why">Dient nur dazu, Benachrichtigungen pro App zu zählen und so Spam zu erkennen. Inhalte (Titel, Nachrichten) werden nie gelesen, gespeichert oder weitergegeben.</string>
+    <string name="permission_inventory_title">Liste installierter Apps</string>
+    <string name="permission_inventory_desc">Alle installierten Apps prüfen, auch solche mit verstecktem Symbol.</string>
+    <string name="permission_inventory_why">Bei der Installation erteilt (QUERY_ALL_PACKAGES). Nötig, um Apps zu finden, die ihr Symbol verstecken oder die Berechtigung \"Über anderen Apps einblenden\", Bedienungshilfendienste oder Geräteadministrator-Rechte haben.</string>
+    <string name="settings_section_report">Tagesbericht</string>
+    <string name="settings_report_time">Berichtszeit</string>
+    <string name="settings_report_time_desc">Wann die Tagesbenachrichtigung gesendet wird</string>
+    <string name="settings_time_dialog_title">Berichtszeit wählen</string>
+    <string name="settings_ok">Festlegen</string>
+    <string name="settings_cancel">Abbrechen</string>
+    <string name="settings_section_parental">Elternmodus</string>
+    <string name="settings_section_parental_desc">Richten Sie ein Handy für ein Kind ein? Prüfen Sie die Apps passend zu seinem Alter.</string>
+    <string name="settings_parental_title">Elternmodus</string>
+    <string name="settings_parental_desc">Markiert Apps, die für Cybergrooming, Sextortion, Kontakt mit Fremden oder Inhalte für Erwachsene bekannt sind und nicht zum Alter Ihres Kindes passen, und fügt einen Tab Eltern hinzu.</string>
+    <string name="settings_parental_child_age">Alter des Kindes</string>
+    <plurals name="settings_parental_age_years">
+        <item quantity="one">%1$d Jahr</item>
+        <item quantity="other">%1$d Jahre</item>
+    </plurals>
+    <string name="settings_parental_change">Ändern</string>
+    <string name="settings_parental_age_title">Wie alt ist Ihr Kind?</string>
+    <string name="settings_parental_age_desc">Die Apps auf diesem Handy werden für dieses Alter geprüft. Es wird nur auf diesem Handy gespeichert.</string>
+    <string name="settings_parental_age_younger">Jünger</string>
+    <string name="settings_parental_age_older">Älter</string>
+    <string name="settings_parental_turn_on">Aktivieren</string>
+    <string name="settings_parental_save">Speichern</string>
+    <string name="settings_section_trusted">Vertraute Apps</string>
+    <string name="settings_section_trusted_desc">Apps, denen Sie vertrauen, werden aus Ihren Berichten ausgenommen und senken Ihren Wert nicht.</string>
+    <string name="settings_trusted_empty">Noch keine vertrauten Apps. Tippen Sie im Bericht auf eine auffällige App und wählen Sie \"Dieser App vertrauen\", damit sie nicht mehr markiert wird.</string>
+    <string name="settings_trusted_remove">%1$s nicht mehr vertrauen</string>
+    <string name="settings_section_appearance">Darstellung</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Hell</string>
+    <string name="settings_theme_dark">Dunkel</string>
+    <string name="settings_dynamic_color">Dynamische Farben</string>
+    <string name="settings_dynamic_color_desc">Farben Ihres Hintergrundbilds verwenden</string>
+    <string name="settings_section_detection">Worauf wir achten</string>
+    <string name="settings_footer">Perfsentient • auf dem Gerät • ohne Internetberechtigung</string>
+    <string name="settings_section_detection_desc">Heuristiken auf Basis der Google-Play-Richtlinien, von Android Vitals und veröffentlichter Adware-Forschung.</string>
+</resources>

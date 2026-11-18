@@ -76,6 +76,12 @@ android {
         buildConfig = true
     }
 
+    // Lists the translated languages (values-*) in a generated locale config, so Android 13+
+    // offers them under Settings > Apps > Perfsentient > Language. English is the default.
+    androidResources {
+        generateLocaleConfig = true
+    }
+
     packaging {
         resources.excludes += setOf("/META-INF/{AL2.0,LGPL2.1}", "DebugProbesKt.bin", "kotlin-tooling-metadata.json")
     }
@@ -89,6 +95,7 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.feature.report)
     implementation(projects.feature.apps)
+    implementation(projects.feature.parental)
     implementation(projects.feature.settings)
     implementation(projects.feature.monitoring)
 

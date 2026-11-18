@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monitoring_listener_label">Contor de notificări Perfsentient</string>
+    <string name="monitoring_channel_name">Raport zilnic</string>
+    <string name="monitoring_channel_description">Rezumatul sănătății telefonului la sfârșitul zilei</string>
+    <string name="monitoring_notification_title_good">✅ Telefonul dvs. a avut o zi excelentă</string>
+    <string name="monitoring_notification_title_fair">⚠️ Telefonul dvs. a avut o zi așa și-așa</string>
+    <string name="monitoring_notification_title_poor">🚨 Telefonul dvs. are nevoie de atenție</string>
+    <string name="monitoring_notification_body_clean">Scor de sănătate %1$d/100 · nicio aplicație problematică. Atingeți pentru a vedea raportul zilnic.</string>
+    <plurals name="monitoring_notification_body">
+        <item quantity="one">Scor de sănătate %1$d/100 · %2$d aplicație are probleme. Atingeți pentru a vedea raportul zilnic.</item>
+        <item quantity="few">Scor de sănătate %1$d/100 · %2$d aplicații au probleme. Atingeți pentru a vedea raportul zilnic.</item>
+        <item quantity="other">Scor de sănătate %1$d/100 · %2$d de aplicații au probleme. Atingeți pentru a vedea raportul zilnic.</item>
+    </plurals>
+</resources>

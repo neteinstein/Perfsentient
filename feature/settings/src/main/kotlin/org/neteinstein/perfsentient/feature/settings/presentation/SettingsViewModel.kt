@@ -15,6 +15,7 @@ import org.neteinstein.perfsentient.core.domain.usecase.ObserveTrustedAppsUseCas
 import org.neteinstein.perfsentient.core.domain.usecase.SyncMonitoringUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateDynamicColorUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.UpdateParentalSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateReportTimeUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
 import org.neteinstein.perfsentient.core.model.PermissionState
@@ -42,6 +43,7 @@ class SettingsViewModel(
     private val updateDynamicColor: UpdateDynamicColorUseCase,
     private val updateReportTime: UpdateReportTimeUseCase,
     private val untrustApp: UntrustAppUseCase,
+    private val updateParentalSettings: UpdateParentalSettingsUseCase,
 ) : ViewModel() {
 
     val uiState: StateFlow<SettingsUiState> = combine(
@@ -72,6 +74,11 @@ class SettingsViewModel(
     /** Removes the app from the allowlist: its findings show up in reports again. */
     fun onUntrustApp(packageName: String) {
         viewModelScope.launch { untrustApp(packageName) }
+    }
+
+    /** Turns parental mode on or off; [childAge] is the age installed apps are checked against. */
+    fun onParentalModeChanged(enabled: Boolean, childAge: Int) {
+        viewModelScope.launch { updateParentalSettings(enabled, childAge) }
     }
 
     private companion object {

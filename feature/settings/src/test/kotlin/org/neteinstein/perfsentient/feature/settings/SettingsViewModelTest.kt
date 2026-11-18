@@ -14,8 +14,10 @@ import org.neteinstein.perfsentient.core.domain.usecase.ObserveTrustedAppsUseCas
 import org.neteinstein.perfsentient.core.domain.usecase.SyncMonitoringUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateDynamicColorUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.UpdateParentalSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateReportTimeUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
+import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionType
 import org.neteinstein.perfsentient.core.model.ReportTime
 import org.neteinstein.perfsentient.core.model.ThemeMode
@@ -50,6 +52,7 @@ class SettingsViewModelTest {
             updateDynamicColor = UpdateDynamicColorUseCase(settings),
             updateReportTime = UpdateReportTimeUseCase(settings, scheduler),
             untrustApp = UntrustAppUseCase(trusted),
+            updateParentalSettings = UpdateParentalSettingsUseCase(settings),
         )
     }
 
@@ -90,6 +93,22 @@ class SettingsViewModelTest {
 
             viewModel.onUntrustApp("com.zeta.vpn")
             assertEquals(listOf("com.alpha.chat"), expectMostRecentItem().trustedApps.map { it.packageName })
+        }
+    }
+
+    @Test
+    fun `parental mode is turned on with an age, re-aged and turned off`() = runTest {
+        viewModel.uiState.test {
+            assertEquals(ParentalSettings(), expectMostRecentItem().settings.parental)
+
+            viewModel.onParentalModeChanged(enabled = true, childAge = 11)
+            assertEquals(ParentalSettings(enabled = true, childAge = 11), expectMostRecentItem().settings.parental)
+
+            viewModel.onParentalModeChanged(enabled = true, childAge = 14)
+            assertEquals(14, expectMostRecentItem().settings.parental.childAge)
+
+            viewModel.onParentalModeChanged(enabled = false, childAge = 14)
+            assertEquals(ParentalSettings(enabled = false, childAge = 14), expectMostRecentItem().settings.parental)
         }
     }
 }

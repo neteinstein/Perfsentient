@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monitoring_listener_label">Contador de notificaciones de Perfsentient</string>
+    <string name="monitoring_channel_name">Informe diario</string>
+    <string name="monitoring_channel_description">Resumen de la salud de tu teléfono al final del día</string>
+    <string name="monitoring_notification_title_good">✅ Tu teléfono ha tenido un gran día</string>
+    <string name="monitoring_notification_title_fair">⚠️ Tu teléfono ha tenido un día regular</string>
+    <string name="monitoring_notification_title_poor">🚨 Tu teléfono necesita atención</string>
+    <string name="monitoring_notification_body_clean">Puntuación de salud %1$d/100 · ninguna app se ha portado mal. Toca para ver tu informe diario.</string>
+    <plurals name="monitoring_notification_body">
+        <item quantity="one">Puntuación de salud %1$d/100 · %2$d app se ha portado mal. Toca para ver tu informe diario.</item>
+        <item quantity="many">Puntuación de salud %1$d/100 · %2$d apps se han portado mal. Toca para ver tu informe diario.</item>
+        <item quantity="other">Puntuación de salud %1$d/100 · %2$d apps se han portado mal. Toca para ver tu informe diario.</item>
+    </plurals>
+</resources>

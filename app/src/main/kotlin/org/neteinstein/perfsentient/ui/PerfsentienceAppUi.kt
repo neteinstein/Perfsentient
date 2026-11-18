@@ -11,9 +11,11 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Apps
+import androidx.compose.material.icons.outlined.FamilyRestroom
 import androidx.compose.material.icons.outlined.Insights
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.rounded.Apps
+import androidx.compose.material.icons.rounded.FamilyRestroom
 import androidx.compose.material.icons.rounded.Insights
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon
@@ -28,27 +30,35 @@ import androidx.compose.ui.res.stringResource
 import org.neteinstein.perfsentient.AppTab
 import org.neteinstein.perfsentient.R
 import org.neteinstein.perfsentient.feature.apps.presentation.AppsRoute
+import org.neteinstein.perfsentient.feature.parental.presentation.ParentalRoute
 import org.neteinstein.perfsentient.feature.report.presentation.ReportRoute
 import org.neteinstein.perfsentient.feature.settings.presentation.SettingsRoute
 
 private data class TabSpec(val tab: AppTab, val label: Int, val selectedIcon: ImageVector, val icon: ImageVector)
 
-private val Tabs = listOf(
-    TabSpec(AppTab.REPORT, R.string.tab_report, Icons.Rounded.Insights, Icons.Outlined.Insights),
-    TabSpec(AppTab.APPS, R.string.tab_apps, Icons.Rounded.Apps, Icons.Outlined.Apps),
-    TabSpec(AppTab.SETTINGS, R.string.tab_settings, Icons.Rounded.Settings, Icons.Outlined.Settings),
-)
+private val AppTab.spec: TabSpec
+    get() = when (this) {
+        AppTab.REPORT -> TabSpec(this, R.string.tab_report, Icons.Rounded.Insights, Icons.Outlined.Insights)
+        AppTab.APPS -> TabSpec(this, R.string.tab_apps, Icons.Rounded.Apps, Icons.Outlined.Apps)
+        AppTab.PARENTAL -> TabSpec(this, R.string.tab_parental, Icons.Rounded.FamilyRestroom, Icons.Outlined.FamilyRestroom)
+        AppTab.SETTINGS -> TabSpec(this, R.string.tab_settings, Icons.Rounded.Settings, Icons.Outlined.Settings)
+    }
 
 /**
  * Root UI. NavigationSuiteScaffold adapts automatically: bottom bar on phones, navigation rail
  * on tablets / foldables / landscape – required by the large-screen quality guidelines.
  */
 @Composable
-fun PerfsentienceAppUi(selectedTab: AppTab, onTabSelected: (AppTab) -> Unit, modifier: Modifier = Modifier) {
+fun PerfsentienceAppUi(
+    tabs: List<AppTab>,
+    selectedTab: AppTab,
+    onTabSelected: (AppTab) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     NavigationSuiteScaffold(
         modifier = modifier,
         navigationSuiteItems = {
-            Tabs.forEach { spec ->
+            tabs.map { it.spec }.forEach { spec ->
                 val selected = spec.tab == selectedTab
                 item(
                     selected = selected,
@@ -76,6 +86,7 @@ fun PerfsentienceAppUi(selectedTab: AppTab, onTabSelected: (AppTab) -> Unit, mod
                 when (tab) {
                     AppTab.REPORT -> ReportRoute(onOpenSettings = { onTabSelected(AppTab.SETTINGS) })
                     AppTab.APPS -> AppsRoute()
+                    AppTab.PARENTAL -> ParentalRoute(onOpenSettings = { onTabSelected(AppTab.SETTINGS) })
                     AppTab.SETTINGS -> SettingsRoute()
                 }
             }

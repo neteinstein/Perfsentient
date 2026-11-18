@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_title">Salud de hoy</string>
+    <string name="report_health_score">puntuación de salud</string>
+    <plurals name="report_generated_at">
+        <item quantity="one">Actualizado a las %1$s · %2$d app analizada</item>
+        <item quantity="many">Actualizado a las %1$s · %2$d apps analizadas</item>
+        <item quantity="other">Actualizado a las %1$s · %2$d apps analizadas</item>
+    </plurals>
+    <string name="report_analyse_now">Analizar ahora</string>
+    <string name="report_analysing">Analizando…</string>
+    <string name="report_generation_failed">No se ha podido analizar ahora. Inténtalo de nuevo.</string>
+    <string name="report_summary_clean">Ninguna app se ha portado mal. ¡Genial!</string>
+    <plurals name="report_summary_offenders">
+        <item quantity="one">%d app necesita tu atención</item>
+        <item quantity="many">%d apps necesitan tu atención</item>
+        <item quantity="other">%d apps necesitan tu atención</item>
+    </plurals>
+    <string name="report_setup_title">Empecemos a vigilar</string>
+    <string name="report_setup_desc">Concede algunos permisos en Ajustes y Perfsentient empezará a vigilar las apps que gastan batería, envían spam o muestran anuncios engañosos.</string>
+    <string name="report_setup_action">Completar la configuración</string>
+    <string name="report_empty_title">Vigilancia activa</string>
+    <string name="report_empty_desc">Tu primer informe llega esta noche a las %1$s. ¿Quieres un adelanto? Analiza lo que va de día.</string>
+    <string name="report_section_vitals">Constantes del dispositivo</string>
+    <string name="report_section_history">Últimos 7 días</string>
+    <string name="report_section_offenders">Apps que se portan mal</string>
+    <string name="report_section_issues">Problemas del dispositivo</string>
+    <string name="report_all_clear_title">Todo en orden</string>
+    <string name="report_all_clear_desc">Todas las apps se han portado bien hoy.</string>
+    <string name="report_metric_screen_off_drain">Consumo con pantalla apagada</string>
+    <string name="report_metric_drain">Consumo de batería</string>
+    <string name="report_metric_temperature">Temp. máx. de batería</string>
+    <string name="report_metric_memory">Memoria media usada</string>
+    <string name="report_metric_background_data">Datos en segundo plano</string>
+    <string name="report_metric_screen_time">Tiempo de pantalla en apps</string>
+    <string name="report_metric_per_hour">%1$.1f %%/h</string>
+    <string name="report_metric_celsius">%1$.1f °C</string>
+    <string name="report_metric_percent">%1$d %%</string>
+    <plurals name="report_value_popups">
+        <item quantity="one">%1$d ventana emergente sobre otras apps hoy</item>
+        <item quantity="many">%1$d ventanas emergentes sobre otras apps hoy</item>
+        <item quantity="other">%1$d ventanas emergentes sobre otras apps hoy</item>
+    </plurals>
+    <plurals name="report_value_after_call">
+        <item quantity="one">%1$d pantalla abierta justo después de una llamada</item>
+        <item quantity="many">%1$d pantallas abiertas justo después de llamadas</item>
+        <item quantity="other">%1$d pantallas abiertas justo después de llamadas</item>
+    </plurals>
+    <string name="report_value_service_time">%1$s de actividad en segundo plano</string>
+    <plurals name="report_value_signals">
+        <item quantity="one">%1$d señal de actividad en segundo plano</item>
+        <item quantity="many">%1$d señales de actividad en segundo plano</item>
+        <item quantity="other">%1$d señales de actividad en segundo plano</item>
+    </plurals>
+    <plurals name="report_value_night">
+        <item quantity="one">%1$d activación con la pantalla apagada</item>
+        <item quantity="many">%1$d activaciones con la pantalla apagada</item>
+        <item quantity="other">%1$d activaciones con la pantalla apagada</item>
+    </plurals>
+    <string name="report_value_bytes_background">%1$s usados en segundo plano</string>
+    <plurals name="report_value_notifications">
+        <item quantity="one">%1$d notificación hoy</item>
+        <item quantity="many">%1$d notificaciones hoy</item>
+        <item quantity="other">%1$d notificaciones hoy</item>
+    </plurals>
+    <string name="report_value_cache">%1$s de caché</string>
+    <string name="report_value_capability">Lo concediste tú – revísalo si no te lo esperabas</string>
+    <string name="report_issue_screen_off_drain">La batería se gastó %1$.1f %%/h con la pantalla apagada (lo saludable es menos de 1 %%/h).</string>
+    <string name="report_issue_temperature">La batería llegó a %1$.1f °C. El calor acelera el desgaste de la batería.</string>
+    <string name="report_issue_thermal">El teléfono redujo su rendimiento para enfriarse.</string>
+    <plurals name="report_issue_memory">
+        <item quantity="one">La memoria se agotó %1$d vez – probablemente se cerraron apps en segundo plano.</item>
+        <item quantity="many">La memoria se agotó %1$d veces – probablemente se cerraron apps en segundo plano.</item>
+        <item quantity="other">La memoria se agotó %1$d veces – probablemente se cerraron apps en segundo plano.</item>
+    </plurals>
+    <string name="report_issue_screen_off_drain_title">Gasto de batería en reposo</string>
+    <string name="report_issue_temperature_title">Temperatura alta</string>
+    <string name="report_issue_thermal_title">Limitación térmica</string>
+    <string name="report_issue_memory_title">Presión de memoria</string>
+    <string name="report_sheet_open_app_info">Abrir información de la app</string>
+    <string name="report_sheet_hint">Desde la información de la app puedes forzar la detención, restringir la batería, revocar permisos o desinstalarla.</string>
+    <string name="report_sheet_trust_app">Confiar en esta app</string>
+    <string name="report_sheet_trust_hint">Las apps de confianza quedan fuera de tus informes y no bajan tu puntuación. Puedes deshacerlo en Ajustes.</string>
+    <string name="report_trusted_message">Ahora confías en %1$s</string>
+    <string name="report_trusted_undo">Deshacer</string>
+    <plurals name="report_trusted_hidden">
+        <item quantity="one">%1$d app de confianza oculta · Gestionar</item>
+        <item quantity="many">%1$d apps de confianza ocultas · Gestionar</item>
+        <item quantity="other">%1$d apps de confianza ocultas · Gestionar</item>
+    </plurals>
+    <string name="report_duration_hm">%1$d h %2$02d min</string>
+    <string name="report_duration_m">%1$d min</string>
+</resources>

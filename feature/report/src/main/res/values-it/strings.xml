@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_title">Salute di oggi</string>
+    <string name="report_health_score">punteggio di salute</string>
+    <plurals name="report_generated_at">
+        <item quantity="one">Aggiornato alle %1$s · %2$d app analizzata</item>
+        <item quantity="many">Aggiornato alle %1$s · %2$d app analizzate</item>
+        <item quantity="other">Aggiornato alle %1$s · %2$d app analizzate</item>
+    </plurals>
+    <string name="report_analyse_now">Analizza ora</string>
+    <string name="report_analysing">Analisi in corso…</string>
+    <string name="report_generation_failed">Impossibile analizzare ora. Riprova.</string>
+    <string name="report_summary_clean">Nessuna app problematica. Ottimo!</string>
+    <plurals name="report_summary_offenders">
+        <item quantity="one">%d app richiede la tua attenzione</item>
+        <item quantity="many">%d app richiedono la tua attenzione</item>
+        <item quantity="other">%d app richiedono la tua attenzione</item>
+    </plurals>
+    <string name="report_setup_title">Iniziamo il monitoraggio</string>
+    <string name="report_setup_desc">Concedi alcune autorizzazioni nelle Impostazioni e Perfsentient inizierà a tenere d\'occhio le app che consumano batteria, inviano spam o mostrano annunci subdoli.</string>
+    <string name="report_setup_action">Completa la configurazione</string>
+    <string name="report_empty_title">Monitoraggio attivo</string>
+    <string name="report_empty_desc">Il primo report arriva stasera alle %1$s. Vuoi un\'anteprima? Analizza la giornata finora.</string>
+    <string name="report_section_vitals">Parametri vitali del dispositivo</string>
+    <string name="report_section_history">Ultimi 7 giorni</string>
+    <string name="report_section_offenders">App problematiche</string>
+    <string name="report_section_issues">Problemi del dispositivo</string>
+    <string name="report_all_clear_title">Tutto a posto</string>
+    <string name="report_all_clear_desc">Tutte le app si sono comportate bene oggi.</string>
+    <string name="report_metric_screen_off_drain">Consumo a schermo spento</string>
+    <string name="report_metric_drain">Consumo della batteria</string>
+    <string name="report_metric_temperature">Temp. max batteria</string>
+    <string name="report_metric_memory">Memoria media usata</string>
+    <string name="report_metric_background_data">Dati in background</string>
+    <string name="report_metric_screen_time">Tempo di utilizzo app</string>
+    <string name="report_metric_per_hour">%1$.1f%%/h</string>
+    <string name="report_metric_celsius">%1$.1f °C</string>
+    <string name="report_metric_percent">%1$d%%</string>
+    <plurals name="report_value_popups">
+        <item quantity="one">%1$d pop-up sopra altre app oggi</item>
+        <item quantity="many">%1$d pop-up sopra altre app oggi</item>
+        <item quantity="other">%1$d pop-up sopra altre app oggi</item>
+    </plurals>
+    <plurals name="report_value_after_call">
+        <item quantity="one">%1$d schermata aperta subito dopo una chiamata</item>
+        <item quantity="many">%1$d schermate aperte subito dopo le chiamate</item>
+        <item quantity="other">%1$d schermate aperte subito dopo le chiamate</item>
+    </plurals>
+    <string name="report_value_service_time">%1$s di attività in background</string>
+    <plurals name="report_value_signals">
+        <item quantity="one">%1$d segnale di attività in background</item>
+        <item quantity="many">%1$d segnali di attività in background</item>
+        <item quantity="other">%1$d segnali di attività in background</item>
+    </plurals>
+    <plurals name="report_value_night">
+        <item quantity="one">%1$d risveglio a schermo spento</item>
+        <item quantity="many">%1$d risvegli a schermo spento</item>
+        <item quantity="other">%1$d risvegli a schermo spento</item>
+    </plurals>
+    <string name="report_value_bytes_background">%1$s usati in background</string>
+    <plurals name="report_value_notifications">
+        <item quantity="one">%1$d notifica oggi</item>
+        <item quantity="many">%1$d notifiche oggi</item>
+        <item quantity="other">%1$d notifiche oggi</item>
+    </plurals>
+    <string name="report_value_cache">%1$s di cache</string>
+    <string name="report_value_capability">Concesso da te – controlla se è inatteso</string>
+    <string name="report_issue_screen_off_drain">La batteria si è scaricata del %1$.1f%%/h a schermo spento (sotto l\'1%%/h è normale).</string>
+    <string name="report_issue_temperature">La batteria ha raggiunto %1$.1f °C. Il calore accelera l\'usura della batteria.</string>
+    <string name="report_issue_thermal">Il telefono ha ridotto le prestazioni per raffreddarsi.</string>
+    <plurals name="report_issue_memory">
+        <item quantity="one">La memoria si è esaurita %1$d volta – probabilmente alcune app sono state chiuse in background.</item>
+        <item quantity="many">La memoria si è esaurita %1$d volte – probabilmente alcune app sono state chiuse in background.</item>
+        <item quantity="other">La memoria si è esaurita %1$d volte – probabilmente alcune app sono state chiuse in background.</item>
+    </plurals>
+    <string name="report_issue_screen_off_drain_title">Batteria che si scarica a riposo</string>
+    <string name="report_issue_temperature_title">Surriscaldamento</string>
+    <string name="report_issue_thermal_title">Limitazione termica</string>
+    <string name="report_issue_memory_title">Memoria sotto pressione</string>
+    <string name="report_sheet_open_app_info">Apri informazioni app</string>
+    <string name="report_sheet_hint">Dalle informazioni dell\'app puoi forzare l\'arresto, limitare la batteria, revocare le autorizzazioni o disinstallarla.</string>
+    <string name="report_sheet_trust_app">Considera attendibile</string>
+    <string name="report_sheet_trust_hint">Le app attendibili sono escluse dai report e non abbassano il punteggio. Puoi annullare dalle Impostazioni.</string>
+    <string name="report_trusted_message">%1$s è ora attendibile</string>
+    <string name="report_trusted_undo">Annulla</string>
+    <plurals name="report_trusted_hidden">
+        <item quantity="one">%1$d app attendibile nascosta · Gestisci</item>
+        <item quantity="many">%1$d app attendibili nascoste · Gestisci</item>
+        <item quantity="other">%1$d app attendibili nascoste · Gestisci</item>
+    </plurals>
+    <string name="report_duration_hm">%1$d h %2$02d min</string>
+    <string name="report_duration_m">%1$d min</string>
+</resources>

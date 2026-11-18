@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_title">Apps</string>
+    <string name="apps_subtitle">Todas as apps sinalizadas agora ou nos últimos 30 dias. Toque numa para confiar ou deixar de confiar.</string>
+    <string name="apps_empty">Ainda nenhuma app foi sinalizada. As apps que se portarem mal aparecem aqui.</string>
+    <string name="apps_trusted_chip">De confiança</string>
+    <string name="apps_never_flagged">Não sinalizada recentemente</string>
+    <string name="apps_last_flagged">Sinalizada pela última vez a %1$s</string>
+    <plurals name="apps_days_flagged">
+        <item quantity="one">%1$d dia</item>
+        <item quantity="many">%1$d dias</item>
+        <item quantity="other">%1$d dias</item>
+    </plurals>
+    <string name="apps_sheet_trust">Confiar nesta app</string>
+    <string name="apps_sheet_trust_hint">As apps de confiança ficam fora dos relatórios e não baixam a pontuação.</string>
+    <string name="apps_sheet_untrust">Deixar de confiar nesta app</string>
+    <string name="apps_sheet_untrust_hint">Confia nesta app. Se deixar de confiar, os problemas dela voltam a aparecer nos relatórios.</string>
+    <string name="apps_sheet_no_findings">Sem problemas nos últimos 30 dias.</string>
+    <string name="apps_sheet_flagged_summary">%1$s · %2$s</string>
+</resources>
