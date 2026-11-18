@@ -21,6 +21,10 @@ Suggested text for the "Describe your use" field:
 Notes for the reviewer: the permission is used by `AppInventoryDataSource` in `core:data`. The app name
 and package are shown to the user in the report and in the Apps tab.
 
+**Video link:** the form asks for a short video of the app being opened and the core feature in use. Upload
+[`video/review/review-walkthrough.mp4`](video/review/README.md) to YouTube as *Unlisted* and paste the link.
+It is captioned step by step, including how `QUERY_ALL_PACKAGES` is used.
+
 ## 2. `PACKAGE_USAGE_STATS` (Usage access) — special access, no form
 
 Granted by the user in **Settings → Apps → Special app access → Usage access**. It powers foreground time,
@@ -44,7 +48,7 @@ rationale.
 
 ## Policy checklist
 
-- [ ] Package visibility declaration submitted (section 1).
+- [ ] Package visibility declaration submitted (section 1), with the review video link.
 - [ ] Store listing mentions Usage access and Notification access and why (see `text/*/full_description.txt`).
 - [ ] Data safety answers match [`data-safety.md`](data-safety.md).
 - [ ] Privacy policy URL set (see [`README.md`](README.md#play-console-fields-not-covered-by-a-file)).

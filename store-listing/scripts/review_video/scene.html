@@ -1,0 +1,143 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  :root { --ink:#140A4A; --violet:#5B4BDB; --lav:#C6BFFF; --teal:#4FD8C4; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; width:1920px; height:1080px; overflow:hidden; font-family: Roboto, "Helvetica Neue", Arial, sans-serif; color:#fff;
+    background: radial-gradient(1400px 900px at 20% 0%, #3A2DB2 0%, #261A80 40%, #140A4A 100%); }
+  .abs { position:absolute; }
+  #phone { left:1250px; top:50px; width:490px; height:980px; border-radius:52px; border:12px solid #0b0a14; overflow:hidden; background:#000;
+    box-shadow:0 40px 90px rgba(0,0,0,.55); }
+  #screen { position:absolute; inset:0; }
+  #screen img { width:100%; height:100%; display:block; }
+  #home { position:absolute; inset:0; background: linear-gradient(160deg, #2B2370 0%, #4B3FB8 55%, #7FD9CF 100%); }
+  #home .clock { position:absolute; top:70px; width:100%; text-align:center; font-size:64px; font-weight:300; }
+  #home .date { position:absolute; top:150px; width:100%; text-align:center; font-size:18px; color:#E8E4FF; }
+  #launcher { position:absolute; left:183px; top:600px; width:100px; text-align:center; }
+  #launcher .ic { width:100px; height:100px; border-radius:50%; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,.35); }
+  #launcher .lbl { margin-top:10px; font-size:17px; text-shadow:0 1px 3px rgba(0,0,0,.5); }
+  #openzoom { position:absolute; background:#FBF8FF; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .tap { position:absolute; width:70px; height:70px; margin:-35px 0 0 -35px; border-radius:50%; background:rgba(255,255,255,.55);
+    border:3px solid rgba(91,75,219,.9); pointer-events:none; }
+  #caption { left:110px; top:250px; width:1020px; }
+  #step { font-size:30px; font-weight:700; color:var(--teal); letter-spacing:1px; text-transform:uppercase; }
+  #title { margin-top:18px; font-size:64px; font-weight:800; line-height:1.08; letter-spacing:-1px; }
+  #body { margin-top:28px; font-size:36px; line-height:1.4; color:#E6E2FF; }
+  #body b { color:#fff; }
+  code { font-family: "Roboto Mono", Menlo, monospace; background:rgba(255,255,255,.12); padding:2px 10px; border-radius:8px; font-size:.9em; color:var(--teal); }
+  #footer { left:110px; bottom:44px; font-size:22px; color:#A99FF0; }
+  #progress { left:110px; top:180px; display:flex; gap:10px; }
+  #progress div { width:56px; height:6px; border-radius:3px; background:rgba(255,255,255,.18); }
+  #progress div.on { background:var(--teal); }
+  .card { left:0; right:0; top:0; bottom:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .card .icon { width:200px; height:200px; border-radius:46px; overflow:hidden; box-shadow:0 0 90px rgba(79,216,196,.3); }
+  .card h1 { margin:40px 0 0; font-size:84px; font-weight:800; letter-spacing:-2px; }
+  .card p { margin:22px 0 0; max-width:1400px; font-size:36px; line-height:1.45; color:#E6E2FF; }
+</style>
+<div id="root"></div>
+<script>
+const ICON = `<svg viewBox="18 18 72 72" width="100%" height="100%"><defs><linearGradient id="g" x1="32" y1="26" x2="76" y2="83" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8A7BFF"/><stop offset="1" stop-color="#4FD8C4"/></linearGradient></defs><rect width="108" height="108" fill="#140A4A"/><path d="M54,26 L76,34 L76,54 C76,68 66,78 54,83 C42,78 32,68 32,54 L32,34 Z" fill="url(#g)"/><path d="M38,56 L47,56 L51,46 L57,66 L61,52 L70,52" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+
+// Filled in by render.js: the timeline written by ReviewVideoFramesTest.
+let TL = null;
+const INTRO = 5.0;        // title card
+const LAUNCH = 3.5;       // home screen, tap, open animation
+const OUTRO = 6.0;        // closing card
+let T0 = INTRO + LAUNCH;  // video time at which the app footage starts
+window.DURATION = 0;
+window.init = (timeline) => { TL = timeline; window.DURATION = T0 + TL.durationMs / 1000 + OUTRO; };
+
+// Captions keyed by the markers the recorder test emits.
+const STEPS = [
+  { at: 'launch', step: 'Step 1 · Opening the app', title: 'Tap the Perfsentient icon',
+    body: 'Perfsentient is an on-device phone-health monitor. It finds installed apps that misbehave.' },
+  { at: 'report', step: 'Step 1 · Opening the app', title: 'Today\'s health report',
+    body: 'The app opens on a daily score. <b>"142 apps analysed"</b>: every installed app on the phone is checked, which is why the app needs <code>QUERY_ALL_PACKAGES</code>.' },
+  { at: 'offenders', step: 'Step 2 · Core feature', title: 'The apps that misbehaved',
+    body: 'Each flagged app and what it did: pop-up and after-call ads, drawing over other apps, background data, night activity, notification spam.' },
+  { at: 'apps', step: 'Step 3 · Apps tab', title: 'Every flagged installed app',
+    body: 'All installed apps flagged now or in the last 30 days, by severity. Apps the user knows can be marked as trusted.' },
+  { at: 'hidden', step: 'Step 4 · Why QUERY_ALL_PACKAGES', title: 'Finding an app that hides its icon',
+    body: '"Coupon Hunter" has <b>no launcher icon</b>, a classic adware trick to avoid being uninstalled. Apps like this are unknown in advance and invisible to a narrow <code>&lt;queries&gt;</code> filter, so the full installed-apps list is needed to find them.' },
+  { at: 'settings', step: 'Step 5 · Permissions, explained in-app', title: 'Settings → Permissions',
+    body: 'Every access the app uses is listed with its reason. Perfsentient has <b>no internet permission</b>: nothing leaves the phone.' },
+  { at: 'why', step: 'Step 6 · QUERY_ALL_PACKAGES', title: '"Installed apps list"',
+    body: 'The in-app rationale: the list is used to find apps that hide their launcher icon, draw over other apps, or hold accessibility or device-admin rights. It is processed <b>only on the device</b>.' },
+];
+const STEP_NAMES = ['launch', 'report', 'offenders', 'apps', 'hidden', 'settings', 'why'];
+
+function markerTime(name) {
+  if (name === 'launch') return INTRO;
+  const e = TL.events.find((e) => e.type === 'marker' && e.name === name);
+  return T0 + e.t / 1000;
+}
+function frameAt(ms) {
+  const f = TL.frames; let lo = 0, hi = f.length - 1;
+  while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (f[mid].t <= ms) lo = mid; else hi = mid - 1; }
+  return f[lo].f;
+}
+
+const root = document.getElementById('root');
+let lastSrc = null;
+
+window.renderAt = async (t) => {
+  const D = window.DURATION;
+  if (t < INTRO) { root.innerHTML = card(t, 0, INTRO, 'Perfsentient', 'App review walkthrough: opening the app and its core feature, finding installed apps that misbehave. Captions explain how <code>QUERY_ALL_PACKAGES</code> is used.'); lastSrc = null; return; }
+  if (t >= D - OUTRO) { root.innerHTML = card(t, D - OUTRO, D, 'On-device app audit', '<code>QUERY_ALL_PACKAGES</code> is used only to audit the installed apps for misbehaviour (hidden icons, overlays, accessibility and device-admin rights). The list never leaves the phone: the app has no <code>INTERNET</code> permission.'); lastSrc = null; return; }
+
+  // Caption for the current step.
+  let idx = 0;
+  STEPS.forEach((s, i) => { if (t >= markerTime(s.at)) idx = i; });
+  const s = STEPS[idx];
+  const p = ease(seg(t, markerTime(s.at), markerTime(s.at) + 0.5));
+  const stepIdx = STEP_NAMES.indexOf(s.at);
+
+  let phone;
+  if (t < T0) {
+    const lt = t - INTRO;
+    const tapAt = 1.5, open = seg(lt, 2.0, 3.3);
+    const tap = lt >= tapAt && lt < tapAt + 0.6 ? `<div class="tap" style="left:233px;top:650px;opacity:${1 - seg(lt, tapAt, tapAt + 0.6)};transform:scale(${0.6 + 0.6 * seg(lt, tapAt, tapAt + 0.6)})"></div>` : '';
+    // App-open animation: the icon grows into the window.
+    const e = ease(open);
+    const L = 183 + (0 - 183) * e, T = 600 + (0 - 600) * e, W = 100 + (466 - 100) * e, H = 100 + (956 - 100) * e;
+    const zoom = open > 0 ? `<div id="openzoom" style="left:${L}px;top:${T}px;width:${W}px;height:${H}px;border-radius:${50 - 50 * e + 40 * e}px">
+      <div style="width:${Math.max(100, 160 - 60 * (1 - e))}px;height:${Math.max(100, 160 - 60 * (1 - e))}px;border-radius:30%;overflow:hidden;opacity:${1 - seg(open, 0.7, 1)}">${ICON}</div></div>` : '';
+    phone = `<div id="home"><div class="clock">9:41</div><div class="date">Monday, 16 November</div>
+      <div id="launcher"><div class="ic">${ICON}</div><div class="lbl">Perfsentient</div></div></div>${tap}${zoom}`;
+    lastSrc = null;
+  } else {
+    const ms = (t - T0) * 1000;
+    const src = 'frames/' + frameAt(ms);
+    const k = 466 / TL.frameSize[0];
+    // Tap markers: a ripple for 0.6 s after each tap; a dot that follows the finger while dragging.
+    let marks = '';
+    for (const ev of TL.events) {
+      const dt = (ms - ev.t) / 1000;
+      if (ev.type === 'tap' && dt >= 0 && dt < 0.6) {
+        marks += `<div class="tap" style="left:${ev.x * k}px;top:${ev.y * k}px;opacity:${1 - dt / 0.6};transform:scale(${0.6 + dt})"></div>`;
+      }
+    }
+    const drags = TL.events.filter((e) => e.t <= ms && (e.type.startsWith('drag')));
+    const last = drags[drags.length - 1];
+    if (last && last.type !== 'drag-end') marks += `<div class="tap" style="left:${last.x * k}px;top:${last.y * k}px;opacity:.8;transform:scale(.8)"></div>`;
+    phone = `<div id="screen"><img id="shot" src="${src}"></div>${marks}`;
+  }
+
+  root.innerHTML = `
+    <div id="progress" class="abs">${STEP_NAMES.map((n, i) => `<div class="${i <= stepIdx ? 'on' : ''}"></div>`).join('')}</div>
+    <div id="caption" class="abs" style="opacity:${p};transform:translateY(${(1 - p) * 24}px)">
+      <div id="step">${s.step}</div><div id="title">${s.title}</div><div id="body">${s.body}</div></div>
+    <div id="footer" class="abs">Real app UI, recorded with sample data: every app name shown is fictional (com.example.*).</div>
+    <div id="phone" class="abs">${phone}</div>`;
+  const img = document.getElementById('shot');
+  if (img) await img.decode().catch(() => {});
+};
+
+function card(t, a, b, title, body) {
+  const pin = ease(seg(t, a, a + 0.6)), pout = 1 - seg(t, b - 0.4, b);
+  return `<div class="abs card" style="opacity:${Math.min(pin, pout)}"><div class="icon">${ICON}</div><h1>${title}</h1><p>${body}</p></div>`;
+}
+</script>

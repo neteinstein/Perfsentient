@@ -21,6 +21,7 @@ store-listing/
 ├── graphics/                    icon-512.png, feature-graphic-1024x500.png
 ├── screenshots/                 phone/ (+ tablets) PNGs, in upload order
 └── video/                       brag launch video (mp4 + README autoplay GIF)
+    └── review/                  captioned QUERY_ALL_PACKAGES review video
 ```
 
 ## Copy-pasting the text fields
@@ -76,6 +77,9 @@ and finding in them is fictional sample data.
 `video/brag.mp4` is a short launch video made with [brag](https://github.com/latent-spaces/brag).
 Play Console's **Video** field takes a **YouTube URL**, not a file: upload the MP4 to YouTube (public or
 unlisted, ads off) and paste the link. See [`video/README.md`](video/README.md).
+
+The **QUERY_ALL_PACKAGES declaration** needs a different video: a captioned walkthrough of the app being opened
+and used. That one is [`video/review/review-walkthrough.mp4`](video/review/README.md).
 
 ## Release checklist
 
