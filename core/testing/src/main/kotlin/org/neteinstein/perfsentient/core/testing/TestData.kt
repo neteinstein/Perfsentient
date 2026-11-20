@@ -40,6 +40,7 @@ object TestData {
         admin: Boolean = false,
         batteryExempt: Boolean = false,
         cacheBytes: Long = 0,
+        iconDisabled: Boolean = false,
     ) = AppProfile(
         packageName = pkg,
         label = label,
@@ -53,11 +54,14 @@ object TestData {
         startsOnBoot = false,
         cacheBytes = cacheBytes,
         firstInstallTime = 0,
+        launcherIconDisabled = iconDisabled,
     )
 
     fun usage(pkg: String, foregroundMs: Long = 0, serviceMs: Long = 0) = AppUsage(pkg, foregroundMs, serviceMs, 0)
 
-    fun network(pkg: String, foreground: Long = 0, background: Long = 0) = NetworkUsage(pkg, foreground, background)
+    /** [background] is mobile traffic by default; [backgroundWifi] is added on top of it. */
+    fun network(pkg: String, foreground: Long = 0, background: Long = 0, backgroundWifi: Long = 0) =
+        NetworkUsage(pkg, foreground, background + backgroundWifi, backgroundMobileBytes = background)
 
     fun event(pkg: String, type: UsageEventType, at: Long) = UsageEventRecord(pkg, type, at)
 

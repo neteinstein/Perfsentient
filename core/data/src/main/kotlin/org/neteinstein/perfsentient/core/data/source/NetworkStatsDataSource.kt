@@ -18,10 +18,11 @@ class NetworkStatsDataSource(
     fun usage(startMs: Long, endMs: Long): List<NetworkUsage> {
         val foreground = mutableMapOf<Int, Long>()
         val background = mutableMapOf<Int, Long>()
+        val backgroundMobile = mutableMapOf<Int, Long>()
 
         @Suppress("DEPRECATION")
-        val networkTypes = listOf(ConnectivityManager.TYPE_WIFI, ConnectivityManager.TYPE_MOBILE)
-        networkTypes.forEach { type ->
+        val networkTypes = listOf(ConnectivityManager.TYPE_WIFI to false, ConnectivityManager.TYPE_MOBILE to true)
+        networkTypes.forEach { (type, isMobile) ->
             val stats = runCatching { networkStatsManager.querySummary(type, null, startMs, endMs) }.getOrNull()
                 ?: return@forEach
             stats.use { summary ->
@@ -32,12 +33,15 @@ class NetworkStatsDataSource(
                     val bytes = bucket.rxBytes + bucket.txBytes
                     val target = if (bucket.state == NetworkStats.Bucket.STATE_FOREGROUND) foreground else background
                     target.merge(bucket.uid, bytes, Long::plus)
+                    if (isMobile && target === background) {
+                        backgroundMobile.merge(bucket.uid, bytes, Long::plus)
+                    }
                 }
             }
         }
         return (foreground.keys + background.keys).mapNotNull { uid ->
             val pkg = packageManager.getPackagesForUid(uid)?.firstOrNull() ?: return@mapNotNull null
-            NetworkUsage(pkg, foreground[uid] ?: 0L, background[uid] ?: 0L)
+            NetworkUsage(pkg, foreground[uid] ?: 0L, background[uid] ?: 0L, backgroundMobile[uid] ?: 0L)
         }
     }
 }

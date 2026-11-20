@@ -5,7 +5,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.BehaviorDetector
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.ForegroundSessions
 import org.neteinstein.perfsentient.core.domain.analysis.finding
-import org.neteinstein.perfsentient.core.domain.analysis.severityFor
+import org.neteinstein.perfsentient.core.domain.analysis.unsolicitedLaunchSeverity
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.Finding
 
@@ -13,6 +13,9 @@ import org.neteinstein.perfsentient.core.model.Finding
  * "After-call" ads: adware listens for the call state going back to idle and immediately
  * launches a full-screen activity (usually using the overlay permission). We see that as a
  * short session of a third-party app directly following the dialer / in-call UI.
+ *
+ * Going back to the app that was on screen when the call came in is not counted, and a single
+ * occurrence is not enough: users routinely open an app right after hanging up.
  */
 class AfterCallAdsDetector(private val thresholds: DetectionThresholds) : BehaviorDetector {
     override fun detect(input: AnalysisInput): List<Finding> {
@@ -21,18 +24,23 @@ class AfterCallAdsDetector(private val thresholds: DetectionThresholds) : Behavi
         val sessions = ForegroundSessions.build(input.events, ctx.systemUiPackages, thresholds.unlockPopupWindowMs)
         val excluded = ctx.launcherPackages + ctx.dialerPackages + ctx.selfPackage
 
-        val counts = sessions.zipWithNext()
-            .filter { (previous, current) ->
+        val counts = sessions.indices
+            .filter { index ->
+                val previous = sessions.getOrNull(index - 1) ?: return@filter false
+                val current = sessions[index]
+                // The call interrupted this app and the user simply went back to it.
+                val returnedToInterruptedApp = sessions.getOrNull(index - 2)?.packageName == current.packageName
                 previous.packageName in ctx.dialerPackages &&
                     current.packageName !in excluded &&
+                    !returnedToInterruptedApp &&
                     current.durationMs <= thresholds.afterCallMaxDurationMs
             }
-            .groupingBy { it.second.packageName }
+            .groupingBy { sessions[it].packageName }
             .eachCount()
 
         return counts.mapNotNull { (pkg, count) ->
             val app = input.candidate(pkg) ?: return@mapNotNull null
-            val severity = severityFor(count, thresholds.afterCallMediumCount, thresholds.afterCallHighCount)
+            val severity = app.unsolicitedLaunchSeverity(count, thresholds.afterCallMediumCount, thresholds.afterCallHighCount)
                 ?: return@mapNotNull null
             app.finding(BehaviorType.AFTER_CALL_ADS, severity, count.toLong())
         }
