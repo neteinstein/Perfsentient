@@ -68,7 +68,7 @@
     <string name="settings_permission_optional">Facultatif</string>
     <string name="permission_system_logs_title">Détection des ANR et plantages</string>
     <string name="permission_system_logs_desc">Repère les applis qui se figent ou plantent souvent. Nécessite une commande unique depuis un ordinateur.</string>
-    <string name="permission_system_logs_why">Android ne partage les blocages (ANR) et plantages des autres applis que via son journal d\'erreurs système, qui nécessite l\'autorisation READ_LOGS. Elle ne peut pas être accordée depuis le téléphone : connectez-le à un ordinateur avec le débogage USB activé et exécutez la commande affichée en appuyant sur Autoriser. Perfsentient ne lit que le nom de l\'appli et l\'heure de chaque entrée, jamais les traces d\'appels ni d\'autres journaux.</string>
+    <string name="permission_system_logs_why">Android ne partage les blocages (ANR) et plantages des autres applis que via son journal d\'erreurs système, qui nécessite l\'autorisation READ_LOGS / READ_DROPBOX_DATA. Elle ne peut pas être accordée depuis le téléphone : connectez-le à un ordinateur avec le débogage USB activé et exécutez la commande affichée en appuyant sur Autoriser. Perfsentient ne lit que le nom de l\'appli et l\'heure de chaque entrée, jamais les traces d\'appels ni d\'autres journaux.</string>
     <string name="settings_adb_dialog_title">Autoriser avec adb</string>
     <string name="settings_adb_dialog_body">Activez le débogage USB, connectez le téléphone à un ordinateur et exécutez :</string>
     <string name="settings_adb_copy">Copier la commande</string>

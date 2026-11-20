@@ -10,14 +10,16 @@ import org.neteinstein.perfsentient.core.model.AppIssueType
 /**
  * Reads app ANRs and crashes from the system error log ([DropBoxManager]).
  *
- * Needs `READ_LOGS` (development permission, granted with `adb shell pm grant`) on top of Usage
- * access. Without it, or if the system refuses, it returns an empty list. Only the package name
- * and the time of each entry are kept: stack traces are never read beyond the header.
+ * Needs `READ_LOGS` (Android 14 and older) or `READ_DROPBOX_DATA` (Android 15+), development
+ * permissions granted with `adb shell pm grant`, on top of Usage access. Without them, or if the
+ * system refuses, it returns an empty list. Only the package name and the time of each entry are
+ * kept: stack traces are never read beyond the header.
  */
 class SystemErrorLogDataSource(private val context: Context) {
     private val dropBox: DropBoxManager? = context.getSystemService(DropBoxManager::class.java)
 
-    fun hasAccess(): Boolean = context.checkSelfPermission(Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_GRANTED
+    /** Which of the two the platform enforces depends on its version and flags, so either counts. */
+    fun hasAccess(): Boolean = LOG_PERMISSIONS.any { context.checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }
 
     fun issues(startMs: Long, endMs: Long): List<AppIssueRecord> {
         val manager = dropBox ?: return emptyList()
@@ -42,6 +44,9 @@ class SystemErrorLogDataSource(private val context: Context) {
         }
 
     internal companion object {
+        // A flagged API constant on newer SDKs; the literal keeps it usable at every API level.
+        private const val READ_DROPBOX_DATA = "android.permission.READ_DROPBOX_DATA"
+        private val LOG_PERMISSIONS = listOf(Manifest.permission.READ_LOGS, READ_DROPBOX_DATA)
         private const val HEADER_BYTES = 1024
         private const val MAX_ENTRIES_PER_TAG = 500
 

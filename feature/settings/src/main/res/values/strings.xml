@@ -74,10 +74,10 @@
     <string name="settings_permission_optional">Optional</string>
     <string name="permission_system_logs_title">ANR &amp; crash detection</string>
     <string name="permission_system_logs_desc">Spot apps that freeze or keep crashing. Needs a one-time command from a computer.</string>
-    <string name="permission_system_logs_why">Android only shares other apps\' freezes (ANRs) and crashes through its system error log, which requires the READ_LOGS permission. It cannot be granted from the phone: connect it to a computer with USB debugging enabled and run the command shown when you tap Grant. Perfsentient only reads the app name and time of each entry, never stack traces or other logs.</string>
+    <string name="permission_system_logs_why">Android only shares other apps\' freezes (ANRs) and crashes through its system error log, which requires the READ_LOGS / READ_DROPBOX_DATA permission. It cannot be granted from the phone: connect it to a computer with USB debugging enabled and run the command shown when you tap Grant. Perfsentient only reads the app name and time of each entry, never stack traces or other logs.</string>
     <string name="settings_adb_dialog_title">Grant with adb</string>
     <string name="settings_adb_dialog_body">Enable USB debugging, connect the phone to a computer and run:</string>
     <string name="settings_adb_copy">Copy command</string>
     <string name="settings_adb_close">Close</string>
-    <string name="settings_adb_command" translatable="false">adb shell pm grant %1$s android.permission.READ_LOGS</string>
+    <string name="settings_adb_command" translatable="false">adb shell pm grant %1$s android.permission.READ_LOGS\nadb shell pm grant %1$s android.permission.READ_DROPBOX_DATA</string>
 </resources>

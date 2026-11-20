@@ -66,7 +66,7 @@
     <string name="settings_permission_optional">Optional</string>
     <string name="permission_system_logs_title">ANR- und Absturzerkennung</string>
     <string name="permission_system_logs_desc">Findet Apps, die einfrieren oder oft abstürzen. Erfordert einen einmaligen Befehl von einem Computer.</string>
-    <string name="permission_system_logs_why">Android teilt das Einfrieren (ANRs) und Abstürze anderer Apps nur über sein Systemfehlerprotokoll, das die Berechtigung READ_LOGS erfordert. Sie kann nicht auf dem Handy erteilt werden: Verbinde es mit aktiviertem USB-Debugging mit einem Computer und führe den Befehl aus, der beim Tippen auf Erteilen angezeigt wird. Perfsentient liest nur den App-Namen und die Uhrzeit jedes Eintrags, niemals Stacktraces oder andere Protokolle.</string>
+    <string name="permission_system_logs_why">Android teilt das Einfrieren (ANRs) und Abstürze anderer Apps nur über sein Systemfehlerprotokoll, das die Berechtigung READ_LOGS / READ_DROPBOX_DATA erfordert. Sie kann nicht auf dem Handy erteilt werden: Verbinde es mit aktiviertem USB-Debugging mit einem Computer und führe den Befehl aus, der beim Tippen auf Erteilen angezeigt wird. Perfsentient liest nur den App-Namen und die Uhrzeit jedes Eintrags, niemals Stacktraces oder andere Protokolle.</string>
     <string name="settings_adb_dialog_title">Mit adb erteilen</string>
     <string name="settings_adb_dialog_body">Aktiviere USB-Debugging, verbinde das Handy mit einem Computer und führe aus:</string>
     <string name="settings_adb_copy">Befehl kopieren</string>

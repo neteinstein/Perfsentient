@@ -68,7 +68,7 @@
     <string name="settings_permission_optional">Facoltativa</string>
     <string name="permission_system_logs_title">Rilevamento ANR e arresti</string>
     <string name="permission_system_logs_desc">Individua le app che si bloccano o si arrestano spesso. Richiede un comando una tantum da un computer.</string>
-    <string name="permission_system_logs_why">Android condivide i blocchi (ANR) e gli arresti anomali delle altre app solo tramite il registro errori di sistema, che richiede l\'autorizzazione READ_LOGS. Non può essere concessa dal telefono: collegalo a un computer con il debug USB attivo ed esegui il comando mostrato toccando Concedi. Perfsentient legge solo il nome dell\'app e l\'ora di ogni voce, mai stack trace o altri log.</string>
+    <string name="permission_system_logs_why">Android condivide i blocchi (ANR) e gli arresti anomali delle altre app solo tramite il registro errori di sistema, che richiede l\'autorizzazione READ_LOGS / READ_DROPBOX_DATA. Non può essere concessa dal telefono: collegalo a un computer con il debug USB attivo ed esegui il comando mostrato toccando Concedi. Perfsentient legge solo il nome dell\'app e l\'ora di ogni voce, mai stack trace o altri log.</string>
     <string name="settings_adb_dialog_title">Concedi con adb</string>
     <string name="settings_adb_dialog_body">Attiva il debug USB, collega il telefono a un computer ed esegui:</string>
     <string name="settings_adb_copy">Copia comando</string>
