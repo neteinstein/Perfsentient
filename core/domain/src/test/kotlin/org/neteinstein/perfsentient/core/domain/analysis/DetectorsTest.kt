@@ -269,9 +269,10 @@ class DetectorsTest {
         assertEquals(setOf("uploader", "hog"), result.keys)
         assertEquals(Severity.MEDIUM, result.getValue("uploader").severity)
         assertEquals(Severity.HIGH, result.getValue("hog").severity)
-        assertEquals(610 * MB, BackgroundDataDetector(thresholds).detect(
+        val mixed = BackgroundDataDetector(thresholds).detect(
             input(apps = listOf(app("x")), network = listOf(network("x", background = 60 * MB, backgroundWifi = 550 * MB))),
-        ).single().value)
+        )
+        assertEquals("reports total background bytes", 610 * MB, mixed.single().value)
     }
 
     @Test
