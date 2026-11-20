@@ -67,6 +67,7 @@ class GenerateDailyReportUseCaseTest {
     fun `misbehaving apps lower the score and show up as offenders`() = runTest {
         inventory.apps = listOf(TestData.app("adware", overlay = true, launcher = false, installer = null), TestData.app("spammer"))
         usage.network = listOf(TestData.network("adware", background = 300L * 1024 * 1024))
+        usage.appIssues = List(3) { TestData.anr("spammer", it.toLong()) }
         notifications.increment("spammer", time.today())
         repeat(150) { notifications.increment("spammer", time.today()) }
 
@@ -76,6 +77,7 @@ class GenerateDailyReportUseCaseTest {
         assertEquals(listOf("adware", "spammer"), report.offenders.map { it.packageName })
         assertTrue(report.findings.any { it.type == BehaviorType.NOTIFICATION_SPAM })
         assertTrue(report.findings.any { it.type == BehaviorType.BACKGROUND_DATA })
+        assertTrue("ANRs reach the detectors", report.findings.any { it.type == BehaviorType.APP_NOT_RESPONDING })
     }
 
     @Test

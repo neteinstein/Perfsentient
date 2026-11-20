@@ -54,6 +54,7 @@ class GenerateDailyReportUseCase(
             val network = async { usageRepository.getNetworkUsage(start, end) }
             val notifications = async { notificationStatsRepository.getCounts(today) }
             val vitals = async { vitalsRepository.getSamples(start, end) }
+            val appIssues = async { usageRepository.getAppIssues(start, end) }
             AnalysisInput(
                 windowStartMs = start,
                 windowEndMs = end,
@@ -65,6 +66,7 @@ class GenerateDailyReportUseCase(
                 notifications = notifications.await(),
                 vitals = vitals.await(),
                 context = context.await(),
+                appIssues = appIssues.await(),
             )
         }
 

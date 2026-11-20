@@ -99,3 +99,19 @@ data class DeviceContext(
     val dialerPackages: Set<String>,
     val systemUiPackages: Set<String>,
 )
+
+/** Kinds of app failure the system records in its error log (DropBox). */
+enum class AppIssueType {
+    /** "App isn't responding": the main thread was blocked for too long. */
+    ANR,
+
+    /** The app process crashed (Java or native). */
+    CRASH,
+}
+
+/** One ANR or crash of [packageName], read from the system error log. */
+data class AppIssueRecord(
+    val packageName: String,
+    val type: AppIssueType,
+    val timestamp: Long,
+)

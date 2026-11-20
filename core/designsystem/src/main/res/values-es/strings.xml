@@ -30,4 +30,8 @@
     <string name="verdict_good">Buena</string>
     <string name="verdict_fair">Regular</string>
     <string name="verdict_poor">Mala</string>
+    <string name="behavior_app_not_responding_title">No responde</string>
+    <string name="behavior_app_not_responding_desc">Se bloqueó varias veces hoy y mostró \"La aplicación no responde\". Los ANR frecuentes hacen que el teléfono vaya lento.</string>
+    <string name="behavior_app_crashes_title">Se cierra a menudo</string>
+    <string name="behavior_app_crashes_desc">Se cerró inesperadamente varias veces hoy. Actualizarla, borrar su caché o reinstalarla suele ayudar.</string>
 </resources>

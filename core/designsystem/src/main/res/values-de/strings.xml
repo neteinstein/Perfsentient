@@ -30,4 +30,8 @@
     <string name="verdict_good">Gut</string>
     <string name="verdict_fair">Mittel</string>
     <string name="verdict_poor">Schlecht</string>
+    <string name="behavior_app_not_responding_title">Reagiert nicht</string>
+    <string name="behavior_app_not_responding_desc">Ist heute mehrmals eingefroren und hat „App reagiert nicht“ angezeigt. Häufige ANRs machen das Handy langsam.</string>
+    <string name="behavior_app_crashes_title">Stürzt oft ab</string>
+    <string name="behavior_app_crashes_desc">Ist heute mehrmals abgestürzt. Aktualisieren, den Cache leeren oder neu installieren hilft meistens.</string>
 </resources>

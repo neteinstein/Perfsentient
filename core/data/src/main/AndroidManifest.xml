@@ -14,6 +14,13 @@
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
+    <!-- Optional, never requested at runtime: a development permission the user can grant with
+         `adb shell pm grant <package> android.permission.READ_LOGS`. Only used to read the system
+         error log (DropBox) for app ANR / crash counts; the app degrades gracefully without it. -->
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+
     <queries>
         <intent>
             <action android:name="android.intent.action.MAIN" />

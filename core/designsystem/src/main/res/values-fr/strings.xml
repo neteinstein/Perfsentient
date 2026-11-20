@@ -30,4 +30,8 @@
     <string name="verdict_good">Bon</string>
     <string name="verdict_fair">Moyen</string>
     <string name="verdict_poor">Mauvais</string>
+    <string name="behavior_app_not_responding_title">Ne répond pas</string>
+    <string name="behavior_app_not_responding_desc">S\'est figée plusieurs fois aujourd\'hui en affichant « L\'application ne répond pas ». Des ANR fréquents ralentissent le téléphone.</string>
+    <string name="behavior_app_crashes_title">Plante souvent</string>
+    <string name="behavior_app_crashes_desc">A planté plusieurs fois aujourd\'hui. La mettre à jour, vider son cache ou la réinstaller aide généralement.</string>
 </resources>

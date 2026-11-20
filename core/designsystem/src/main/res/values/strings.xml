@@ -33,4 +33,8 @@
     <string name="verdict_good">Good</string>
     <string name="verdict_fair">Fair</string>
     <string name="verdict_poor">Poor</string>
+    <string name="behavior_app_not_responding_title">Not responding</string>
+    <string name="behavior_app_not_responding_desc">Froze several times today and showed \"App isn\'t responding\". Frequent ANRs make the phone feel slow.</string>
+    <string name="behavior_app_crashes_title">Keeps crashing</string>
+    <string name="behavior_app_crashes_desc">Crashed several times today. Updating, clearing its cache or reinstalling it usually helps.</string>
 </resources>

@@ -30,6 +30,10 @@ data class DetectionThresholds(
     /** Unmetered (Wi-Fi) background traffic is cheap; only flag it when it is really large. */
     val backgroundWifiDataMediumBytes: Long = 500 * BYTES_IN_MB,
     val backgroundWifiDataHighBytes: Long = 2 * BYTES_IN_GB,
+    val anrMediumCount: Int = 2,
+    val anrHighCount: Int = 5,
+    val crashMediumCount: Int = 3,
+    val crashHighCount: Int = 10,
     val notificationMediumCount: Int = 40,
     val notificationHighCount: Int = 100,
     val notificationAbsoluteCount: Int = 150,

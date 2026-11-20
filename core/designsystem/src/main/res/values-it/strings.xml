@@ -30,4 +30,8 @@
     <string name="verdict_good">Buona</string>
     <string name="verdict_fair">Discreta</string>
     <string name="verdict_poor">Scarsa</string>
+    <string name="behavior_app_not_responding_title">Non risponde</string>
+    <string name="behavior_app_not_responding_desc">Si è bloccata più volte oggi mostrando \"L\'app non risponde\". ANR frequenti rendono il telefono lento.</string>
+    <string name="behavior_app_crashes_title">Si arresta spesso</string>
+    <string name="behavior_app_crashes_desc">Si è arrestata più volte oggi. Aggiornarla, svuotarne la cache o reinstallarla di solito aiuta.</string>
 </resources>

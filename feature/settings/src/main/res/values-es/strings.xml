@@ -65,4 +65,12 @@
     <string name="settings_section_detection">Qué buscamos</string>
     <string name="settings_footer">Perfsentient • en el dispositivo • sin permiso de Internet</string>
     <string name="settings_section_detection_desc">Heurísticas basadas en la política de Google Play, Android vitals y estudios publicados sobre adware.</string>
+    <string name="settings_permission_optional">Opcional</string>
+    <string name="permission_system_logs_title">Detección de ANR y cierres</string>
+    <string name="permission_system_logs_desc">Detecta apps que se bloquean o se cierran a menudo. Requiere un comando único desde un ordenador.</string>
+    <string name="permission_system_logs_why">Android solo comparte los bloqueos (ANR) y cierres de otras apps a través de su registro de errores del sistema, que requiere el permiso READ_LOGS. No se puede conceder desde el teléfono: conéctalo a un ordenador con la depuración USB activada y ejecuta el comando que aparece al tocar Conceder. Perfsentient solo lee el nombre de la app y la hora de cada entrada, nunca trazas de pila ni otros registros.</string>
+    <string name="settings_adb_dialog_title">Conceder con adb</string>
+    <string name="settings_adb_dialog_body">Activa la depuración USB, conecta el teléfono a un ordenador y ejecuta:</string>
+    <string name="settings_adb_copy">Copiar comando</string>
+    <string name="settings_adb_close">Cerrar</string>
 </resources>

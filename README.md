@@ -76,6 +76,7 @@
 | ♿ | **Accessibility / device admin** | Has an accessibility service or device-admin rights turned on. Rated more serious for apps not installed from a store |
 | 🔓 | **Unrestricted battery** | Exempt from battery optimisation **and** doing heavy background work |
 | 💾 | **Storage hog** | A very large cache (`StorageStatsManager`) |
+| ⏳ | **Not responding / keeps crashing** | Repeated ANRs or crashes in a day, read from the system error log (`DropBoxManager`). Optional: needs `READ_LOGS`, granted once with `adb shell pm grant <package> android.permission.READ_LOGS` |
 | 🌡️ | **Device issues** | Battery drain with the screen off, temperature, thermal throttling and memory pressure, sampled every 15 minutes |
 
 Each finding has a severity, and the severities feed the day's health score. The thresholds are in

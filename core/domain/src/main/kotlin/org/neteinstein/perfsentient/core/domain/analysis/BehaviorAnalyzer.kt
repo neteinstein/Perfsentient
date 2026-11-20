@@ -1,6 +1,7 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
 import org.neteinstein.perfsentient.core.domain.analysis.detector.AfterCallAdsDetector
+import org.neteinstein.perfsentient.core.domain.analysis.detector.AppStabilityDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.BackgroundDataDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.CapabilityRiskDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.HiddenIconDetector
@@ -34,6 +35,7 @@ class BehaviorAnalyzer internal constructor(private val detectors: List<Behavior
             NotificationSpamDetector(thresholds),
             CapabilityRiskDetector(thresholds),
             StorageBloatDetector(thresholds),
+            AppStabilityDetector(thresholds),
         )
     }
 }

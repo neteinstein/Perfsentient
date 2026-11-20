@@ -30,4 +30,8 @@
     <string name="verdict_good">Boa</string>
     <string name="verdict_fair">Razoável</string>
     <string name="verdict_poor">Fraca</string>
+    <string name="behavior_app_not_responding_title">Não responde</string>
+    <string name="behavior_app_not_responding_desc">Bloqueou várias vezes hoje e mostrou \"A app não está a responder\". ANR frequentes tornam o telemóvel lento.</string>
+    <string name="behavior_app_crashes_title">Falha constantemente</string>
+    <string name="behavior_app_crashes_desc">Falhou várias vezes hoje. Atualizar, limpar a cache ou reinstalar costuma resolver.</string>
 </resources>
