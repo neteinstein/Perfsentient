@@ -14,6 +14,11 @@ data class AppProfile(
     val startsOnBoot: Boolean,
     val cacheBytes: Long,
     val firstInstallTime: Long,
+    /**
+     * True when the app declares a launcher activity but has disabled it, i.e. it actively hid
+     * its icon. Apps that never had an icon (plugins, keyboards, companion services) are false.
+     */
+    val launcherIconDisabled: Boolean = false,
 ) {
     /** True when the app did not come from a known store (Play / OEM store). */
     val isSideloaded: Boolean
@@ -47,8 +52,14 @@ data class AppUsage(
 data class NetworkUsage(
     val packageName: String,
     val foregroundBytes: Long,
+    /** Background traffic over every network (Wi-Fi + mobile). */
     val backgroundBytes: Long,
-)
+    /** The part of [backgroundBytes] sent over the (usually metered) mobile network. */
+    val backgroundMobileBytes: Long = 0,
+) {
+    /** Background traffic over unmetered networks such as Wi-Fi. */
+    val backgroundWifiBytes: Long get() = (backgroundBytes - backgroundMobileBytes).coerceAtLeast(0)
+}
 
 /** Subset of android.app.usage.UsageEvents we care about. */
 enum class UsageEventType {
