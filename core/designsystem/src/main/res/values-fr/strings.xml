@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Oiseau de nuit</string>
     <string name="behavior_night_activity_desc">S\'est réveillée ou a ouvert des écrans pendant la nuit alors que l\'écran était éteint.</string>
     <string name="behavior_background_data_title">Gourmande en données</string>
-    <string name="behavior_background_data_desc">A transféré beaucoup de données en arrière-plan. Android Vitals considère plus de 50 Mo par jour comme excessif.</string>
+    <string name="behavior_background_data_desc">A transféré beaucoup de données en arrière-plan. Android Vitals considère plus de 50 Mo de données mobiles par jour comme excessif.</string>
     <string name="behavior_notification_spam_title">Spam de notifications</string>
     <string name="behavior_notification_spam_desc">A publié un nombre inhabituellement élevé de notifications.</string>
     <string name="behavior_accessibility_risk_title">Accès d\'accessibilité</string>

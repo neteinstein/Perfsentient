@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Noctívaga</string>
     <string name="behavior_night_activity_desc">Acordou ou abriu ecrãs durante a noite com o ecrã desligado.</string>
     <string name="behavior_background_data_title">Gasta dados em segundo plano</string>
-    <string name="behavior_background_data_desc">Transferiu muitos dados em segundo plano. O Android vitals considera excessivo mais de 50 MB por dia.</string>
+    <string name="behavior_background_data_desc">Transferiu muitos dados em segundo plano. O Android vitals considera excessivo mais de 50 MB de dados móveis por dia.</string>
     <string name="behavior_notification_spam_title">Spam de notificações</string>
     <string name="behavior_notification_spam_desc">Publicou um número invulgarmente alto de notificações.</string>
     <string name="behavior_accessibility_risk_title">Acesso de acessibilidade</string>

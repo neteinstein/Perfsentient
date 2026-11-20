@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Activă noaptea</string>
     <string name="behavior_night_activity_desc">S-a activat sau a deschis ecrane noaptea, cu ecranul stins.</string>
     <string name="behavior_background_data_title">Consumă date în fundal</string>
-    <string name="behavior_background_data_desc">A transferat multe date în fundal. Android vitals consideră excesiv peste 50 MB pe zi.</string>
+    <string name="behavior_background_data_desc">A transferat multe date în fundal. Android vitals consideră excesiv peste 50 MB de date mobile pe zi.</string>
     <string name="behavior_notification_spam_title">Spam de notificări</string>
     <string name="behavior_notification_spam_desc">A afișat un număr neobișnuit de mare de notificări.</string>
     <string name="behavior_accessibility_risk_title">Acces de accesibilitate</string>
