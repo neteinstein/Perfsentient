@@ -1,6 +1,7 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
 import java.time.ZoneOffset
+import org.neteinstein.perfsentient.core.model.AppIssueRecord
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.NetworkUsage
@@ -15,6 +16,7 @@ internal fun input(
     network: List<NetworkUsage> = emptyList(),
     notifications: Map<String, Int> = emptyMap(),
     vitals: List<VitalSample> = emptyList(),
+    appIssues: List<AppIssueRecord> = emptyList(),
 ) = AnalysisInput(
     windowStartMs = 0,
     windowEndMs = Long.MAX_VALUE,
@@ -28,6 +30,7 @@ internal fun input(
     notifications = notifications,
     vitals = vitals,
     context = TestData.deviceContext(),
+    appIssues = appIssues,
 )
 
 internal const val SEC = 1_000L

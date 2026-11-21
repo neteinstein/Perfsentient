@@ -30,4 +30,8 @@
     <string name="verdict_good">Bună</string>
     <string name="verdict_fair">Acceptabilă</string>
     <string name="verdict_poor">Slabă</string>
+    <string name="behavior_app_not_responding_title">Nu răspunde</string>
+    <string name="behavior_app_not_responding_desc">S-a blocat de mai multe ori azi și a afișat „Aplicația nu răspunde”. ANR-urile frecvente încetinesc telefonul.</string>
+    <string name="behavior_app_crashes_title">Se închide des</string>
+    <string name="behavior_app_crashes_desc">S-a închis neașteptat de mai multe ori azi. Actualizarea, golirea memoriei cache sau reinstalarea ajută de obicei.</string>
 </resources>

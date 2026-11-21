@@ -4,6 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.neteinstein.perfsentient.core.domain.analysis.detector.AfterCallAdsDetector
+import org.neteinstein.perfsentient.core.domain.analysis.detector.AppStabilityDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.BackgroundDataDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.CapabilityRiskDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.HiddenIconDetector
@@ -19,7 +20,9 @@ import org.neteinstein.perfsentient.core.model.UsageEventType
 import org.neteinstein.perfsentient.core.testing.TestData.DIALER
 import org.neteinstein.perfsentient.core.testing.TestData.LAUNCHER
 import org.neteinstein.perfsentient.core.testing.TestData.SELF
+import org.neteinstein.perfsentient.core.testing.TestData.anr
 import org.neteinstein.perfsentient.core.testing.TestData.app
+import org.neteinstein.perfsentient.core.testing.TestData.crash
 import org.neteinstein.perfsentient.core.testing.TestData.event
 import org.neteinstein.perfsentient.core.testing.TestData.network
 import org.neteinstein.perfsentient.core.testing.TestData.resumed
@@ -318,5 +321,37 @@ class DetectorsTest {
         assertEquals(setOf("big", "huge"), result.keys)
         assertEquals(Severity.LOW, result.getValue("big").severity)
         assertEquals(Severity.MEDIUM, result.getValue("huge").severity)
+    }
+
+    @Test
+    fun `stability detector flags repeated ANRs and crashes and escalates`() {
+        val issues = List(2) { anr("frozen", it.toLong()) } +
+            List(5) { anr("very-frozen", it.toLong()) } +
+            List(3) { crash("crashy", it.toLong()) } +
+            List(10) { crash("very-crashy", it.toLong()) }
+        val result = AppStabilityDetector(thresholds).detect(
+            input(apps = listOf(app("frozen"), app("very-frozen"), app("crashy"), app("very-crashy")), appIssues = issues),
+        ).associateBy { it.packageName to it.type }
+        assertEquals(Severity.MEDIUM, result.getValue("frozen" to BehaviorType.APP_NOT_RESPONDING).severity)
+        assertEquals(2L, result.getValue("frozen" to BehaviorType.APP_NOT_RESPONDING).value)
+        assertEquals(Severity.HIGH, result.getValue("very-frozen" to BehaviorType.APP_NOT_RESPONDING).severity)
+        assertEquals(Severity.MEDIUM, result.getValue("crashy" to BehaviorType.APP_CRASHES).severity)
+        assertEquals(Severity.HIGH, result.getValue("very-crashy" to BehaviorType.APP_CRASHES).severity)
+    }
+
+    @Test
+    fun `stability detector ignores occasional failures, system apps and unknown packages`() {
+        val issues = listOf(anr("once"), crash("once"), crash("once")) +
+            List(5) { anr("system-app") } +
+            List(5) { anr("uninstalled") }
+        val result = AppStabilityDetector(thresholds).detect(
+            input(apps = listOf(app("once"), app("system-app", system = true)), appIssues = issues),
+        )
+        assertTrue(result.isEmpty())
+    }
+
+    @Test
+    fun `stability detector reports nothing without system-log access`() {
+        assertTrue(AppStabilityDetector(thresholds).detect(input(apps = listOf(app("a")))).isEmpty())
     }
 }

@@ -13,6 +13,12 @@ enum class PermissionType {
 
     /** Install-time: android.permission.QUERY_ALL_PACKAGES (app inventory). */
     APP_INVENTORY,
+
+    /**
+     * Optional: android.permission.READ_LOGS, a development permission that can only be granted
+     * with adb. Unlocks ANR and crash detection through the system error log.
+     */
+    SYSTEM_LOGS,
 }
 
 /** How the permission is granted – drives the UI affordance. */
@@ -20,6 +26,9 @@ enum class GrantMode {
     RUNTIME_DIALOG,
     SYSTEM_SETTINGS,
     INSTALL_TIME,
+
+    /** Can only be granted from a computer with `adb shell pm grant`. */
+    ADB,
 }
 
 data class PermissionState(

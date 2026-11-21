@@ -1,6 +1,8 @@
 package org.neteinstein.perfsentient.core.testing
 
 import java.time.LocalDate
+import org.neteinstein.perfsentient.core.model.AppIssueRecord
+import org.neteinstein.perfsentient.core.model.AppIssueType
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -62,6 +64,10 @@ object TestData {
     /** [background] is mobile traffic by default; [backgroundWifi] is added on top of it. */
     fun network(pkg: String, foreground: Long = 0, background: Long = 0, backgroundWifi: Long = 0) =
         NetworkUsage(pkg, foreground, background + backgroundWifi, backgroundMobileBytes = background)
+
+    fun anr(pkg: String, at: Long = 0) = AppIssueRecord(pkg, AppIssueType.ANR, at)
+
+    fun crash(pkg: String, at: Long = 0) = AppIssueRecord(pkg, AppIssueType.CRASH, at)
 
     fun event(pkg: String, type: UsageEventType, at: Long) = UsageEventRecord(pkg, type, at)
 

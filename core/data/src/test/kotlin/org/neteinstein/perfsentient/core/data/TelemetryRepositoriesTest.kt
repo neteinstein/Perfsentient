@@ -23,6 +23,7 @@ import org.neteinstein.perfsentient.core.data.repository.VitalsRepositoryImpl
 import org.neteinstein.perfsentient.core.data.source.AppInventoryDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceVitalsDataSource
 import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
+import org.neteinstein.perfsentient.core.data.source.SystemErrorLogDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.testing.TestData
 import org.neteinstein.perfsentient.core.testing.TestDispatcherProvider
@@ -84,6 +85,8 @@ class TelemetryRepositoriesTest {
     fun `usage and inventory repositories delegate to their data sources`() = runTest {
         val usageSource = mockk<UsageStatsDataSource>()
         val networkSource = mockk<NetworkStatsDataSource>()
+        val errorLog = mockk<SystemErrorLogDataSource>()
+        every { errorLog.issues(1, 2) } returns listOf(TestData.anr("a", 1))
         val inventorySource = mockk<AppInventoryDataSource>()
         every { usageSource.appUsage(1, 2) } returns listOf(TestData.usage("a"))
         every { usageSource.events(1, 2) } returns listOf(TestData.resumed("a", 1))
@@ -91,12 +94,13 @@ class TelemetryRepositoriesTest {
         every { inventorySource.installedApps() } returns listOf(TestData.app("a"))
         every { inventorySource.deviceContext() } returns TestData.deviceContext()
 
-        val usage = UsageRepositoryImpl(usageSource, networkSource, dispatchers)
+        val usage = UsageRepositoryImpl(usageSource, networkSource, errorLog, dispatchers)
         val inventory = AppInventoryRepositoryImpl(inventorySource, dispatchers)
 
         assertEquals("a", usage.getAppUsage(1, 2).single().packageName)
         assertEquals("a", usage.getEvents(1, 2).single().packageName)
         assertEquals("a", usage.getNetworkUsage(1, 2).single().packageName)
+        assertEquals("a", usage.getAppIssues(1, 2).single().packageName)
         assertEquals("a", inventory.getInstalledApps().single().packageName)
         assertEquals(TestData.deviceContext(), inventory.getDeviceContext())
     }

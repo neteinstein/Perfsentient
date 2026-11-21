@@ -13,12 +13,14 @@ import org.neteinstein.perfsentient.core.data.mapper.toEntity
 import org.neteinstein.perfsentient.core.data.source.AppInventoryDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceVitalsDataSource
 import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
+import org.neteinstein.perfsentient.core.data.source.SystemErrorLogDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
 import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
+import org.neteinstein.perfsentient.core.model.AppIssueRecord
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DailyReport
@@ -30,6 +32,7 @@ import org.neteinstein.perfsentient.core.model.VitalSample
 class UsageRepositoryImpl(
     private val usageStats: UsageStatsDataSource,
     private val networkStats: NetworkStatsDataSource,
+    private val errorLog: SystemErrorLogDataSource,
     private val dispatchers: DispatcherProvider,
 ) : UsageRepository {
     override suspend fun getAppUsage(startMs: Long, endMs: Long): List<AppUsage> =
@@ -40,6 +43,9 @@ class UsageRepositoryImpl(
 
     override suspend fun getNetworkUsage(startMs: Long, endMs: Long): List<NetworkUsage> =
         withContext(dispatchers.io) { networkStats.usage(startMs, endMs) }
+
+    override suspend fun getAppIssues(startMs: Long, endMs: Long): List<AppIssueRecord> =
+        withContext(dispatchers.io) { errorLog.issues(startMs, endMs) }
 }
 
 class AppInventoryRepositoryImpl(

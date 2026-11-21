@@ -7,6 +7,7 @@ import android.provider.Settings
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Apps
+import androidx.compose.material.icons.rounded.BugReport
 import androidx.compose.material.icons.rounded.Insights
 import androidx.compose.material.icons.rounded.MarkEmailUnread
 import androidx.compose.material.icons.rounded.NotificationsActive
@@ -49,6 +50,13 @@ internal val PermissionType.presentation: PermissionPresentation
             R.string.permission_inventory_title,
             R.string.permission_inventory_desc,
             R.string.permission_inventory_why,
+        )
+
+        PermissionType.SYSTEM_LOGS -> PermissionPresentation(
+            Icons.Rounded.BugReport,
+            R.string.permission_system_logs_title,
+            R.string.permission_system_logs_desc,
+            R.string.permission_system_logs_why,
         )
     }
 

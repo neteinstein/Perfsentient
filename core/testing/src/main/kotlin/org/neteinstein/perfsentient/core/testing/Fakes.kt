@@ -15,6 +15,7 @@ import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
 import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
+import org.neteinstein.perfsentient.core.model.AppIssueRecord
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DailyReport
@@ -49,7 +50,10 @@ class FakePermissionRepository(granted: Boolean = false) : PermissionRepository 
         refresh()
     }
 
-    private fun snapshot() = PermissionType.entries.map { PermissionState(it, systemGrants[it] == true, true, GrantMode.SYSTEM_SETTINGS) }
+    private fun snapshot() = PermissionType.entries.map {
+        val optional = it == PermissionType.SYSTEM_LOGS
+        PermissionState(it, systemGrants[it] == true, isRequired = !optional, if (optional) GrantMode.ADB else GrantMode.SYSTEM_SETTINGS)
+    }
 }
 
 class FakeSettingsRepository(initial: UserSettings = UserSettings()) : SettingsRepository {
@@ -122,6 +126,7 @@ class FakeUsageRepository(
     var usage: List<AppUsage> = emptyList(),
     var events: List<UsageEventRecord> = emptyList(),
     var network: List<NetworkUsage> = emptyList(),
+    var appIssues: List<AppIssueRecord> = emptyList(),
 ) : UsageRepository {
     var failWith: Throwable? = null
 
@@ -133,6 +138,8 @@ class FakeUsageRepository(
     override suspend fun getEvents(startMs: Long, endMs: Long): List<UsageEventRecord> = events
 
     override suspend fun getNetworkUsage(startMs: Long, endMs: Long): List<NetworkUsage> = network
+
+    override suspend fun getAppIssues(startMs: Long, endMs: Long): List<AppIssueRecord> = appIssues
 }
 
 class FakeAppInventoryRepository(

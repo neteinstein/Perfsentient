@@ -90,4 +90,14 @@
     </plurals>
     <string name="report_duration_hm">%1$dh %2$02dmin</string>
     <string name="report_duration_m">%1$dmin</string>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d bloqueio (ANR) hoje</item>
+        <item quantity="many">%1$d bloqueios (ANR) hoje</item>
+        <item quantity="other">%1$d bloqueios (ANR) hoje</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d falha hoje</item>
+        <item quantity="many">%1$d falhas hoje</item>
+        <item quantity="other">%1$d falhas hoje</item>
+    </plurals>
 </resources>
