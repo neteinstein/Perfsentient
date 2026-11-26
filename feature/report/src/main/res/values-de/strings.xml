@@ -81,4 +81,12 @@
     </plurals>
     <string name="report_duration_hm">%1$d Std. %2$02d Min.</string>
     <string name="report_duration_m">%1$d Min.</string>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d Einfrieren (ANR) heute</item>
+        <item quantity="other">%1$d Einfrierungen (ANRs) heute</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d Absturz heute</item>
+        <item quantity="other">%1$d Abstürze heute</item>
+    </plurals>
 </resources>

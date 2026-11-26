@@ -65,4 +65,12 @@
     <string name="settings_section_detection">O que procuramos</string>
     <string name="settings_footer">Perfsentient • no dispositivo • sem permissão de Internet</string>
     <string name="settings_section_detection_desc">Heurísticas baseadas na política do Google Play, no Android vitals e em estudos publicados sobre adware.</string>
+    <string name="settings_permission_optional">Opcional</string>
+    <string name="permission_system_logs_title">Deteção de ANR e falhas</string>
+    <string name="permission_system_logs_desc">Identifica apps que bloqueiam ou falham constantemente. Requer um comando único a partir de um computador.</string>
+    <string name="permission_system_logs_why">O Android só partilha os bloqueios (ANR) e as falhas de outras apps através do registo de erros do sistema, que requer a permissão READ_LOGS / READ_DROPBOX_DATA. Não pode ser concedida no telemóvel: ligue-o a um computador com a depuração USB ativa e execute o comando mostrado ao tocar em Conceder. O Perfsentient só lê o nome da app e a hora de cada entrada, nunca stack traces nem outros registos.</string>
+    <string name="settings_adb_dialog_title">Conceder com adb</string>
+    <string name="settings_adb_dialog_body">Ative a depuração USB, ligue o telemóvel a um computador e execute:</string>
+    <string name="settings_adb_copy">Copiar comando</string>
+    <string name="settings_adb_close">Fechar</string>
 </resources>

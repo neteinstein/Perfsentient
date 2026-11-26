@@ -90,4 +90,14 @@
     </plurals>
     <string name="report_duration_hm">%1$d h %2$02d min</string>
     <string name="report_duration_m">%1$d min</string>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d blocco (ANR) oggi</item>
+        <item quantity="many">%1$d blocchi (ANR) oggi</item>
+        <item quantity="other">%1$d blocchi (ANR) oggi</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d arresto anomalo oggi</item>
+        <item quantity="many">%1$d arresti anomali oggi</item>
+        <item quantity="other">%1$d arresti anomali oggi</item>
+    </plurals>
 </resources>

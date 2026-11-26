@@ -82,7 +82,7 @@ import org.neteinstein.perfsentient.feature.settings.presentation.presentation
 internal fun MonitoringStatusCard(state: SettingsUiState, modifier: Modifier = Modifier) {
     val active = state.monitoringState == MonitoringState.ACTIVE
     val accent = if (active) PerfsentienceTheme.status.good else PerfsentienceTheme.status.fair
-    val total = state.permissions.size.coerceAtLeast(1)
+    val total = state.requiredPermissions.size.coerceAtLeast(1)
     val progress by animateFloatAsState(state.grantedCount / total.toFloat(), tween(700), label = "grantProgress")
 
     Card(
@@ -106,9 +106,9 @@ internal fun MonitoringStatusCard(state: SettingsUiState, modifier: Modifier = M
                     } else {
                         pluralStringResource(
                             R.plurals.settings_monitoring_waiting_desc,
-                            state.permissions.size,
+                            state.requiredPermissions.size,
                             state.grantedCount,
-                            state.permissions.size,
+                            state.requiredPermissions.size,
                         )
                     },
                     style = MaterialTheme.typography.bodyMedium,
@@ -150,12 +150,10 @@ internal fun PermissionCard(permission: PermissionState, onGrant: () -> Unit, mo
             Column(Modifier.weight(1f)) {
                 Text(stringResource(ui.title), style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.height(4.dp))
-                val chip = if (permission.grantMode ==
-                    GrantMode.INSTALL_TIME
-                ) {
-                    R.string.settings_permission_automatic
-                } else {
-                    R.string.settings_permission_required
+                val chip = when {
+                    permission.grantMode == GrantMode.INSTALL_TIME -> R.string.settings_permission_automatic
+                    !permission.isRequired -> R.string.settings_permission_optional
+                    else -> R.string.settings_permission_required
                 }
                 StatusChip(text = stringResource(chip), color = if (permission.isGranted) good else MaterialTheme.colorScheme.tertiary)
             }

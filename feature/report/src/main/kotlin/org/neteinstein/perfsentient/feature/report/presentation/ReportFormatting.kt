@@ -41,6 +41,10 @@ internal fun Context.describeValue(finding: Finding): String = when (finding.typ
     BehaviorType.STORAGE_BLOAT -> getString(R.string.report_value_cache, formatBytes(finding.value))
 
     BehaviorType.ACCESSIBILITY_RISK, BehaviorType.DEVICE_ADMIN -> getString(R.string.report_value_capability)
+
+    BehaviorType.APP_NOT_RESPONDING -> quantity(R.plurals.report_value_anrs, finding.value.toInt())
+
+    BehaviorType.APP_CRASHES -> quantity(R.plurals.report_value_crashes, finding.value.toInt())
 }
 
 @get:StringRes

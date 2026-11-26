@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Noctívaga</string>
     <string name="behavior_night_activity_desc">Acordou ou abriu ecrãs durante a noite com o ecrã desligado.</string>
     <string name="behavior_background_data_title">Gasta dados em segundo plano</string>
-    <string name="behavior_background_data_desc">Transferiu muitos dados em segundo plano. O Android vitals considera excessivo mais de 50 MB de dados móveis por dia; no Wi-Fi a margem é maior.</string>
+    <string name="behavior_background_data_desc">Transferiu muitos dados em segundo plano. O Android vitals considera excessivo mais de 50 MB de dados móveis por dia.</string>
     <string name="behavior_notification_spam_title">Spam de notificações</string>
     <string name="behavior_notification_spam_desc">Publicou um número invulgarmente alto de notificações.</string>
     <string name="behavior_accessibility_risk_title">Acesso de acessibilidade</string>
@@ -30,4 +30,8 @@
     <string name="verdict_good">Boa</string>
     <string name="verdict_fair">Razoável</string>
     <string name="verdict_poor">Fraca</string>
+    <string name="behavior_app_not_responding_title">Não responde</string>
+    <string name="behavior_app_not_responding_desc">Bloqueou várias vezes hoje e mostrou \"A app não está a responder\". ANR frequentes tornam o telemóvel lento.</string>
+    <string name="behavior_app_crashes_title">Falha constantemente</string>
+    <string name="behavior_app_crashes_desc">Falhou várias vezes hoje. Atualizar, limpar a cache ou reinstalar costuma resolver.</string>
 </resources>

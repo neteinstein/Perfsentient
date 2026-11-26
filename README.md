@@ -71,11 +71,12 @@
 | 👻 | **Hidden app** | Installed by you, has no launcher icon, but runs in the background |
 | ♾️ | **Always running** | Foreground service for ≥ 2 h a day while you use it for < 15 min (Android vitals wake-lock threshold) |
 | 🌙 | **Night owl** | Starts services or screens with the screen off between 00:00 and 06:00 |
-| 📶 | **Background data hog** | ≥ 50 MB a day of background mobile data (Android vitals threshold), or ≥ 250 MB on any network, from `NetworkStatsManager` |
+| 📶 | **Background data hog** | ≥ 50 MB a day of background mobile data (Android vitals threshold), or ≥ 500 MB over Wi-Fi, from `NetworkStatsManager` |
 | 🔕 | **Notification spam** | Notification counts from a `NotificationListenerService`. The content is never read |
 | ♿ | **Accessibility / device admin** | Has an accessibility service or device-admin rights turned on. Rated more serious for apps not installed from a store |
 | 🔓 | **Unrestricted battery** | Exempt from battery optimisation **and** doing heavy background work |
 | 💾 | **Storage hog** | A very large cache (`StorageStatsManager`) |
+| ⏳ | **Not responding / keeps crashing** | Repeated ANRs or crashes in a day, read from the system error log (`DropBoxManager`). Optional: needs `READ_LOGS` (Android 14 and older) or `READ_DROPBOX_DATA` (Android 15+), granted once with `adb shell pm grant <package> <permission>` |
 | 🌡️ | **Device issues** | Battery drain with the screen off, temperature, thermal throttling and memory pressure, sampled every 15 minutes |
 
 Each finding has a severity, and the severities feed the day's health score. The thresholds are in
