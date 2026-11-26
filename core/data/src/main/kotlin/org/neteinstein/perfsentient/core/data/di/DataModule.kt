@@ -13,6 +13,7 @@ import org.neteinstein.perfsentient.core.common.DefaultDispatcherProvider
 import org.neteinstein.perfsentient.core.common.DispatcherProvider
 import org.neteinstein.perfsentient.core.common.SystemTimeProvider
 import org.neteinstein.perfsentient.core.common.TimeProvider
+import org.neteinstein.perfsentient.core.data.local.ALL_MIGRATIONS
 import org.neteinstein.perfsentient.core.data.local.PerfsentienceDatabase
 import org.neteinstein.perfsentient.core.data.repository.AppInventoryRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.NotificationStatsRepositoryImpl
@@ -46,6 +47,8 @@ val dataModule = module {
 
     single {
         Room.databaseBuilder(androidContext(), PerfsentienceDatabase::class.java, PerfsentienceDatabase.NAME)
+            .addMigrations(*ALL_MIGRATIONS)
+            // Last resort for a downgrade or a missing path; real migrations keep the 30-day history.
             .fallbackToDestructiveMigration(dropAllTables = true)
             .build()
     }

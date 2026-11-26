@@ -155,6 +155,32 @@ class DetectorsTest {
     }
 
     @Test
+    fun `after-call detector ignores apps opened long after the call screen closed`() {
+        val events = listOf(
+            resumed(DIALER, 0),
+            event("android", UsageEventType.SCREEN_NON_INTERACTIVE, MIN),
+            resumed("game", 30 * MIN),
+            resumed(LAUNCHER, 30 * MIN + 10 * SEC),
+        )
+        assertTrue(AfterCallAdsDetector(thresholds).detect(input(apps = listOf(app("game")), events = events)).isEmpty())
+    }
+
+    @Test
+    fun `after-call detector still flags a screen that appears within the gap`() {
+        // Twice (a single after-call screen is ordinary use), each a few seconds after the call screen closed.
+        val events = listOf(0L, HOUR).flatMap { base ->
+            listOf(
+                resumed(DIALER, base),
+                event("android", UsageEventType.KEYGUARD_SHOWN, base + MIN),
+                resumed("caller-ads", base + MIN + 5 * SEC),
+                resumed(LAUNCHER, base + MIN + 15 * SEC),
+            )
+        }
+        val result = AfterCallAdsDetector(thresholds).detect(input(apps = listOf(app("caller-ads", overlay = true)), events = events))
+        assertEquals("caller-ads", result.single().packageName)
+    }
+
+    @Test
     fun `after-call detector ignores going home first`() {
         val events = listOf(resumed(DIALER, 0), resumed(LAUNCHER, MIN), resumed("whatsapp", MIN + SEC), resumed(LAUNCHER, MIN + 10 * SEC))
         assertTrue(afterCall(input(apps = listOf(app("whatsapp")), events = events)).isEmpty())

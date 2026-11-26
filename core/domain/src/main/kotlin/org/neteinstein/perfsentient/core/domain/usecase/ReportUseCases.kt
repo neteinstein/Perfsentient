@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import org.neteinstein.perfsentient.core.common.DispatcherProvider
+import org.neteinstein.perfsentient.core.common.MILLIS_IN_HOUR
 import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
@@ -22,8 +23,11 @@ import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.DailyReport
 
 /**
- * Collects today's telemetry, runs every detector, scores the day and persists the report.
- * Used both by the end-of-day worker and by the "analyse now" button.
+ * Collects the last 24 hours of telemetry, runs every detector, scores the day and persists the
+ * report under today's date. Used both by the end-of-day worker and by the "analyse now" button.
+ *
+ * A rolling window (instead of "since midnight") means consecutive daily reports cover the whole
+ * day with no gap: the evening after the report time is part of the next report.
  *
  * The stored report keeps every finding; the returned one leaves out trusted apps (see [TrustedAppsFilter]).
  */
@@ -42,8 +46,8 @@ class GenerateDailyReportUseCase(
     private val dispatchers: DispatcherProvider,
 ) {
     suspend operator fun invoke(): DailyReport = withContext(dispatchers.default) {
-        val start = timeProvider.startOfToday().toEpochMilli()
         val end = timeProvider.now().toEpochMilli()
+        val start = end - ANALYSIS_WINDOW_MS
         val today = timeProvider.today()
 
         val input = coroutineScope {
@@ -52,7 +56,7 @@ class GenerateDailyReportUseCase(
             val usage = async { usageRepository.getAppUsage(start, end) }
             val events = async { usageRepository.getEvents(start, end) }
             val network = async { usageRepository.getNetworkUsage(start, end) }
-            val notifications = async { notificationStatsRepository.getCounts(today) }
+            val notifications = async { notificationStatsRepository.getCounts(start, end) }
             val vitals = async { vitalsRepository.getSamples(start, end) }
             val appIssues = async { usageRepository.getAppIssues(start, end) }
             AnalysisInput(
@@ -92,6 +96,7 @@ class GenerateDailyReportUseCase(
 
     private companion object {
         const val REPORT_RETENTION_DAYS = 30L
+        const val ANALYSIS_WINDOW_MS = 24 * MILLIS_IN_HOUR
     }
 }
 

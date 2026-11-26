@@ -66,17 +66,18 @@ class MonitoringUseCasesTest {
         RecordVitalSampleUseCase(vitals, notifications, time)()
         assertEquals(1, vitals.samples.size)
         assertEquals(time.now().toEpochMilli() - 7 * 24 * 3_600_000L, vitals.deletedBefore)
-        assertEquals(time.today().minusDays(7), notifications.deletedBefore)
+        assertEquals(time.now().toEpochMilli() - 7 * 24 * 3_600_000L, notifications.deletedBefore)
     }
 
     @Test
-    fun `recording a notification increments today's counter`() = runTest {
+    fun `recording a notification counts it at the current time`() = runTest {
         val time = FakeTimeProvider()
         val notifications = FakeNotificationStatsRepository()
         val record = RecordNotificationUseCase(notifications, time)
         record("spam")
         record("spam")
-        assertEquals(mapOf("spam" to 2), notifications.getCounts(time.today()))
+        val now = time.now().toEpochMilli()
+        assertEquals(listOf(now to "spam", now to "spam"), notifications.posted)
     }
 
     @Test

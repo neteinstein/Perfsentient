@@ -4,7 +4,6 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
-import java.time.LocalDate
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -50,18 +49,24 @@ class TelemetryRepositoriesTest {
     }
 
     @Test
-    fun `notification stats are keyed by ISO day`() = runTest {
+    fun `notification stats are bucketed by hour and summed over a window`() = runTest {
         val dao = mockk<NotificationCountDao>(relaxUnitFun = true)
-        coEvery { dao.forDay("2026-11-16") } returns listOf(NotificationCountEntity("2026-11-16", "spam", 12))
+        val hour = 3_600_000L
+        val tenOClock = 10 * hour
+        coEvery { dao.between(tenOClock, 12 * hour) } returns listOf(
+            NotificationCountEntity(tenOClock, "spam", 12),
+            NotificationCountEntity(11 * hour, "spam", 3),
+            NotificationCountEntity(11 * hour, "chat", 1),
+        )
         val repository = NotificationStatsRepositoryImpl(dao)
-        val day = LocalDate.of(2026, 11, 16)
 
-        repository.increment("spam", day)
-        assertEquals(mapOf("spam" to 12), repository.getCounts(day))
-        repository.deleteOlderThan(day)
+        repository.increment("spam", tenOClock + 25 * 60_000L)
+        // A window starting mid-hour still includes that hour's bucket.
+        assertEquals(mapOf("spam" to 15, "chat" to 1), repository.getCounts(tenOClock + 30 * 60_000L, 12 * hour))
+        repository.deleteOlderThan(tenOClock + 59 * 60_000L)
 
-        coVerify { dao.increment("2026-11-16", "spam") }
-        coVerify { dao.deleteOlderThan("2026-11-16") }
+        coVerify { dao.increment(tenOClock, "spam") }
+        coVerify { dao.deleteOlderThan(tenOClock) }
     }
 
     @Test

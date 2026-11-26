@@ -26,17 +26,17 @@ interface VitalSampleDao {
 interface NotificationCountDao {
     @Query(
         """
-        INSERT INTO notification_counts(day, packageName, count) VALUES(:day, :packageName, 1)
-        ON CONFLICT(day, packageName) DO UPDATE SET count = count + 1
+        INSERT INTO notification_counts(hourStartMs, packageName, count) VALUES(:hourStartMs, :packageName, 1)
+        ON CONFLICT(hourStartMs, packageName) DO UPDATE SET count = count + 1
         """,
     )
-    suspend fun increment(day: String, packageName: String)
+    suspend fun increment(hourStartMs: Long, packageName: String)
 
-    @Query("SELECT * FROM notification_counts WHERE day = :day")
-    suspend fun forDay(day: String): List<NotificationCountEntity>
+    @Query("SELECT * FROM notification_counts WHERE hourStartMs BETWEEN :start AND :end")
+    suspend fun between(start: Long, end: Long): List<NotificationCountEntity>
 
-    @Query("DELETE FROM notification_counts WHERE day < :day")
-    suspend fun deleteOlderThan(day: String)
+    @Query("DELETE FROM notification_counts WHERE hourStartMs < :timestamp")
+    suspend fun deleteOlderThan(timestamp: Long)
 }
 
 @Dao

@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import org.neteinstein.perfsentient.core.common.DispatcherProvider
+import org.neteinstein.perfsentient.core.common.MILLIS_IN_HOUR
 import org.neteinstein.perfsentient.core.data.local.dao.NotificationCountDao
 import org.neteinstein.perfsentient.core.data.local.dao.ReportDao
 import org.neteinstein.perfsentient.core.data.local.dao.VitalSampleDao
@@ -75,11 +76,15 @@ class VitalsRepositoryImpl(
 }
 
 class NotificationStatsRepositoryImpl(private val dao: NotificationCountDao) : NotificationStatsRepository {
-    override suspend fun increment(packageName: String, day: LocalDate) = dao.increment(day.toString(), packageName)
+    override suspend fun increment(packageName: String, atMs: Long) = dao.increment(hourStart(atMs), packageName)
 
-    override suspend fun getCounts(day: LocalDate): Map<String, Int> = dao.forDay(day.toString()).associate { it.packageName to it.count }
+    override suspend fun getCounts(startMs: Long, endMs: Long): Map<String, Int> = dao.between(hourStart(startMs), endMs)
+        .groupingBy { it.packageName }
+        .fold(0) { total, bucket -> total + bucket.count }
 
-    override suspend fun deleteOlderThan(day: LocalDate) = dao.deleteOlderThan(day.toString())
+    override suspend fun deleteOlderThan(timestampMs: Long) = dao.deleteOlderThan(hourStart(timestampMs))
+
+    private fun hourStart(ms: Long): Long = ms - Math.floorMod(ms, MILLIS_IN_HOUR)
 }
 
 class ReportRepositoryImpl(private val dao: ReportDao) : ReportRepository {

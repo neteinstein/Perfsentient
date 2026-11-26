@@ -8,7 +8,8 @@ import android.os.Process
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 
 /**
- * Per-app traffic split by foreground / background state, for Wi-Fi and mobile.
+ * Per-app traffic split by foreground / background state, for Wi-Fi and mobile, with the
+ * background mobile part kept separately (mobile data is the one that costs money).
  * Requires Usage access. Mobile is queried with a null subscriber id (allowed since API 29).
  */
 class NetworkStatsDataSource(

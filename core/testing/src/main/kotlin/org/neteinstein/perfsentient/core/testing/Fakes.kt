@@ -135,7 +135,14 @@ class FakeUsageRepository(
         return usage
     }
 
-    override suspend fun getEvents(startMs: Long, endMs: Long): List<UsageEventRecord> = events
+    /** The (start, end) window of the last [getEvents] call. */
+    var lastEventsWindow: Pair<Long, Long>? = null
+        private set
+
+    override suspend fun getEvents(startMs: Long, endMs: Long): List<UsageEventRecord> {
+        lastEventsWindow = startMs to endMs
+        return events
+    }
 
     override suspend fun getNetworkUsage(startMs: Long, endMs: Long): List<NetworkUsage> = network
 
@@ -178,18 +185,19 @@ class FakeVitalsRepository(var next: VitalSample = TestData.vital(0)) : VitalsRe
 }
 
 class FakeNotificationStatsRepository : NotificationStatsRepository {
-    val counts = mutableMapOf<Pair<LocalDate, String>, Int>()
-    var deletedBefore: LocalDate? = null
+    /** Every recorded notification as (posted at, package). */
+    val posted = mutableListOf<Pair<Long, String>>()
+    var deletedBefore: Long? = null
 
-    override suspend fun increment(packageName: String, day: LocalDate) {
-        counts.merge(day to packageName, 1, Int::plus)
+    override suspend fun increment(packageName: String, atMs: Long) {
+        posted += atMs to packageName
     }
 
-    override suspend fun getCounts(day: LocalDate): Map<String, Int> =
-        counts.filterKeys { it.first == day }.mapKeys { it.key.second }
+    override suspend fun getCounts(startMs: Long, endMs: Long): Map<String, Int> =
+        posted.filter { it.first in startMs..endMs }.groupingBy { it.second }.eachCount()
 
-    override suspend fun deleteOlderThan(day: LocalDate) {
-        deletedBefore = day
+    override suspend fun deleteOlderThan(timestampMs: Long) {
+        deletedBefore = timestampMs
     }
 }
 

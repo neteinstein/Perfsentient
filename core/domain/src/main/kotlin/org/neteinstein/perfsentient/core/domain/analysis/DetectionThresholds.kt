@@ -17,6 +17,8 @@ data class DetectionThresholds(
     val popupHighCount: Int = 8,
     val unlockPopupWindowMs: Long = 3 * MILLIS_IN_SECOND,
     val afterCallMaxDurationMs: Long = 60 * MILLIS_IN_SECOND,
+    /** The third-party screen must appear at most this long after the call screen closed. */
+    val afterCallMaxGapMs: Long = 10 * MILLIS_IN_SECOND,
     val afterCallMediumCount: Int = 2,
     val afterCallHighCount: Int = 4,
     val rarelyUsedForegroundMs: Long = 15 * MILLIS_IN_MINUTE,

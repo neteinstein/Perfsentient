@@ -15,7 +15,7 @@ import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.domain.usecase.RecordNotificationUseCase
 
 /**
- * Counts how many *new* notifications each app posts per day. Notification content is never
+ * Counts how many *new* notifications each app posts per hour. Notification content is never
  * read or stored – only the posting package name.
  */
 class AppNotificationListener :
@@ -27,6 +27,15 @@ class AppNotificationListener :
 
     private val seenKeys = mutableSetOf<String>()
     private var seenDay: LocalDate? = null
+
+    /**
+     * The service is re-bound after a process restart or a toggle in settings. Notifications that are
+     * still on screen were counted before that, so mark them as seen instead of counting them again.
+     */
+    override fun onListenerConnected() {
+        super.onListenerConnected()
+        runCatching { activeNotifications }.getOrNull()?.forEach { markSeen(it.key) }
+    }
 
     override fun onNotificationPosted(sbn: StatusBarNotification?) {
         val notification = sbn ?: return
