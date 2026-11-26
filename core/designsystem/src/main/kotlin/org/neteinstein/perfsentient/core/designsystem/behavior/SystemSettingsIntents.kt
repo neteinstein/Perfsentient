@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import androidx.core.net.toUri
 import org.neteinstein.perfsentient.core.model.SmsPartnerLinks
 
 /**
@@ -35,25 +36,25 @@ fun fixIntent(action: FixAction, packageName: String?): Intent {
 fun Context.openPartnerMessage(threadId: Long) {
     val intent = Intent(
         Intent.ACTION_VIEW,
-        Uri.parse(SmsPartnerLinks.CONVERSATION_PREFIX + threadId),
+        (SmsPartnerLinks.CONVERSATION_PREFIX + threadId).toUri(),
     ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     runCatching { startActivity(intent) }
 }
 
 /** Opens SMS Toolbox's consent dialog, where the user can turn on sharing with Perfsentient. */
 fun Context.openPartnerConnect() {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(SmsPartnerLinks.CONNECT)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    val intent = Intent(Intent.ACTION_VIEW, SmsPartnerLinks.CONNECT.toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     runCatching { startActivity(intent) }
 }
 
 /** SMS Toolbox's store page; its GitHub releases when no store app handles it. Opening a page needs no INTERNET permission. */
 fun Context.openPartnerStore() {
-    val store = Intent(Intent.ACTION_VIEW, Uri.parse(SmsPartnerLinks.PLAY_STORE)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    val store = Intent(Intent.ACTION_VIEW, SmsPartnerLinks.PLAY_STORE.toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     try {
         startActivity(store)
     } catch (_: ActivityNotFoundException) {
         runCatching {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SmsPartnerLinks.RELEASES)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            startActivity(Intent(Intent.ACTION_VIEW, SmsPartnerLinks.RELEASES.toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         }
     }
 }
