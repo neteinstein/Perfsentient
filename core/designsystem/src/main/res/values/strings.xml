@@ -25,6 +25,16 @@
     <string name="behavior_unrestricted_battery_desc">Is exempt from battery optimisation and works heavily in the background.</string>
     <string name="behavior_storage_bloat_title">Storage hog</string>
     <string name="behavior_storage_bloat_desc">Keeps a very large cache. Clearing it frees space and can speed up the phone.</string>
+    <string name="behavior_risky_install_source_title">Risky install source</string>
+    <string name="behavior_risky_install_source_desc">Didn\'t come from an app store: it was installed from a link in a chat or email, or from a downloaded file. That\'s how scam apps reach phones, especially ones that ask for access to your messages or screen.</string>
+    <string name="behavior_data_theft_risk_title">Can read your codes</string>
+    <string name="behavior_data_theft_risk_desc">Can read your text messages or notifications, where bank and login codes arrive. Fraud apps ask for this to take over accounts. Remove the access unless you fully trust the app.</string>
+    <string name="behavior_remote_access_title">Remote access app</string>
+    <string name="behavior_remote_access_desc">A remote-control app was installed recently. Scammers posing as your bank or tech support ask you to install one so they can watch your screen. If someone asked you to install it, hang up and uninstall it.</string>
+    <string name="behavior_impersonation_title">Look-alike app</string>
+    <string name="behavior_impersonation_desc">Didn\'t come from an app store, yet is named like a well-known app or part of Android (\"System update\", a bank, WhatsApp). Fake apps borrow trusted names.</string>
+    <string name="behavior_can_install_apps_title">Can install apps</string>
+    <string name="behavior_can_install_apps_desc">Is allowed to install other apps. Malware uses this to download more apps after it\'s installed. Turn it off in Settings unless you need it.</string>
 
     <!-- Severity / verdict -->
     <string name="severity_low">Low</string>

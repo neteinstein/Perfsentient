@@ -4,6 +4,7 @@ import java.time.ZoneId
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DeviceContext
+import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.VitalSample
@@ -20,6 +21,7 @@ data class AnalysisInput(
     val notifications: Map<String, Int>,
     val vitals: List<VitalSample>,
     val context: DeviceContext,
+    val security: DeviceSecurityPosture = DeviceSecurityPosture.UNKNOWN,
 ) {
     fun foregroundMs(pkg: String): Long = usage[pkg]?.foregroundTimeMs ?: 0L
 

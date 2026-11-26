@@ -1,6 +1,7 @@
 package org.neteinstein.perfsentient.feature.report.presentation
 
 import android.content.Context
+import android.text.format.DateUtils
 import android.text.format.Formatter
 import androidx.annotation.StringRes
 import org.neteinstein.perfsentient.core.common.MILLIS_IN_HOUR
@@ -9,6 +10,8 @@ import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.Finding
+import org.neteinstein.perfsentient.core.model.InstallChannel
+import org.neteinstein.perfsentient.core.model.ReadableData
 import org.neteinstein.perfsentient.feature.report.R
 
 internal fun Context.formatDuration(ms: Long): String {
@@ -41,7 +44,34 @@ internal fun Context.describeValue(finding: Finding): String = when (finding.typ
     BehaviorType.STORAGE_BLOAT -> getString(R.string.report_value_cache, formatBytes(finding.value))
 
     BehaviorType.ACCESSIBILITY_RISK, BehaviorType.DEVICE_ADMIN -> getString(R.string.report_value_capability)
+
+    BehaviorType.RISKY_INSTALL_SOURCE -> when (InstallChannel.entries.getOrNull(finding.value.toInt())) {
+        InstallChannel.MESSAGING -> getString(R.string.report_value_install_messaging)
+        InstallChannel.FILE -> getString(R.string.report_value_install_file)
+        InstallChannel.BROWSER, null -> getString(R.string.report_value_install_browser)
+    }
+
+    BehaviorType.DATA_THEFT_RISK -> {
+        val notifications = finding.value and ReadableData.NOTIFICATIONS != 0L
+        val texts = finding.value and ReadableData.TEXT_MESSAGES != 0L
+        getString(
+            when {
+                notifications && texts -> R.string.report_value_reads_both
+                texts -> R.string.report_value_reads_texts
+                else -> R.string.report_value_reads_notifications
+            },
+        )
+    }
+
+    BehaviorType.REMOTE_ACCESS -> getString(R.string.report_value_installed_at, formatDateTime(finding.value))
+
+    BehaviorType.IMPERSONATION -> getString(R.string.report_value_impersonation)
+
+    BehaviorType.CAN_INSTALL_APPS -> getString(R.string.report_value_can_install)
 }
+
+internal fun Context.formatDateTime(epochMs: Long): String =
+    DateUtils.formatDateTime(this, epochMs, DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_ABBREV_MONTH)
 
 @get:StringRes
 internal val DeviceIssueType.title: Int
@@ -50,6 +80,9 @@ internal val DeviceIssueType.title: Int
         DeviceIssueType.HIGH_TEMPERATURE -> R.string.report_issue_temperature_title
         DeviceIssueType.THERMAL_THROTTLING -> R.string.report_issue_thermal_title
         DeviceIssueType.MEMORY_PRESSURE -> R.string.report_issue_memory_title
+        DeviceIssueType.NO_SCREEN_LOCK -> R.string.report_issue_no_screen_lock_title
+        DeviceIssueType.OUTDATED_SECURITY_PATCH -> R.string.report_issue_security_patch_title
+        DeviceIssueType.USB_DEBUGGING -> R.string.report_issue_usb_debugging_title
     }
 
 internal fun Context.describe(issue: DeviceIssue): String = when (issue.type) {
@@ -57,6 +90,9 @@ internal fun Context.describe(issue: DeviceIssue): String = when (issue.type) {
     DeviceIssueType.HIGH_TEMPERATURE -> getString(R.string.report_issue_temperature, issue.value / TENTHS)
     DeviceIssueType.THERMAL_THROTTLING -> getString(R.string.report_issue_thermal)
     DeviceIssueType.MEMORY_PRESSURE -> quantity(R.plurals.report_issue_memory, issue.value.toInt())
+    DeviceIssueType.NO_SCREEN_LOCK -> getString(R.string.report_issue_no_screen_lock)
+    DeviceIssueType.OUTDATED_SECURITY_PATCH -> quantity(R.plurals.report_issue_security_patch, issue.value.toInt())
+    DeviceIssueType.USB_DEBUGGING -> getString(R.string.report_issue_usb_debugging)
 }
 
 private fun Context.quantity(id: Int, count: Int): String = resources.getQuantityString(id, count, count)

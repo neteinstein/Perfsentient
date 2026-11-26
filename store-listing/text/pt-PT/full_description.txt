@@ -13,6 +13,8 @@ O QUE DETETA
 • Spam de notificações
 • Acessos de risco: serviços de acessibilidade, administradores do dispositivo, bateria sem restrições
 • Apps que ocupam muito armazenamento (cache enorme)
+• Apps de burla: instaladas a partir de links em conversas, nomes que imitam apps conhecidas, apps de acesso remoto instaladas durante uma chamada e apps que podem ler os seus códigos
+• Segurança do telemóvel: sem bloqueio de ecrã, atualizações de segurança antigas, depuração USB ativa
 
 O SEU RELATÓRIO DIÁRIO
 • Uma pontuação de saúde de 0 a 100 e um veredito claro: boa, razoável ou fraca
@@ -23,8 +25,7 @@ O SEU RELATÓRIO DIÁRIO
 
 O CONTROLO É SEU
 • O separador Apps lista todas as apps sinalizadas agora ou no passado
-• Confie nas apps que sabe que estão bem. As apps de confiança ficam fora dos relatórios, não baixam a pontuação e aparecem com outra cor
-• Mude de ideias quando quiser: toque numa app de confiança para deixar de confiar nela
+• Confie nas apps que sabe que são seguras: ficam fora dos relatórios e da pontuação, aparecem noutra cor e pode mudar de ideias quando quiser
 
 MODO PARENTAL
 Vai preparar um telemóvel para uma criança? Ative o Modo parental nas Definições e indique a idade dela. Um separador Ajuda parental passa a listar as apps instaladas sobre as quais organizações de proteção de crianças, reguladores e investigações alertam para essa idade:
@@ -41,7 +42,7 @@ PRIVADO POR DESIGN
 • As notificações são apenas contadas por app. O conteúdo nunca é lido
 
 COMO FUNCIONA
-O Perfsentient precisa de duas permissões que ativa nas definições do Android: Acesso de utilização (para ver que apps correm e durante quanto tempo) e Acesso a notificações (para contar notificações por app). O separador Definições explica cada uma e leva-o diretamente ao ecrã certo. Uma verificação leve corre a cada 15 minutos, com consumo de bateria quase nulo, e o relatório chega à hora que escolher.
+Ative o Acesso de utilização e o Acesso a notificações nas definições do Android: o separador Definições explica cada um e abre o ecrã certo. Uma verificação leve corre a cada 15 minutos e o relatório chega à hora que escolher.
 
 IDIOMAS
 Português, inglês, francês, espanhol, italiano, romeno e alemão. No Android 13 ou posterior pode escolher o idioma da app nas definições do Android.

@@ -11,6 +11,8 @@ import org.neteinstein.perfsentient.core.model.DeviceContext
 import org.neteinstein.perfsentient.core.model.DeviceMetrics
 import org.neteinstein.perfsentient.core.model.Finding
 import org.neteinstein.perfsentient.core.model.NetworkUsage
+import org.neteinstein.perfsentient.core.model.PackageSource
+import org.neteinstein.perfsentient.core.model.SensitivePermission
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.UsageEventType
@@ -42,6 +44,13 @@ object TestData {
         admin: Boolean = false,
         batteryExempt: Boolean = false,
         cacheBytes: Long = 0,
+        installedAt: Long = 0,
+        initiator: String? = null,
+        source: PackageSource = PackageSource.UNKNOWN,
+        permissions: Set<SensitivePermission> = emptySet(),
+        notificationAccess: Boolean = false,
+        defaultSms: Boolean = false,
+        canInstallApps: Boolean = false,
     ) = AppProfile(
         packageName = pkg,
         label = label,
@@ -54,7 +63,13 @@ object TestData {
         ignoresBatteryOptimizations = batteryExempt,
         startsOnBoot = false,
         cacheBytes = cacheBytes,
-        firstInstallTime = 0,
+        firstInstallTime = installedAt,
+        initiatingPackage = initiator,
+        packageSource = source,
+        grantedPermissions = permissions,
+        hasNotificationAccess = notificationAccess,
+        isDefaultSmsApp = defaultSms,
+        canInstallApps = canInstallApps,
     )
 
     fun usage(pkg: String, foregroundMs: Long = 0, serviceMs: Long = 0) = AppUsage(pkg, foregroundMs, serviceMs, 0)

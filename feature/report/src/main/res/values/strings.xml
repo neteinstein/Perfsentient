@@ -112,4 +112,23 @@
         <item quantity="one">Show all %1$d app</item>
         <item quantity="other">Show all %1$d apps</item>
     </plurals>
+
+    <string name="report_value_install_messaging">Installed from a chat or email app</string>
+    <string name="report_value_install_browser">Downloaded from the web</string>
+    <string name="report_value_install_file">Installed from a file on the phone</string>
+    <string name="report_value_reads_texts">Can read your text messages</string>
+    <string name="report_value_reads_notifications">Can read your notifications</string>
+    <string name="report_value_reads_both">Can read your texts and notifications</string>
+    <string name="report_value_installed_at">Installed %1$s</string>
+    <string name="report_value_impersonation">Named like a well-known app</string>
+    <string name="report_value_can_install">Allowed to install other apps</string>
+    <string name="report_issue_no_screen_lock_title">No screen lock</string>
+    <string name="report_issue_no_screen_lock">Anyone who picks up your phone can open your apps, read your codes and reset your accounts. Set a PIN, pattern or password.</string>
+    <string name="report_issue_security_patch_title">Old security update</string>
+    <string name="report_issue_usb_debugging_title">USB debugging is on</string>
+    <string name="report_issue_usb_debugging">A computer connected over USB can install and control apps. Turn it off in Developer options when you\'re not using it.</string>
+    <plurals name="report_issue_security_patch">
+        <item quantity="one">The last Android security update is %1$d day old. Check for a system update.</item>
+        <item quantity="other">The last Android security update is %1$d days old. Check for a system update.</item>
+    </plurals>
 </resources>

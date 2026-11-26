@@ -3,16 +3,21 @@ package org.neteinstein.perfsentient.core.designsystem.behavior
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.OpenInNew
+import androidx.compose.material.icons.automirrored.rounded.ScreenShare
 import androidx.compose.material.icons.rounded.Accessibility
 import androidx.compose.material.icons.rounded.AdminPanelSettings
 import androidx.compose.material.icons.rounded.BatteryAlert
 import androidx.compose.material.icons.rounded.Bedtime
 import androidx.compose.material.icons.rounded.CallEnd
 import androidx.compose.material.icons.rounded.CloudSync
+import androidx.compose.material.icons.rounded.Download
+import androidx.compose.material.icons.rounded.InstallMobile
 import androidx.compose.material.icons.rounded.Layers
 import androidx.compose.material.icons.rounded.NotificationsActive
+import androidx.compose.material.icons.rounded.Password
 import androidx.compose.material.icons.rounded.Sd
 import androidx.compose.material.icons.rounded.Sync
+import androidx.compose.material.icons.rounded.TheaterComedy
 import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.ui.graphics.vector.ImageVector
 import org.neteinstein.perfsentient.core.designsystem.R
@@ -99,6 +104,36 @@ val BehaviorType.presentation: BehaviorPresentation
             Icons.Rounded.Sd,
             R.string.behavior_storage_bloat_title,
             R.string.behavior_storage_bloat_desc,
+        )
+
+        BehaviorType.RISKY_INSTALL_SOURCE -> BehaviorPresentation(
+            Icons.Rounded.InstallMobile,
+            R.string.behavior_risky_install_source_title,
+            R.string.behavior_risky_install_source_desc,
+        )
+
+        BehaviorType.DATA_THEFT_RISK -> BehaviorPresentation(
+            Icons.Rounded.Password,
+            R.string.behavior_data_theft_risk_title,
+            R.string.behavior_data_theft_risk_desc,
+        )
+
+        BehaviorType.REMOTE_ACCESS -> BehaviorPresentation(
+            Icons.AutoMirrored.Rounded.ScreenShare,
+            R.string.behavior_remote_access_title,
+            R.string.behavior_remote_access_desc,
+        )
+
+        BehaviorType.IMPERSONATION -> BehaviorPresentation(
+            Icons.Rounded.TheaterComedy,
+            R.string.behavior_impersonation_title,
+            R.string.behavior_impersonation_desc,
+        )
+
+        BehaviorType.CAN_INSTALL_APPS -> BehaviorPresentation(
+            Icons.Rounded.Download,
+            R.string.behavior_can_install_apps_title,
+            R.string.behavior_can_install_apps_desc,
         )
     }
 

@@ -52,6 +52,13 @@ data class DetectionThresholds(
     val thermalHigh: Int = 4,
     val lowMemoryRatio: Float = 0.2f,
     val maxSampleGapMs: Long = 1 * MILLIS_IN_HOUR,
+    /** An app installed this recently counts as new (remote-access apps, store apps given accessibility). */
+    val freshInstallMs: Long = 72 * MILLIS_IN_HOUR,
+    /** A remote-access app installed during a call or this soon after it is a strong scam signal. */
+    val remoteAccessAfterCallMs: Long = 30 * MILLIS_IN_MINUTE,
+    /** Security patch age, in days, from which it is flagged (Android publishes patches monthly). */
+    val patchLowDays: Long = 90,
+    val patchMediumDays: Long = 180,
     /*
      * Battery estimate weights (see BatteryAttributor). Rough, relative costs: an app on screen
      * keeps the screen, CPU and radio busy; a foreground service off screen (music, navigation)

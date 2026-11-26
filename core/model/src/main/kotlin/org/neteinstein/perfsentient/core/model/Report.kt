@@ -45,6 +45,34 @@ enum class BehaviorType {
 
     /** Very large cache footprint. */
     STORAGE_BLOAT,
+
+    /** Not from a store: installed from a link in a chat or email, or a downloaded file, with risky access. */
+    RISKY_INSTALL_SOURCE,
+
+    /** Can read text messages or notifications, where one-time codes arrive. */
+    DATA_THEFT_RISK,
+
+    /** A remote-access app installed recently: scammers ask victims to install one during a call. */
+    REMOTE_ACCESS,
+
+    /** Not from a store, yet named like a well-known app or a system component. */
+    IMPERSONATION,
+
+    /** Allowed to install other apps. */
+    CAN_INSTALL_APPS,
+}
+
+/** Where a sideloaded app came from, stored as [Finding.value] of [BehaviorType.RISKY_INSTALL_SOURCE]. */
+enum class InstallChannel {
+    MESSAGING,
+    BROWSER,
+    FILE,
+}
+
+/** What an app can read, stored as a bit mask in [Finding.value] of [BehaviorType.DATA_THEFT_RISK]. */
+object ReadableData {
+    const val NOTIFICATIONS = 1L
+    const val TEXT_MESSAGES = 2L
 }
 
 /**
@@ -64,12 +92,24 @@ enum class DeviceIssueType {
     HIGH_TEMPERATURE,
     THERMAL_THROTTLING,
     MEMORY_PRESSURE,
+
+    /** No PIN, pattern or password: anyone holding the phone can use it. */
+    NO_SCREEN_LOCK,
+
+    /** The security patch is months old. */
+    OUTDATED_SECURITY_PATCH,
+
+    /** USB debugging is on. */
+    USB_DEBUGGING,
 }
 
 data class DeviceIssue(
     val type: DeviceIssueType,
     val severity: Severity,
-    /** Scaled value: drain in 1/10 %/h, temperature in 1/10 °C, thermal status, low-memory samples. */
+    /**
+     * Scaled value: drain in 1/10 %/h, temperature in 1/10 °C, thermal status, low-memory samples,
+     * days since the security patch.
+     */
     val value: Long,
 )
 

@@ -13,6 +13,8 @@ QUÉ DETECTA
 • Spam de notificaciones
 • Accesos de riesgo: servicios de accesibilidad, administradores del dispositivo, batería sin restricciones
 • Apps que acaparan almacenamiento (caché enorme)
+• Apps de estafa: instaladas desde un enlace en un chat, nombres que imitan apps conocidas, apps de acceso remoto instaladas durante una llamada y apps que pueden leer tus códigos
+• Seguridad del teléfono: sin bloqueo de pantalla, actualizaciones de seguridad antiguas, depuración USB activada
 
 TU INFORME DIARIO
 • Una puntuación de salud de 0 a 100 y un veredicto claro: buena, regular o mala
@@ -23,8 +25,7 @@ TU INFORME DIARIO
 
 TÚ TIENES EL CONTROL
 • La pestaña Apps muestra todas las apps señaladas ahora o en el pasado
-• Confía en las apps que sabes que están bien: quedan fuera de tus informes, no bajan tu puntuación y se muestran en otro color
-• Cambia de opinión cuando quieras: toca una app de confianza para dejar de confiar en ella
+• Confía en las apps que sabes que están bien: quedan fuera de tus informes y tu puntuación, se muestran en otro color y puedes cambiar de idea cuando quieras
 
 MODO PARENTAL
 ¿Vas a preparar un móvil para un menor? Activa el Modo parental en Ajustes e indica su edad. Una pestaña Ayuda parental muestra entonces las apps instaladas sobre las que organizaciones de protección de la infancia, reguladores e investigaciones advierten para esa edad:
@@ -41,7 +42,7 @@ PRIVADO POR DISEÑO
 • Las notificaciones solo se cuentan por app. Su contenido nunca se lee
 
 CÓMO FUNCIONA
-Perfsentient necesita dos permisos que activas en los ajustes de Android: acceso a datos de uso (para ver qué apps se ejecutan y durante cuánto tiempo) y acceso a notificaciones (para contarlas por app). La pestaña Ajustes explica cada uno y te lleva directamente a la pantalla correcta. Una comprobación ligera se ejecuta cada 15 minutos, casi sin gastar batería, y tu informe llega a la hora que elijas.
+Activa el acceso a datos de uso y el acceso a notificaciones en los ajustes de Android: la pestaña Ajustes explica cada uno y abre la pantalla correcta. Una comprobación ligera se ejecuta cada 15 minutos y tu informe llega a la hora que elijas.
 
 IDIOMAS
 Español, inglés, portugués, francés, italiano, rumano y alemán. En Android 13 o posterior puedes elegir el idioma de la app en los ajustes de Android.

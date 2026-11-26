@@ -24,6 +24,16 @@
     <string name="behavior_unrestricted_battery_desc">Ist von der Akkuoptimierung ausgenommen und arbeitet viel im Hintergrund.</string>
     <string name="behavior_storage_bloat_title">Speicherfresser</string>
     <string name="behavior_storage_bloat_desc">Hat einen sehr großen Cache. Ihn zu leeren schafft Platz und kann das Handy beschleunigen.</string>
+    <string name="behavior_risky_install_source_title">Riskante Installationsquelle</string>
+    <string name="behavior_risky_install_source_desc">Stammt nicht aus einem App-Store: Sie wurde über einen Link in einem Chat oder einer E-Mail oder aus einer heruntergeladenen Datei installiert. So gelangen Betrugs-Apps auf Smartphones, vor allem solche, die Zugriff auf Ihre Nachrichten oder den Bildschirm verlangen.</string>
+    <string name="behavior_data_theft_risk_title">Kann Ihre Codes lesen</string>
+    <string name="behavior_data_theft_risk_desc">Kann Ihre SMS oder Benachrichtigungen lesen, in denen Bank- und Anmeldecodes ankommen. Betrugs-Apps verlangen das, um Konten zu übernehmen. Entziehen Sie den Zugriff, wenn Sie der App nicht voll vertrauen.</string>
+    <string name="behavior_remote_access_title">Fernzugriffs-App</string>
+    <string name="behavior_remote_access_desc">Vor Kurzem wurde eine Fernsteuerungs-App installiert. Betrüger, die sich als Ihre Bank oder als technischer Support ausgeben, lassen Sie eine installieren, um Ihren Bildschirm zu sehen. Wenn jemand Sie darum gebeten hat, legen Sie auf und deinstallieren Sie sie.</string>
+    <string name="behavior_impersonation_title">Nachgeahmte App</string>
+    <string name="behavior_impersonation_desc">Stammt nicht aus einem App-Store, trägt aber den Namen einer bekannten App oder eines Android-Bestandteils („Systemupdate“, eine Bank, WhatsApp). Gefälschte Apps leihen sich vertrauenswürdige Namen.</string>
+    <string name="behavior_can_install_apps_title">Kann Apps installieren</string>
+    <string name="behavior_can_install_apps_desc">Darf andere Apps installieren. Schadsoftware nutzt das, um nach der Installation weitere Apps nachzuladen. Deaktivieren Sie es in den Einstellungen, wenn Sie es nicht brauchen.</string>
     <string name="severity_low">Niedrig</string>
     <string name="severity_medium">Mittel</string>
     <string name="severity_high">Hoch</string>

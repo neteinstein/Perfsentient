@@ -12,6 +12,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
+import org.neteinstein.perfsentient.core.domain.analysis.DeviceSecurityAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.HealthScoreCalculator
 import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
@@ -28,6 +29,7 @@ import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UserSettings
 import org.neteinstein.perfsentient.core.testing.FakeAppInventoryRepository
+import org.neteinstein.perfsentient.core.testing.FakeDeviceSecurityRepository
 import org.neteinstein.perfsentient.core.testing.FakeNotificationStatsRepository
 import org.neteinstein.perfsentient.core.testing.FakePermissionRepository
 import org.neteinstein.perfsentient.core.testing.FakeReportRepository
@@ -65,11 +67,13 @@ class ReportViewModelTest {
             FakeAppInventoryRepository(apps = listOf(TestData.app("calc"))),
             FakeVitalsRepository(),
             FakeNotificationStatsRepository(),
+            FakeDeviceSecurityRepository(),
             reports,
             trusted,
             BehaviorAnalyzer(thresholds),
             DeviceHealthAnalyzer(thresholds),
             BatteryAttributor(thresholds),
+            DeviceSecurityAnalyzer(thresholds),
             HealthScoreCalculator(),
             filter,
             FakeTimeProvider(),

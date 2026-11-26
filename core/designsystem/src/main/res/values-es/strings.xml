@@ -24,6 +24,16 @@
     <string name="behavior_unrestricted_battery_desc">Está exenta de la optimización de batería y trabaja mucho en segundo plano.</string>
     <string name="behavior_storage_bloat_title">Acapara almacenamiento</string>
     <string name="behavior_storage_bloat_desc">Guarda una caché muy grande. Borrarla libera espacio y puede agilizar el teléfono.</string>
+    <string name="behavior_risky_install_source_title">Origen de instalación arriesgado</string>
+    <string name="behavior_risky_install_source_desc">No viene de una tienda de apps: se instaló desde un enlace en un chat o correo, o desde un archivo descargado. Así llegan las apps de estafa a los teléfonos, sobre todo las que piden acceso a tus mensajes o a la pantalla.</string>
+    <string name="behavior_data_theft_risk_title">Puede leer tus códigos</string>
+    <string name="behavior_data_theft_risk_desc">Puede leer tus SMS o notificaciones, donde llegan los códigos del banco y de inicio de sesión. Las apps fraudulentas lo piden para robar cuentas. Quita el acceso salvo que confíes plenamente en la app.</string>
+    <string name="behavior_remote_access_title">App de acceso remoto</string>
+    <string name="behavior_remote_access_desc">Se instaló hace poco una app de control remoto. Los estafadores que se hacen pasar por tu banco o por soporte técnico te piden que instales una para ver tu pantalla. Si alguien te pidió que la instalaras, cuelga y desinstálala.</string>
+    <string name="behavior_impersonation_title">App suplantada</string>
+    <string name="behavior_impersonation_desc">No viene de una tienda de apps, pero se llama como una app conocida o una parte de Android («Actualización del sistema», un banco, WhatsApp). Las apps falsas usan nombres de confianza.</string>
+    <string name="behavior_can_install_apps_title">Puede instalar apps</string>
+    <string name="behavior_can_install_apps_desc">Tiene permiso para instalar otras apps. El malware lo usa para descargar más apps tras instalarse. Desactívalo en Ajustes si no lo necesitas.</string>
     <string name="severity_low">Bajo</string>
     <string name="severity_medium">Medio</string>
     <string name="severity_high">Alto</string>

@@ -113,4 +113,24 @@
         <item quantity="many">Mostrar las %1$d apps</item>
         <item quantity="other">Mostrar las %1$d apps</item>
     </plurals>
+
+    <string name="report_value_install_messaging">Instalada desde un chat o correo</string>
+    <string name="report_value_install_browser">Descargada de internet</string>
+    <string name="report_value_install_file">Instalada desde un archivo del teléfono</string>
+    <string name="report_value_reads_texts">Puede leer tus SMS</string>
+    <string name="report_value_reads_notifications">Puede leer tus notificaciones</string>
+    <string name="report_value_reads_both">Puede leer tus SMS y notificaciones</string>
+    <string name="report_value_installed_at">Instalada el %1$s</string>
+    <string name="report_value_impersonation">Se llama como una app conocida</string>
+    <string name="report_value_can_install">Puede instalar otras apps</string>
+    <string name="report_issue_no_screen_lock_title">Sin bloqueo de pantalla</string>
+    <string name="report_issue_no_screen_lock">Cualquiera que coja tu teléfono puede abrir tus apps, leer tus códigos y restablecer tus cuentas. Configura un PIN, un patrón o una contraseña.</string>
+    <string name="report_issue_security_patch_title">Actualización de seguridad antigua</string>
+    <string name="report_issue_usb_debugging_title">Depuración USB activada</string>
+    <string name="report_issue_usb_debugging">Un ordenador conectado por USB puede instalar y controlar apps. Desactívala en Opciones para desarrolladores cuando no la uses.</string>
+    <plurals name="report_issue_security_patch">
+        <item quantity="one">La última actualización de seguridad de Android tiene %1$d día. Busca una actualización del sistema.</item>
+        <item quantity="many">La última actualización de seguridad de Android tiene %1$d días. Busca una actualización del sistema.</item>
+        <item quantity="other">La última actualización de seguridad de Android tiene %1$d días. Busca una actualización del sistema.</item>
+    </plurals>
 </resources>

@@ -9,12 +9,16 @@ import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
+import org.neteinstein.perfsentient.core.domain.analysis.DeviceSecurityAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.HealthScoreCalculator
 import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.model.BehaviorType
+import org.neteinstein.perfsentient.core.model.DeviceIssueType
+import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.testing.FakeAppInventoryRepository
+import org.neteinstein.perfsentient.core.testing.FakeDeviceSecurityRepository
 import org.neteinstein.perfsentient.core.testing.FakeNotificationStatsRepository
 import org.neteinstein.perfsentient.core.testing.FakeReportRepository
 import org.neteinstein.perfsentient.core.testing.FakeTimeProvider
@@ -30,6 +34,7 @@ class GenerateDailyReportUseCaseTest {
     private val inventory = FakeAppInventoryRepository()
     private val vitals = FakeVitalsRepository()
     private val notifications = FakeNotificationStatsRepository()
+    private val security = FakeDeviceSecurityRepository()
     private val reports = FakeReportRepository()
     private val trusted = FakeTrustedAppsRepository()
     private val thresholds = DetectionThresholds()
@@ -41,11 +46,13 @@ class GenerateDailyReportUseCaseTest {
         inventoryRepository = inventory,
         vitalsRepository = vitals,
         notificationStatsRepository = notifications,
+        deviceSecurityRepository = security,
         reportRepository = reports,
         trustedAppsRepository = trusted,
         behaviorAnalyzer = BehaviorAnalyzer(thresholds),
         deviceHealthAnalyzer = DeviceHealthAnalyzer(thresholds),
         batteryAttributor = BatteryAttributor(thresholds),
+        deviceSecurityAnalyzer = DeviceSecurityAnalyzer(thresholds),
         scoreCalculator = calculator,
         trustedAppsFilter = TrustedAppsFilter(calculator),
         timeProvider = time,
@@ -92,6 +99,19 @@ class GenerateDailyReportUseCaseTest {
         assertEquals(now - 24 * HOUR to now, usage.lastEventsWindow)
         assertEquals(listOf("evening-spammer"), report.offenders.map { it.packageName })
         assertEquals(time.today(), report.date)
+    }
+
+    @Test
+    fun `an unlocked, unpatched phone gets device security issues`() = runTest {
+        security.posture = DeviceSecurityPosture(hasSecureLock = false, securityPatch = time.today().minusDays(200), adbEnabled = true)
+
+        val report = useCase()
+
+        assertEquals(
+            listOf(DeviceIssueType.NO_SCREEN_LOCK, DeviceIssueType.OUTDATED_SECURITY_PATCH, DeviceIssueType.USB_DEBUGGING),
+            report.deviceIssues.map { it.type },
+        )
+        assertEquals(100 - 7 - 7 - 2, report.score)
     }
 
     @Test

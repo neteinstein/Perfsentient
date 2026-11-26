@@ -52,6 +52,7 @@
 
 - 🩺 **Daily health report.** An animated health score, a one-line verdict, the apps that misbehaved (with the reason for each), device vitals and a 7-day trend.
 - 🔔 **One notification a day.** At a time you choose, it tells you whether the day was good or bad and how many apps caused trouble. Tap it to open the report.
+- 🛡️ **Spots scam apps.** Apps installed from a link in a chat, look-alike names ("System Update", a fake bank or WhatsApp), remote-access apps installed during a call, apps that can read your one-time codes, and phone settings that make scams easier (no screen lock, an old security patch, USB debugging left on).
 - 🕵️ **Catches ad tricks.** Pop-up ads, ads after a phone call, apps drawing over other apps, and apps that hide their launcher icon.
 - 🔋 **Finds battery and data hogs.** Apps that run all day in the background, wake up at night, or use a lot of mobile data you never asked for.
 - 📊 **Battery vs time open.** For the last 7 days, which apps used the most battery next to how long you had them open, battery per hour open, and a "Mostly in background" tag for apps that drain it while you're not using them. Tap an app for its day-by-day chart. Android keeps exact per-app battery use private, so this is an estimate.
@@ -77,11 +78,18 @@
 | ♿ | **Accessibility / device admin** | Has an accessibility service or device-admin rights turned on. Rated more serious for apps not installed from a store |
 | 🔓 | **Unrestricted battery** | Exempt from battery optimisation **and** doing heavy background work |
 | 💾 | **Storage hog** | A very large cache (`StorageStatsManager`) |
+| 🔗 | **Risky install source** | Not from a store and installed from a chat or email app, or downloaded with access to messages, notifications or the screen (`InstallSourceInfo`) |
+| 🔑 | **Can read your codes** | Notification access, SMS permissions or default SMS app. Rated by install source; accessibility + overlay on top is the banking-trojan combination |
+| 🖥️ | **Remote access app** | AnyDesk, TeamViewer QuickSupport and similar installed in the last 72 h. High if installed during or just after a phone call |
+| 🎭 | **Look-alike app** | Not from a store but named like a system component, a bank or a popular app (case, accents and look-alike characters ignored) |
+| 📥 | **Can install apps** | "Install unknown apps" allowed for a sideloaded app, a chat app or a browser |
 | 📊 | **Battery vs time open** (an estimate, not a finding) | Each battery drop between two 15-minute samples taken on battery (from the charge counter when the phone reports it) is shared between the apps open on screen and, at a lower weight, the apps running a foreground service at the time. The rest goes to "home screen & system" and "standby" |
 | 🌡️ | **Device issues** | Battery drain with the screen off, temperature, thermal throttling and memory pressure, sampled every 15 minutes |
+| 🔐 | **Device security** | No screen lock, a security patch older than 90 days, USB debugging on |
 
 Each finding has a severity, and the severities feed the day's health score. The thresholds are in
 [`DetectionThresholds`](core/domain/src/main/kotlin/org/neteinstein/perfsentient/core/domain/analysis/DetectionThresholds.kt).
+The scam rules, lists and their sources are in [docs/scam-signals-research.md](docs/scam-signals-research.md).
 
 ## ⚙️ How it works
 
@@ -91,7 +99,7 @@ flowchart LR
         direction LR
         S["⏱️ Every 15 min<br/>WorkManager sampler<br/><sub>battery · temp · memory</sub>"] --> DB[("🗄️ Room")]
         N["🔔 Notification listener<br/><sub>counts only</sub>"] --> DB
-        DB --> A["🧠 Behaviour analyser<br/><sub>10 app detectors + device checks</sub>"]
+        DB --> A["🧠 Behaviour analyser<br/><sub>15 app detectors + device checks</sub>"]
         U["📊 Usage events · network stats<br/>installed apps · storage"] --> A
         A --> R["🩺 Daily report<br/><sub>score · offenders · trend</sub>"]
         R --> X["🔔 One notification<br/>at your chosen time"]

@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
+import org.neteinstein.perfsentient.core.domain.repository.DeviceSecurityRepository
 import org.neteinstein.perfsentient.core.domain.repository.MonitoringScheduler
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
 import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
@@ -19,6 +20,7 @@ import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceContext
+import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.GrantMode
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 import org.neteinstein.perfsentient.core.model.ParentalSettings
@@ -175,6 +177,10 @@ class FakeVitalsRepository(var next: VitalSample = TestData.vital(0)) : VitalsRe
         deletedBefore = timestampMs
         samples.removeAll { it.timestamp < timestampMs }
     }
+}
+
+class FakeDeviceSecurityRepository(var posture: DeviceSecurityPosture = DeviceSecurityPosture.UNKNOWN) : DeviceSecurityRepository {
+    override suspend fun posture(): DeviceSecurityPosture = posture
 }
 
 class FakeNotificationStatsRepository : NotificationStatsRepository {

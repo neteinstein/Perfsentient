@@ -24,6 +24,16 @@
     <string name="behavior_unrestricted_battery_desc">Este exceptată de la optimizarea bateriei și lucrează intens în fundal.</string>
     <string name="behavior_storage_bloat_title">Ocupă mult spațiu</string>
     <string name="behavior_storage_bloat_desc">Păstrează un cache foarte mare. Golirea lui eliberează spațiu și poate accelera telefonul.</string>
+    <string name="behavior_risky_install_source_title">Sursă de instalare riscantă</string>
+    <string name="behavior_risky_install_source_desc">Nu provine dintr-un magazin de aplicații: a fost instalată dintr-un link primit într-o conversație sau pe e-mail ori dintr-un fișier descărcat. Așa ajung aplicațiile de înșelătorie pe telefoane, mai ales cele care cer acces la mesaje sau la ecran.</string>
+    <string name="behavior_data_theft_risk_title">Vă poate citi codurile</string>
+    <string name="behavior_data_theft_risk_desc">Vă poate citi SMS-urile sau notificările, unde sosesc codurile de la bancă și de conectare. Aplicațiile frauduloase cer acest lucru pentru a prelua conturi. Retrageți accesul dacă nu aveți încredere deplină în aplicație.</string>
+    <string name="behavior_remote_access_title">Aplicație de acces la distanță</string>
+    <string name="behavior_remote_access_desc">A fost instalată recent o aplicație de control la distanță. Escrocii care se dau drept banca dumneavoastră sau asistență tehnică vă cer să instalați una ca să vă vadă ecranul. Dacă cineva v-a cerut să o instalați, închideți apelul și dezinstalați-o.</string>
+    <string name="behavior_impersonation_title">Aplicație imitată</string>
+    <string name="behavior_impersonation_desc">Nu provine dintr-un magazin de aplicații, dar poartă numele unei aplicații cunoscute sau al unei părți din Android („Actualizare de sistem”, o bancă, WhatsApp). Aplicațiile false folosesc nume de încredere.</string>
+    <string name="behavior_can_install_apps_title">Poate instala aplicații</string>
+    <string name="behavior_can_install_apps_desc">Are permisiunea de a instala alte aplicații. Programele malware o folosesc pentru a descărca alte aplicații după instalare. Dezactivați-o din Setări dacă nu aveți nevoie de ea.</string>
     <string name="severity_low">Scăzut</string>
     <string name="severity_medium">Mediu</string>
     <string name="severity_high">Ridicat</string>

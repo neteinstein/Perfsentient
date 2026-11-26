@@ -7,6 +7,7 @@ import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceContext
+import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionState
@@ -70,6 +71,11 @@ interface AppInventoryRepository {
     suspend fun getInstalledAppLabels(packageNames: Set<String>): Map<String, String>
 
     suspend fun getDeviceContext(): DeviceContext
+}
+
+/** Screen lock, security patch and USB debugging state. */
+interface DeviceSecurityRepository {
+    suspend fun posture(): DeviceSecurityPosture
 }
 
 interface VitalsRepository {

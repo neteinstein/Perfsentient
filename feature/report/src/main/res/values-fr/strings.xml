@@ -113,4 +113,24 @@
         <item quantity="many">Afficher les %1$d applis</item>
         <item quantity="other">Afficher les %1$d applis</item>
     </plurals>
+
+    <string name="report_value_install_messaging">Installée depuis une messagerie ou un e-mail</string>
+    <string name="report_value_install_browser">Téléchargée sur le Web</string>
+    <string name="report_value_install_file">Installée depuis un fichier du téléphone</string>
+    <string name="report_value_reads_texts">Peut lire vos SMS</string>
+    <string name="report_value_reads_notifications">Peut lire vos notifications</string>
+    <string name="report_value_reads_both">Peut lire vos SMS et vos notifications</string>
+    <string name="report_value_installed_at">Installée le %1$s</string>
+    <string name="report_value_impersonation">Porte le nom d\'une appli connue</string>
+    <string name="report_value_can_install">Autorisée à installer d\'autres applis</string>
+    <string name="report_issue_no_screen_lock_title">Aucun verrouillage d\'écran</string>
+    <string name="report_issue_no_screen_lock">N\'importe qui peut ouvrir vos applis, lire vos codes et réinitialiser vos comptes en prenant votre téléphone. Définissez un code, un schéma ou un mot de passe.</string>
+    <string name="report_issue_security_patch_title">Mise à jour de sécurité ancienne</string>
+    <string name="report_issue_usb_debugging_title">Débogage USB activé</string>
+    <string name="report_issue_usb_debugging">Un ordinateur branché en USB peut installer et contrôler des applis. Désactivez-le dans les Options pour les développeurs quand vous ne l\'utilisez pas.</string>
+    <plurals name="report_issue_security_patch">
+        <item quantity="one">La dernière mise à jour de sécurité d\'Android date de %1$d jour. Recherchez une mise à jour système.</item>
+        <item quantity="many">La dernière mise à jour de sécurité d\'Android date de %1$d jours. Recherchez une mise à jour système.</item>
+        <item quantity="other">La dernière mise à jour de sécurité d\'Android date de %1$d jours. Recherchez une mise à jour système.</item>
+    </plurals>
 </resources>

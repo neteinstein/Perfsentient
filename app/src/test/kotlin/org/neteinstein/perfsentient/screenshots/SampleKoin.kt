@@ -7,6 +7,7 @@ import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.domain.di.domainModule
 import org.neteinstein.perfsentient.core.domain.parental.ParentalAppCatalog
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
+import org.neteinstein.perfsentient.core.domain.repository.DeviceSecurityRepository
 import org.neteinstein.perfsentient.core.domain.repository.MonitoringScheduler
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
 import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
@@ -20,6 +21,7 @@ import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UserSettings
 import org.neteinstein.perfsentient.core.testing.FakeAppInventoryRepository
+import org.neteinstein.perfsentient.core.testing.FakeDeviceSecurityRepository
 import org.neteinstein.perfsentient.core.testing.FakeMonitoringScheduler
 import org.neteinstein.perfsentient.core.testing.FakeNotificationStatsRepository
 import org.neteinstein.perfsentient.core.testing.FakeParentalReviewRepository
@@ -74,6 +76,7 @@ internal fun startSampleKoin() {
                 single { ParentalAppCatalog(SampleData.parentalCatalog) }
                 single<VitalsRepository> { FakeVitalsRepository() }
                 single<NotificationStatsRepository> { FakeNotificationStatsRepository() }
+                single<DeviceSecurityRepository> { FakeDeviceSecurityRepository() }
             },
         )
     }

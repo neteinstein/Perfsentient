@@ -103,4 +103,23 @@
         <item quantity="one">%1$d App anzeigen</item>
         <item quantity="other">Alle %1$d Apps anzeigen</item>
     </plurals>
+
+    <string name="report_value_install_messaging">Aus einem Chat oder einer E-Mail installiert</string>
+    <string name="report_value_install_browser">Aus dem Internet heruntergeladen</string>
+    <string name="report_value_install_file">Aus einer Datei auf dem Smartphone installiert</string>
+    <string name="report_value_reads_texts">Kann Ihre SMS lesen</string>
+    <string name="report_value_reads_notifications">Kann Ihre Benachrichtigungen lesen</string>
+    <string name="report_value_reads_both">Kann Ihre SMS und Benachrichtigungen lesen</string>
+    <string name="report_value_installed_at">Installiert am %1$s</string>
+    <string name="report_value_impersonation">Trägt den Namen einer bekannten App</string>
+    <string name="report_value_can_install">Darf andere Apps installieren</string>
+    <string name="report_issue_no_screen_lock_title">Keine Displaysperre</string>
+    <string name="report_issue_no_screen_lock">Jeder, der Ihr Smartphone in die Hand nimmt, kann Ihre Apps öffnen, Ihre Codes lesen und Ihre Konten zurücksetzen. Richten Sie eine PIN, ein Muster oder ein Passwort ein.</string>
+    <string name="report_issue_security_patch_title">Altes Sicherheitsupdate</string>
+    <string name="report_issue_usb_debugging_title">USB-Debugging ist an</string>
+    <string name="report_issue_usb_debugging">Ein per USB verbundener Computer kann Apps installieren und steuern. Schalten Sie es in den Entwickleroptionen aus, wenn Sie es nicht benötigen.</string>
+    <plurals name="report_issue_security_patch">
+        <item quantity="one">Das letzte Android-Sicherheitsupdate ist %1$d Tag alt. Suchen Sie nach einem Systemupdate.</item>
+        <item quantity="other">Das letzte Android-Sicherheitsupdate ist %1$d Tage alt. Suchen Sie nach einem Systemupdate.</item>
+    </plurals>
 </resources>

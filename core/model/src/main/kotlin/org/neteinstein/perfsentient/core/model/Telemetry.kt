@@ -18,10 +18,38 @@ data class AppProfile(
     val startsOnBoot: Boolean,
     val cacheBytes: Long,
     val firstInstallTime: Long,
+    /** The app that asked for the install (e.g. the browser or chat app an APK was opened from). */
+    val initiatingPackage: String? = null,
+    val packageSource: PackageSource = PackageSource.UNKNOWN,
+    val lastUpdateTime: Long = 0L,
+    /** Sensitive runtime permissions the user has granted. */
+    val grantedPermissions: Set<SensitivePermission> = emptySet(),
+    /** Has notification access: can read every notification, including one-time codes. */
+    val hasNotificationAccess: Boolean = false,
+    /** Is the default SMS app: receives and can read every text message. */
+    val isDefaultSmsApp: Boolean = false,
+    /** Is allowed to "install unknown apps". */
+    val canInstallApps: Boolean = false,
 ) {
     /** True when the app did not come from a known store (Play / OEM store). */
     val isSideloaded: Boolean
         get() = !isSystemApp && (installerPackage == null || installerPackage !in TRUSTED_INSTALLERS)
+
+    /** Can read text messages or notifications, which is where one-time codes arrive. */
+    val canReadMessages: Boolean
+        get() = hasNotificationAccess ||
+            isDefaultSmsApp ||
+            SensitivePermission.READ_SMS in grantedPermissions ||
+            SensitivePermission.RECEIVE_SMS in grantedPermissions
+
+    /** Holds any access that fraud apps abuse: screen control, overlays, messages, codes or calls. */
+    val hasSensitiveCapability: Boolean
+        get() = hasEnabledAccessibilityService ||
+            hasNotificationAccess ||
+            isDeviceAdmin ||
+            canDrawOverlays ||
+            isDefaultSmsApp ||
+            grantedPermissions.any { it.isFraudRelevant }
 
     companion object {
         val TRUSTED_INSTALLERS = setOf(

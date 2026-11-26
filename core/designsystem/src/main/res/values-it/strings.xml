@@ -24,6 +24,16 @@
     <string name="behavior_unrestricted_battery_desc">È esclusa dall\'ottimizzazione della batteria e lavora molto in background.</string>
     <string name="behavior_storage_bloat_title">Occupa molto spazio</string>
     <string name="behavior_storage_bloat_desc">Conserva una cache molto grande. Svuotarla libera spazio e può velocizzare il telefono.</string>
+    <string name="behavior_risky_install_source_title">Origine di installazione rischiosa</string>
+    <string name="behavior_risky_install_source_desc">Non proviene da uno store di app: è stata installata da un link in una chat o email, o da un file scaricato. È così che le app truffa arrivano sui telefoni, soprattutto quelle che chiedono l\'accesso ai messaggi o allo schermo.</string>
+    <string name="behavior_data_theft_risk_title">Può leggere i tuoi codici</string>
+    <string name="behavior_data_theft_risk_desc">Può leggere i tuoi SMS o le notifiche, dove arrivano i codici della banca e di accesso. Le app fraudolente lo chiedono per rubare gli account. Rimuovi l\'accesso a meno che tu non ti fidi completamente dell\'app.</string>
+    <string name="behavior_remote_access_title">App di accesso remoto</string>
+    <string name="behavior_remote_access_desc">È stata installata di recente un\'app di controllo remoto. I truffatori che si spacciano per la tua banca o per l\'assistenza tecnica ti chiedono di installarne una per vedere il tuo schermo. Se qualcuno te l\'ha chiesto, riattacca e disinstallala.</string>
+    <string name="behavior_impersonation_title">App imitata</string>
+    <string name="behavior_impersonation_desc">Non proviene da uno store di app, ma ha il nome di un\'app nota o di una parte di Android («Aggiornamento di sistema», una banca, WhatsApp). Le app false prendono in prestito nomi affidabili.</string>
+    <string name="behavior_can_install_apps_title">Può installare app</string>
+    <string name="behavior_can_install_apps_desc">Ha il permesso di installare altre app. Il malware lo usa per scaricare altre app dopo l\'installazione. Disattivalo nelle Impostazioni se non ti serve.</string>
     <string name="severity_low">Basso</string>
     <string name="severity_medium">Medio</string>
     <string name="severity_high">Alto</string>

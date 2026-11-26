@@ -24,6 +24,16 @@
     <string name="behavior_unrestricted_battery_desc">Est exemptée de l\'optimisation de la batterie et travaille beaucoup en arrière-plan.</string>
     <string name="behavior_storage_bloat_title">Gourmande en stockage</string>
     <string name="behavior_storage_bloat_desc">Conserve un cache très volumineux. Le vider libère de l\'espace et peut accélérer le téléphone.</string>
+    <string name="behavior_risky_install_source_title">Source d\'installation à risque</string>
+    <string name="behavior_risky_install_source_desc">Ne vient pas d\'une boutique d\'applis : installée depuis un lien reçu par messagerie ou e-mail, ou depuis un fichier téléchargé. C\'est ainsi que les applis d\'arnaque arrivent sur les téléphones, surtout celles qui demandent l\'accès à vos messages ou à l\'écran.</string>
+    <string name="behavior_data_theft_risk_title">Peut lire vos codes</string>
+    <string name="behavior_data_theft_risk_desc">Peut lire vos SMS ou vos notifications, là où arrivent les codes de banque et de connexion. Les applis frauduleuses le demandent pour pirater des comptes. Retirez cet accès sauf si vous faites entièrement confiance à l\'appli.</string>
+    <string name="behavior_remote_access_title">Appli d\'accès à distance</string>
+    <string name="behavior_remote_access_desc">Une appli de contrôle à distance a été installée récemment. Des escrocs se faisant passer pour votre banque ou un support technique vous demandent d\'en installer une pour voir votre écran. Si quelqu\'un vous l\'a demandé, raccrochez et désinstallez-la.</string>
+    <string name="behavior_impersonation_title">Appli imitée</string>
+    <string name="behavior_impersonation_desc">Ne vient pas d\'une boutique d\'applis, mais porte le nom d\'une appli connue ou d\'une partie d\'Android (« Mise à jour système », une banque, WhatsApp). Les fausses applis empruntent des noms de confiance.</string>
+    <string name="behavior_can_install_apps_title">Peut installer des applis</string>
+    <string name="behavior_can_install_apps_desc">Est autorisée à installer d\'autres applis. Les logiciels malveillants s\'en servent pour télécharger d\'autres applis après leur installation. Désactivez-le dans les Paramètres si vous n\'en avez pas besoin.</string>
     <string name="severity_low">Faible</string>
     <string name="severity_medium">Moyen</string>
     <string name="severity_high">Élevé</string>

@@ -13,6 +13,8 @@ WHAT IT CATCHES
 • Notification spam
 • Risky access: accessibility services, device administrators, unrestricted battery use
 • Storage hogs: very large caches
+• Scam apps: installed from a link in a chat, look-alike names, remote-access apps installed during a call, and apps that can read your codes
+• Phone security: no screen lock, old security updates, USB debugging left on
 
 YOUR DAILY REPORT
 • A health score from 0 to 100 and a clear verdict: good, fair or poor
@@ -23,8 +25,7 @@ YOUR DAILY REPORT
 
 YOU STAY IN CONTROL
 • The Apps tab lists every app flagged now or in the past
-• Trust the apps you know are fine. Trusted apps are left out of your reports and do not lower your score, and are shown in a different colour
-• Change your mind at any time: tap a trusted app to stop trusting it
+• Trust the apps you know are fine: they are left out of your reports and score, shown in another colour, and you can change your mind any time
 
 PARENTAL MODE
 Setting up a phone for a child? Turn on Parental mode in Settings and enter their age. A Parental help tab then lists the installed apps that child-safety organisations, regulators and investigations warn about for that age:
@@ -41,7 +42,7 @@ PRIVATE BY DESIGN
 • Notifications are only counted per app. Their content is never read
 
 HOW IT WORKS
-Perfsentient needs two permissions that you turn on in Android settings: Usage access (to see which apps run and for how long) and Notification access (to count notifications per app). The Settings tab explains each one and takes you straight to the right screen. A light check runs every 15 minutes, using almost no battery, and your report arrives at the time you choose.
+Turn on Usage access and Notification access in Android settings: the Settings tab explains each one and opens the right screen. A light check runs every 15 minutes, and your report arrives at the time you choose.
 
 AVAILABLE IN
 English, Portuguese, French, Spanish, Italian, Romanian and German. On Android 13 and later you can choose the app's language in Android settings.
