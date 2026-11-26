@@ -12,4 +12,8 @@
         <item quantity="many">Puntuación de salud %1$d/100 · %2$d apps se han portado mal. Toca para ver tu informe diario.</item>
         <item quantity="other">Puntuación de salud %1$d/100 · %2$d apps se han portado mal. Toca para ver tu informe diario.</item>
     </plurals>
+    <string name="monitoring_security_channel_name">Alertas de seguridad</string>
+    <string name="monitoring_security_channel_description">Te avisa en cuanto se instala una app arriesgada o una app obtiene acceso a tus mensajes o a la pantalla</string>
+    <string name="monitoring_security_title">%1$s: %2$s</string>
+    <string name="monitoring_security_action_app_info">Información de la app</string>
 </resources>

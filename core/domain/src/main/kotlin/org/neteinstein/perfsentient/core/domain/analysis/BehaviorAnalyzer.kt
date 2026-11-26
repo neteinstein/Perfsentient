@@ -32,6 +32,22 @@ class BehaviorAnalyzer internal constructor(private val detectors: List<Behavior
         .sortedWith(compareByDescending<Finding> { it.severity }.thenBy { it.appLabel.lowercase() })
 
     companion object {
+        /** Only the detectors that judge an app by what it is and can do, for the live security check. */
+        fun security(
+            thresholds: DetectionThresholds,
+            catalog: ScamSignalCatalog = ScamSignalCatalog(),
+        ): BehaviorAnalyzer = BehaviorAnalyzer(
+            listOf(
+                RiskyInstallSourceDetector(catalog),
+                DataTheftRiskDetector(),
+                RemoteAccessDetector(thresholds, catalog),
+                ImpersonationDetector(catalog),
+                CanInstallAppsDetector(catalog),
+                CapabilityRiskDetector(thresholds),
+                HiddenIconDetector(thresholds),
+            ),
+        )
+
         fun defaultDetectors(
             thresholds: DetectionThresholds,
             catalog: ScamSignalCatalog = ScamSignalCatalog(),

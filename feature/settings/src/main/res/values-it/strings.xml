@@ -65,4 +65,6 @@
     <string name="settings_section_detection">Cosa cerchiamo</string>
     <string name="settings_footer">Perfsentient • sul dispositivo • senza autorizzazione Internet</string>
     <string name="settings_section_detection_desc">Euristiche basate sulle norme di Google Play, su Android vitals e sulle ricerche pubblicate sugli adware.</string>
+    <string name="settings_security_alerts">Avvisi di sicurezza</string>
+    <string name="settings_security_alerts_desc">Ricevi una notifica entro circa 15 minuti quando viene installata un\'app rischiosa o un\'app ottiene l\'accesso ai tuoi messaggi o allo schermo, senza aspettare il report giornaliero.</string>
 </resources>

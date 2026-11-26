@@ -13,7 +13,7 @@ CE DETECTEAZĂ
 • Spam de notificări
 • Acces riscant: servicii de accesibilitate, administratori de dispozitiv, baterie fără restricții
 • Aplicații care ocupă mult spațiu (cache uriaș)
-• Aplicații de înșelătorie: instalate dintr-un link primit în chat, nume care imită aplicații cunoscute, aplicații de acces la distanță instalate în timpul unui apel și aplicații care vă pot citi codurile
+• Aplicații de înșelătorie: instalate dintr-un link primit în chat, nume care imită aplicații cunoscute, aplicații de acces la distanță instalate în timpul unui apel și aplicații care vă pot citi codurile, cu o alertă în circa 15 minute
 • Securitatea telefonului: fără blocarea ecranului, actualizări de securitate vechi, remedierea erorilor prin USB activată
 
 RAPORTUL ZILNIC

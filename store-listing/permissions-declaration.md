@@ -54,7 +54,7 @@ Perfsentient also reads three device settings for its security check, none of wh
 
 | Permission | Purpose |
 |---|---|
-| `POST_NOTIFICATIONS` | Show the end-of-day report notification (runtime permission, Android 13+). |
+| `POST_NOTIFICATIONS` | Show the end-of-day report notification and live security alerts about risky new apps (runtime permission, Android 13+). |
 | WorkManager's `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE` (merged from the library) | Re-schedule the 15-minute sampler after a reboot. The app runs **no** long-lived foreground service of its own. |
 
 ## Policy checklist

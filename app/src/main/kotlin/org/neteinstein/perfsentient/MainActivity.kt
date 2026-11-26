@@ -67,8 +67,9 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun handleDeepLink(intent: Intent?) {
-        if (intent?.getStringExtra(MonitoringContract.EXTRA_OPEN_TAB) == MonitoringContract.TAB_REPORT) {
-            viewModel.selectTab(AppTab.REPORT)
+        when (intent?.getStringExtra(MonitoringContract.EXTRA_OPEN_TAB)) {
+            MonitoringContract.TAB_REPORT -> viewModel.selectTab(AppTab.REPORT)
+            MonitoringContract.TAB_APPS -> viewModel.selectTab(AppTab.APPS)
         }
     }
 }

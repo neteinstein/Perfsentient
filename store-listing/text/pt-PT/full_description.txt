@@ -13,7 +13,7 @@ O QUE DETETA
 • Spam de notificações
 • Acessos de risco: serviços de acessibilidade, administradores do dispositivo, bateria sem restrições
 • Apps que ocupam muito armazenamento (cache enorme)
-• Apps de burla: instaladas a partir de links em conversas, nomes que imitam apps conhecidas, apps de acesso remoto instaladas durante uma chamada e apps que podem ler os seus códigos
+• Apps de burla: instaladas a partir de links em conversas, nomes que imitam apps conhecidas, apps de acesso remoto instaladas durante uma chamada e apps que podem ler os seus códigos, com um alerta em cerca de 15 minutos
 • Segurança do telemóvel: sem bloqueio de ecrã, atualizações de segurança antigas, depuração USB ativa
 
 O SEU RELATÓRIO DIÁRIO

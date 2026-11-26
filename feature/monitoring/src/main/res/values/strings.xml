@@ -11,4 +11,8 @@
         <item quantity="one">Health score %1$d/100 · %2$d app is misbehaving. Tap to see your daily report.</item>
         <item quantity="other">Health score %1$d/100 · %2$d apps are misbehaving. Tap to see your daily report.</item>
     </plurals>
+    <string name="monitoring_security_channel_name">Security alerts</string>
+    <string name="monitoring_security_channel_description">Warns you as soon as a risky app is installed or gets access to your messages or screen</string>
+    <string name="monitoring_security_title">%1$s: %2$s</string>
+    <string name="monitoring_security_action_app_info">App info</string>
 </resources>

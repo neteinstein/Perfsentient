@@ -13,7 +13,7 @@ QUÉ DETECTA
 • Spam de notificaciones
 • Accesos de riesgo: servicios de accesibilidad, administradores del dispositivo, batería sin restricciones
 • Apps que acaparan almacenamiento (caché enorme)
-• Apps de estafa: instaladas desde un enlace en un chat, nombres que imitan apps conocidas, apps de acceso remoto instaladas durante una llamada y apps que pueden leer tus códigos
+• Apps de estafa: instaladas desde un enlace en un chat, nombres que imitan apps conocidas, apps de acceso remoto instaladas durante una llamada y apps que pueden leer tus códigos, con un aviso en unos 15 minutos
 • Seguridad del teléfono: sin bloqueo de pantalla, actualizaciones de seguridad antiguas, depuración USB activada
 
 TU INFORME DIARIO

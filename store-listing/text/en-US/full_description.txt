@@ -13,7 +13,7 @@ WHAT IT CATCHES
 • Notification spam
 • Risky access: accessibility services, device administrators, unrestricted battery use
 • Storage hogs: very large caches
-• Scam apps: installed from a link in a chat, look-alike names, remote-access apps installed during a call, and apps that can read your codes
+• Scam apps: installed from a link in a chat, look-alike names, remote-access apps installed during a call, and apps that can read your codes, with an alert within about 15 minutes
 • Phone security: no screen lock, old security updates, USB debugging left on
 
 YOUR DAILY REPORT

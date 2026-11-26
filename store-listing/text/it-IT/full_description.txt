@@ -13,7 +13,7 @@ COSA RILEVA
 • Spam di notifiche
 • Accessi a rischio: servizi di accessibilità, amministratori del dispositivo, batteria senza restrizioni
 • App che occupano molto spazio (cache enorme)
-• App truffa: installate da un link in chat, nomi che imitano app note, app di accesso remoto installate durante una chiamata e app che possono leggere i tuoi codici
+• App truffa: installate da un link in chat, nomi che imitano app note, app di accesso remoto installate durante una chiamata e app che possono leggere i tuoi codici, con un avviso entro circa 15 minuti
 • Sicurezza del telefono: nessun blocco schermo, aggiornamenti di sicurezza vecchi, debug USB attivo
 
 IL TUO REPORT GIORNALIERO

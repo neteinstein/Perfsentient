@@ -52,6 +52,7 @@
 
 - 🩺 **Daily health report.** An animated health score, a one-line verdict, the apps that misbehaved (with the reason for each), device vitals and a 7-day trend.
 - 🔔 **One notification a day.** At a time you choose, it tells you whether the day was good or bad and how many apps caused trouble. Tap it to open the report.
+- 🚨 **Live security alerts.** Within about 15 minutes of a risky install (a fake app, a remote-access app installed during a call, an app that can read your codes), a high-priority notification names the app and what to do. Each app and behaviour alerts once; trusted apps never do. You can turn alerts off in Settings.
 - 🛡️ **Spots scam apps.** Apps installed from a link in a chat, look-alike names ("System Update", a fake bank or WhatsApp), remote-access apps installed during a call, apps that can read your one-time codes, and phone settings that make scams easier (no screen lock, an old security patch, USB debugging left on).
 - 🕵️ **Catches ad tricks.** Pop-up ads, ads after a phone call, apps drawing over other apps, and apps that hide their launcher icon.
 - 🔋 **Finds battery and data hogs.** Apps that run all day in the background, wake up at night, or use a lot of mobile data you never asked for.
@@ -106,7 +107,7 @@ flowchart LR
     end
 ```
 
-1. A cheap WorkManager job records device vitals every 15 minutes. There's no foreground service.
+1. A cheap WorkManager job records device vitals every 15 minutes. There's no foreground service. The same job looks at apps installed or updated since the last run, and apps that just got accessibility, notification access or the SMS role, and raises a live alert for the risky ones.
 2. At the report time you choose, the analyser reads the last 24 hours of usage events, network stats and stored samples, plus the installed apps, and runs every detector. Each report picks up where the previous one stopped, so the evening after the report time is never missed.
 3. The result is saved as the day's report and announced with a single notification.
 

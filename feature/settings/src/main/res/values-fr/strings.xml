@@ -65,4 +65,6 @@
     <string name="settings_section_detection">Ce que nous détectons</string>
     <string name="settings_footer">Perfsentient • sur l\'appareil • sans autorisation Internet</string>
     <string name="settings_section_detection_desc">Heuristiques fondées sur le règlement de Google Play, Android Vitals et les études publiées sur les logiciels publicitaires.</string>
+    <string name="settings_security_alerts">Alertes de sécurité</string>
+    <string name="settings_security_alerts_desc">Recevez une notification en 15 minutes environ quand une appli à risque est installée ou qu\'une appli obtient l\'accès à vos messages ou à l\'écran, sans attendre le rapport quotidien.</string>
 </resources>

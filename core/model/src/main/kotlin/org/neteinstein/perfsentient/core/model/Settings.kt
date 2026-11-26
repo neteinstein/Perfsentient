@@ -19,4 +19,6 @@ data class UserSettings(
     val reportTime: ReportTime = ReportTime.DEFAULT,
     val monitoringEnabled: Boolean = false,
     val parental: ParentalSettings = ParentalSettings(),
+    /** Notify as soon as a risky app is installed or gets risky access, instead of waiting for the report. */
+    val securityAlertsEnabled: Boolean = true,
 )

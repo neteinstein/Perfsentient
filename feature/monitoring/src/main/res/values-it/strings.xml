@@ -12,4 +12,8 @@
         <item quantity="many">Punteggio di salute %1$d/100 · %2$d app si comportano male. Tocca per vedere il report giornaliero.</item>
         <item quantity="other">Punteggio di salute %1$d/100 · %2$d app si comportano male. Tocca per vedere il report giornaliero.</item>
     </plurals>
+    <string name="monitoring_security_channel_name">Avvisi di sicurezza</string>
+    <string name="monitoring_security_channel_description">Ti avvisa appena viene installata un\'app rischiosa o un\'app ottiene l\'accesso ai tuoi messaggi o allo schermo</string>
+    <string name="monitoring_security_title">%1$s: %2$s</string>
+    <string name="monitoring_security_action_app_info">Info app</string>
 </resources>

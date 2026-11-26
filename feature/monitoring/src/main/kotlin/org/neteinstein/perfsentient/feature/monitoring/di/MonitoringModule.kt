@@ -8,6 +8,7 @@ import org.koin.dsl.binds
 import org.koin.dsl.module
 import org.neteinstein.perfsentient.core.domain.repository.MonitoringScheduler
 import org.neteinstein.perfsentient.feature.monitoring.notification.ReportNotifier
+import org.neteinstein.perfsentient.feature.monitoring.notification.SecurityAlertNotifier
 import org.neteinstein.perfsentient.feature.monitoring.scheduler.WorkManagerMonitoringScheduler
 import org.neteinstein.perfsentient.feature.monitoring.worker.DailyReportWorker
 import org.neteinstein.perfsentient.feature.monitoring.worker.VitalsSamplerWorker
@@ -16,6 +17,7 @@ val monitoringModule = module {
     single { WorkManager.getInstance(androidContext()) }
     singleOf(::WorkManagerMonitoringScheduler) binds arrayOf(MonitoringScheduler::class, WorkManagerMonitoringScheduler::class)
     single { ReportNotifier(androidContext()) }
+    single { SecurityAlertNotifier(androidContext()) }
     workerOf(::VitalsSamplerWorker)
     workerOf(::DailyReportWorker)
 }

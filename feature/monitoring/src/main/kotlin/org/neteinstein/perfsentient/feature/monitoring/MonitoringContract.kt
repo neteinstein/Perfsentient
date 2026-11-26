@@ -1,7 +1,8 @@
 package org.neteinstein.perfsentient.feature.monitoring
 
-/** Keys shared with the app module for deep-linking from the report notification. */
+/** Keys shared with the app module for deep-linking from the report and security notifications. */
 object MonitoringContract {
     const val EXTRA_OPEN_TAB = "org.neteinstein.perfsentient.extra.OPEN_TAB"
     const val TAB_REPORT = "report"
+    const val TAB_APPS = "apps"
 }

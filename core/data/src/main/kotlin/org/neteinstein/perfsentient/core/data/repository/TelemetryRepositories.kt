@@ -24,10 +24,13 @@ import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
 import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
+import org.neteinstein.perfsentient.core.model.CapabilityHolders
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceContext
 import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.NetworkUsage
+import org.neteinstein.perfsentient.core.model.PackageChangeCursor
+import org.neteinstein.perfsentient.core.model.PackageChanges
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.VitalSample
 
@@ -56,6 +59,14 @@ class AppInventoryRepositoryImpl(
         withContext(dispatchers.io) { dataSource.installedAppLabels(packageNames) }
 
     override suspend fun getDeviceContext(): DeviceContext = withContext(dispatchers.io) { dataSource.deviceContext() }
+
+    override suspend fun getChangedPackages(since: PackageChangeCursor?): PackageChanges =
+        withContext(dispatchers.io) { dataSource.changedPackages(since) }
+
+    override suspend fun getProfiles(packageNames: Set<String>): List<AppProfile> =
+        withContext(dispatchers.io) { dataSource.profiles(packageNames) }
+
+    override suspend fun getCapabilityHolders(): CapabilityHolders = withContext(dispatchers.io) { dataSource.capabilityHolders() }
 }
 
 class DeviceSecurityRepositoryImpl(

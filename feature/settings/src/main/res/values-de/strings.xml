@@ -63,4 +63,6 @@
     <string name="settings_section_detection">Worauf wir achten</string>
     <string name="settings_footer">Perfsentient • auf dem Gerät • ohne Internetberechtigung</string>
     <string name="settings_section_detection_desc">Heuristiken auf Basis der Google-Play-Richtlinien, von Android Vitals und veröffentlichter Adware-Forschung.</string>
+    <string name="settings_security_alerts">Sicherheitswarnungen</string>
+    <string name="settings_security_alerts_desc">Erhalten Sie innerhalb von etwa 15 Minuten eine Benachrichtigung, wenn eine riskante App installiert wird oder eine App Zugriff auf Ihre Nachrichten oder den Bildschirm erhält, ohne auf den Tagesbericht zu warten.</string>
 </resources>

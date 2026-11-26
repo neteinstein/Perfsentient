@@ -12,4 +12,8 @@
         <item quantity="many">Score de santé %1$d/100 · %2$d applis posent problème. Touchez pour voir votre rapport quotidien.</item>
         <item quantity="other">Score de santé %1$d/100 · %2$d applis posent problème. Touchez pour voir votre rapport quotidien.</item>
     </plurals>
+    <string name="monitoring_security_channel_name">Alertes de sécurité</string>
+    <string name="monitoring_security_channel_description">Vous prévient dès qu\'une appli à risque est installée ou obtient l\'accès à vos messages ou à l\'écran</string>
+    <string name="monitoring_security_title">%1$s : %2$s</string>
+    <string name="monitoring_security_action_app_info">Infos sur l\'appli</string>
 </resources>

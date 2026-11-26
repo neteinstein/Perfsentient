@@ -11,4 +11,8 @@
         <item quantity="one">Gesundheitswert %1$d/100 · %2$d App verhält sich auffällig. Tippen Sie, um den Tagesbericht zu sehen.</item>
         <item quantity="other">Gesundheitswert %1$d/100 · %2$d Apps verhalten sich auffällig. Tippen Sie, um den Tagesbericht zu sehen.</item>
     </plurals>
+    <string name="monitoring_security_channel_name">Sicherheitswarnungen</string>
+    <string name="monitoring_security_channel_description">Warnt Sie, sobald eine riskante App installiert wird oder Zugriff auf Ihre Nachrichten oder den Bildschirm erhält</string>
+    <string name="monitoring_security_title">%1$s: %2$s</string>
+    <string name="monitoring_security_action_app_info">App-Info</string>
 </resources>

@@ -71,4 +71,6 @@
     <string name="settings_section_detection">What we look for</string>
     <string name="settings_footer">Perfsentient • on-device • no internet permission</string>
     <string name="settings_section_detection_desc">Heuristics based on Google Play policy, Android vitals and published adware research.</string>
+    <string name="settings_security_alerts">Security alerts</string>
+    <string name="settings_security_alerts_desc">Get a notification within about 15 minutes when a risky app is installed, or an app gets access to your messages or screen. You don\'t have to wait for the daily report.</string>
 </resources>

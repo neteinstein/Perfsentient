@@ -12,4 +12,8 @@
         <item quantity="few">Scor de sănătate %1$d/100 · %2$d aplicații au probleme. Atingeți pentru a vedea raportul zilnic.</item>
         <item quantity="other">Scor de sănătate %1$d/100 · %2$d de aplicații au probleme. Atingeți pentru a vedea raportul zilnic.</item>
     </plurals>
+    <string name="monitoring_security_channel_name">Alerte de securitate</string>
+    <string name="monitoring_security_channel_description">Vă avertizează imediat ce este instalată o aplicație riscantă sau o aplicație primește acces la mesaje ori la ecran</string>
+    <string name="monitoring_security_title">%1$s: %2$s</string>
+    <string name="monitoring_security_action_app_info">Informații despre aplicație</string>
 </resources>
