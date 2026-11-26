@@ -113,4 +113,14 @@
         <item quantity="few">Afișați toate cele %1$d aplicații</item>
         <item quantity="other">Afișați toate cele %1$d de aplicații</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d blocare (ANR) azi</item>
+        <item quantity="few">%1$d blocări (ANR) azi</item>
+        <item quantity="other">%1$d de blocări (ANR) azi</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d închidere neașteptată azi</item>
+        <item quantity="few">%1$d închideri neașteptate azi</item>
+        <item quantity="other">%1$d de închideri neașteptate azi</item>
+    </plurals>
 </resources>

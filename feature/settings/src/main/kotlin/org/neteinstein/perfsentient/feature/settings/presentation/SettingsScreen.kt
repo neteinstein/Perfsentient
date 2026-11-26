@@ -41,6 +41,7 @@ import org.neteinstein.perfsentient.core.designsystem.component.staggeredEntranc
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.PermissionType
 import org.neteinstein.perfsentient.feature.settings.R
+import org.neteinstein.perfsentient.feature.settings.presentation.component.AdbGrantDialog
 import org.neteinstein.perfsentient.feature.settings.presentation.component.AppearanceCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.BehaviorInfoCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.MonitoringStatusCard
@@ -83,6 +84,16 @@ internal fun SettingsScreen(
     val context = LocalContext.current
     val activity = LocalActivity.current
     var notificationsBlocked by rememberSaveable { mutableStateOf(false) }
+    var showAdbDialog by rememberSaveable { mutableStateOf(false) }
+    if (showAdbDialog) {
+        AdbGrantDialog(
+            onDismiss = {
+                showAdbDialog = false
+                // The grant happens on a computer while this screen stays resumed.
+                onPermissionsMaybeChanged()
+            },
+        )
+    }
     val notificationLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         // When the system stops showing the dialog the user must enable it from settings.
         if (!granted && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -106,6 +117,8 @@ internal fun SettingsScreen(
             PermissionType.NOTIFICATION_ACCESS -> context.launch(PermissionIntents.notificationAccess())
 
             PermissionType.APP_INVENTORY -> Unit
+
+            PermissionType.SYSTEM_LOGS -> showAdbDialog = true
         }
     }
 

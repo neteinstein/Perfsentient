@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Nottambula</string>
     <string name="behavior_night_activity_desc">Si è attivata o ha aperto schermate di notte a schermo spento.</string>
     <string name="behavior_background_data_title">Divora dati in background</string>
-    <string name="behavior_background_data_desc">Ha trasferito molti dati in background. Android vitals considera eccessivi più di 50 MB di dati mobili al giorno; con il Wi-Fi il margine è più ampio.</string>
+    <string name="behavior_background_data_desc">Ha trasferito molti dati in background. Android vitals considera eccessivi più di 50 MB di dati mobili al giorno.</string>
     <string name="behavior_notification_spam_title">Spam di notifiche</string>
     <string name="behavior_notification_spam_desc">Ha pubblicato un numero insolitamente alto di notifiche.</string>
     <string name="behavior_accessibility_risk_title">Accesso di accessibilità</string>
@@ -30,4 +30,8 @@
     <string name="verdict_good">Buona</string>
     <string name="verdict_fair">Discreta</string>
     <string name="verdict_poor">Scarsa</string>
+    <string name="behavior_app_not_responding_title">Non risponde</string>
+    <string name="behavior_app_not_responding_desc">Si è bloccata più volte oggi mostrando \"L\'app non risponde\". ANR frequenti rendono il telefono lento.</string>
+    <string name="behavior_app_crashes_title">Si arresta spesso</string>
+    <string name="behavior_app_crashes_desc">Si è arrestata più volte oggi. Aggiornarla, svuotarne la cache o reinstallarla di solito aiuta.</string>
 </resources>

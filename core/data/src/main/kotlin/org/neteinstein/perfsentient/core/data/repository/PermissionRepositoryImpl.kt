@@ -11,13 +11,17 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.neteinstein.perfsentient.core.data.source.SystemErrorLogDataSource
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.model.GrantMode
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.PermissionType
 
 /** Reads grant state from the OS. All checks are cheap, synchronous binder calls. */
-class PermissionRepositoryImpl(private val context: Context) : PermissionRepository {
+class PermissionRepositoryImpl(
+    private val context: Context,
+    private val errorLog: SystemErrorLogDataSource,
+) : PermissionRepository {
     private val state = MutableStateFlow(read())
 
     override val permissions: StateFlow<List<PermissionState>> = state.asStateFlow()
@@ -36,6 +40,7 @@ class PermissionRepositoryImpl(private val context: Context) : PermissionReposit
         ),
         PermissionState(PermissionType.NOTIFICATION_ACCESS, hasNotificationAccess(), isRequired = true, GrantMode.SYSTEM_SETTINGS),
         PermissionState(PermissionType.APP_INVENTORY, isGranted = true, isRequired = true, GrantMode.INSTALL_TIME),
+        PermissionState(PermissionType.SYSTEM_LOGS, errorLog.hasAccess(), isRequired = false, GrantMode.ADB),
     )
 
     private fun hasUsageAccess(): Boolean {

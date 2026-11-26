@@ -113,4 +113,14 @@
         <item quantity="many">Afficher les %1$d applis</item>
         <item quantity="other">Afficher les %1$d applis</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d blocage (ANR) aujourd\'hui</item>
+        <item quantity="many">%1$d blocages (ANR) aujourd\'hui</item>
+        <item quantity="other">%1$d blocages (ANR) aujourd\'hui</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d plantage aujourd\'hui</item>
+        <item quantity="many">%1$d plantages aujourd\'hui</item>
+        <item quantity="other">%1$d plantages aujourd\'hui</item>
+    </plurals>
 </resources>

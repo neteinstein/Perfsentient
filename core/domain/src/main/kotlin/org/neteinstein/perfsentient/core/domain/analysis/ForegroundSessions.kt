@@ -8,7 +8,11 @@ data class ForegroundSession(
     val packageName: String,
     val startMs: Long,
     val endMs: Long,
-    /** True when the session started within the unlock window after the keyguard was dismissed. */
+    /**
+     * True when the session started within the unlock window after the keyguard was dismissed
+     * and it is *not* simply the app that was on screen when the device was locked (Android
+     * resumes that activity on unlock, which is not a pop-up).
+     */
     val startedRightAfterUnlock: Boolean,
 ) {
     val durationMs: Long get() = endMs - startMs
@@ -35,6 +39,7 @@ object ForegroundSessions {
         var currentStart = 0L
         var currentAfterUnlock = false
         var lastUnlockAt = Long.MIN_VALUE / 2
+        var packageWhenLocked: String? = null
 
         fun close(at: Long) {
             val pkg = currentPkg ?: return
@@ -51,10 +56,14 @@ object ForegroundSessions {
                     close(event.timestamp)
                     currentPkg = event.packageName
                     currentStart = event.timestamp
-                    currentAfterUnlock = event.timestamp - lastUnlockAt in 0..unlockWindowMs
+                    currentAfterUnlock = event.timestamp - lastUnlockAt in 0..unlockWindowMs &&
+                        event.packageName != packageWhenLocked
                 }
 
-                UsageEventType.SCREEN_NON_INTERACTIVE, UsageEventType.KEYGUARD_SHOWN -> close(event.timestamp)
+                UsageEventType.SCREEN_NON_INTERACTIVE, UsageEventType.KEYGUARD_SHOWN -> {
+                    currentPkg?.let { packageWhenLocked = it }
+                    close(event.timestamp)
+                }
 
                 UsageEventType.KEYGUARD_HIDDEN -> lastUnlockAt = event.timestamp
 

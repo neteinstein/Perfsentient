@@ -65,4 +65,12 @@
     <string name="settings_section_detection">Ce urmărim</string>
     <string name="settings_footer">Perfsentient • pe dispozitiv • fără permisiune de internet</string>
     <string name="settings_section_detection_desc">Euristici bazate pe politica Google Play, Android vitals și cercetări publicate despre adware.</string>
+    <string name="settings_permission_optional">Opțional</string>
+    <string name="permission_system_logs_title">Detectare ANR și închideri</string>
+    <string name="permission_system_logs_desc">Găsește aplicațiile care se blochează sau se închid des. Necesită o comandă unică de pe un computer.</string>
+    <string name="permission_system_logs_why">Android partajează blocările (ANR) și închiderile altor aplicații doar prin jurnalul de erori al sistemului, care necesită permisiunea READ_LOGS / READ_DROPBOX_DATA. Nu poate fi acordată de pe telefon: conectează-l la un computer cu depanarea USB activată și rulează comanda afișată când atingi Acordă. Perfsentient citește doar numele aplicației și ora fiecărei intrări, niciodată stack trace-uri sau alte jurnale.</string>
+    <string name="settings_adb_dialog_title">Acordă cu adb</string>
+    <string name="settings_adb_dialog_body">Activează depanarea USB, conectează telefonul la un computer și rulează:</string>
+    <string name="settings_adb_copy">Copiază comanda</string>
+    <string name="settings_adb_close">Închide</string>
 </resources>

@@ -30,7 +30,10 @@ data class SettingsUiState(
     val monitoringState: MonitoringState = MonitoringState.WAITING_FOR_PERMISSIONS,
     val trustedApps: List<TrustedApp> = emptyList(),
 ) {
-    val grantedCount: Int get() = permissions.count { it.isGranted }
+    /** Permissions monitoring waits for; optional extras (e.g. system-log access) are left out. */
+    val requiredPermissions: List<PermissionState> get() = permissions.filter { it.isRequired }
+
+    val grantedCount: Int get() = requiredPermissions.count { it.isGranted }
 }
 
 class SettingsViewModel(

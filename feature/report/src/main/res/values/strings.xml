@@ -112,4 +112,12 @@
         <item quantity="one">Show all %1$d app</item>
         <item quantity="other">Show all %1$d apps</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d freeze (ANR) today</item>
+        <item quantity="other">%1$d freezes (ANRs) today</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d crash today</item>
+        <item quantity="other">%1$d crashes today</item>
+    </plurals>
 </resources>
