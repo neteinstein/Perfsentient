@@ -90,6 +90,29 @@
     </plurals>
     <string name="report_duration_hm">%1$d h %2$02d min</string>
     <string name="report_duration_m">%1$d min</string>
+
+    <string name="report_section_battery">Batterie vs temps d\'ouverture</string>
+    <string name="report_battery_subtitle" formatted="false">7 derniers jours · % d\'une charge complète, estimation</string>
+    <string name="report_battery_sort_most">Plus de batterie</string>
+    <string name="report_battery_sort_per_hour">Par heure ouverte</string>
+    <string name="report_battery_usage">%1$s de batterie · ouverte %2$s</string>
+    <string name="report_battery_rate">%1$s/h d\'ouverture</string>
+    <string name="report_battery_percent">%1$s %%</string>
+    <string name="report_battery_bar_battery">Batterie utilisée : %1$s</string>
+    <string name="report_battery_bar_open">Temps d\'ouverture : %1$s</string>
+    <string name="report_battery_mostly_background">Surtout en arrière-plan</string>
+    <string name="report_battery_day">%1$s : %2$s de batterie, ouverte %3$s</string>
+    <string name="report_battery_legend_battery">Batterie</string>
+    <string name="report_battery_legend_open">Temps d\'ouverture</string>
+    <string name="report_battery_footnote">Estimation. Android garde privée la consommation de batterie de chaque appli : Perfsentient répartit donc chaque baisse mesurée entre les applis ouvertes ou actives en arrière-plan à ce moment-là. Écran d\'accueil et système : %1$s · Veille : %2$s.</string>
+    <string name="report_battery_empty_title">Collecte des données de batterie</string>
+    <string name="report_battery_empty_desc">Revenez demain. La batterie est mesurée toutes les 15 minutes quand le téléphone ne charge pas.</string>
+    <string name="report_battery_show_less">Afficher moins</string>
+    <plurals name="report_battery_show_all">
+        <item quantity="one">Afficher %1$d appli</item>
+        <item quantity="many">Afficher les %1$d applis</item>
+        <item quantity="other">Afficher les %1$d applis</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d blocage (ANR) aujourd\'hui</item>
         <item quantity="many">%1$d blocages (ANR) aujourd\'hui</item>

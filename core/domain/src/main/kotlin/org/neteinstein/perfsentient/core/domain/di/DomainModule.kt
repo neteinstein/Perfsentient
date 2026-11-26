@@ -3,6 +3,7 @@ package org.neteinstein.perfsentient.core.domain.di
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
+import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
@@ -11,6 +12,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.domain.parental.ParentalAppCatalog
 import org.neteinstein.perfsentient.core.domain.parental.ParentalRiskAssessor
 import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.ObserveBatteryHistoryUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveFlaggedAppsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveLatestReportUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
@@ -34,6 +36,7 @@ val domainModule = module {
     single { DetectionThresholds() }
     single { BehaviorAnalyzer(thresholds = get()) }
     singleOf(::DeviceHealthAnalyzer)
+    singleOf(::BatteryAttributor)
     single { HealthScoreCalculator() }
     singleOf(::TrustedAppsFilter)
     single { ParentalAppCatalog() }
@@ -42,6 +45,7 @@ val domainModule = module {
     factoryOf(::GenerateDailyReportUseCase)
     factoryOf(::ObserveLatestReportUseCase)
     factoryOf(::ObserveReportHistoryUseCase)
+    factoryOf(::ObserveBatteryHistoryUseCase)
     factoryOf(::ObserveMonitoringStateUseCase)
     factoryOf(::SyncMonitoringUseCase)
     factoryOf(::RecordVitalSampleUseCase)

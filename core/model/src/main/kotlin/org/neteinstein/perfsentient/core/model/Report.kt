@@ -120,6 +120,8 @@ data class DailyReport(
     val appsAnalysed: Int,
     /** Apps whose findings were left out because the user trusts them. Computed on read, never stored. */
     val hiddenTrustedApps: Int = 0,
+    /** Estimated battery use per app. Not a finding: trusted apps stay in it. */
+    val battery: BatteryBreakdown = BatteryBreakdown.EMPTY,
 ) {
     val offenders: List<AppAssessment>
         get() = findings

@@ -90,6 +90,29 @@
     </plurals>
     <string name="report_duration_hm">%1$d h %2$02d min</string>
     <string name="report_duration_m">%1$d min</string>
+
+    <string name="report_section_battery">Batteria vs tempo di apertura</string>
+    <string name="report_battery_subtitle" formatted="false">Ultimi 7 giorni · % di una carica completa, stima</string>
+    <string name="report_battery_sort_most">Più batteria</string>
+    <string name="report_battery_sort_per_hour">Per ora di apertura</string>
+    <string name="report_battery_usage">%1$s di batteria · aperta %2$s</string>
+    <string name="report_battery_rate">%1$s/h di apertura</string>
+    <string name="report_battery_percent">%1$s%%</string>
+    <string name="report_battery_bar_battery">Batteria usata: %1$s</string>
+    <string name="report_battery_bar_open">Tempo di apertura: %1$s</string>
+    <string name="report_battery_mostly_background">Soprattutto in background</string>
+    <string name="report_battery_day">%1$s: %2$s di batteria, aperta %3$s</string>
+    <string name="report_battery_legend_battery">Batteria</string>
+    <string name="report_battery_legend_open">Tempo di apertura</string>
+    <string name="report_battery_footnote">Stima. Android non permette di leggere il consumo di batteria di ogni app, quindi Perfsentient divide ogni calo misurato tra le app aperte o attive in background in quel momento. Schermata Home e sistema: %1$s · Standby: %2$s.</string>
+    <string name="report_battery_empty_title">Raccolta dei dati della batteria</string>
+    <string name="report_battery_empty_desc">Torna domani. La batteria viene misurata ogni 15 minuti quando il telefono non è in carica.</string>
+    <string name="report_battery_show_less">Mostra meno</string>
+    <plurals name="report_battery_show_all">
+        <item quantity="one">Mostra %1$d app</item>
+        <item quantity="many">Mostra tutte le %1$d app</item>
+        <item quantity="other">Mostra tutte le %1$d app</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d blocco (ANR) oggi</item>
         <item quantity="many">%1$d blocchi (ANR) oggi</item>

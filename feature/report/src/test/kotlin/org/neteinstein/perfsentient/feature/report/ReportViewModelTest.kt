@@ -8,6 +8,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
@@ -15,12 +16,14 @@ import org.neteinstein.perfsentient.core.domain.analysis.HealthScoreCalculator
 import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
+import org.neteinstein.perfsentient.core.domain.usecase.ObserveBatteryHistoryUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveLatestReportUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveReportHistoryUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.TrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
+import org.neteinstein.perfsentient.core.model.BatterySort
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UserSettings
@@ -56,6 +59,7 @@ class ReportViewModelTest {
         observeReportHistory = ObserveReportHistoryUseCase(reports, trusted, filter),
         observeMonitoringState = ObserveMonitoringStateUseCase(permissions, settings),
         observeSettings = ObserveSettingsUseCase(settings),
+        observeBatteryHistory = ObserveBatteryHistoryUseCase(reports, FakeTimeProvider(), thresholds),
         generateDailyReport = GenerateDailyReportUseCase(
             usage,
             FakeAppInventoryRepository(apps = listOf(TestData.app("calc"))),
@@ -65,6 +69,7 @@ class ReportViewModelTest {
             trusted,
             BehaviorAnalyzer(thresholds),
             DeviceHealthAnalyzer(thresholds),
+            BatteryAttributor(thresholds),
             HealthScoreCalculator(),
             filter,
             FakeTimeProvider(),
@@ -128,6 +133,29 @@ class ReportViewModelTest {
     }
 
     @Test
+    fun `battery history is exposed and re-sorted on request`() = runTest {
+        reports.save(
+            TestData.report(
+                battery = TestData.battery(
+                    TestData.batteryUsage("heavy", drain = 20f, foregroundMs = 10 * HOUR),
+                    TestData.batteryUsage("intense", drain = 5f, foregroundMs = HOUR / 2),
+                ),
+            ),
+        )
+        val vm = viewModel()
+        vm.uiState.test {
+            val initial = expectMostRecentItem()
+            assertEquals(BatterySort.MOST_BATTERY, initial.batterySort)
+            assertEquals(listOf("heavy", "intense"), initial.battery.apps.map { it.packageName })
+
+            vm.onBatterySortChange(BatterySort.PER_HOUR_OPEN)
+            val sorted = expectMostRecentItem()
+            assertEquals(BatterySort.PER_HOUR_OPEN, sorted.batterySort)
+            assertEquals(listOf("intense", "heavy"), sorted.battery.apps.map { it.packageName })
+        }
+    }
+
+    @Test
     fun `failures are surfaced as an event`() = runTest {
         usage.failWith = IllegalStateException("boom")
         val vm = viewModel()
@@ -137,3 +165,5 @@ class ReportViewModelTest {
         }
     }
 }
+
+private const val HOUR = 3_600_000L

@@ -15,6 +15,7 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.neteinstein.perfsentient.core.data.local.ALL_MIGRATIONS
@@ -40,16 +41,13 @@ class DatabaseMigrationTest {
     }
 
     @Test
-    fun `migration 1 to 2 keeps reports and moves daily notification counts to hourly buckets`() = runTest {
+    fun `migrating from 1 keeps reports and moves daily notification counts to hourly buckets`() = runTest {
         createDatabase(version = 1) { db ->
             db.execSQL("INSERT INTO notification_counts(day, packageName, count) VALUES('2026-11-16', 'spam', 42)")
             db.execSQL("INSERT INTO reports(day, generatedAt, score, payload) VALUES('2026-11-16', 1, 90, '{}')")
         }
 
-        val database = Room.databaseBuilder(context, PerfsentienceDatabase::class.java, PerfsentienceDatabase.NAME)
-            .addMigrations(*ALL_MIGRATIONS)
-            .allowMainThreadQueries()
-            .build()
+        val database = openWithMigrations()
         try {
             val dayStart = LocalDate.of(2026, 11, 16).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
             assertEquals(
@@ -61,6 +59,35 @@ class DatabaseMigrationTest {
             database.close()
         }
     }
+
+    @Test
+    fun `migration 2 to 3 keeps vital samples and adds an empty charge counter`() = runTest {
+        createDatabase(version = 2) { db ->
+            db.execSQL(
+                "INSERT INTO vital_samples(timestamp, batteryPercent, isCharging, batteryTemperatureC, isScreenOn, thermalStatus, " +
+                    "availableMemoryBytes, totalMemoryBytes, isLowMemory) VALUES(1000, 80, 0, 30.5, 1, 0, 2000, 8000, 0)",
+            )
+        }
+
+        val database = openWithMigrations()
+        try {
+            val dao = database.vitalSampleDao()
+            val migrated = dao.between(0, 2_000).single()
+            assertEquals(80, migrated.batteryPercent)
+            assertNull(migrated.chargeCounterUah)
+
+            dao.insert(migrated.copy(timestamp = 1_500, chargeCounterUah = 3_000_000))
+            assertEquals(3_000_000L, dao.between(1_500, 1_500).single().chargeCounterUah)
+        } finally {
+            database.close()
+        }
+    }
+
+    private fun openWithMigrations(): PerfsentienceDatabase =
+        Room.databaseBuilder(context, PerfsentienceDatabase::class.java, PerfsentienceDatabase.NAME)
+            .addMigrations(*ALL_MIGRATIONS)
+            .allowMainThreadQueries()
+            .build()
 
     private fun createDatabase(version: Int, seed: (SQLiteDatabase) -> Unit) {
         val schema = Json.parseToJsonElement(File("$SCHEMAS/$version.json").readText()).jsonObject.getValue("database").jsonObject

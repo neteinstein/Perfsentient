@@ -90,6 +90,29 @@
     </plurals>
     <string name="report_duration_hm">%1$d h %2$02d min</string>
     <string name="report_duration_m">%1$d min</string>
+
+    <string name="report_section_battery">Baterie vs timp deschisă</string>
+    <string name="report_battery_subtitle" formatted="false">Ultimele 7 zile · % dintr-o încărcare completă, estimare</string>
+    <string name="report_battery_sort_most">Cea mai multă baterie</string>
+    <string name="report_battery_sort_per_hour">Pe oră deschisă</string>
+    <string name="report_battery_usage">%1$s baterie · deschisă %2$s</string>
+    <string name="report_battery_rate">%1$s/h deschisă</string>
+    <string name="report_battery_percent">%1$s%%</string>
+    <string name="report_battery_bar_battery">Baterie folosită: %1$s</string>
+    <string name="report_battery_bar_open">Timp deschisă: %1$s</string>
+    <string name="report_battery_mostly_background">Mai ales în fundal</string>
+    <string name="report_battery_day">%1$s: %2$s baterie, deschisă %3$s</string>
+    <string name="report_battery_legend_battery">Baterie</string>
+    <string name="report_battery_legend_open">Timp deschisă</string>
+    <string name="report_battery_footnote">Estimare. Android nu permite citirea consumului de baterie al fiecărei aplicații, așa că Perfsentient împarte fiecare scădere măsurată între aplicațiile deschise sau active în fundal în acel moment. Ecran de pornire și sistem: %1$s · Inactiv: %2$s.</string>
+    <string name="report_battery_empty_title">Se colectează datele bateriei</string>
+    <string name="report_battery_empty_desc">Reveniți mâine. Bateria este măsurată la fiecare 15 minute cât timp telefonul nu se încarcă.</string>
+    <string name="report_battery_show_less">Afișați mai puține</string>
+    <plurals name="report_battery_show_all">
+        <item quantity="one">Afișați %1$d aplicație</item>
+        <item quantity="few">Afișați toate cele %1$d aplicații</item>
+        <item quantity="other">Afișați toate cele %1$d de aplicații</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d blocare (ANR) azi</item>
         <item quantity="few">%1$d blocări (ANR) azi</item>

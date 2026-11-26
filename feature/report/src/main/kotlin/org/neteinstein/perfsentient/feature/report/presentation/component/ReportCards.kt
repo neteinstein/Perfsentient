@@ -1,8 +1,5 @@
 package org.neteinstein.perfsentient.feature.report.presentation.component
 
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -264,14 +261,7 @@ internal fun OffenderDetailsSheet(assessment: AppAssessment, onTrust: () -> Unit
             )
             Spacer(Modifier.height(12.dp))
             FilledTonalButton(
-                onClick = {
-                    val intent = Intent(
-                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                        Uri.fromParts("package", assessment.packageName, null),
-                    )
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    runCatching { context.startActivity(intent) }
-                },
+                onClick = { context.openAppInfo(assessment.packageName) },
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.report_sheet_open_app_info)) }
             Spacer(Modifier.height(8.dp))

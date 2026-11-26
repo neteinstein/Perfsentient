@@ -5,6 +5,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
@@ -44,6 +45,7 @@ class GenerateDailyReportUseCaseTest {
         trustedAppsRepository = trusted,
         behaviorAnalyzer = BehaviorAnalyzer(thresholds),
         deviceHealthAnalyzer = DeviceHealthAnalyzer(thresholds),
+        batteryAttributor = BatteryAttributor(thresholds),
         scoreCalculator = calculator,
         trustedAppsFilter = TrustedAppsFilter(calculator),
         timeProvider = time,

@@ -97,6 +97,12 @@ data class VitalSample(
     val availableMemoryBytes: Long,
     val totalMemoryBytes: Long,
     val isLowMemory: Boolean,
+    /**
+     * Remaining battery charge from BATTERY_PROPERTY_CHARGE_COUNTER, finer than [batteryPercent].
+     * Null when the device does not report it. Only ratios are used, so the unit (µAh on most
+     * devices, mAh on a few) does not matter.
+     */
+    val chargeCounterUah: Long? = null,
 )
 
 /** Environment facts needed to interpret usage events. */

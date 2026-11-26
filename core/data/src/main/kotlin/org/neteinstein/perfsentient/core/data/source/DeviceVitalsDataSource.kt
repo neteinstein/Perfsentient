@@ -42,8 +42,14 @@ class DeviceVitalsDataSource(
             availableMemoryBytes = memory.availMem,
             totalMemoryBytes = memory.totalMem,
             isLowMemory = memory.lowMemory,
+            chargeCounterUah = chargeCounter(),
         )
     }
+
+    /** Long.MIN_VALUE or 0 when the device does not report it. */
+    private fun chargeCounter(): Long? = runCatching {
+        batteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER)
+    }.getOrNull()?.takeIf { it > 0 }
 
     private companion object {
         const val PERCENT = 100

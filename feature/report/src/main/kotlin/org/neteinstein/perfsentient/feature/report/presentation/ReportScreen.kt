@@ -41,9 +41,13 @@ import org.koin.compose.viewmodel.koinViewModel
 import org.neteinstein.perfsentient.core.designsystem.component.SectionHeader
 import org.neteinstein.perfsentient.core.designsystem.component.staggeredEntrance
 import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
+import org.neteinstein.perfsentient.core.model.BatterySort
 import org.neteinstein.perfsentient.feature.report.R
 import org.neteinstein.perfsentient.feature.report.presentation.component.AllClearCard
 import org.neteinstein.perfsentient.feature.report.presentation.component.AppOffenderCard
+import org.neteinstein.perfsentient.feature.report.presentation.component.BatteryFootnote
+import org.neteinstein.perfsentient.feature.report.presentation.component.BatterySortToggle
+import org.neteinstein.perfsentient.feature.report.presentation.component.BatteryUsageCard
 import org.neteinstein.perfsentient.feature.report.presentation.component.DeviceIssueCard
 import org.neteinstein.perfsentient.feature.report.presentation.component.EmptyReportCard
 import org.neteinstein.perfsentient.feature.report.presentation.component.HistoryCard
@@ -79,6 +83,7 @@ fun ReportRoute(onOpenSettings: () -> Unit, modifier: Modifier = Modifier, viewM
             onAnalyseNow = viewModel::onAnalyseNow,
             onOpenSettings = onOpenSettings,
             onTrustApp = viewModel::onTrustApp,
+            onBatterySortChange = viewModel::onBatterySortChange,
         )
         SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).padding(16.dp))
     }
@@ -91,6 +96,7 @@ internal fun ReportScreen(
     onOpenSettings: () -> Unit,
     onTrustApp: (packageName: String, label: String) -> Unit,
     modifier: Modifier = Modifier,
+    onBatterySortChange: (BatterySort) -> Unit = {},
 ) {
     AnimatedContent(
         targetState = state.isLoading,
@@ -101,7 +107,7 @@ internal fun ReportScreen(
         if (loading) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
         } else {
-            ReportContent(state, onAnalyseNow, onOpenSettings, onTrustApp)
+            ReportContent(state, onAnalyseNow, onOpenSettings, onTrustApp, onBatterySortChange)
         }
     }
 }
@@ -112,6 +118,7 @@ private fun ReportContent(
     onAnalyseNow: () -> Unit,
     onOpenSettings: () -> Unit,
     onTrustApp: (packageName: String, label: String) -> Unit,
+    onBatterySortChange: (BatterySort) -> Unit,
 ) {
     val report = state.report
     var selectedPackage by rememberSaveable { mutableStateOf<String?>(null) }
@@ -178,6 +185,18 @@ private fun ReportContent(
             }
             item(key = "vitals_header") { SectionHeader(stringResource(R.string.report_section_vitals), itemModifier) }
             item(key = "vitals") { VitalsGrid(report, itemModifier) }
+            item(key = "battery_header") {
+                SectionHeader(
+                    title = stringResource(R.string.report_section_battery),
+                    subtitle = stringResource(R.string.report_battery_subtitle),
+                    modifier = itemModifier,
+                )
+            }
+            if (!state.battery.isEmpty) {
+                item(key = "battery_sort") { BatterySortToggle(state.batterySort, onBatterySortChange, itemModifier) }
+            }
+            item(key = "battery") { BatteryUsageCard(state.battery, itemModifier) }
+            item(key = "battery_footnote") { BatteryFootnote(state.battery, itemModifier) }
             if (state.history.size > 1) {
                 item(key = "history_header") { SectionHeader(stringResource(R.string.report_section_history), itemModifier) }
                 item(key = "history") { HistoryCard(state.history, itemModifier) }

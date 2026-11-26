@@ -14,12 +14,15 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
+import org.neteinstein.perfsentient.core.domain.usecase.ObserveBatteryHistoryUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveLatestReportUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveReportHistoryUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.TrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
+import org.neteinstein.perfsentient.core.model.BatteryHistory
+import org.neteinstein.perfsentient.core.model.BatterySort
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.ReportTime
 
@@ -30,6 +33,9 @@ data class ReportUiState(
     val history: List<DailyReport> = emptyList(),
     val isGenerating: Boolean = false,
     val reportTime: ReportTime = ReportTime.DEFAULT,
+    /** Estimated battery vs time open per app for the last 7 days, already in [batterySort] order. */
+    val battery: BatteryHistory = BatteryHistory.EMPTY,
+    val batterySort: BatterySort = BatterySort.MOST_BATTERY,
 )
 
 sealed interface ReportEvent {
@@ -44,29 +50,37 @@ class ReportViewModel(
     observeReportHistory: ObserveReportHistoryUseCase,
     observeMonitoringState: ObserveMonitoringStateUseCase,
     observeSettings: ObserveSettingsUseCase,
+    observeBatteryHistory: ObserveBatteryHistoryUseCase,
     private val generateDailyReport: GenerateDailyReportUseCase,
     private val trustApp: TrustAppUseCase,
     private val untrustApp: UntrustAppUseCase,
 ) : ViewModel() {
 
     private val generating = MutableStateFlow(false)
+    private val batterySort = MutableStateFlow(BatterySort.MOST_BATTERY)
     private val eventChannel = Channel<ReportEvent>(Channel.BUFFERED)
     val events: Flow<ReportEvent> = eventChannel.receiveAsFlow()
+
+    private val batteryState = combine(observeBatteryHistory(HISTORY_DAYS), batterySort, generating) { battery, sort, isGenerating ->
+        BatteryState(battery.sortedBy(sort), sort, isGenerating)
+    }
 
     val uiState: StateFlow<ReportUiState> = combine(
         observeLatestReport(),
         observeReportHistory(HISTORY_DAYS),
         observeMonitoringState(),
         observeSettings(),
-        generating,
-    ) { report, history, monitoring, settings, isGenerating ->
+        batteryState,
+    ) { report, history, monitoring, settings, battery ->
         ReportUiState(
             isLoading = false,
             monitoringState = monitoring,
             report = report,
             history = history.sortedBy { it.date },
-            isGenerating = isGenerating,
+            isGenerating = battery.isGenerating,
             reportTime = settings.reportTime,
+            battery = battery.history,
+            batterySort = battery.sort,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MS), ReportUiState())
 
@@ -97,6 +111,12 @@ class ReportViewModel(
     fun onUndoTrust(packageName: String) {
         viewModelScope.launch { untrustApp(packageName) }
     }
+
+    fun onBatterySortChange(sort: BatterySort) {
+        batterySort.value = sort
+    }
+
+    private data class BatteryState(val history: BatteryHistory, val sort: BatterySort, val isGenerating: Boolean)
 
     private companion object {
         const val HISTORY_DAYS = 7

@@ -1,10 +1,12 @@
 package org.neteinstein.perfsentient.core.testing
 
 import java.time.LocalDate
+import org.neteinstein.perfsentient.core.model.AppBatteryUsage
 import org.neteinstein.perfsentient.core.model.AppIssueRecord
 import org.neteinstein.perfsentient.core.model.AppIssueType
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
+import org.neteinstein.perfsentient.core.model.BatteryBreakdown
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceContext
@@ -81,7 +83,8 @@ object TestData {
         screenOn: Boolean = true,
         thermal: Int = 0,
         lowMemory: Boolean = false,
-    ) = VitalSample(at, battery, charging, temperature, screenOn, thermal, 2_000, 8_000, lowMemory)
+        chargeCounter: Long? = null,
+    ) = VitalSample(at, battery, charging, temperature, screenOn, thermal, 2_000, 8_000, lowMemory, chargeCounter)
 
     fun finding(pkg: String, type: BehaviorType = BehaviorType.BACKGROUND_DATA, severity: Severity = Severity.MEDIUM) =
         Finding(pkg, pkg, type, severity, 1)
@@ -91,5 +94,17 @@ object TestData {
         score: Int = 90,
         verdict: Verdict = Verdict.GOOD,
         findings: List<Finding> = emptyList(),
-    ) = DailyReport(date, 0, score, verdict, DeviceMetrics.EMPTY, emptyList(), findings, appsAnalysed = 10)
+        battery: BatteryBreakdown = BatteryBreakdown.EMPTY,
+    ) = DailyReport(date, 0, score, verdict, DeviceMetrics.EMPTY, emptyList(), findings, appsAnalysed = 10, battery = battery)
+
+    fun batteryUsage(pkg: String, drain: Float, background: Float = 0f, foregroundMs: Long = 0, backgroundMs: Long = 0) =
+        AppBatteryUsage(pkg, pkg.substringAfterLast('.'), drain, background, foregroundMs, backgroundMs)
+
+    fun battery(vararg apps: AppBatteryUsage, screenAndSystem: Float = 0f, standby: Float = 0f) = BatteryBreakdown(
+        apps = apps.toList(),
+        screenAndSystemPct = screenAndSystem,
+        standbyPct = standby,
+        measuredDrainPct = apps.sumOf { it.estimatedDrainPct.toDouble() }.toFloat() + screenAndSystem + standby,
+        measuredHours = 1f,
+    )
 }

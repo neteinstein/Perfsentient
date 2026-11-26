@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.neteinstein.perfsentient.core.data.local.entity.ReportEntity
 import org.neteinstein.perfsentient.core.data.local.entity.VitalSampleEntity
+import org.neteinstein.perfsentient.core.model.AppBatteryUsage
+import org.neteinstein.perfsentient.core.model.BatteryBreakdown
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceIssue
@@ -25,6 +27,27 @@ internal data class ReportDto(
     val deviceIssues: List<DeviceIssueDto>,
     val findings: List<FindingDto>,
     val appsAnalysed: Int,
+    /** Added with the battery estimate; older reports decode with none. */
+    val battery: BatteryDto? = null,
+)
+
+@Serializable
+internal data class BatteryDto(
+    val apps: List<AppBatteryDto>,
+    val screenAndSystemPct: Float,
+    val standbyPct: Float,
+    val measuredDrainPct: Float,
+    val measuredHours: Float,
+)
+
+@Serializable
+internal data class AppBatteryDto(
+    val packageName: String,
+    val appLabel: String,
+    val drainPct: Float,
+    val backgroundDrainPct: Float,
+    val foregroundMs: Long,
+    val backgroundMs: Long,
 )
 
 @Serializable
@@ -85,6 +108,17 @@ internal fun DailyReport.toDto() = ReportDto(
     deviceIssues = deviceIssues.map { DeviceIssueDto(it.type.name, it.severity.name, it.value) },
     findings = findings.map { FindingDto(it.packageName, it.appLabel, it.type.name, it.severity.name, it.value) },
     appsAnalysed = appsAnalysed,
+    battery = battery.takeIf { it != BatteryBreakdown.EMPTY }?.let { breakdown ->
+        BatteryDto(
+            apps = breakdown.apps.map {
+                AppBatteryDto(it.packageName, it.appLabel, it.estimatedDrainPct, it.backgroundDrainPct, it.foregroundMs, it.backgroundMs)
+            },
+            screenAndSystemPct = breakdown.screenAndSystemPct,
+            standbyPct = breakdown.standbyPct,
+            measuredDrainPct = breakdown.measuredDrainPct,
+            measuredHours = breakdown.measuredHours,
+        )
+    },
 )
 
 internal fun ReportDto.toDomain() = DailyReport(
@@ -109,14 +143,25 @@ internal fun ReportDto.toDomain() = DailyReport(
         Finding(dto.packageName, dto.appLabel, type, severity, dto.value)
     },
     appsAnalysed = appsAnalysed,
+    battery = battery?.let { dto ->
+        BatteryBreakdown(
+            apps = dto.apps.map {
+                AppBatteryUsage(it.packageName, it.appLabel, it.drainPct, it.backgroundDrainPct, it.foregroundMs, it.backgroundMs)
+            },
+            screenAndSystemPct = dto.screenAndSystemPct,
+            standbyPct = dto.standbyPct,
+            measuredDrainPct = dto.measuredDrainPct,
+            measuredHours = dto.measuredHours,
+        )
+    } ?: BatteryBreakdown.EMPTY,
 )
 
 internal fun VitalSample.toEntity() = VitalSampleEntity(
     timestamp, batteryPercent, isCharging, batteryTemperatureC, isScreenOn, thermalStatus,
-    availableMemoryBytes, totalMemoryBytes, isLowMemory,
+    availableMemoryBytes, totalMemoryBytes, isLowMemory, chargeCounterUah,
 )
 
 internal fun VitalSampleEntity.toDomain() = VitalSample(
     timestamp, batteryPercent, isCharging, batteryTemperatureC, isScreenOn, thermalStatus,
-    availableMemoryBytes, totalMemoryBytes, isLowMemory,
+    availableMemoryBytes, totalMemoryBytes, isLowMemory, chargeCounterUah,
 )

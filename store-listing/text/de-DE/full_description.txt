@@ -18,6 +18,7 @@ IHR TAGESBERICHT
 • Ein Gesundheitswert von 0 bis 100 und ein klares Urteil: gut, mittel oder schlecht
 • Gerätewerte: Akkuverbrauch, Verbrauch bei ausgeschaltetem Display, Temperatur und Speicherknappheit
 • Ein 7-Tage-Verlauf, damit Sie sehen, ob es besser wird
+• Akku vs. Nutzungszeit: welche Apps in den letzten 7 Tagen am meisten Akku verbraucht haben, neben ihrer Nutzungszeit (geschätzt)
 • Tippen Sie auf eine App, um genau zu sehen, was sie getan hat, und öffnen Sie die App-Info, um sie zu deinstallieren oder einzuschränken
 
 SIE BEHALTEN DIE KONTROLLE

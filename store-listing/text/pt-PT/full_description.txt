@@ -18,6 +18,7 @@ O SEU RELATÓRIO DIÁRIO
 • Uma pontuação de saúde de 0 a 100 e um veredito claro: boa, razoável ou fraca
 • Sinais vitais: consumo de bateria, consumo com o ecrã desligado, temperatura e pressão de memória
 • Uma tendência de 7 dias, para ver se as coisas estão a melhorar
+• Bateria vs tempo aberta: as apps que mais gastaram bateria nos últimos 7 dias, ao lado do tempo que estiveram abertas (estimativa)
 • Toque numa app para ver exatamente o que fez e abrir as suas Informações da app para desinstalar ou restringir
 
 O CONTROLO É SEU
