@@ -1,6 +1,7 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
 import java.time.ZoneId
+import org.neteinstein.perfsentient.core.model.AppIssueRecord
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DeviceContext
@@ -22,6 +23,8 @@ data class AnalysisInput(
     val vitals: List<VitalSample>,
     val context: DeviceContext,
     val security: DeviceSecurityPosture = DeviceSecurityPosture.UNKNOWN,
+    /** ANRs and crashes from the system error log (empty without the optional system-log access). */
+    val appIssues: List<AppIssueRecord> = emptyList(),
 ) {
     fun foregroundMs(pkg: String): Long = usage[pkg]?.foregroundTimeMs ?: 0L
 

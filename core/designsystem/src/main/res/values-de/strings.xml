@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Nachteule</string>
     <string name="behavior_night_activity_desc">Ist nachts bei ausgeschaltetem Bildschirm aufgewacht oder hat Bildschirme geöffnet.</string>
     <string name="behavior_background_data_title">Datenfresser im Hintergrund</string>
-    <string name="behavior_background_data_desc">Hat im Hintergrund viele Daten übertragen. Android Vitals stuft mehr als 50 MB mobile Daten pro Tag als übermäßig ein; im WLAN gilt ein höherer Spielraum.</string>
+    <string name="behavior_background_data_desc">Hat im Hintergrund viele Daten übertragen. Android Vitals stuft mehr als 50 MB mobile Daten pro Tag als übermäßig ein.</string>
     <string name="behavior_notification_spam_title">Benachrichtigungsspam</string>
     <string name="behavior_notification_spam_desc">Hat ungewöhnlich viele Benachrichtigungen gesendet.</string>
     <string name="behavior_accessibility_risk_title">Bedienungshilfen-Zugriff</string>
@@ -40,4 +40,8 @@
     <string name="verdict_good">Gut</string>
     <string name="verdict_fair">Mittel</string>
     <string name="verdict_poor">Schlecht</string>
+    <string name="behavior_app_not_responding_title">Reagiert nicht</string>
+    <string name="behavior_app_not_responding_desc">Ist heute mehrmals eingefroren und hat „App reagiert nicht“ angezeigt. Häufige ANRs machen das Handy langsam.</string>
+    <string name="behavior_app_crashes_title">Stürzt oft ab</string>
+    <string name="behavior_app_crashes_desc">Ist heute mehrmals abgestürzt. Aktualisieren, den Cache leeren oder neu installieren hilft meistens.</string>
 </resources>

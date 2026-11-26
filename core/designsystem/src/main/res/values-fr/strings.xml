@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Oiseau de nuit</string>
     <string name="behavior_night_activity_desc">S\'est réveillée ou a ouvert des écrans pendant la nuit alors que l\'écran était éteint.</string>
     <string name="behavior_background_data_title">Gourmande en données</string>
-    <string name="behavior_background_data_desc">A transféré beaucoup de données en arrière-plan. Android Vitals considère plus de 50 Mo de données mobiles par jour comme excessif ; le Wi-Fi a plus de marge.</string>
+    <string name="behavior_background_data_desc">A transféré beaucoup de données en arrière-plan. Android Vitals considère plus de 50 Mo de données mobiles par jour comme excessif.</string>
     <string name="behavior_notification_spam_title">Spam de notifications</string>
     <string name="behavior_notification_spam_desc">A publié un nombre inhabituellement élevé de notifications.</string>
     <string name="behavior_accessibility_risk_title">Accès d\'accessibilité</string>
@@ -40,4 +40,8 @@
     <string name="verdict_good">Bon</string>
     <string name="verdict_fair">Moyen</string>
     <string name="verdict_poor">Mauvais</string>
+    <string name="behavior_app_not_responding_title">Ne répond pas</string>
+    <string name="behavior_app_not_responding_desc">S\'est figée plusieurs fois aujourd\'hui en affichant « L\'application ne répond pas ». Des ANR fréquents ralentissent le téléphone.</string>
+    <string name="behavior_app_crashes_title">Plante souvent</string>
+    <string name="behavior_app_crashes_desc">A planté plusieurs fois aujourd\'hui. La mettre à jour, vider son cache ou la réinstaller aide généralement.</string>
 </resources>

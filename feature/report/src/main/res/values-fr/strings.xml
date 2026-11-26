@@ -133,4 +133,14 @@
         <item quantity="many">La dernière mise à jour de sécurité d\'Android date de %1$d jours. Recherchez une mise à jour système.</item>
         <item quantity="other">La dernière mise à jour de sécurité d\'Android date de %1$d jours. Recherchez une mise à jour système.</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d blocage (ANR) aujourd\'hui</item>
+        <item quantity="many">%1$d blocages (ANR) aujourd\'hui</item>
+        <item quantity="other">%1$d blocages (ANR) aujourd\'hui</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d plantage aujourd\'hui</item>
+        <item quantity="many">%1$d plantages aujourd\'hui</item>
+        <item quantity="other">%1$d plantages aujourd\'hui</item>
+    </plurals>
 </resources>

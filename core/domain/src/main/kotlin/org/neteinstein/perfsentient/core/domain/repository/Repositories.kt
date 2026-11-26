@@ -3,6 +3,7 @@ package org.neteinstein.perfsentient.core.domain.repository
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
+import org.neteinstein.perfsentient.core.model.AppIssueRecord
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.CapabilityHolders
@@ -68,6 +69,9 @@ interface UsageRepository {
     suspend fun getEvents(startMs: Long, endMs: Long): List<UsageEventRecord>
 
     suspend fun getNetworkUsage(startMs: Long, endMs: Long): List<NetworkUsage>
+
+    /** ANRs and crashes of apps in the window; empty unless the optional system-log access was granted. */
+    suspend fun getAppIssues(startMs: Long, endMs: Long): List<AppIssueRecord>
 }
 
 interface AppInventoryRepository {
