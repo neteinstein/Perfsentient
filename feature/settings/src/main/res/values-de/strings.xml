@@ -65,4 +65,12 @@
     <string name="settings_section_detection_desc">Heuristiken auf Basis der Google-Play-Richtlinien, von Android Vitals und veröffentlichter Adware-Forschung.</string>
     <string name="settings_security_alerts">Sicherheitswarnungen</string>
     <string name="settings_security_alerts_desc">Erhalten Sie innerhalb von etwa 15 Minuten eine Benachrichtigung, wenn eine riskante App installiert wird oder eine App Zugriff auf Ihre Nachrichten oder den Bildschirm erhält, ohne auf den Tagesbericht zu warten.</string>
+    <string name="settings_permission_optional">Optional</string>
+    <string name="permission_system_logs_title">ANR- und Absturzerkennung</string>
+    <string name="permission_system_logs_desc">Findet Apps, die einfrieren oder oft abstürzen. Erfordert einen einmaligen Befehl von einem Computer.</string>
+    <string name="permission_system_logs_why">Android teilt das Einfrieren (ANRs) und Abstürze anderer Apps nur über sein Systemfehlerprotokoll, das die Berechtigung READ_LOGS / READ_DROPBOX_DATA erfordert. Sie kann nicht auf dem Handy erteilt werden: Verbinde es mit aktiviertem USB-Debugging mit einem Computer und führe den Befehl aus, der beim Tippen auf Erteilen angezeigt wird. Perfsentient liest nur den App-Namen und die Uhrzeit jedes Eintrags, niemals Stacktraces oder andere Protokolle.</string>
+    <string name="settings_adb_dialog_title">Mit adb erteilen</string>
+    <string name="settings_adb_dialog_body">Aktiviere USB-Debugging, verbinde das Handy mit einem Computer und führe aus:</string>
+    <string name="settings_adb_copy">Befehl kopieren</string>
+    <string name="settings_adb_close">Schließen</string>
 </resources>

@@ -79,7 +79,9 @@ class SettingsViewModelTest {
             viewModel.onPermissionsMaybeChanged()
             val state = expectMostRecentItem()
             assertEquals(MonitoringState.ACTIVE, state.monitoringState)
-            assertEquals(PermissionType.entries.size, state.grantedCount)
+            assertEquals(PermissionType.entries.size - 1, state.grantedCount)
+            val optionalCounted = state.requiredPermissions.any { it.type == PermissionType.SYSTEM_LOGS }
+            assertTrue("optional system-log access is not counted", !optionalCounted)
             assertEquals(1, scheduler.ensured.size)
         }
     }

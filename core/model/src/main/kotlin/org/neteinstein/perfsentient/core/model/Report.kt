@@ -40,6 +40,12 @@ enum class BehaviorType {
     /** Registered as device administrator (hard to uninstall). */
     DEVICE_ADMIN,
 
+    /** Repeatedly froze and triggered "App isn't responding" (ANR). Needs the optional system-log access. */
+    APP_NOT_RESPONDING,
+
+    /** Repeatedly crashed. Needs the optional system-log access. */
+    APP_CRASHES,
+
     /** Exempt from battery optimisations while working heavily in background. */
     UNRESTRICTED_BATTERY,
 

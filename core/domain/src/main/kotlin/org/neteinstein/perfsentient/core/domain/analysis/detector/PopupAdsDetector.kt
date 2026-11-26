@@ -6,7 +6,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.ForegroundSessions
 import org.neteinstein.perfsentient.core.domain.analysis.evidence
 import org.neteinstein.perfsentient.core.domain.analysis.finding
-import org.neteinstein.perfsentient.core.domain.analysis.severityFor
+import org.neteinstein.perfsentient.core.domain.analysis.unsolicitedLaunchSeverity
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.Evidence
 import org.neteinstein.perfsentient.core.model.Finding
@@ -16,6 +16,10 @@ import org.neteinstein.perfsentient.core.model.Finding
  * inside *another* app and then the user immediately goes back (A -> X -> A), or an app pops
  * up right after the device is unlocked. Both are explicitly banned by Google Play's
  * Disruptive Ads policy and are the signature of adware families such as IconAds.
+ *
+ * Resuming the app that was open when the device was locked is not a pop-up (see
+ * [ForegroundSessions]), and apps that cannot start activities from the background need many
+ * more occurrences before they are reported (see [unsolicitedLaunchSeverity]).
  */
 class PopupAdsDetector(private val thresholds: DetectionThresholds) : BehaviorDetector {
     override fun detect(input: AnalysisInput): List<Finding> {
@@ -47,7 +51,7 @@ class PopupAdsDetector(private val thresholds: DetectionThresholds) : BehaviorDe
         return seen.mapNotNull { (pkg, evidence) ->
             val app = input.candidate(pkg) ?: return@mapNotNull null
             val count = evidence.size
-            val severity = severityFor(count, thresholds.popupMediumCount, thresholds.popupHighCount)
+            val severity = app.unsolicitedLaunchSeverity(count, thresholds.popupMediumCount, thresholds.popupHighCount)
                 ?: return@mapNotNull null
             app.finding(BehaviorType.OUT_OF_CONTEXT_ADS, severity, count.toLong(), evidence)
         }

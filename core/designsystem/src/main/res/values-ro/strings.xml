@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Activă noaptea</string>
     <string name="behavior_night_activity_desc">S-a activat sau a deschis ecrane noaptea, cu ecranul stins.</string>
     <string name="behavior_background_data_title">Consumă date în fundal</string>
-    <string name="behavior_background_data_desc">A transferat multe date în fundal. Android vitals consideră excesiv peste 50 MB de date mobile pe zi; pe Wi-Fi marja este mai mare.</string>
+    <string name="behavior_background_data_desc">A transferat multe date în fundal. Android vitals consideră excesiv peste 50 MB de date mobile pe zi.</string>
     <string name="behavior_notification_spam_title">Spam de notificări</string>
     <string name="behavior_notification_spam_desc">A afișat un număr neobișnuit de mare de notificări.</string>
     <string name="behavior_accessibility_risk_title">Acces de accesibilitate</string>
@@ -65,4 +65,8 @@
         <item quantity="few">Afișați toate cele %1$d ore</item>
         <item quantity="other">Afișați toate cele %1$d de ore</item>
     </plurals>
+    <string name="behavior_app_not_responding_title">Nu răspunde</string>
+    <string name="behavior_app_not_responding_desc">S-a blocat de mai multe ori azi și a afișat „Aplicația nu răspunde”. ANR-urile frecvente încetinesc telefonul.</string>
+    <string name="behavior_app_crashes_title">Se închide des</string>
+    <string name="behavior_app_crashes_desc">S-a închis neașteptat de mai multe ori azi. Actualizarea, golirea memoriei cache sau reinstalarea ajută de obicei.</string>
 </resources>

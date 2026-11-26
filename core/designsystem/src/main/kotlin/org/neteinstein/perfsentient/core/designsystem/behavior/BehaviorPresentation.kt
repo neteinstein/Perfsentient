@@ -8,10 +8,12 @@ import androidx.compose.material.icons.rounded.Accessibility
 import androidx.compose.material.icons.rounded.AdminPanelSettings
 import androidx.compose.material.icons.rounded.BatteryAlert
 import androidx.compose.material.icons.rounded.Bedtime
+import androidx.compose.material.icons.rounded.BugReport
 import androidx.compose.material.icons.rounded.CallEnd
 import androidx.compose.material.icons.rounded.CloudSync
 import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.InstallMobile
+import androidx.compose.material.icons.rounded.HourglassBottom
 import androidx.compose.material.icons.rounded.Layers
 import androidx.compose.material.icons.rounded.NotificationsActive
 import androidx.compose.material.icons.rounded.Password
@@ -134,6 +136,18 @@ val BehaviorType.presentation: BehaviorPresentation
             Icons.Rounded.Download,
             R.string.behavior_can_install_apps_title,
             R.string.behavior_can_install_apps_desc,
+        )
+
+        BehaviorType.APP_NOT_RESPONDING -> BehaviorPresentation(
+            Icons.Rounded.HourglassBottom,
+            R.string.behavior_app_not_responding_title,
+            R.string.behavior_app_not_responding_desc,
+        )
+
+        BehaviorType.APP_CRASHES -> BehaviorPresentation(
+            Icons.Rounded.BugReport,
+            R.string.behavior_app_crashes_title,
+            R.string.behavior_app_crashes_desc,
         )
     }
 

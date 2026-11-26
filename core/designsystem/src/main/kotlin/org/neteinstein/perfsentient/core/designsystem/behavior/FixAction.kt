@@ -55,6 +55,8 @@ val Finding.fixAction: FixAction
         BehaviorType.RISKY_INSTALL_SOURCE,
         BehaviorType.REMOTE_ACCESS,
         BehaviorType.IMPERSONATION,
+        BehaviorType.APP_NOT_RESPONDING,
+        BehaviorType.APP_CRASHES,
         -> FixAction.APP_INFO
     }
 

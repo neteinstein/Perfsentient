@@ -133,4 +133,14 @@
         <item quantity="many">A última atualização de segurança do Android tem %1$d dias. Procure uma atualização do sistema.</item>
         <item quantity="other">A última atualização de segurança do Android tem %1$d dias. Procure uma atualização do sistema.</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d bloqueio (ANR) hoje</item>
+        <item quantity="many">%1$d bloqueios (ANR) hoje</item>
+        <item quantity="other">%1$d bloqueios (ANR) hoje</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d falha hoje</item>
+        <item quantity="many">%1$d falhas hoje</item>
+        <item quantity="other">%1$d falhas hoje</item>
+    </plurals>
 </resources>

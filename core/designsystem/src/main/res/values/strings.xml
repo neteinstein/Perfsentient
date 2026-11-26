@@ -14,7 +14,7 @@
     <string name="behavior_night_activity_title">Night owl</string>
     <string name="behavior_night_activity_desc">Woke up or launched screens while your screen was off during the night.</string>
     <string name="behavior_background_data_title">Background data hog</string>
-    <string name="behavior_background_data_desc">Transferred a lot of data while in the background. Android vitals flags more than 50 MB of mobile data per day as excessive; Wi-Fi gets more leeway.</string>
+    <string name="behavior_background_data_desc">Transferred a lot of data while in the background. Android vitals flags more than 50 MB of mobile data per day as excessive.</string>
     <string name="behavior_notification_spam_title">Notification spam</string>
     <string name="behavior_notification_spam_desc">Posted an unusually high number of notifications.</string>
     <string name="behavior_accessibility_risk_title">Accessibility access</string>
@@ -68,4 +68,8 @@
         <item quantity="one">Show %1$d time</item>
         <item quantity="other">Show all %1$d times</item>
     </plurals>
+    <string name="behavior_app_not_responding_title">Not responding</string>
+    <string name="behavior_app_not_responding_desc">Froze several times today and showed \"App isn\'t responding\". Frequent ANRs make the phone feel slow.</string>
+    <string name="behavior_app_crashes_title">Keeps crashing</string>
+    <string name="behavior_app_crashes_desc">Crashed several times today. Updating, clearing its cache or reinstalling it usually helps.</string>
 </resources>

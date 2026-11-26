@@ -51,6 +51,26 @@ class ForegroundSessionsTest {
     }
 
     @Test
+    fun `resuming the app that was open when the device was locked is not a pop-up`() {
+        val sessions = ForegroundSessions.build(
+            events = listOf(
+                resumed("card", 0),
+                event("android", UsageEventType.SCREEN_NON_INTERACTIVE, 50),
+                event("android", UsageEventType.KEYGUARD_SHOWN, 51),
+                event("android", UsageEventType.KEYGUARD_HIDDEN, 100),
+                resumed("card", 101),
+                event("android", UsageEventType.KEYGUARD_SHOWN, 200),
+                event("android", UsageEventType.KEYGUARD_HIDDEN, 300),
+                resumed("ad", 301),
+            ),
+            ignoredPackages = emptySet(),
+            unlockWindowMs = 3,
+        )
+        assertFalse(sessions[1].startedRightAfterUnlock)
+        assertTrue(sessions[2].startedRightAfterUnlock)
+    }
+
+    @Test
     fun `empty events produce no sessions`() {
         assertTrue(ForegroundSessions.build(emptyList(), emptySet(), 0).isEmpty())
     }
