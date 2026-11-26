@@ -151,4 +151,12 @@
         <item quantity="one">%1$d had a link</item>
         <item quantity="other">%1$d had links</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d freeze (ANR) today</item>
+        <item quantity="other">%1$d freezes (ANRs) today</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d crash today</item>
+        <item quantity="other">%1$d crashes today</item>
+    </plurals>
 </resources>

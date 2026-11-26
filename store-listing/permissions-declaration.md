@@ -56,6 +56,7 @@ Perfsentient also reads three device settings for its security check, none of wh
 |---|---|
 | `com.neteinstein.smsredirect.permission.READ_SCAM_SIGNALS` (+ `.test` for the debug build) | Defined by SMS Toolbox (same developer) as `signature|knownSigner`. Lets Perfsentient read the time and kind of scam warnings the user chose to share there. Normal install-time grant; no declaration form. |
 | `POST_NOTIFICATIONS` | Show the end-of-day report notification and live security alerts about risky new apps (runtime permission, Android 13+). |
+| `READ_LOGS` / `READ_DROPBOX_DATA` (optional, development permissions) | Never requested at runtime and cannot be granted from the phone. Power users can grant it with `adb shell pm grant` to unlock ANR / crash detection; the app only reads the package name and time of `data_app_anr` / `data_app_crash` entries from `DropBoxManager`. Everything else works without it. |
 | WorkManager's `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE` (merged from the library) | Re-schedule the 15-minute sampler after a reboot. The app runs **no** long-lived foreground service of its own. |
 
 ## Policy checklist

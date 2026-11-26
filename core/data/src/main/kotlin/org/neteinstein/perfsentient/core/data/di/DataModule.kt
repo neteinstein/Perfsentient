@@ -32,6 +32,7 @@ import org.neteinstein.perfsentient.core.data.source.DeviceSecurityDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceVitalsDataSource
 import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
 import org.neteinstein.perfsentient.core.data.source.SmsToolboxDataSource
+import org.neteinstein.perfsentient.core.data.source.SystemErrorLogDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
 import org.neteinstein.perfsentient.core.domain.repository.DeviceSecurityRepository
@@ -72,11 +73,12 @@ val dataModule = module {
         )
     }
     single { AppInventoryDataSource(androidContext()) }
+    single { SystemErrorLogDataSource(androidContext()) }
     singleOf(::DeviceVitalsDataSource)
     single { DeviceSecurityDataSource(androidContext()) }
     single { SmsToolboxDataSource(androidContext()) }
 
-    single<PermissionRepository> { PermissionRepositoryImpl(androidContext()) }
+    single<PermissionRepository> { PermissionRepositoryImpl(androidContext(), get()) }
     singleOf(::SettingsRepositoryImpl) { bind<SettingsRepository>() }
     singleOf(::TrustedAppsRepositoryImpl) { bind<TrustedAppsRepository>() }
     singleOf(::ParentalReviewRepositoryImpl) { bind<ParentalReviewRepository>() }

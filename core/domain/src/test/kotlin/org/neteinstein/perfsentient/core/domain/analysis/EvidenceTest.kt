@@ -45,14 +45,13 @@ class EvidenceTest {
 
     @Test
     fun `after-call ads point at the dialer`() {
-        val finding = AfterCallAdsDetector(thresholds).detect(
-            input(
-                apps = listOf(app("adware")),
-                events = listOf(resumed(DIALER, 0), resumed("adware", MIN), resumed("chat", MIN + 10 * SEC)),
-            ),
-        ).single()
+        // Two calls: a single after-call screen is ordinary use.
+        val events = listOf(0L, HOUR).flatMap { base ->
+            listOf(resumed(DIALER, base), resumed("adware", base + MIN), resumed("chat", base + MIN + 10 * SEC))
+        }
+        val finding = AfterCallAdsDetector(thresholds).detect(input(apps = listOf(app("adware", overlay = true)), events = events)).single()
 
-        assertEquals(listOf(Evidence(MIN, DIALER, "dialer")), finding.evidence)
+        assertEquals(listOf(Evidence(HOUR + MIN, DIALER, "dialer"), Evidence(MIN, DIALER, "dialer")), finding.evidence)
     }
 
     @Test

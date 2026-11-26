@@ -41,20 +41,20 @@ class AppInventoryDataSource(private val context: Context) {
     private val accessibility = context.getSystemService(AccessibilityManager::class.java)
 
     fun installedApps(): List<AppProfile> {
-        val launcherPackages = launcherPackages()
+        val launchers = launchers()
         val holders = capabilityHolders()
         val user: UserHandle = Process.myUserHandle()
-        return installedPackages().mapNotNull { info -> profileOf(info, launcherPackages, holders) { app -> cacheBytes(app, user) } }
+        return installedPackages().mapNotNull { info -> profileOf(info, launchers, holders) { app -> cacheBytes(app, user) } }
     }
 
     /** Profiles of the installed apps among [packageNames], without storage stats (cheap enough for every sample). */
     fun profiles(packageNames: Set<String>): List<AppProfile> {
         if (packageNames.isEmpty()) return emptyList()
-        val launcherPackages = launcherPackages()
+        val launchers = launchers()
         val holders = capabilityHolders()
         return packageNames.mapNotNull { pkg ->
             val info = runCatching { packageInfo(pkg) }.getOrNull() ?: return@mapNotNull null
-            profileOf(info, launcherPackages, holders) { 0L }
+            profileOf(info, launchers, holders) { 0L }
         }
     }
 
@@ -86,7 +86,7 @@ class AppInventoryDataSource(private val context: Context) {
 
     private fun profileOf(
         info: PackageInfo,
-        launcherPackages: Set<String>,
+        launchers: Launchers,
         holders: CapabilityHolders,
         cacheBytes: (ApplicationInfo) -> Long,
     ): AppProfile? {
@@ -98,7 +98,7 @@ class AppInventoryDataSource(private val context: Context) {
             packageName = pkg,
             label = runCatching { app.loadLabel(pm).toString() }.getOrDefault(pkg),
             isSystemApp = isSystem,
-            hasLauncherIcon = pkg in launcherPackages,
+            hasLauncherIcon = pkg in launchers.enabled,
             installerPackage = source?.installingPackageName,
             canDrawOverlays = !isSystem && canDrawOverlays(app, info),
             hasEnabledAccessibilityService = pkg in holders.accessibility,
@@ -114,10 +114,17 @@ class AppInventoryDataSource(private val context: Context) {
             hasNotificationAccess = pkg in holders.notificationListeners,
             isDefaultSmsApp = pkg == holders.defaultSms,
             canInstallApps = !isSystem && canInstallApps(app, info),
+            launcherIconDisabled = app.enabled && pkg !in launchers.enabled && pkg in launchers.declared,
         )
     }
 
-    private fun launcherPackages(): Set<String> = packagesFor(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER))
+    /** Apps with a launcher icon, and apps that declare one even if they disabled it at runtime ("hide my icon"). */
+    private class Launchers(val enabled: Set<String>, val declared: Set<String>)
+
+    private fun launchers(): Launchers {
+        val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+        return Launchers(enabled = packagesFor(intent), declared = packagesFor(intent, includeDisabled = true))
+    }
 
     /** Labels of the installed apps among [packageNames]; one cheap lookup per package, no stats. */
     fun installedAppLabels(packageNames: Set<String>): Map<String, String> = packageNames.mapNotNull { pkg ->
@@ -169,12 +176,13 @@ class AppInventoryDataSource(private val context: Context) {
         pm.getApplicationInfo(pkg, 0)
     }
 
-    private fun packagesFor(intent: Intent): Set<String> {
+    private fun packagesFor(intent: Intent, includeDisabled: Boolean = false): Set<String> {
+        val flags = PackageManager.MATCH_ALL or if (includeDisabled) PackageManager.MATCH_DISABLED_COMPONENTS else 0
         val resolved = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_ALL.toLong()))
+            pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(flags.toLong()))
         } else {
             @Suppress("DEPRECATION")
-            pm.queryIntentActivities(intent, PackageManager.MATCH_ALL)
+            pm.queryIntentActivities(intent, flags)
         }
         return resolved.mapNotNull { it.activityInfo?.packageName }.toSet()
     }

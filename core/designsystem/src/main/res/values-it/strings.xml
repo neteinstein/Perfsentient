@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Nottambula</string>
     <string name="behavior_night_activity_desc">Si è attivata o ha aperto schermate di notte a schermo spento.</string>
     <string name="behavior_background_data_title">Divora dati in background</string>
-    <string name="behavior_background_data_desc">Ha trasferito molti dati in background. Android vitals considera eccessivi più di 50 MB di dati mobili al giorno; con il Wi-Fi il margine è più ampio.</string>
+    <string name="behavior_background_data_desc">Ha trasferito molti dati in background. Android vitals considera eccessivi più di 50 MB di dati mobili al giorno.</string>
     <string name="behavior_notification_spam_title">Spam di notifiche</string>
     <string name="behavior_notification_spam_desc">Ha pubblicato un numero insolitamente alto di notifiche.</string>
     <string name="behavior_accessibility_risk_title">Accesso di accessibilità</string>
@@ -69,4 +69,8 @@
     <string name="behavior_scam_link_install_title">Installata dopo un SMS truffa</string>
     <string name="behavior_scam_link_install_desc">È stata installata fuori da uno store poco dopo che SMS Toolbox ha segnalato un SMS con un link come possibile truffa. Le false app di spedizioni, banche e «sicurezza» si diffondono così. Se un SMS o una chiamata ti ha chiesto di installarla, disinstallala subito e non inserire mai un codice che ti chiede.</string>
     <string name="evidence_scam_text">SMS truffa ricevuto</string>
+    <string name="behavior_app_not_responding_title">Non risponde</string>
+    <string name="behavior_app_not_responding_desc">Si è bloccata più volte oggi mostrando \"L\'app non risponde\". ANR frequenti rendono il telefono lento.</string>
+    <string name="behavior_app_crashes_title">Si arresta spesso</string>
+    <string name="behavior_app_crashes_desc">Si è arrestata più volte oggi. Aggiornarla, svuotarne la cache o reinstallarla di solito aiuta.</string>
 </resources>

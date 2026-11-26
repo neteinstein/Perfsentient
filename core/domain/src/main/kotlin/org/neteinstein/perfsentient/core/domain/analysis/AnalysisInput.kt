@@ -1,6 +1,7 @@
 package org.neteinstein.perfsentient.core.domain.analysis
 
 import java.time.ZoneId
+import org.neteinstein.perfsentient.core.model.AppIssueRecord
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DeviceContext
@@ -27,6 +28,8 @@ data class AnalysisInput(
     /** Scam texts SMS Toolbox flagged, from a little before the window (see scamTextToInstallWindowMs). */
     val scamMessages: List<ScamMessageSignal> = emptyList(),
     val partner: SmsPartnerStatus = SmsPartnerStatus.NOT_INSTALLED,
+    /** ANRs and crashes from the system error log (empty without the optional system-log access). */
+    val appIssues: List<AppIssueRecord> = emptyList(),
 ) {
     /** The latest scam text with a link received in the [windowMs] before [installedAt], if any. */
     fun scamTextBefore(installedAt: Long, windowMs: Long): ScamMessageSignal? = scamMessages

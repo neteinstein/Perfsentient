@@ -13,7 +13,7 @@
     <string name="behavior_night_activity_title">Noctívaga</string>
     <string name="behavior_night_activity_desc">Acordou ou abriu ecrãs durante a noite com o ecrã desligado.</string>
     <string name="behavior_background_data_title">Gasta dados em segundo plano</string>
-    <string name="behavior_background_data_desc">Transferiu muitos dados em segundo plano. O Android vitals considera excessivo mais de 50 MB de dados móveis por dia; no Wi-Fi a margem é maior.</string>
+    <string name="behavior_background_data_desc">Transferiu muitos dados em segundo plano. O Android vitals considera excessivo mais de 50 MB de dados móveis por dia.</string>
     <string name="behavior_notification_spam_title">Spam de notificações</string>
     <string name="behavior_notification_spam_desc">Publicou um número invulgarmente alto de notificações.</string>
     <string name="behavior_accessibility_risk_title">Acesso de acessibilidade</string>
@@ -69,4 +69,8 @@
     <string name="behavior_scam_link_install_title">Instalada após uma SMS de burla</string>
     <string name="behavior_scam_link_install_desc">Foi instalada fora de uma loja de apps pouco depois de o SMS Toolbox assinalar uma mensagem com uma ligação como possível burla. Apps falsas de encomendas, bancos e \"segurança\" espalham-se assim. Se uma mensagem ou uma chamada lhe pediu para a instalar, desinstale-a já e nunca introduza um código que ela peça.</string>
     <string name="evidence_scam_text">SMS de burla recebida</string>
+    <string name="behavior_app_not_responding_title">Não responde</string>
+    <string name="behavior_app_not_responding_desc">Bloqueou várias vezes hoje e mostrou \"A app não está a responder\". ANR frequentes tornam o telemóvel lento.</string>
+    <string name="behavior_app_crashes_title">Falha constantemente</string>
+    <string name="behavior_app_crashes_desc">Falhou várias vezes hoje. Atualizar, limpar a cache ou reinstalar costuma resolver.</string>
 </resources>

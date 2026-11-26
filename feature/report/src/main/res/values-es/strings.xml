@@ -155,4 +155,14 @@
         <item quantity="many">%1$d tenían enlaces</item>
         <item quantity="other">%1$d tenían enlaces</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d bloqueo (ANR) hoy</item>
+        <item quantity="many">%1$d bloqueos (ANR) hoy</item>
+        <item quantity="other">%1$d bloqueos (ANR) hoy</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d cierre inesperado hoy</item>
+        <item quantity="many">%1$d cierres inesperados hoy</item>
+        <item quantity="other">%1$d cierres inesperados hoy</item>
+    </plurals>
 </resources>

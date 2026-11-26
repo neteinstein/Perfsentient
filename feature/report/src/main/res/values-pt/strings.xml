@@ -155,4 +155,14 @@
         <item quantity="many">%1$d tinham ligações</item>
         <item quantity="other">%1$d tinham ligações</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d bloqueio (ANR) hoje</item>
+        <item quantity="many">%1$d bloqueios (ANR) hoje</item>
+        <item quantity="other">%1$d bloqueios (ANR) hoje</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d falha hoje</item>
+        <item quantity="many">%1$d falhas hoje</item>
+        <item quantity="other">%1$d falhas hoje</item>
+    </plurals>
 </resources>

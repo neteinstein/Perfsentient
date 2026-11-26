@@ -56,6 +56,8 @@ val Finding.fixAction: FixAction
         BehaviorType.REMOTE_ACCESS,
         BehaviorType.IMPERSONATION,
         BehaviorType.SCAM_LINK_INSTALL,
+        BehaviorType.APP_NOT_RESPONDING,
+        BehaviorType.APP_CRASHES,
         -> FixAction.APP_INFO
     }
 

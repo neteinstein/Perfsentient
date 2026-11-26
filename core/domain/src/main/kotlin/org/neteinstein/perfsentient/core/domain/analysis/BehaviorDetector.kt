@@ -30,3 +30,17 @@ internal fun <T : Comparable<T>> severityFor(value: T, medium: T, high: T): Seve
     value >= medium -> Severity.MEDIUM
     else -> null
 }
+
+/**
+ * Severity for an app that appeared on screen without the user asking for it.
+ *
+ * Since Android 10 an app can only start an activity from the background if it holds the
+ * "display over other apps" permission (the remaining exemptions, such as notification taps,
+ * are user-initiated). Apps without it are almost always opened by the user, so they need to
+ * reach the [high] count before being reported, and then only as [Severity.MEDIUM].
+ */
+internal fun AppProfile.unsolicitedLaunchSeverity(count: Int, medium: Int, high: Int): Severity? = if (canDrawOverlays) {
+    severityFor(count, medium, high)
+} else {
+    severityFor(count, high, Int.MAX_VALUE)
+}

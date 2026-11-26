@@ -36,7 +36,10 @@ data class SettingsUiState(
     /** SMS Toolbox, for the "Scam text warnings" card. Read again on every resume. */
     val partner: SmsPartnerStatus = SmsPartnerStatus.NOT_INSTALLED,
 ) {
-    val grantedCount: Int get() = permissions.count { it.isGranted }
+    /** Permissions monitoring waits for; optional extras (e.g. system-log access) are left out. */
+    val requiredPermissions: List<PermissionState> get() = permissions.filter { it.isRequired }
+
+    val grantedCount: Int get() = requiredPermissions.count { it.isGranted }
 }
 
 class SettingsViewModel(

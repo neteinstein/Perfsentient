@@ -76,7 +76,7 @@
 | 👻 | **Hidden app** | Installed by you, has no launcher icon, but runs in the background |
 | ♾️ | **Always running** | Foreground service for ≥ 2 h a day while you use it for < 15 min (Android vitals wake-lock threshold) |
 | 🌙 | **Night owl** | Starts services or screens with the screen off between 00:00 and 06:00 |
-| 📶 | **Background data hog** | ≥ 50 MB a day of background mobile data (Android vitals threshold), or ≥ 250 MB on any network, from `NetworkStatsManager` |
+| 📶 | **Background data hog** | ≥ 50 MB a day of background mobile data (Android vitals threshold), or ≥ 500 MB over Wi-Fi, from `NetworkStatsManager` |
 | 🔕 | **Notification spam** | Notification counts from a `NotificationListenerService`. The content is never read |
 | ♿ | **Accessibility / device admin** | Has an accessibility service or device-admin rights turned on. Rated more serious for apps not installed from a store |
 | 🔓 | **Unrestricted battery** | Exempt from battery optimisation **and** doing heavy background work |
@@ -88,6 +88,7 @@
 | 🔗📩 | **Installed after a scam text** | Needs SMS Toolbox connected: an app from outside a store installed within 2 h of a text SMS Toolbox flagged as a scam with a link. Always high; remote-access and risky installs in that window become high too |
 | 📥 | **Can install apps** | "Install unknown apps" allowed for a sideloaded app, a chat app or a browser |
 | 📊 | **Battery vs time open** (an estimate, not a finding) | Each battery drop between two 15-minute samples taken on battery (from the charge counter when the phone reports it) is shared between the apps open on screen and, at a lower weight, the apps running a foreground service at the time. The rest goes to "home screen & system" and "standby" |
+| ⏳ | **Not responding / keeps crashing** | Repeated ANRs or crashes in a day, read from the system error log (`DropBoxManager`). Optional: needs `READ_LOGS` (Android 14 and older) or `READ_DROPBOX_DATA` (Android 15+), granted once with `adb shell pm grant <package> <permission>` |
 | 🌡️ | **Device issues** | Battery drain with the screen off, temperature, thermal throttling and memory pressure, sampled every 15 minutes |
 | 🔐 | **Device security** | No screen lock, a security patch older than 90 days, USB debugging on |
 
@@ -103,7 +104,7 @@ flowchart LR
         direction LR
         S["⏱️ Every 15 min<br/>WorkManager sampler<br/><sub>battery · temp · memory</sub>"] --> DB[("🗄️ Room")]
         N["🔔 Notification listener<br/><sub>counts only</sub>"] --> DB
-        DB --> A["🧠 Behaviour analyser<br/><sub>16 app detectors + device checks</sub>"]
+        DB --> A["🧠 Behaviour analyser<br/><sub>17 app detectors + device checks</sub>"]
         U["📊 Usage events · network stats<br/>installed apps · storage"] --> A
         A --> R["🩺 Daily report<br/><sub>score · offenders · trend</sub>"]
         R --> X["🔔 One notification<br/>at your chosen time"]

@@ -2,6 +2,8 @@ package org.neteinstein.perfsentient.core.testing
 
 import java.time.LocalDate
 import org.neteinstein.perfsentient.core.model.AppBatteryUsage
+import org.neteinstein.perfsentient.core.model.AppIssueRecord
+import org.neteinstein.perfsentient.core.model.AppIssueType
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.BatteryBreakdown
@@ -51,6 +53,7 @@ object TestData {
         notificationAccess: Boolean = false,
         defaultSms: Boolean = false,
         canInstallApps: Boolean = false,
+        iconDisabled: Boolean = false,
     ) = AppProfile(
         packageName = pkg,
         label = label,
@@ -70,13 +73,18 @@ object TestData {
         hasNotificationAccess = notificationAccess,
         isDefaultSmsApp = defaultSms,
         canInstallApps = canInstallApps,
+        launcherIconDisabled = iconDisabled,
     )
 
     fun usage(pkg: String, foregroundMs: Long = 0, serviceMs: Long = 0) = AppUsage(pkg, foregroundMs, serviceMs, 0)
 
-    /** [mobileBackground] defaults to [background]: all background traffic on mobile data. */
-    fun network(pkg: String, foreground: Long = 0, background: Long = 0, mobileBackground: Long = background) =
-        NetworkUsage(pkg, foreground, background, mobileBackground)
+    /** [background] is mobile traffic by default; [backgroundWifi] is added on top of it. */
+    fun network(pkg: String, foreground: Long = 0, background: Long = 0, backgroundWifi: Long = 0) =
+        NetworkUsage(pkg, foreground, background + backgroundWifi, backgroundMobileBytes = background)
+
+    fun anr(pkg: String, at: Long = 0) = AppIssueRecord(pkg, AppIssueType.ANR, at)
+
+    fun crash(pkg: String, at: Long = 0) = AppIssueRecord(pkg, AppIssueType.CRASH, at)
 
     fun event(pkg: String, type: UsageEventType, at: Long) = UsageEventRecord(pkg, type, at)
 

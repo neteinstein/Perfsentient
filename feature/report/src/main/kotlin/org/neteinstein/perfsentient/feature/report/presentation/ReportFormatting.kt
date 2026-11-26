@@ -71,6 +71,10 @@ internal fun Context.describeValue(finding: Finding): String = when (finding.typ
     BehaviorType.CAN_INSTALL_APPS -> getString(R.string.report_value_can_install)
 
     BehaviorType.SCAM_LINK_INSTALL -> getString(R.string.report_value_scam_link_install)
+
+    BehaviorType.APP_NOT_RESPONDING -> quantity(R.plurals.report_value_anrs, finding.value.toInt())
+
+    BehaviorType.APP_CRASHES -> quantity(R.plurals.report_value_crashes, finding.value.toInt())
 }
 
 @get:StringRes

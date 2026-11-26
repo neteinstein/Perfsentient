@@ -74,6 +74,7 @@ class GenerateDailyReportUseCase(
             val partner = async { scamMessageRepository.status() }
             // From a little earlier, so an install early in the window can be matched to the text before it.
             val scamTexts = async { scamMessageRepository.getSignals(start - thresholds.scamTextToInstallWindowMs, end) }
+            val appIssues = async { usageRepository.getAppIssues(start, end) }
             AnalysisInput(
                 windowStartMs = start,
                 windowEndMs = end,
@@ -88,6 +89,7 @@ class GenerateDailyReportUseCase(
                 security = security.await(),
                 scamMessages = scamTexts.await(),
                 partner = partner.await(),
+                appIssues = appIssues.await(),
             )
         }
 
