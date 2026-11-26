@@ -15,6 +15,7 @@ COSA RILEVA
 • App che occupano molto spazio (cache enorme)
 • App truffa: installate da un link in chat, nomi che imitano app note, app di accesso remoto installate durante una chiamata e app che possono leggere i tuoi codici, con un avviso entro circa 15 minuti
 • Sicurezza del telefono: nessun blocco schermo, aggiornamenti di sicurezza vecchi, debug USB attivo
+• Con SMS Toolbox (gratis, facoltativo): un avviso quando un'app viene installata subito dopo un SMS truffa
 
 IL TUO REPORT GIORNALIERO
 • Un punteggio di salute da 0 a 100 e un verdetto chiaro: buona, discreta o scarsa

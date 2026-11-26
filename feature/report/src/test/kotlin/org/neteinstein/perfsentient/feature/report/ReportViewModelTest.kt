@@ -33,6 +33,7 @@ import org.neteinstein.perfsentient.core.testing.FakeDeviceSecurityRepository
 import org.neteinstein.perfsentient.core.testing.FakeNotificationStatsRepository
 import org.neteinstein.perfsentient.core.testing.FakePermissionRepository
 import org.neteinstein.perfsentient.core.testing.FakeReportRepository
+import org.neteinstein.perfsentient.core.testing.FakeScamMessageRepository
 import org.neteinstein.perfsentient.core.testing.FakeSettingsRepository
 import org.neteinstein.perfsentient.core.testing.FakeTimeProvider
 import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
@@ -68,12 +69,14 @@ class ReportViewModelTest {
             FakeVitalsRepository(),
             FakeNotificationStatsRepository(),
             FakeDeviceSecurityRepository(),
+            FakeScamMessageRepository(),
             reports,
             trusted,
             BehaviorAnalyzer(thresholds),
             DeviceHealthAnalyzer(thresholds),
             BatteryAttributor(thresholds),
             DeviceSecurityAnalyzer(thresholds),
+            thresholds,
             HealthScoreCalculator(),
             filter,
             FakeTimeProvider(),

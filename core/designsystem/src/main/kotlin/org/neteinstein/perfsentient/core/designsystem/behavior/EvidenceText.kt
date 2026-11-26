@@ -85,6 +85,8 @@ private fun relation(finding: Finding): String? {
 
         BehaviorType.RISKY_INSTALL_SOURCE -> top?.let { stringResource(R.string.evidence_from, it.key) }
 
+        BehaviorType.SCAM_LINK_INSTALL -> stringResource(R.string.evidence_scam_text)
+
         else -> null
     }
 }

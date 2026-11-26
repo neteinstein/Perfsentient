@@ -208,6 +208,13 @@ class ScamSignalCatalog(
             name("Trust Wallet", "trust wallet", "trustwallet", genuine = setOf("com.wallet.crypto.trustapp")),
             name("Ledger", "ledger live", genuine = setOf("com.ledger.live")),
             // Authenticators: a fake one is a straight path to one-time codes.
+            // A fake of our partner app would read every text.
+            name(
+                "SMS Toolbox",
+                "sms toolbox",
+                "sms redirect",
+                genuine = setOf("com.neteinstein.smsredirect", "com.neteinstein.smsredirect.test"),
+            ),
             name("Google Authenticator", "google authenticator", genuine = setOf("com.google.android.apps.authenticator2")),
             name("Microsoft Authenticator", "microsoft authenticator", genuine = setOf("com.azure.authenticator")),
         )

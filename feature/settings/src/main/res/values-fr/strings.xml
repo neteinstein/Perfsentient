@@ -67,6 +67,21 @@
     <string name="settings_section_detection_desc">Heuristiques fondées sur le règlement de Google Play, Android Vitals et les études publiées sur les logiciels publicitaires.</string>
     <string name="settings_security_alerts">Alertes de sécurité</string>
     <string name="settings_security_alerts_desc">Recevez une notification en 15 minutes environ quand une appli à risque est installée ou qu\'une appli obtient l\'accès à vos messages ou à l\'écran, sans attendre le rapport quotidien.</string>
+
+    <string name="settings_partner_title">Alertes SMS d\'arnaque (SMS Toolbox)</string>
+    <string name="settings_partner_connected_cd">Connecté</string>
+    <string name="settings_partner_not_installed">SMS Toolbox, l\'appli de messagerie gratuite du même développeur, signale les SMS d\'arnaque sur votre téléphone. Une fois connecté, Perfsentient vous prévient quand une appli est installée juste après. Rien ne quitte votre téléphone.</string>
+    <string name="settings_partner_unverified">Le SMS Toolbox de ce téléphone n\'est pas signé par son développeur, Perfsentient l\'ignore donc. Désinstallez-le et installez le vrai.</string>
+    <string name="settings_partner_not_connected">SMS Toolbox est installé. Connectez-le pour partager l\'heure et le type de ses alertes d\'arnaque avec Perfsentient. Jamais vos messages ni vos contacts.</string>
+    <string name="settings_partner_not_default">Connecté. SMS Toolbox ne vérifie les SMS que s\'il est votre appli SMS par défaut.</string>
+    <string name="settings_partner_get">Obtenir SMS Toolbox</string>
+    <string name="settings_partner_app_info">Ouvrir les infos de l\'appli</string>
+    <string name="settings_partner_connect">Connecter</string>
+    <plurals name="settings_partner_connected">
+        <item quantity="one">Connecté · %1$d SMS vérifié aujourd\'hui</item>
+        <item quantity="many">Connecté · %1$d SMS vérifiés aujourd\'hui</item>
+        <item quantity="other">Connecté · %1$d SMS vérifiés aujourd\'hui</item>
+    </plurals>
     <string name="settings_permission_optional">Facultatif</string>
     <string name="permission_system_logs_title">Détection des ANR et plantages</string>
     <string name="permission_system_logs_desc">Repère les applis qui se figent ou plantent souvent. Nécessite une commande unique depuis un ordinateur.</string>

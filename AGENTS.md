@@ -58,6 +58,10 @@ Dependency rules (enforced by module boundaries):
   concerns); every addition needs a source in `docs/parental-help-research.md`. Copy/icons are in `feature/parental`'s `ParentalPresentation.kt`.
 - **Scam catalogue**: messaging/browser installers, remote-access apps and impersonated names live in
   `core/domain/scam/ScamSignalCatalog`; every addition needs a source in `docs/scam-signals-research.md`.
+- **SMS Toolbox partnership**: `core/data/partner/ScamSignalsContract.kt` is a verbatim copy (only the package line
+  differs) of SMS Toolbox's `domain/partner/ScamSignalsContract.kt`; change both together. Data flows one way
+  (SMS Toolbox → Perfsentient), metadata only; never send anything to SMS Toolbox and never read from a copy that
+  fails `PartnerCertificates`. `SmsPartnerLinks` in `core:model` must match the contract (a test checks).
 - **Detection heuristics** go in `core/domain/analysis/detector`, implement `BehaviorDetector`, use thresholds from `DetectionThresholds`, are registered in `BehaviorAnalyzer.defaultDetectors` and **must** have unit tests (positive, negative and severity-escalation cases). Add UI copy/icon in `core/designsystem/behavior/BehaviorPresentation.kt`.
 - Version numbers go in `gradle/libs.versions.toml` only. Shared build config goes in `build-logic` convention plugins, not copy-pasted into module scripts.
 

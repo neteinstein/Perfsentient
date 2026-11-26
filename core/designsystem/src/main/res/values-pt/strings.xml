@@ -65,6 +65,10 @@
         <item quantity="many">Mostrar as %1$d horas</item>
         <item quantity="other">Mostrar as %1$d horas</item>
     </plurals>
+
+    <string name="behavior_scam_link_install_title">Instalada após uma SMS de burla</string>
+    <string name="behavior_scam_link_install_desc">Foi instalada fora de uma loja de apps pouco depois de o SMS Toolbox assinalar uma mensagem com uma ligação como possível burla. Apps falsas de encomendas, bancos e \"segurança\" espalham-se assim. Se uma mensagem ou uma chamada lhe pediu para a instalar, desinstale-a já e nunca introduza um código que ela peça.</string>
+    <string name="evidence_scam_text">SMS de burla recebida</string>
     <string name="behavior_app_not_responding_title">Não responde</string>
     <string name="behavior_app_not_responding_desc">Bloqueou várias vezes hoje e mostrou \"A app não está a responder\". ANR frequentes tornam o telemóvel lento.</string>
     <string name="behavior_app_crashes_title">Falha constantemente</string>

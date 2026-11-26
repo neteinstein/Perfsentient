@@ -15,12 +15,14 @@ import org.neteinstein.perfsentient.core.data.source.AppInventoryDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceSecurityDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceVitalsDataSource
 import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
+import org.neteinstein.perfsentient.core.data.source.SmsToolboxDataSource
 import org.neteinstein.perfsentient.core.data.source.SystemErrorLogDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
 import org.neteinstein.perfsentient.core.domain.repository.DeviceSecurityRepository
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
+import org.neteinstein.perfsentient.core.domain.repository.ScamMessageRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
 import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.AppIssueRecord
@@ -33,6 +35,8 @@ import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 import org.neteinstein.perfsentient.core.model.PackageChangeCursor
 import org.neteinstein.perfsentient.core.model.PackageChanges
+import org.neteinstein.perfsentient.core.model.ScamMessageSignal
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.VitalSample
 
@@ -73,6 +77,16 @@ class AppInventoryRepositoryImpl(
         withContext(dispatchers.io) { dataSource.profiles(packageNames) }
 
     override suspend fun getCapabilityHolders(): CapabilityHolders = withContext(dispatchers.io) { dataSource.capabilityHolders() }
+}
+
+class ScamMessageRepositoryImpl(
+    private val dataSource: SmsToolboxDataSource,
+    private val dispatchers: DispatcherProvider,
+) : ScamMessageRepository {
+    override suspend fun status(): SmsPartnerStatus = withContext(dispatchers.io) { dataSource.status() }
+
+    override suspend fun getSignals(startMs: Long, endMs: Long): List<ScamMessageSignal> =
+        withContext(dispatchers.io) { dataSource.signals(startMs, endMs) }
 }
 
 class DeviceSecurityRepositoryImpl(

@@ -12,6 +12,7 @@ import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
+import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceSecurityAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.HealthScoreCalculator
@@ -20,10 +21,12 @@ import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepositor
 import org.neteinstein.perfsentient.core.domain.repository.DeviceSecurityRepository
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
+import org.neteinstein.perfsentient.core.domain.repository.ScamMessageRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
 import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.DailyReport
+import org.neteinstein.perfsentient.core.model.ScamMessageSummary
 
 /**
  * Collects the last 24 hours of telemetry and the device's security settings, runs every detector,
@@ -41,12 +44,14 @@ class GenerateDailyReportUseCase(
     private val vitalsRepository: VitalsRepository,
     private val notificationStatsRepository: NotificationStatsRepository,
     private val deviceSecurityRepository: DeviceSecurityRepository,
+    private val scamMessageRepository: ScamMessageRepository,
     private val reportRepository: ReportRepository,
     private val trustedAppsRepository: TrustedAppsRepository,
     private val behaviorAnalyzer: BehaviorAnalyzer,
     private val deviceHealthAnalyzer: DeviceHealthAnalyzer,
     private val batteryAttributor: BatteryAttributor,
     private val deviceSecurityAnalyzer: DeviceSecurityAnalyzer,
+    private val thresholds: DetectionThresholds,
     private val scoreCalculator: HealthScoreCalculator,
     private val trustedAppsFilter: TrustedAppsFilter,
     private val timeProvider: TimeProvider,
@@ -66,6 +71,9 @@ class GenerateDailyReportUseCase(
             val notifications = async { notificationStatsRepository.getCounts(start, end) }
             val vitals = async { vitalsRepository.getSamples(start, end) }
             val security = async { deviceSecurityRepository.posture() }
+            val partner = async { scamMessageRepository.status() }
+            // From a little earlier, so an install early in the window can be matched to the text before it.
+            val scamTexts = async { scamMessageRepository.getSignals(start - thresholds.scamTextToInstallWindowMs, end) }
             val appIssues = async { usageRepository.getAppIssues(start, end) }
             AnalysisInput(
                 windowStartMs = start,
@@ -79,6 +87,8 @@ class GenerateDailyReportUseCase(
                 vitals = vitals.await(),
                 context = context.await(),
                 security = security.await(),
+                scamMessages = scamTexts.await(),
+                partner = partner.await(),
                 appIssues = appIssues.await(),
             )
         }
@@ -98,6 +108,7 @@ class GenerateDailyReportUseCase(
             findings = findings,
             appsAnalysed = input.apps.size,
             battery = batteryAttributor.attribute(input),
+            scamMessages = ScamMessageSummary.of(input.scamMessages.filter { it.receivedAtMs in start..end }),
         )
         reportRepository.save(report)
         reportRepository.deleteOlderThan(today.minusDays(REPORT_RETENTION_DAYS))

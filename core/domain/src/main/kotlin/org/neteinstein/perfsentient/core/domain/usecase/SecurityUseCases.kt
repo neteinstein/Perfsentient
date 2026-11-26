@@ -8,6 +8,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
+import org.neteinstein.perfsentient.core.domain.repository.ScamMessageRepository
 import org.neteinstein.perfsentient.core.domain.repository.SecurityWatchRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
@@ -25,7 +26,8 @@ import org.neteinstein.perfsentient.core.model.Severity
  * 1. Apps installed or updated since the last run, plus apps that newly hold accessibility,
  *    device-admin or notification access, or became the default SMS app.
  * 2. Those apps go through the same security detectors as the daily report, with the last hour of
- *    usage events so a remote-access install can be matched to a call.
+ *    usage events so a remote-access install can be matched to a call, and the scam texts SMS
+ *    Toolbox flagged in the last two hours so an install right after one is caught.
  * 3. A finding alerts when it is High (or a Medium remote-access app), the app is not trusted, and
  *    that app + behaviour was not alerted before.
  *
@@ -38,9 +40,10 @@ class CheckSecurityChangesUseCase(
     private val watchRepository: SecurityWatchRepository,
     private val trustedAppsRepository: TrustedAppsRepository,
     private val settingsRepository: SettingsRepository,
+    private val scamMessageRepository: ScamMessageRepository,
     private val timeProvider: TimeProvider,
     private val dispatchers: DispatcherProvider,
-    thresholds: DetectionThresholds,
+    private val thresholds: DetectionThresholds,
     catalog: ScamSignalCatalog,
 ) {
     private val analyzer = BehaviorAnalyzer.security(thresholds, catalog)
@@ -86,6 +89,8 @@ class CheckSecurityChangesUseCase(
             notifications = emptyMap(),
             vitals = emptyList(),
             context = inventoryRepository.getDeviceContext(),
+            scamMessages = scamMessageRepository.getSignals(end - thresholds.scamTextToInstallWindowMs, end),
+            partner = scamMessageRepository.status(),
         )
         return analyzer.analyze(input)
     }

@@ -67,6 +67,21 @@
     <string name="settings_section_detection_desc">Heurísticas basadas en la política de Google Play, Android vitals y estudios publicados sobre adware.</string>
     <string name="settings_security_alerts">Alertas de seguridad</string>
     <string name="settings_security_alerts_desc">Recibe una notificación en unos 15 minutos cuando se instale una app arriesgada o una app obtenga acceso a tus mensajes o a la pantalla, sin esperar al informe diario.</string>
+
+    <string name="settings_partner_title">Avisos de SMS de estafa (SMS Toolbox)</string>
+    <string name="settings_partner_connected_cd">Conectado</string>
+    <string name="settings_partner_not_installed">SMS Toolbox, la app de mensajes gratuita del mismo desarrollador, marca los SMS de estafa en tu teléfono. Conectado, Perfsentient te avisa cuando se instala una app justo después de uno. Nada sale de tu teléfono.</string>
+    <string name="settings_partner_unverified">El SMS Toolbox de este teléfono no está firmado por su desarrollador, así que Perfsentient lo ignora. Desinstálalo e instala el auténtico.</string>
+    <string name="settings_partner_not_connected">SMS Toolbox está instalado. Conéctalo para compartir la hora y el tipo de sus avisos de estafa con Perfsentient. Nunca tus mensajes ni tus contactos.</string>
+    <string name="settings_partner_not_default">Conectado. SMS Toolbox solo revisa los SMS mientras sea tu app de SMS predeterminada.</string>
+    <string name="settings_partner_get">Obtener SMS Toolbox</string>
+    <string name="settings_partner_app_info">Abrir información de la app</string>
+    <string name="settings_partner_connect">Conectar</string>
+    <plurals name="settings_partner_connected">
+        <item quantity="one">Conectado · %1$d SMS revisado hoy</item>
+        <item quantity="many">Conectado · %1$d SMS revisados hoy</item>
+        <item quantity="other">Conectado · %1$d SMS revisados hoy</item>
+    </plurals>
     <string name="settings_permission_optional">Opcional</string>
     <string name="permission_system_logs_title">Detección de ANR y cierres</string>
     <string name="permission_system_logs_desc">Detecta apps que se bloquean o se cierran a menudo. Requiere un comando único desde un ordenador.</string>

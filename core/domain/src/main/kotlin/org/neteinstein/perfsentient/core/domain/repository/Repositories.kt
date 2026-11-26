@@ -16,7 +16,9 @@ import org.neteinstein.perfsentient.core.model.PackageChanges
 import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.model.ScamMessageSignal
 import org.neteinstein.perfsentient.core.model.SecurityWatchState
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
@@ -97,6 +99,14 @@ interface SecurityWatchRepository {
     suspend fun state(): SecurityWatchState?
 
     suspend fun save(state: SecurityWatchState)
+}
+
+/** Scam warnings shared by SMS Toolbox (read-only, opt-in in SMS Toolbox, verified by signature). */
+interface ScamMessageRepository {
+    suspend fun status(): SmsPartnerStatus
+
+    /** Flagged texts received in [startMs]..[endMs]; empty when SMS Toolbox is missing, unverified or not connected. */
+    suspend fun getSignals(startMs: Long, endMs: Long): List<ScamMessageSignal>
 }
 
 /** Screen lock, security patch and USB debugging state. */

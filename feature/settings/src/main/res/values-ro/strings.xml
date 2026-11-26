@@ -67,6 +67,21 @@
     <string name="settings_section_detection_desc">Euristici bazate pe politica Google Play, Android vitals și cercetări publicate despre adware.</string>
     <string name="settings_security_alerts">Alerte de securitate</string>
     <string name="settings_security_alerts_desc">Primiți o notificare în aproximativ 15 minute când este instalată o aplicație riscantă sau o aplicație primește acces la mesaje ori la ecran, fără să așteptați raportul zilnic.</string>
+
+    <string name="settings_partner_title">Avertismente SMS de înșelătorie (SMS Toolbox)</string>
+    <string name="settings_partner_connected_cd">Conectat</string>
+    <string name="settings_partner_not_installed">SMS Toolbox, aplicația gratuită de mesaje a aceluiași dezvoltator, semnalează SMS-urile de înșelătorie pe telefon. Conectat, Perfsentient vă avertizează când o aplicație este instalată imediat după unul. Nimic nu părăsește telefonul.</string>
+    <string name="settings_partner_unverified">SMS Toolbox de pe acest telefon nu este semnat de dezvoltatorul său, așa că Perfsentient îl ignoră. Dezinstalați-l și instalați-l pe cel adevărat.</string>
+    <string name="settings_partner_not_connected">SMS Toolbox este instalat. Conectați-l pentru a partaja ora și tipul avertismentelor de înșelătorie cu Perfsentient. Niciodată mesajele sau contactele.</string>
+    <string name="settings_partner_not_default">Conectat. SMS Toolbox verifică SMS-urile doar cât timp este aplicația SMS implicită.</string>
+    <string name="settings_partner_get">Obțineți SMS Toolbox</string>
+    <string name="settings_partner_app_info">Deschide informațiile aplicației</string>
+    <string name="settings_partner_connect">Conectați</string>
+    <plurals name="settings_partner_connected">
+        <item quantity="one">Conectat · %1$d SMS verificat azi</item>
+        <item quantity="few">Conectat · %1$d SMS-uri verificate azi</item>
+        <item quantity="other">Conectat · %1$d de SMS-uri verificate azi</item>
+    </plurals>
     <string name="settings_permission_optional">Opțional</string>
     <string name="permission_system_logs_title">Detectare ANR și închideri</string>
     <string name="permission_system_logs_desc">Găsește aplicațiile care se blochează sau se închid des. Necesită o comandă unică de pe un computer.</string>

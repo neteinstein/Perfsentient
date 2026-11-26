@@ -36,6 +36,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.compose.viewmodel.koinViewModel
+import org.neteinstein.perfsentient.core.designsystem.behavior.FixAction
+import org.neteinstein.perfsentient.core.designsystem.behavior.openFix
+import org.neteinstein.perfsentient.core.designsystem.behavior.openPartnerConnect
+import org.neteinstein.perfsentient.core.designsystem.behavior.openPartnerStore
 import org.neteinstein.perfsentient.core.designsystem.component.SectionHeader
 import org.neteinstein.perfsentient.core.designsystem.component.staggeredEntrance
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -49,6 +53,7 @@ import org.neteinstein.perfsentient.feature.settings.presentation.component.Pare
 import org.neteinstein.perfsentient.feature.settings.presentation.component.PermissionCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.ReportTimeCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.SecurityAlertsCard
+import org.neteinstein.perfsentient.feature.settings.presentation.component.SmsPartnerCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.TrustedAppCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.TrustedAppsEmptyCard
 
@@ -165,6 +170,14 @@ internal fun SettingsScreen(
         }
         item(key = "security_alerts") {
             SecurityAlertsCard(enabled = state.settings.securityAlertsEnabled, onToggled = onSecurityAlertsToggled)
+        }
+        item(key = "sms_partner") {
+            SmsPartnerCard(
+                partner = state.partner,
+                onGet = { context.openPartnerStore() },
+                onConnect = { context.openPartnerConnect() },
+                onAppInfo = { context.openFix(FixAction.APP_INFO, state.partner.packageName) },
+            )
         }
         item(key = "parental_header") {
             SectionHeader(

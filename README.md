@@ -61,6 +61,7 @@
 - ✅ **Trusted apps (whitelist).** If a flagged app is one you rely on (a VPN, a busy chat app), tap **Trust this app** in the report. It's left out of your reports and score from then on.
 - 📱 **Apps tab.** Every app flagged now or in the last 30 days in one list. Trusted apps are tinted teal. Tap any app to trust it or stop trusting it.
 - 👪 **Parental mode.** Turn it on in Settings, enter your child's age, and a **Parental help** tab appears. It flags installed apps that child-safety groups, regulators and investigations warn about for that age (grooming on Roblox and Discord, sextortion on Snapchat, Instagram and Wizz, random video chat, dating, AI companions, secret vaults…), explains why, and says what you can do. The list and its sources are in [docs/parental-help-research.md](docs/parental-help-research.md).
+- 🤝 **Works with SMS Toolbox.** Install [SMS Toolbox](https://github.com/neteinstein/SMS-Redirect), the same developer's messaging app, and tap **Connect** in Settings. It shares only the time and type of the scam texts it flags (never the text or sender), so Perfsentient can catch the full chain: a scam text with a link, then an app installed minutes later. You get a live alert, and the report shows the text's time with a button that opens it.
 - 🔒 **Stays on your phone.** The app has no `INTERNET` permission, so it can't send anything anywhere. The release build checks this.
 - 🌍 **7 languages.** English, Portuguese, French, Spanish, Italian, Romanian and German, with per-app language selection on Android 13+.
 - 🎨 **Modern Android.** Material 3 with dynamic colour, light and dark themes, edge-to-edge, predictive back, and a layout that adapts to tablets and foldables.
@@ -84,6 +85,7 @@
 | 🔑 | **Can read your codes** | Notification access, SMS permissions or default SMS app. Rated by install source; accessibility + overlay on top is the banking-trojan combination |
 | 🖥️ | **Remote access app** | AnyDesk, TeamViewer QuickSupport and similar installed in the last 72 h. High if installed during or just after a phone call |
 | 🎭 | **Look-alike app** | Not from a store but named like a system component, a bank or a popular app (case, accents and look-alike characters ignored) |
+| 🔗📩 | **Installed after a scam text** | Needs SMS Toolbox connected: an app from outside a store installed within 2 h of a text SMS Toolbox flagged as a scam with a link. Always high; remote-access and risky installs in that window become high too |
 | 📥 | **Can install apps** | "Install unknown apps" allowed for a sideloaded app, a chat app or a browser |
 | 📊 | **Battery vs time open** (an estimate, not a finding) | Each battery drop between two 15-minute samples taken on battery (from the charge counter when the phone reports it) is shared between the apps open on screen and, at a lower weight, the apps running a foreground service at the time. The rest goes to "home screen & system" and "standby" |
 | ⏳ | **Not responding / keeps crashing** | Repeated ANRs or crashes in a day, read from the system error log (`DropBoxManager`). Optional: needs `READ_LOGS` (Android 14 and older) or `READ_DROPBOX_DATA` (Android 15+), granted once with `adb shell pm grant <package> <permission>` |
@@ -102,7 +104,7 @@ flowchart LR
         direction LR
         S["⏱️ Every 15 min<br/>WorkManager sampler<br/><sub>battery · temp · memory</sub>"] --> DB[("🗄️ Room")]
         N["🔔 Notification listener<br/><sub>counts only</sub>"] --> DB
-        DB --> A["🧠 Behaviour analyser<br/><sub>16 app detectors + device checks</sub>"]
+        DB --> A["🧠 Behaviour analyser<br/><sub>17 app detectors + device checks</sub>"]
         U["📊 Usage events · network stats<br/>installed apps · storage"] --> A
         A --> R["🩺 Daily report<br/><sub>score · offenders · trend</sub>"]
         R --> X["🔔 One notification<br/>at your chosen time"]
@@ -135,6 +137,7 @@ flowchart LR
 - **No internet.** The manifest *removes* `android.permission.INTERNET`, so no library can add it back. The release workflow fails if it shows up in the merged manifest.
 - **No accounts, analytics or ads.**
 - **Counts, not content.** Notifications are counted per app. Their text is never read.
+- **SMS Toolbox shares metadata only, one way.** When you connect it, Perfsentient reads the time and kind of its scam warnings through a content provider that only apps signed by the same developer can open. Perfsentient never sends anything back and reads nothing from a copy signed by someone else.
 - **Your data stays local.** Reports and samples are kept in a local Room database on the phone.
 
 ## 🏗️ Architecture

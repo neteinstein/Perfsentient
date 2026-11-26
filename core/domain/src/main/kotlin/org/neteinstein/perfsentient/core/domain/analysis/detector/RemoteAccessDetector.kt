@@ -19,7 +19,8 @@ import org.neteinstein.perfsentient.core.model.Severity
  *
  * A remote-access app installed in the last [DetectionThresholds.freshInstallMs] is MEDIUM; HIGH
  * when it was installed during a phone call or within [DetectionThresholds.remoteAccessAfterCallMs]
- * after one, or when it has accessibility turned on. [Finding.value] is the install time (epoch ms).
+ * after one, within [DetectionThresholds.scamTextToInstallWindowMs] after a scam text flagged by SMS
+ * Toolbox, or when it has accessibility turned on. [Finding.value] is the install time (epoch ms).
  */
 class RemoteAccessDetector(
     private val thresholds: DetectionThresholds,
@@ -38,7 +39,8 @@ class RemoteAccessDetector(
         return fresh.map { app ->
             val installedAt = app.firstInstallTime
             val call = calls.firstOrNull { installedAt in it.startMs..(it.endMs + thresholds.remoteAccessAfterCallMs) }
-            val severity = if (call != null || app.hasEnabledAccessibilityService) Severity.HIGH else Severity.MEDIUM
+            val afterScamText = input.scamTextBefore(installedAt, thresholds.scamTextToInstallWindowMs) != null
+            val severity = if (call != null || afterScamText || app.hasEnabledAccessibilityService) Severity.HIGH else Severity.MEDIUM
             // The related app is the dialer when the install followed a call.
             app.finding(BehaviorType.REMOTE_ACCESS, severity, installedAt, listOf(input.evidence(installedAt, call?.packageName)))
         }

@@ -122,6 +122,26 @@
         <item quantity="one">Das letzte Android-Sicherheitsupdate ist %1$d Tag alt. Suchen Sie nach einem Systemupdate.</item>
         <item quantity="other">Das letzte Android-Sicherheitsupdate ist %1$d Tage alt. Suchen Sie nach einem Systemupdate.</item>
     </plurals>
+
+    <string name="report_value_scam_link_install">Kurz nach einer Betrugs-SMS installiert</string>
+    <string name="report_open_scam_text">SMS öffnen</string>
+    <string name="report_scam_texts_hint">Von SMS Toolbox markiert. Installieren Sie nie eine App, geben Sie nie einen Code weiter und rufen Sie nie zurück, nur weil eine SMS Sie dazu auffordert.</string>
+    <string name="report_scam_kind_shortened_link">Gekürzter Link</string>
+    <string name="report_scam_kind_ip_link">Link auf eine IP-Adresse</string>
+    <string name="report_scam_kind_deceptive_link">Täuschender Link</string>
+    <string name="report_scam_kind_risky_domain">Wegwerf-Webadresse</string>
+    <string name="report_scam_kind_urgency">Dringlichkeit</string>
+    <string name="report_scam_kind_credentials">Fragt nach Kontodaten</string>
+    <string name="report_scam_kind_money">Geld oder Gewinn</string>
+    <string name="report_scam_kind_delivery">Paket oder Gebühr</string>
+    <plurals name="report_scam_texts_count">
+        <item quantity="one">%1$d SMS als möglicher Betrug markiert</item>
+        <item quantity="other">%1$d SMS als möglicher Betrug markiert</item>
+    </plurals>
+    <plurals name="report_scam_texts_links">
+        <item quantity="one">%1$d enthielt einen Link</item>
+        <item quantity="other">%1$d enthielten Links</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d Einfrieren (ANR) heute</item>
         <item quantity="other">%1$d Einfrierungen (ANRs) heute</item>

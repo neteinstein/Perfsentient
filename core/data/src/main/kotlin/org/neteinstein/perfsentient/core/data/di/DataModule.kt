@@ -21,6 +21,7 @@ import org.neteinstein.perfsentient.core.data.repository.NotificationStatsReposi
 import org.neteinstein.perfsentient.core.data.repository.ParentalReviewRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.PermissionRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.ReportRepositoryImpl
+import org.neteinstein.perfsentient.core.data.repository.ScamMessageRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.SecurityWatchRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.SettingsRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.TrustedAppsRepositoryImpl
@@ -30,6 +31,7 @@ import org.neteinstein.perfsentient.core.data.source.AppInventoryDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceSecurityDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceVitalsDataSource
 import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
+import org.neteinstein.perfsentient.core.data.source.SmsToolboxDataSource
 import org.neteinstein.perfsentient.core.data.source.SystemErrorLogDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
@@ -38,6 +40,7 @@ import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepo
 import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
+import org.neteinstein.perfsentient.core.domain.repository.ScamMessageRepository
 import org.neteinstein.perfsentient.core.domain.repository.SecurityWatchRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
@@ -73,6 +76,7 @@ val dataModule = module {
     single { SystemErrorLogDataSource(androidContext()) }
     singleOf(::DeviceVitalsDataSource)
     single { DeviceSecurityDataSource(androidContext()) }
+    single { SmsToolboxDataSource(androidContext()) }
 
     single<PermissionRepository> { PermissionRepositoryImpl(androidContext(), get()) }
     singleOf(::SettingsRepositoryImpl) { bind<SettingsRepository>() }
@@ -82,6 +86,7 @@ val dataModule = module {
     singleOf(::AppInventoryRepositoryImpl) { bind<AppInventoryRepository>() }
     singleOf(::VitalsRepositoryImpl) { bind<VitalsRepository>() }
     singleOf(::DeviceSecurityRepositoryImpl) { bind<DeviceSecurityRepository>() }
+    singleOf(::ScamMessageRepositoryImpl) { bind<ScamMessageRepository>() }
     singleOf(::NotificationStatsRepositoryImpl) { bind<NotificationStatsRepository>() }
     singleOf(::ReportRepositoryImpl) { bind<ReportRepository>() }
     singleOf(::SecurityWatchRepositoryImpl) { bind<SecurityWatchRepository>() }

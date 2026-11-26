@@ -62,6 +62,8 @@ data class DetectionThresholds(
     /** Security patch age, in days, from which it is flagged (Android publishes patches monthly). */
     val patchLowDays: Long = 90,
     val patchMediumDays: Long = 180,
+    /** An app installed this soon after a scam text with a link (from SMS Toolbox) is part of the scam chain. */
+    val scamTextToInstallWindowMs: Long = 2 * MILLIS_IN_HOUR,
     /*
      * Battery estimate weights (see BatteryAttributor). Rough, relative costs: an app on screen
      * keeps the screen, CPU and radio busy; a foreground service off screen (music, navigation)

@@ -67,6 +67,21 @@
     <string name="settings_section_detection_desc">Euristiche basate sulle norme di Google Play, su Android vitals e sulle ricerche pubblicate sugli adware.</string>
     <string name="settings_security_alerts">Avvisi di sicurezza</string>
     <string name="settings_security_alerts_desc">Ricevi una notifica entro circa 15 minuti quando viene installata un\'app rischiosa o un\'app ottiene l\'accesso ai tuoi messaggi o allo schermo, senza aspettare il report giornaliero.</string>
+
+    <string name="settings_partner_title">Avvisi di SMS truffa (SMS Toolbox)</string>
+    <string name="settings_partner_connected_cd">Connesso</string>
+    <string name="settings_partner_not_installed">SMS Toolbox, l\'app di messaggi gratuita dello stesso sviluppatore, segnala gli SMS truffa sul telefono. Una volta connesso, Perfsentient ti avvisa quando un\'app viene installata subito dopo uno di questi. Nulla lascia il telefono.</string>
+    <string name="settings_partner_unverified">L\'SMS Toolbox di questo telefono non è firmato dal suo sviluppatore, quindi Perfsentient lo ignora. Disinstallalo e installa quello vero.</string>
+    <string name="settings_partner_not_connected">SMS Toolbox è installato. Collegalo per condividere l\'ora e il tipo dei suoi avvisi di truffa con Perfsentient. Mai i tuoi messaggi o contatti.</string>
+    <string name="settings_partner_not_default">Connesso. SMS Toolbox controlla gli SMS solo se è la tua app SMS predefinita.</string>
+    <string name="settings_partner_get">Scarica SMS Toolbox</string>
+    <string name="settings_partner_app_info">Apri informazioni app</string>
+    <string name="settings_partner_connect">Collega</string>
+    <plurals name="settings_partner_connected">
+        <item quantity="one">Connesso · %1$d SMS controllato oggi</item>
+        <item quantity="many">Connesso · %1$d SMS controllati oggi</item>
+        <item quantity="other">Connesso · %1$d SMS controllati oggi</item>
+    </plurals>
     <string name="settings_permission_optional">Facoltativa</string>
     <string name="permission_system_logs_title">Rilevamento ANR e arresti</string>
     <string name="permission_system_logs_desc">Individua le app che si bloccano o si arrestano spesso. Richiede un comando una tantum da un computer.</string>

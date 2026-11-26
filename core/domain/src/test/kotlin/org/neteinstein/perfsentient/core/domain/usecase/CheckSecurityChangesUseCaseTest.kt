@@ -10,11 +10,15 @@ import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.CapabilityHolders
 import org.neteinstein.perfsentient.core.model.PackageChangeCursor
 import org.neteinstein.perfsentient.core.model.PackageChanges
+import org.neteinstein.perfsentient.core.model.ScamMessageKind
+import org.neteinstein.perfsentient.core.model.ScamMessageSignal
 import org.neteinstein.perfsentient.core.model.SecurityWatchState
 import org.neteinstein.perfsentient.core.model.SensitivePermission
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UserSettings
 import org.neteinstein.perfsentient.core.testing.FakeAppInventoryRepository
+import org.neteinstein.perfsentient.core.testing.FakeScamMessageRepository
 import org.neteinstein.perfsentient.core.testing.FakeSecurityWatchRepository
 import org.neteinstein.perfsentient.core.testing.FakeSettingsRepository
 import org.neteinstein.perfsentient.core.testing.FakeTimeProvider
@@ -31,6 +35,7 @@ class CheckSecurityChangesUseCaseTest {
     private val watch = FakeSecurityWatchRepository()
     private val trusted = FakeTrustedAppsRepository()
     private val settings = FakeSettingsRepository(UserSettings(monitoringEnabled = true))
+    private val scamMessages = FakeScamMessageRepository()
 
     private val useCase = CheckSecurityChangesUseCase(
         inventoryRepository = inventory,
@@ -38,6 +43,7 @@ class CheckSecurityChangesUseCaseTest {
         watchRepository = watch,
         trustedAppsRepository = trusted,
         settingsRepository = settings,
+        scamMessageRepository = scamMessages,
         timeProvider = time,
         dispatchers = TestDispatcherProvider(),
         thresholds = DetectionThresholds(),
@@ -117,6 +123,30 @@ class CheckSecurityChangesUseCaseTest {
     }
 
     @Test
+    fun `an install right after a scam text alerts with the scam chain`() = runTest {
+        baseline()
+        scamMessages.status =
+            SmsPartnerStatus(
+                "com.neteinstein.smsredirect",
+                verified = true,
+                connected = true,
+                isDefaultSmsApp = true,
+                checkedToday = 1,
+                suspiciousToday = 1,
+            )
+        scamMessages.signals =
+            listOf(ScamMessageSignal(now - 6 * MIN, setOf(ScamMessageKind.DELIVERY_OR_FEE), hasLink = true, threadId = 3))
+        val tracker = TestData.app("parcel.tracker", installer = null, installedAt = now - MIN)
+        inventory.apps = listOf(tracker)
+        inventory.changes = changes(6, tracker.packageName)
+
+        val alerts = useCase()
+
+        assertEquals(listOf(BehaviorType.SCAM_LINK_INSTALL), alerts.map { it.type })
+        assertEquals(now - 2 * 60 * MIN to now, scamMessages.lastWindow)
+    }
+
+    @Test
     fun `trusted apps and low findings do not alert`() = runTest {
         baseline()
         trusted.trust(TrustedApp("bad.sms", "Bad"))
@@ -158,6 +188,13 @@ class CheckSecurityChangesUseCaseTest {
         assertEquals(setOf("b", "admin2", "n2", "sms.new"), after.newlyGrantedSince(before))
         assertTrue(before.newlyGrantedSince(before).isEmpty())
         assertTrue(before.copy(defaultSms = null).newlyGrantedSince(before).isEmpty())
+    }
+
+    @Test
+    fun `partner status is read through its use case`() = runTest {
+        scamMessages.status =
+            SmsPartnerStatus("p", verified = true, connected = false, isDefaultSmsApp = false, checkedToday = 0, suspiciousToday = 0)
+        assertEquals(scamMessages.status, GetSmsPartnerStatusUseCase(scamMessages)())
     }
 
     @Test

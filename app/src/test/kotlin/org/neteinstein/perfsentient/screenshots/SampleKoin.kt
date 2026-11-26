@@ -13,6 +13,7 @@ import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepo
 import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
+import org.neteinstein.perfsentient.core.domain.repository.ScamMessageRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
@@ -27,6 +28,7 @@ import org.neteinstein.perfsentient.core.testing.FakeNotificationStatsRepository
 import org.neteinstein.perfsentient.core.testing.FakeParentalReviewRepository
 import org.neteinstein.perfsentient.core.testing.FakePermissionRepository
 import org.neteinstein.perfsentient.core.testing.FakeReportRepository
+import org.neteinstein.perfsentient.core.testing.FakeScamMessageRepository
 import org.neteinstein.perfsentient.core.testing.FakeSettingsRepository
 import org.neteinstein.perfsentient.core.testing.FakeTimeProvider
 import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
@@ -77,6 +79,7 @@ internal fun startSampleKoin() {
                 single<VitalsRepository> { FakeVitalsRepository() }
                 single<NotificationStatsRepository> { FakeNotificationStatsRepository() }
                 single<DeviceSecurityRepository> { FakeDeviceSecurityRepository() }
+                single<ScamMessageRepository> { FakeScamMessageRepository() }
             },
         )
     }

@@ -2,6 +2,7 @@ package org.neteinstein.perfsentient.core.domain.analysis.detector
 
 import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorDetector
+import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.evidence
 import org.neteinstein.perfsentient.core.domain.analysis.finding
 import org.neteinstein.perfsentient.core.domain.scam.ScamSignalCatalog
@@ -18,17 +19,24 @@ import org.neteinstein.perfsentient.core.model.Severity
  * notification or accessibility access. We flag:
  *
  * - an app installed from a messaging or email app: MEDIUM, HIGH with a sensitive capability;
- * - an app downloaded through a browser or file manager that holds a sensitive capability: MEDIUM.
+ * - an app downloaded through a browser or file manager that holds a sensitive capability: MEDIUM;
+ * - any of these installed shortly after a scam text with a link (SMS Toolbox): HIGH.
  *
  * [Finding.value] is the [InstallChannel] ordinal.
  */
-class RiskyInstallSourceDetector(private val catalog: ScamSignalCatalog) : BehaviorDetector {
+class RiskyInstallSourceDetector(
+    private val catalog: ScamSignalCatalog,
+    private val thresholds: DetectionThresholds = DetectionThresholds(),
+) : BehaviorDetector {
     override fun detect(input: AnalysisInput): List<Finding> = input.candidates
         .filter { it.isSideloaded }
         .mapNotNull { app ->
             val channel = channelOf(app) ?: return@mapNotNull null
             val risky = app.hasSensitiveCapability
+            val afterScamText = app.firstInstallTime > 0 &&
+                input.scamTextBefore(app.firstInstallTime, thresholds.scamTextToInstallWindowMs) != null
             val severity = when {
+                afterScamText -> Severity.HIGH
                 channel == InstallChannel.MESSAGING && risky -> Severity.HIGH
                 channel == InstallChannel.MESSAGING -> Severity.MEDIUM
                 risky -> Severity.MEDIUM

@@ -15,6 +15,7 @@ WHAT IT CATCHES
 • Storage hogs: very large caches
 • Scam apps: installed from a link in a chat, look-alike names, remote-access apps installed during a call, and apps that can read your codes, with an alert within about 15 minutes
 • Phone security: no screen lock, old security updates, USB debugging left on
+• With SMS Toolbox (free, optional): an alert when an app is installed right after a scam text
 
 YOUR DAILY REPORT
 • A health score from 0 to 100 and a clear verdict: good, fair or poor

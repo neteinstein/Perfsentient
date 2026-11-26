@@ -14,6 +14,8 @@ import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.DeviceMetrics
 import org.neteinstein.perfsentient.core.model.Evidence
 import org.neteinstein.perfsentient.core.model.Finding
+import org.neteinstein.perfsentient.core.model.ScamMessageKind
+import org.neteinstein.perfsentient.core.model.ScamMessageSummary
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.model.VitalSample
@@ -30,7 +32,12 @@ internal data class ReportDto(
     val appsAnalysed: Int,
     /** Added with the battery estimate; older reports decode with none. */
     val battery: BatteryDto? = null,
+    /** Added with the SMS Toolbox partnership; null when it was not connected. */
+    val scamMessages: ScamMessagesDto? = null,
 )
+
+@Serializable
+internal data class ScamMessagesDto(val total: Int, val withLink: Int, val byKind: Map<String, Int> = emptyMap())
 
 @Serializable
 internal data class BatteryDto(
@@ -134,6 +141,9 @@ internal fun DailyReport.toDto() = ReportDto(
             measuredHours = breakdown.measuredHours,
         )
     },
+    scamMessages = scamMessages?.let { summary ->
+        ScamMessagesDto(summary.total, summary.withLink, summary.byKind.mapKeys { it.key.name })
+    },
 )
 
 internal fun ReportDto.toDomain() = DailyReport(
@@ -176,6 +186,13 @@ internal fun ReportDto.toDomain() = DailyReport(
             measuredHours = dto.measuredHours,
         )
     } ?: BatteryBreakdown.EMPTY,
+    scamMessages = scamMessages?.let { dto ->
+        ScamMessageSummary(
+            total = dto.total,
+            withLink = dto.withLink,
+            byKind = dto.byKind.mapNotNull { (name, count) -> enumOrNull<ScamMessageKind>(name)?.let { it to count } }.toMap(),
+        )
+    },
 )
 
 internal fun VitalSample.toEntity() = VitalSampleEntity(

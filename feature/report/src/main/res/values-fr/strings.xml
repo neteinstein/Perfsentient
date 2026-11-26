@@ -133,6 +133,28 @@
         <item quantity="many">La dernière mise à jour de sécurité d\'Android date de %1$d jours. Recherchez une mise à jour système.</item>
         <item quantity="other">La dernière mise à jour de sécurité d\'Android date de %1$d jours. Recherchez une mise à jour système.</item>
     </plurals>
+
+    <string name="report_value_scam_link_install">Installée peu après un SMS d\'arnaque</string>
+    <string name="report_open_scam_text">Ouvrir le SMS</string>
+    <string name="report_scam_texts_hint">Signalé par SMS Toolbox. N\'installez jamais une appli, ne donnez jamais un code et ne rappelez jamais parce qu\'un SMS vous l\'a demandé.</string>
+    <string name="report_scam_kind_shortened_link">Lien raccourci</string>
+    <string name="report_scam_kind_ip_link">Lien vers une adresse IP</string>
+    <string name="report_scam_kind_deceptive_link">Lien trompeur</string>
+    <string name="report_scam_kind_risky_domain">Adresse web jetable</string>
+    <string name="report_scam_kind_urgency">Urgence</string>
+    <string name="report_scam_kind_credentials">Demande vos identifiants</string>
+    <string name="report_scam_kind_money">Argent ou gain</string>
+    <string name="report_scam_kind_delivery">Colis ou frais</string>
+    <plurals name="report_scam_texts_count">
+        <item quantity="one">%1$d SMS signalé comme arnaque possible</item>
+        <item quantity="many">%1$d SMS signalés comme arnaques possibles</item>
+        <item quantity="other">%1$d SMS signalés comme arnaques possibles</item>
+    </plurals>
+    <plurals name="report_scam_texts_links">
+        <item quantity="one">%1$d contenait un lien</item>
+        <item quantity="many">%1$d contenaient des liens</item>
+        <item quantity="other">%1$d contenaient des liens</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d blocage (ANR) aujourd\'hui</item>
         <item quantity="many">%1$d blocages (ANR) aujourd\'hui</item>

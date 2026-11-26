@@ -27,6 +27,7 @@ import androidx.compose.material.icons.rounded.DeviceThermostat
 import androidx.compose.material.icons.rounded.Memory
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Shield
+import androidx.compose.material.icons.rounded.Sms
 import androidx.compose.material.icons.rounded.Timer
 import androidx.compose.material.icons.rounded.Verified
 import androidx.compose.material.icons.rounded.VerifiedUser
@@ -61,6 +62,8 @@ import org.neteinstein.perfsentient.core.designsystem.behavior.FixAction
 import org.neteinstein.perfsentient.core.designsystem.behavior.fixAction
 import org.neteinstein.perfsentient.core.designsystem.behavior.label
 import org.neteinstein.perfsentient.core.designsystem.behavior.openFix
+import org.neteinstein.perfsentient.core.designsystem.behavior.openPartnerMessage
+import org.neteinstein.perfsentient.core.designsystem.behavior.partnerThreadId
 import org.neteinstein.perfsentient.core.designsystem.behavior.presentation
 import org.neteinstein.perfsentient.core.designsystem.component.AnimatedCheck
 import org.neteinstein.perfsentient.core.designsystem.component.AppIcon
@@ -74,11 +77,13 @@ import org.neteinstein.perfsentient.core.model.AppAssessment
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.model.ScamMessageSummary
 import org.neteinstein.perfsentient.feature.report.R
 import org.neteinstein.perfsentient.feature.report.presentation.describe
 import org.neteinstein.perfsentient.feature.report.presentation.describeValue
 import org.neteinstein.perfsentient.feature.report.presentation.formatBytes
 import org.neteinstein.perfsentient.feature.report.presentation.formatDuration
+import org.neteinstein.perfsentient.feature.report.presentation.label
 import org.neteinstein.perfsentient.feature.report.presentation.title
 
 @Composable
@@ -266,6 +271,11 @@ internal fun OffenderDetailsSheet(assessment: AppAssessment, onTrust: () -> Unit
                                 Text(stringResource(fix.label))
                             }
                         }
+                        finding.partnerThreadId?.let { threadId ->
+                            TextButton(onClick = { context.openPartnerMessage(threadId) }, contentPadding = PaddingValues(0.dp)) {
+                                Text(stringResource(R.string.report_open_scam_text))
+                            }
+                        }
                     }
                 }
                 if (index < assessment.findings.lastIndex) HorizontalDivider(Modifier.padding(vertical = 14.dp))
@@ -294,6 +304,44 @@ internal fun OffenderDetailsSheet(assessment: AppAssessment, onTrust: () -> Unit
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
+    }
+}
+
+/** Scam texts SMS Toolbox flagged in the report's window. Information only: not part of the score. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+internal fun ScamMessagesCard(summary: ScamMessageSummary, modifier: Modifier = Modifier) {
+    val color = PerfsentienceTheme.status.fair
+    SurfaceCard(modifier.fillMaxWidth(), contentPadding = 16) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(Icons.Rounded.Sms, contentDescription = null, tint = color)
+            Spacer(Modifier.width(12.dp))
+            Column(Modifier.weight(1f)) {
+                Text(
+                    pluralStringResource(R.plurals.report_scam_texts_count, summary.total, summary.total),
+                    style = MaterialTheme.typography.titleSmall,
+                )
+                if (summary.withLink > 0) {
+                    Text(
+                        pluralStringResource(R.plurals.report_scam_texts_links, summary.withLink, summary.withLink),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+        }
+        Spacer(Modifier.height(10.dp))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            summary.byKind.entries.sortedByDescending { it.value }.forEach { (kind, _) ->
+                StatusChip(stringResource(kind.label), color)
+            }
+        }
+        Spacer(Modifier.height(10.dp))
+        Text(
+            stringResource(R.string.report_scam_texts_hint),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 

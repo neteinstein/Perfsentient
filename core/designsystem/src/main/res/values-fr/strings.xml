@@ -65,6 +65,10 @@
         <item quantity="many">Afficher les %1$d heures</item>
         <item quantity="other">Afficher les %1$d heures</item>
     </plurals>
+
+    <string name="behavior_scam_link_install_title">Installée après un SMS d\'arnaque</string>
+    <string name="behavior_scam_link_install_desc">Installée hors d\'une boutique d\'applis peu après que SMS Toolbox a signalé un SMS avec un lien comme arnaque possible. Les fausses applis de colis, de banque et de « sécurité » se propagent ainsi. Si un SMS ou un appel vous a demandé de l\'installer, désinstallez-la tout de suite et ne saisissez jamais un code qu\'elle demande.</string>
+    <string name="evidence_scam_text">SMS d\'arnaque reçu</string>
     <string name="behavior_app_not_responding_title">Ne répond pas</string>
     <string name="behavior_app_not_responding_desc">S\'est figée plusieurs fois aujourd\'hui en affichant « L\'application ne répond pas ». Des ANR fréquents ralentissent le téléphone.</string>
     <string name="behavior_app_crashes_title">Plante souvent</string>

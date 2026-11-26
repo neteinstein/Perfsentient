@@ -15,6 +15,7 @@ QUÉ DETECTA
 • Apps que acaparan almacenamiento (caché enorme)
 • Apps de estafa: instaladas desde un enlace en un chat, nombres que imitan apps conocidas, apps de acceso remoto instaladas durante una llamada y apps que pueden leer tus códigos, con un aviso en unos 15 minutos
 • Seguridad del teléfono: sin bloqueo de pantalla, actualizaciones de seguridad antiguas, depuración USB activada
+• Con SMS Toolbox (gratis, opcional): un aviso cuando se instala una app justo después de un SMS de estafa
 
 TU INFORME DIARIO
 • Una puntuación de salud de 0 a 100 y un veredicto claro: buena, regular o mala

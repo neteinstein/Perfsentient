@@ -7,6 +7,8 @@ import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DeviceContext
 import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.NetworkUsage
+import org.neteinstein.perfsentient.core.model.ScamMessageSignal
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.VitalSample
 
@@ -23,9 +25,20 @@ data class AnalysisInput(
     val vitals: List<VitalSample>,
     val context: DeviceContext,
     val security: DeviceSecurityPosture = DeviceSecurityPosture.UNKNOWN,
+    /** Scam texts SMS Toolbox flagged, from a little before the window (see scamTextToInstallWindowMs). */
+    val scamMessages: List<ScamMessageSignal> = emptyList(),
+    val partner: SmsPartnerStatus = SmsPartnerStatus.NOT_INSTALLED,
     /** ANRs and crashes from the system error log (empty without the optional system-log access). */
     val appIssues: List<AppIssueRecord> = emptyList(),
 ) {
+    /** The latest scam text with a link received in the [windowMs] before [installedAt], if any. */
+    fun scamTextBefore(installedAt: Long, windowMs: Long): ScamMessageSignal? = scamMessages
+        .filter { it.hasLink && installedAt - it.receivedAtMs in 0..windowMs }
+        .maxByOrNull { it.receivedAtMs }
+
+    /** SMS Toolbox itself, signed by its developer: it reads texts and installs updates by design. */
+    fun isVerifiedPartner(pkg: String): Boolean = partner.verified && partner.packageName == pkg
+
     fun foregroundMs(pkg: String): Long = usage[pkg]?.foregroundTimeMs ?: 0L
 
     fun foregroundServiceMs(pkg: String): Long = usage[pkg]?.foregroundServiceTimeMs ?: 0L

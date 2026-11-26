@@ -133,6 +133,28 @@
         <item quantity="many">A última atualização de segurança do Android tem %1$d dias. Procure uma atualização do sistema.</item>
         <item quantity="other">A última atualização de segurança do Android tem %1$d dias. Procure uma atualização do sistema.</item>
     </plurals>
+
+    <string name="report_value_scam_link_install">Instalada pouco depois de uma SMS de burla</string>
+    <string name="report_open_scam_text">Abrir a mensagem</string>
+    <string name="report_scam_texts_hint">Assinalado pelo SMS Toolbox. Nunca instale uma app, partilhe um código ou ligue de volta porque uma mensagem lhe pediu.</string>
+    <string name="report_scam_kind_shortened_link">Ligação encurtada</string>
+    <string name="report_scam_kind_ip_link">Ligação para um endereço IP</string>
+    <string name="report_scam_kind_deceptive_link">Ligação falsificada</string>
+    <string name="report_scam_kind_risky_domain">Endereço web descartável</string>
+    <string name="report_scam_kind_urgency">Urgência</string>
+    <string name="report_scam_kind_credentials">Pede dados da conta</string>
+    <string name="report_scam_kind_money">Dinheiro ou prémio</string>
+    <string name="report_scam_kind_delivery">Encomenda ou taxa</string>
+    <plurals name="report_scam_texts_count">
+        <item quantity="one">%1$d mensagem assinalada como possível burla</item>
+        <item quantity="many">%1$d mensagens assinaladas como possíveis burlas</item>
+        <item quantity="other">%1$d mensagens assinaladas como possíveis burlas</item>
+    </plurals>
+    <plurals name="report_scam_texts_links">
+        <item quantity="one">%1$d tinha uma ligação</item>
+        <item quantity="many">%1$d tinham ligações</item>
+        <item quantity="other">%1$d tinham ligações</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d bloqueio (ANR) hoje</item>
         <item quantity="many">%1$d bloqueios (ANR) hoje</item>

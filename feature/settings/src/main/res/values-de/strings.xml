@@ -65,6 +65,20 @@
     <string name="settings_section_detection_desc">Heuristiken auf Basis der Google-Play-Richtlinien, von Android Vitals und veröffentlichter Adware-Forschung.</string>
     <string name="settings_security_alerts">Sicherheitswarnungen</string>
     <string name="settings_security_alerts_desc">Erhalten Sie innerhalb von etwa 15 Minuten eine Benachrichtigung, wenn eine riskante App installiert wird oder eine App Zugriff auf Ihre Nachrichten oder den Bildschirm erhält, ohne auf den Tagesbericht zu warten.</string>
+
+    <string name="settings_partner_title">Warnungen vor Betrugs-SMS (SMS Toolbox)</string>
+    <string name="settings_partner_connected_cd">Verbunden</string>
+    <string name="settings_partner_not_installed">SMS Toolbox, die kostenlose Messaging-App desselben Entwicklers, markiert Betrugs-SMS auf Ihrem Smartphone. Verbunden warnt Perfsentient Sie, wenn direkt danach eine App installiert wird. Nichts verlässt Ihr Smartphone.</string>
+    <string name="settings_partner_unverified">Das SMS Toolbox auf diesem Smartphone ist nicht von seinem Entwickler signiert, daher ignoriert Perfsentient es. Deinstallieren Sie es und installieren Sie das echte.</string>
+    <string name="settings_partner_not_connected">SMS Toolbox ist installiert. Verbinden Sie es, um Zeit und Art seiner Betrugswarnungen mit Perfsentient zu teilen. Nie Ihre Nachrichten oder Kontakte.</string>
+    <string name="settings_partner_not_default">Verbunden. SMS Toolbox prüft SMS nur, solange es Ihre Standard-SMS-App ist.</string>
+    <string name="settings_partner_get">SMS Toolbox holen</string>
+    <string name="settings_partner_app_info">App-Info öffnen</string>
+    <string name="settings_partner_connect">Verbinden</string>
+    <plurals name="settings_partner_connected">
+        <item quantity="one">Verbunden · heute %1$d SMS geprüft</item>
+        <item quantity="other">Verbunden · heute %1$d SMS geprüft</item>
+    </plurals>
     <string name="settings_permission_optional">Optional</string>
     <string name="permission_system_logs_title">ANR- und Absturzerkennung</string>
     <string name="permission_system_logs_desc">Findet Apps, die einfrieren oder oft abstürzen. Erfordert einen einmaligen Befehl von einem Computer.</string>

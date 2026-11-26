@@ -67,6 +67,21 @@
     <string name="settings_section_detection_desc">Heurísticas baseadas na política do Google Play, no Android vitals e em estudos publicados sobre adware.</string>
     <string name="settings_security_alerts">Alertas de segurança</string>
     <string name="settings_security_alerts_desc">Receba uma notificação em cerca de 15 minutos quando for instalada uma app arriscada ou uma app obtiver acesso às suas mensagens ou ao ecrã. Não precisa de esperar pelo relatório diário.</string>
+
+    <string name="settings_partner_title">Avisos de SMS de burla (SMS Toolbox)</string>
+    <string name="settings_partner_connected_cd">Ligado</string>
+    <string name="settings_partner_not_installed">O SMS Toolbox, a app de mensagens gratuita do mesmo programador, assinala SMS de burla no telemóvel. Ligado, o Perfsentient avisa-o quando é instalada uma app logo a seguir a uma delas. Nada sai do telemóvel.</string>
+    <string name="settings_partner_unverified">O SMS Toolbox deste telemóvel não está assinado pelo programador, por isso o Perfsentient ignora-o. Desinstale-o e instale o verdadeiro.</string>
+    <string name="settings_partner_not_connected">O SMS Toolbox está instalado. Ligue-o para partilhar a hora e o tipo dos avisos de burla com o Perfsentient. Nunca as suas mensagens ou contactos.</string>
+    <string name="settings_partner_not_default">Ligado. O SMS Toolbox só verifica mensagens enquanto for a app de SMS predefinida.</string>
+    <string name="settings_partner_get">Obter o SMS Toolbox</string>
+    <string name="settings_partner_app_info">Abrir informações da app</string>
+    <string name="settings_partner_connect">Ligar</string>
+    <plurals name="settings_partner_connected">
+        <item quantity="one">Ligado · %1$d mensagem verificada hoje</item>
+        <item quantity="many">Ligado · %1$d mensagens verificadas hoje</item>
+        <item quantity="other">Ligado · %1$d mensagens verificadas hoje</item>
+    </plurals>
     <string name="settings_permission_optional">Opcional</string>
     <string name="permission_system_logs_title">Deteção de ANR e falhas</string>
     <string name="permission_system_logs_desc">Identifica apps que bloqueiam ou falham constantemente. Requer um comando único a partir de um computador.</string>
