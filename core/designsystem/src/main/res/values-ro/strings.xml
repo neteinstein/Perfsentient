@@ -65,4 +65,8 @@
         <item quantity="few">Afișați toate cele %1$d ore</item>
         <item quantity="other">Afișați toate cele %1$d de ore</item>
     </plurals>
+
+    <string name="behavior_scam_link_install_title">Instalată după un SMS de înșelătorie</string>
+    <string name="behavior_scam_link_install_desc">A fost instalată din afara unui magazin de aplicații la scurt timp după ce SMS Toolbox a semnalat un SMS cu un link ca posibilă înșelătorie. Aplicațiile false de colete, bănci și „securitate” se răspândesc așa. Dacă un SMS sau un apel v-a cerut să o instalați, dezinstalați-o imediat și nu introduceți niciodată un cod pe care îl cere.</string>
+    <string name="evidence_scam_text">SMS de înșelătorie primit</string>
 </resources>

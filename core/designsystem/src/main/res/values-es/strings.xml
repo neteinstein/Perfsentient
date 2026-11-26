@@ -65,4 +65,8 @@
         <item quantity="many">Mostrar las %1$d horas</item>
         <item quantity="other">Mostrar las %1$d horas</item>
     </plurals>
+
+    <string name="behavior_scam_link_install_title">Instalada tras un SMS de estafa</string>
+    <string name="behavior_scam_link_install_desc">Se instaló fuera de una tienda de apps poco después de que SMS Toolbox marcara un SMS con un enlace como posible estafa. Las apps falsas de paquetería, bancos y «seguridad» se difunden así. Si un SMS o una llamada te pidió instalarla, desinstálala ya y no escribas nunca un código que te pida.</string>
+    <string name="evidence_scam_text">SMS de estafa recibido</string>
 </resources>

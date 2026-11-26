@@ -15,12 +15,17 @@ import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
+import org.neteinstein.perfsentient.core.model.ScamMessageKind
+import org.neteinstein.perfsentient.core.model.ScamMessageSignal
+import org.neteinstein.perfsentient.core.model.ScamMessageSummary
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.testing.FakeAppInventoryRepository
 import org.neteinstein.perfsentient.core.testing.FakeDeviceSecurityRepository
 import org.neteinstein.perfsentient.core.testing.FakeNotificationStatsRepository
 import org.neteinstein.perfsentient.core.testing.FakeReportRepository
+import org.neteinstein.perfsentient.core.testing.FakeScamMessageRepository
 import org.neteinstein.perfsentient.core.testing.FakeTimeProvider
 import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
 import org.neteinstein.perfsentient.core.testing.FakeUsageRepository
@@ -35,6 +40,7 @@ class GenerateDailyReportUseCaseTest {
     private val vitals = FakeVitalsRepository()
     private val notifications = FakeNotificationStatsRepository()
     private val security = FakeDeviceSecurityRepository()
+    private val scamMessages = FakeScamMessageRepository()
     private val reports = FakeReportRepository()
     private val trusted = FakeTrustedAppsRepository()
     private val thresholds = DetectionThresholds()
@@ -47,12 +53,14 @@ class GenerateDailyReportUseCaseTest {
         vitalsRepository = vitals,
         notificationStatsRepository = notifications,
         deviceSecurityRepository = security,
+        scamMessageRepository = scamMessages,
         reportRepository = reports,
         trustedAppsRepository = trusted,
         behaviorAnalyzer = BehaviorAnalyzer(thresholds),
         deviceHealthAnalyzer = DeviceHealthAnalyzer(thresholds),
         batteryAttributor = BatteryAttributor(thresholds),
         deviceSecurityAnalyzer = DeviceSecurityAnalyzer(thresholds),
+        thresholds = thresholds,
         scoreCalculator = calculator,
         trustedAppsFilter = TrustedAppsFilter(calculator),
         timeProvider = time,
@@ -112,6 +120,49 @@ class GenerateDailyReportUseCaseTest {
             report.deviceIssues.map { it.type },
         )
         assertEquals(100 - 7 - 7 - 2, report.score)
+    }
+
+    @Test
+    fun `scam texts from SMS Toolbox are summarised and linked to installs without lowering the score`() = runTest {
+        val partner =
+            SmsPartnerStatus(
+                "com.neteinstein.smsredirect",
+                verified = true,
+                connected = true,
+                isDefaultSmsApp = true,
+                checkedToday = 9,
+                suspiciousToday = 2,
+            )
+        scamMessages.status = partner
+        scamMessages.signals = listOf(
+            ScamMessageSignal(now - 25 * HOUR - 30 * 60_000, setOf(ScamMessageKind.URGENCY), hasLink = true, threadId = 1),
+            ScamMessageSignal(
+                now - 2 * HOUR,
+                setOf(ScamMessageKind.DELIVERY_OR_FEE, ScamMessageKind.SHORTENED_LINK),
+                hasLink = true,
+                threadId = 7,
+            ),
+            ScamMessageSignal(now - HOUR, setOf(ScamMessageKind.MONEY_OR_PRIZE), hasLink = false, threadId = 8),
+        )
+        inventory.apps = listOf(TestData.app("parcel.app", installer = null, installedAt = now - 24 * HOUR + 10 * 60_000))
+
+        val report = useCase()
+
+        assertEquals(now - 26 * HOUR to now, scamMessages.lastWindow)
+        assertEquals(
+            ScamMessageSummary(
+                total = 2,
+                withLink = 1,
+                byKind = mapOf(
+                    ScamMessageKind.DELIVERY_OR_FEE to 1,
+                    ScamMessageKind.SHORTENED_LINK to 1,
+                    ScamMessageKind.MONEY_OR_PRIZE to 1,
+                ),
+            ),
+            report.scamMessages,
+        )
+        assertEquals("matched to the text from before the window", BehaviorType.SCAM_LINK_INSTALL, report.findings.single().type)
+        assertEquals(1L, report.findings.single().value)
     }
 
     @Test

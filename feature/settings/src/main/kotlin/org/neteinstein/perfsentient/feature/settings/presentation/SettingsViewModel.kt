@@ -2,11 +2,13 @@ package org.neteinstein.perfsentient.feature.settings.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.neteinstein.perfsentient.core.domain.usecase.GetSmsPartnerStatusUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObservePermissionsUseCase
@@ -21,6 +23,7 @@ import org.neteinstein.perfsentient.core.domain.usecase.UpdateSecurityAlertsUseC
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UserSettings
@@ -30,6 +33,8 @@ data class SettingsUiState(
     val settings: UserSettings = UserSettings(),
     val monitoringState: MonitoringState = MonitoringState.WAITING_FOR_PERMISSIONS,
     val trustedApps: List<TrustedApp> = emptyList(),
+    /** SMS Toolbox, for the "Scam text warnings" card. Read again on every resume. */
+    val partner: SmsPartnerStatus = SmsPartnerStatus.NOT_INSTALLED,
 ) {
     val grantedCount: Int get() = permissions.count { it.isGranted }
 }
@@ -46,19 +51,27 @@ class SettingsViewModel(
     private val untrustApp: UntrustAppUseCase,
     private val updateParentalSettings: UpdateParentalSettingsUseCase,
     private val updateSecurityAlerts: UpdateSecurityAlertsUseCase,
+    private val getSmsPartnerStatus: GetSmsPartnerStatusUseCase,
 ) : ViewModel() {
+
+    private val partner = MutableStateFlow(SmsPartnerStatus.NOT_INSTALLED)
 
     val uiState: StateFlow<SettingsUiState> = combine(
         observePermissions(),
         observeSettings(),
         observeMonitoringState(),
         observeTrustedApps(),
-    ) { permissions, settings, monitoring, trusted -> SettingsUiState(permissions, settings, monitoring, trusted) }
+        partner,
+    ) { permissions, settings, monitoring, trusted, partner -> SettingsUiState(permissions, settings, monitoring, trusted, partner) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MS), SettingsUiState())
 
-    /** Re-check grants (the user may have toggled something in system settings) and start monitoring. */
+    /**
+     * Re-check grants (the user may have toggled something in system settings) and start monitoring.
+     * Also re-reads SMS Toolbox, which the user may just have installed or connected.
+     */
     fun onPermissionsMaybeChanged() {
         viewModelScope.launch { syncMonitoring() }
+        viewModelScope.launch { partner.value = getSmsPartnerStatus() }
     }
 
     fun onThemeModeSelected(mode: ThemeMode) {

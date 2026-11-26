@@ -15,6 +15,7 @@ WAS ES ERKENNT
 • Speicherfresser (riesiger Cache)
 • Betrugs-Apps: über einen Link im Chat installiert, Namen, die bekannte Apps nachahmen, Fernzugriffs-Apps, die während eines Anrufs installiert wurden, und Apps, die Ihre Codes lesen können, mit einer Warnung binnen etwa 15 Minuten
 • Telefonsicherheit: keine Displaysperre, alte Sicherheitsupdates, aktiviertes USB-Debugging
+• Mit SMS Toolbox (kostenlos, optional): eine Warnung, wenn direkt nach einer Betrugs-SMS eine App installiert wird
 
 IHR TAGESBERICHT
 • Ein Gesundheitswert von 0 bis 100 und ein klares Urteil: gut, mittel oder schlecht

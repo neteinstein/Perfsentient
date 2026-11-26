@@ -16,6 +16,7 @@ import androidx.compose.material.icons.rounded.Layers
 import androidx.compose.material.icons.rounded.NotificationsActive
 import androidx.compose.material.icons.rounded.Password
 import androidx.compose.material.icons.rounded.Sd
+import androidx.compose.material.icons.rounded.Sms
 import androidx.compose.material.icons.rounded.Sync
 import androidx.compose.material.icons.rounded.TheaterComedy
 import androidx.compose.material.icons.rounded.VisibilityOff
@@ -134,6 +135,12 @@ val BehaviorType.presentation: BehaviorPresentation
             Icons.Rounded.Download,
             R.string.behavior_can_install_apps_title,
             R.string.behavior_can_install_apps_desc,
+        )
+
+        BehaviorType.SCAM_LINK_INSTALL -> BehaviorPresentation(
+            Icons.Rounded.Sms,
+            R.string.behavior_scam_link_install_title,
+            R.string.behavior_scam_link_install_desc,
         )
     }
 

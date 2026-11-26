@@ -14,6 +14,8 @@ import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.DeviceMetrics
 import org.neteinstein.perfsentient.core.model.Evidence
+import org.neteinstein.perfsentient.core.model.ScamMessageKind
+import org.neteinstein.perfsentient.core.model.ScamMessageSummary
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.testing.TestData
@@ -73,6 +75,15 @@ class ReportMapperTest {
         val legacy = TestData.report(findings = listOf(finding.copy(evidence = emptyList()))).toEntity().payload
             .replace(",\"evidence\":[]", "")
         assertTrue(ReportEntity("2026-11-16", 0, 90, legacy).toDomain()!!.findings.single().evidence.isEmpty())
+    }
+
+    @Test
+    fun `scam text summary survives a round trip`() {
+        val report = TestData.report().copy(
+            scamMessages = ScamMessageSummary(3, 2, mapOf(ScamMessageKind.URGENCY to 2, ScamMessageKind.DELIVERY_OR_FEE to 1)),
+        )
+        assertEquals(report, report.toEntity().toDomain())
+        assertEquals(null, TestData.report().toEntity().toDomain()!!.scamMessages)
     }
 
     @Test

@@ -25,18 +25,31 @@ To do its job the App reads the following **on the device only**. None of it lea
 
 - **The list of installed apps** (`QUERY_ALL_PACKAGES`): names, package names, whether an app has a launcher
   icon, whether it can draw over other apps, holds an accessibility service or device-admin role, is exempt
-  from battery optimisation, and the size of its cache.
+  from battery optimisation, and the size of its cache. To spot scam apps it also reads how each app was
+  installed (which app or store installed it, and whether it came from a downloaded file), which sensitive
+  permissions you granted it (such as SMS or call log), whether it has notification access, is the default SMS
+  app or may install other apps.
 - **App usage statistics** (`PACKAGE_USAGE_STATS`, "Usage access", which you grant in Android settings):
   foreground time, service time, activity launch/close events, and per-app network byte counts.
 - **Notification counts** ("Notification access", which you grant in Android settings): **only a counter per
   app per day.** The App never reads, stores or forwards the title, text or content of a notification.
-- **Phone vitals** sampled about every 15 minutes: battery level, charging state, temperature, thermal status,
-  screen on/off and memory pressure.
+- **Phone vitals** sampled about every 15 minutes: battery level and charge counter, charging state,
+  temperature, thermal status, screen on/off and memory pressure. They are also used to estimate each app's
+  battery use, by sharing measured battery drops between the apps that were open or running at the time.
+- **Security settings**: whether a screen lock is set, the Android security patch date and whether USB debugging
+  is on. No permission is needed for these.
+- **Scam warnings from SMS Toolbox** (only if you install SMS Toolbox, the same developer's messaging app, and
+  turn on sharing there): the time of each text it flagged as a possible scam, the kind of warning, whether the
+  text had a link and its conversation number. **Never the text, the sender or the link.** Perfsentient only
+  reads; it sends nothing to SMS Toolbox, and only reads from a copy signed by its developer.
 
 ## 2. What the App stores
 
 - Vitals samples and notification counters: kept for **7 days**.
-- Daily reports (score, verdict, findings per app): kept for **30 days**.
+- Daily reports (score, verdict, findings per app with the times they happened, each app's estimated battery use
+  and the number and kinds of scam texts SMS Toolbox flagged): kept for **30 days**.
+- For live security alerts: the list of apps that hold accessibility, device-admin or notification access, and
+  which risky apps you were already alerted about, so the same alert is not repeated.
 - Your settings (report time, theme) and your **trusted apps** list (package names and labels of apps you chose
   to trust).
 - If you turn on **parental mode**: the child's age you entered (a single number) and the package names of the
@@ -53,7 +66,8 @@ database. Clearing the App's storage or uninstalling it removes everything.
 | Query all packages | To see every installed app, including hidden ones, so misbehaving apps can be found. |
 | Usage access | To measure how apps behave over the day. |
 | Notification access | To count notifications per app (content is never read). |
-| Post notifications | To show your end-of-day report. |
+| Post notifications | To show your end-of-day report and live security alerts. |
+| Read scam signals (SMS Toolbox) | To read the time and kind of scam warnings from SMS Toolbox, if you connect it. Only apps signed by the same developer can hold it. |
 
 ## 4. Sharing and third parties
 

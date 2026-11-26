@@ -19,12 +19,13 @@ import org.neteinstein.perfsentient.core.model.Severity
  * - a store app that can read texts without being the default SMS app: MEDIUM;
  * - a store app with notification access only: LOW.
  *
- * A store-installed default SMS app is not flagged for doing its job. [Finding.value] is a
+ * A store-installed default SMS app, and SMS Toolbox signed by its developer, are not flagged for
+ * doing their job. [Finding.value] is a
  * [ReadableData] bit mask.
  */
 class DataTheftRiskDetector : BehaviorDetector {
     override fun detect(input: AnalysisInput): List<Finding> = input.candidates
-        .filter { it.canReadMessages }
+        .filter { it.canReadMessages && !input.isVerifiedPartner(it.packageName) }
         .mapNotNull { app ->
             val readsTexts = app.readsTexts()
             val severity = when {

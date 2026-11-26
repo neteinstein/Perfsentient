@@ -65,4 +65,8 @@
         <item quantity="many">Mostra tutti i %1$d orari</item>
         <item quantity="other">Mostra tutti i %1$d orari</item>
     </plurals>
+
+    <string name="behavior_scam_link_install_title">Installata dopo un SMS truffa</string>
+    <string name="behavior_scam_link_install_desc">È stata installata fuori da uno store poco dopo che SMS Toolbox ha segnalato un SMS con un link come possibile truffa. Le false app di spedizioni, banche e «sicurezza» si diffondono così. Se un SMS o una chiamata ti ha chiesto di installarla, disinstallala subito e non inserire mai un codice che ti chiede.</string>
+    <string name="evidence_scam_text">SMS truffa ricevuto</string>
 </resources>

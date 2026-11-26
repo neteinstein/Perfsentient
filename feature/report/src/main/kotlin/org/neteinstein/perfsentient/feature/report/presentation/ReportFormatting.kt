@@ -12,6 +12,7 @@ import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.Finding
 import org.neteinstein.perfsentient.core.model.InstallChannel
 import org.neteinstein.perfsentient.core.model.ReadableData
+import org.neteinstein.perfsentient.core.model.ScamMessageKind
 import org.neteinstein.perfsentient.feature.report.R
 
 internal fun Context.formatDuration(ms: Long): String {
@@ -68,7 +69,22 @@ internal fun Context.describeValue(finding: Finding): String = when (finding.typ
     BehaviorType.IMPERSONATION -> getString(R.string.report_value_impersonation)
 
     BehaviorType.CAN_INSTALL_APPS -> getString(R.string.report_value_can_install)
+
+    BehaviorType.SCAM_LINK_INSTALL -> getString(R.string.report_value_scam_link_install)
 }
+
+@get:StringRes
+internal val ScamMessageKind.label: Int
+    get() = when (this) {
+        ScamMessageKind.SHORTENED_LINK -> R.string.report_scam_kind_shortened_link
+        ScamMessageKind.IP_ADDRESS_LINK -> R.string.report_scam_kind_ip_link
+        ScamMessageKind.DECEPTIVE_LINK -> R.string.report_scam_kind_deceptive_link
+        ScamMessageKind.RISKY_DOMAIN_LINK -> R.string.report_scam_kind_risky_domain
+        ScamMessageKind.URGENCY -> R.string.report_scam_kind_urgency
+        ScamMessageKind.ACCOUNT_OR_CREDENTIALS -> R.string.report_scam_kind_credentials
+        ScamMessageKind.MONEY_OR_PRIZE -> R.string.report_scam_kind_money
+        ScamMessageKind.DELIVERY_OR_FEE -> R.string.report_scam_kind_delivery
+    }
 
 internal fun Context.formatDateTime(epochMs: Long): String =
     DateUtils.formatDateTime(this, epochMs, DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_ABBREV_MONTH)

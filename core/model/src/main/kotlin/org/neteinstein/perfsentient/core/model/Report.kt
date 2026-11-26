@@ -60,6 +60,9 @@ enum class BehaviorType {
 
     /** Allowed to install other apps. */
     CAN_INSTALL_APPS,
+
+    /** Installed from outside a store shortly after SMS Toolbox flagged a scam text with a link. */
+    SCAM_LINK_INSTALL,
 }
 
 /** Where a sideloaded app came from, stored as [Finding.value] of [BehaviorType.RISKY_INSTALL_SOURCE]. */
@@ -170,6 +173,8 @@ data class DailyReport(
     val hiddenTrustedApps: Int = 0,
     /** Estimated battery use per app. Not a finding: trusted apps stay in it. */
     val battery: BatteryBreakdown = BatteryBreakdown.EMPTY,
+    /** Scam texts SMS Toolbox flagged in the window, when it is connected. Does not affect the score. */
+    val scamMessages: ScamMessageSummary? = null,
 ) {
     val offenders: List<AppAssessment>
         get() = findings

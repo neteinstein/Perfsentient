@@ -55,8 +55,13 @@ val Finding.fixAction: FixAction
         BehaviorType.RISKY_INSTALL_SOURCE,
         BehaviorType.REMOTE_ACCESS,
         BehaviorType.IMPERSONATION,
+        BehaviorType.SCAM_LINK_INSTALL,
         -> FixAction.APP_INFO
     }
+
+/** The SMS Toolbox conversation of the scam text behind this finding, when there is one. */
+val Finding.partnerThreadId: Long?
+    get() = value.takeIf { type == BehaviorType.SCAM_LINK_INSTALL && it > 0 }
 
 /** Where to fix this device issue, or null when there is no setting to change (heat, memory). */
 val DeviceIssueType.fixAction: FixAction?

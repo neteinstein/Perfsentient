@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import org.neteinstein.perfsentient.core.model.SmsPartnerLinks
 
 /**
  * The system settings screen for [action], scoped to [packageName] where Android allows it.
@@ -28,6 +29,33 @@ fun fixIntent(action: FixAction, packageName: String?): Intent {
         FixAction.SYSTEM_UPDATE -> Intent(Settings.ACTION_DEVICE_INFO_SETTINGS)
         FixAction.BATTERY_USAGE -> Intent(Intent.ACTION_POWER_USAGE_SUMMARY)
     }.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+}
+
+/** Opens a conversation in SMS Toolbox (the scam text behind a finding). */
+fun Context.openPartnerMessage(threadId: Long) {
+    val intent = Intent(
+        Intent.ACTION_VIEW,
+        Uri.parse(SmsPartnerLinks.CONVERSATION_PREFIX + threadId),
+    ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    runCatching { startActivity(intent) }
+}
+
+/** Opens SMS Toolbox's consent dialog, where the user can turn on sharing with Perfsentient. */
+fun Context.openPartnerConnect() {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(SmsPartnerLinks.CONNECT)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    runCatching { startActivity(intent) }
+}
+
+/** SMS Toolbox's store page; its GitHub releases when no store app handles it. Opening a page needs no INTERNET permission. */
+fun Context.openPartnerStore() {
+    val store = Intent(Intent.ACTION_VIEW, Uri.parse(SmsPartnerLinks.PLAY_STORE)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    try {
+        startActivity(store)
+    } catch (_: ActivityNotFoundException) {
+        runCatching {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SmsPartnerLinks.RELEASES)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        }
+    }
 }
 
 /** Opens the screen for [action]; if the device lacks it, App info for [packageName], else the app list / Settings. */

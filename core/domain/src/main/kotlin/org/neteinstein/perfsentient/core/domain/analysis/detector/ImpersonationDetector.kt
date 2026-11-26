@@ -12,12 +12,17 @@ import org.neteinstein.perfsentient.core.model.Severity
  * Fake apps borrow trusted names: "System Update", "Google Play Services", "DHL", a bank, or a
  * modded "WhatsApp Plus". An app that did not come from a store and whose label matches such a
  * name (ignoring case, accents, spacing and look-alike characters), while its package is not the
- * real one, is MEDIUM; HIGH when it also hides its icon or holds a sensitive capability.
+ * real one, is MEDIUM; HIGH when it also hides its icon or holds a sensitive capability. An app using
+ * SMS Toolbox's package name without its developer's signature is HIGH.
  */
 class ImpersonationDetector(private val catalog: ScamSignalCatalog) : BehaviorDetector {
     override fun detect(input: AnalysisInput): List<Finding> = input.candidates
         .filter { it.isSideloaded }
         .mapNotNull { app ->
+            // A package that claims to be SMS Toolbox but is signed by someone else.
+            if (app.packageName == input.partner.packageName && input.partner.installed && !input.partner.verified) {
+                return@mapNotNull app.finding(BehaviorType.IMPERSONATION, Severity.HIGH, 1)
+            }
             val imitated = catalog.impersonatedBy(app.label) ?: return@mapNotNull null
             if (app.packageName in imitated.genuinePackages) return@mapNotNull null
             val severity = if (!app.hasLauncherIcon || app.hasSensitiveCapability) Severity.HIGH else Severity.MEDIUM

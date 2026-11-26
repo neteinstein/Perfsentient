@@ -22,15 +22,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.ExpandMore
 import androidx.compose.material.icons.rounded.GppMaybe
 import androidx.compose.material.icons.rounded.RemoveCircleOutline
 import androidx.compose.material.icons.rounded.Schedule
+import androidx.compose.material.icons.rounded.Sms
 import androidx.compose.material.icons.rounded.VerifiedUser
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -72,6 +75,8 @@ import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.GrantMode
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.model.SmsPartnerState
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UserSettings
@@ -252,6 +257,64 @@ internal fun SecurityAlertsCard(enabled: Boolean, onToggled: (Boolean) -> Unit, 
             Spacer(Modifier.width(8.dp))
             // The whole card toggles; the switch only mirrors the state for screen readers and sighted users.
             Switch(checked = enabled, onCheckedChange = onToggled)
+        }
+    }
+}
+
+/** "Scam text warnings (SMS Toolbox)": what the partnership adds, and the one step left to set it up. */
+@Composable
+internal fun SmsPartnerCard(
+    partner: SmsPartnerStatus,
+    onGet: () -> Unit,
+    onConnect: () -> Unit,
+    onAppInfo: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val state = partner.state
+    val status = PerfsentienceTheme.status
+    SurfaceCard(modifier = modifier.fillMaxWidth()) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(Icons.Rounded.Sms, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
+            Spacer(Modifier.width(14.dp))
+            Text(
+                stringResource(R.string.settings_partner_title),
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.weight(1f),
+            )
+            if (state == SmsPartnerState.CONNECTED) {
+                Icon(
+                    Icons.Rounded.CheckCircle,
+                    contentDescription = stringResource(R.string.settings_partner_connected_cd),
+                    tint = status.good,
+                )
+            }
+        }
+        Spacer(Modifier.height(6.dp))
+        Text(
+            when (state) {
+                SmsPartnerState.NOT_INSTALLED -> stringResource(R.string.settings_partner_not_installed)
+
+                SmsPartnerState.UNVERIFIED -> stringResource(R.string.settings_partner_unverified)
+
+                SmsPartnerState.NOT_CONNECTED -> stringResource(R.string.settings_partner_not_connected)
+
+                SmsPartnerState.CONNECTED_NOT_DEFAULT -> stringResource(R.string.settings_partner_not_default)
+
+                SmsPartnerState.CONNECTED ->
+                    pluralStringResource(R.plurals.settings_partner_connected, partner.checkedToday, partner.checkedToday)
+            },
+            style = MaterialTheme.typography.bodySmall,
+            color = if (state == SmsPartnerState.UNVERIFIED) status.poor else MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        val action = when (state) {
+            SmsPartnerState.NOT_INSTALLED -> R.string.settings_partner_get to onGet
+            SmsPartnerState.UNVERIFIED -> R.string.settings_partner_app_info to onAppInfo
+            SmsPartnerState.NOT_CONNECTED -> R.string.settings_partner_connect to onConnect
+            SmsPartnerState.CONNECTED_NOT_DEFAULT, SmsPartnerState.CONNECTED -> null
+        }
+        action?.let { (label, onClick) ->
+            Spacer(Modifier.height(10.dp))
+            FilledTonalButton(onClick = onClick) { Text(stringResource(label)) }
         }
     }
 }

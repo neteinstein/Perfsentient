@@ -99,4 +99,27 @@ class ModelTest {
     fun `a concerning app needs a concern`() {
         ConcerningApp("x", setOf("com.x"), ParentalRiskCategory.DATING, 18, 18, Severity.HIGH, emptySet())
     }
+
+    @Test
+    fun `sms partner state follows install, signature, opt-in and SMS role`() {
+        val connected =
+            SmsPartnerStatus("p", verified = true, connected = true, isDefaultSmsApp = true, checkedToday = 1, suspiciousToday = 0)
+        assertEquals(SmsPartnerState.CONNECTED, connected.state)
+        assertEquals(SmsPartnerState.CONNECTED_NOT_DEFAULT, connected.copy(isDefaultSmsApp = false).state)
+        assertEquals(SmsPartnerState.NOT_CONNECTED, connected.copy(connected = false).state)
+        assertEquals(SmsPartnerState.UNVERIFIED, connected.copy(verified = false).state)
+        assertEquals(SmsPartnerState.NOT_INSTALLED, SmsPartnerStatus.NOT_INSTALLED.state)
+    }
+
+    @Test
+    fun `scam summary counts texts, links and kinds`() {
+        assertEquals(null, ScamMessageSummary.of(emptyList()))
+        val summary = ScamMessageSummary.of(
+            listOf(
+                ScamMessageSignal(1, setOf(ScamMessageKind.URGENCY, ScamMessageKind.SHORTENED_LINK), hasLink = true, threadId = 1),
+                ScamMessageSignal(2, setOf(ScamMessageKind.URGENCY), hasLink = false, threadId = null),
+            ),
+        )
+        assertEquals(ScamMessageSummary(2, 1, mapOf(ScamMessageKind.URGENCY to 2, ScamMessageKind.SHORTENED_LINK to 1)), summary)
+    }
 }

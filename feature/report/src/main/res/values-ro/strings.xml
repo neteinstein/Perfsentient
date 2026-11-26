@@ -133,4 +133,26 @@
         <item quantity="few">Ultima actualizare de securitate Android are %1$d zile. Căutați o actualizare de sistem.</item>
         <item quantity="other">Ultima actualizare de securitate Android are %1$d de zile. Căutați o actualizare de sistem.</item>
     </plurals>
+
+    <string name="report_value_scam_link_install">Instalată la scurt timp după un SMS de înșelătorie</string>
+    <string name="report_open_scam_text">Deschide SMS-ul</string>
+    <string name="report_scam_texts_hint">Semnalat de SMS Toolbox. Nu instalați niciodată o aplicație, nu dați un cod și nu sunați înapoi pentru că v-a cerut un SMS.</string>
+    <string name="report_scam_kind_shortened_link">Link scurtat</string>
+    <string name="report_scam_kind_ip_link">Link către o adresă IP</string>
+    <string name="report_scam_kind_deceptive_link">Link înșelător</string>
+    <string name="report_scam_kind_risky_domain">Adresă web de unică folosință</string>
+    <string name="report_scam_kind_urgency">Urgență</string>
+    <string name="report_scam_kind_credentials">Cere datele contului</string>
+    <string name="report_scam_kind_money">Bani sau premiu</string>
+    <string name="report_scam_kind_delivery">Colet sau taxă</string>
+    <plurals name="report_scam_texts_count">
+        <item quantity="one">%1$d SMS semnalat ca posibilă înșelătorie</item>
+        <item quantity="few">%1$d SMS-uri semnalate ca posibile înșelătorii</item>
+        <item quantity="other">%1$d de SMS-uri semnalate ca posibile înșelătorii</item>
+    </plurals>
+    <plurals name="report_scam_texts_links">
+        <item quantity="one">%1$d avea un link</item>
+        <item quantity="few">%1$d aveau linkuri</item>
+        <item quantity="other">%1$d aveau linkuri</item>
+    </plurals>
 </resources>

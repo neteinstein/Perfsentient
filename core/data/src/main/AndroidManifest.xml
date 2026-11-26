@@ -14,7 +14,15 @@
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
+    <!-- Read-only scam-warning metadata from SMS Toolbox (same developer), after the user opts in
+         there. Defined by SMS Toolbox as signature|knownSigner; see ScamSignalsContract. The second
+         one is SMS Toolbox's debug build. Requesting a permission that is not defined is harmless. -->
+    <uses-permission android:name="com.neteinstein.smsredirect.permission.READ_SCAM_SIGNALS" />
+    <uses-permission android:name="com.neteinstein.smsredirect.test.permission.READ_SCAM_SIGNALS" />
+
     <queries>
+        <package android:name="com.neteinstein.smsredirect" />
+        <package android:name="com.neteinstein.smsredirect.test" />
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

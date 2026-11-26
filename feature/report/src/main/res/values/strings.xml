@@ -131,4 +131,24 @@
         <item quantity="one">The last Android security update is %1$d day old. Check for a system update.</item>
         <item quantity="other">The last Android security update is %1$d days old. Check for a system update.</item>
     </plurals>
+
+    <string name="report_value_scam_link_install">Installed shortly after a scam text</string>
+    <string name="report_open_scam_text">Open the text</string>
+    <string name="report_scam_texts_hint">Flagged by SMS Toolbox. Never install an app, share a code or call back because a text asked you to.</string>
+    <string name="report_scam_kind_shortened_link">Shortened link</string>
+    <string name="report_scam_kind_ip_link">Link to a bare IP address</string>
+    <string name="report_scam_kind_deceptive_link">Look-alike link</string>
+    <string name="report_scam_kind_risky_domain">Throwaway web address</string>
+    <string name="report_scam_kind_urgency">Urgency</string>
+    <string name="report_scam_kind_credentials">Asks for account details</string>
+    <string name="report_scam_kind_money">Money or prize</string>
+    <string name="report_scam_kind_delivery">Parcel or fee</string>
+    <plurals name="report_scam_texts_count">
+        <item quantity="one">%1$d text flagged as a possible scam</item>
+        <item quantity="other">%1$d texts flagged as possible scams</item>
+    </plurals>
+    <plurals name="report_scam_texts_links">
+        <item quantity="one">%1$d had a link</item>
+        <item quantity="other">%1$d had links</item>
+    </plurals>
 </resources>

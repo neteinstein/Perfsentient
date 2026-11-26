@@ -68,4 +68,8 @@
         <item quantity="one">Show %1$d time</item>
         <item quantity="other">Show all %1$d times</item>
     </plurals>
+
+    <string name="behavior_scam_link_install_title">Installed after a scam text</string>
+    <string name="behavior_scam_link_install_desc">Was installed from outside an app store shortly after SMS Toolbox flagged a text with a link as a possible scam. Fake parcel, bank and \"security\" apps spread this way. If a text or a caller asked you to install it, uninstall it now and never type a code it asks for.</string>
+    <string name="evidence_scam_text">scam text received</string>
 </resources>

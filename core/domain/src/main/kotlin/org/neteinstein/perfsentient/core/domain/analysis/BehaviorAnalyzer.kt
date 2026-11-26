@@ -14,6 +14,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.detector.PersistentBack
 import org.neteinstein.perfsentient.core.domain.analysis.detector.PopupAdsDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.RemoteAccessDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.RiskyInstallSourceDetector
+import org.neteinstein.perfsentient.core.domain.analysis.detector.ScamChainDetector
 import org.neteinstein.perfsentient.core.domain.analysis.detector.StorageBloatDetector
 import org.neteinstein.perfsentient.core.domain.scam.ScamSignalCatalog
 import org.neteinstein.perfsentient.core.model.Finding
@@ -38,11 +39,12 @@ class BehaviorAnalyzer internal constructor(private val detectors: List<Behavior
             catalog: ScamSignalCatalog = ScamSignalCatalog(),
         ): BehaviorAnalyzer = BehaviorAnalyzer(
             listOf(
-                RiskyInstallSourceDetector(catalog),
+                RiskyInstallSourceDetector(catalog, thresholds),
                 DataTheftRiskDetector(),
                 RemoteAccessDetector(thresholds, catalog),
                 ImpersonationDetector(catalog),
                 CanInstallAppsDetector(catalog),
+                ScamChainDetector(thresholds),
                 CapabilityRiskDetector(thresholds),
                 HiddenIconDetector(thresholds),
             ),
@@ -62,11 +64,12 @@ class BehaviorAnalyzer internal constructor(private val detectors: List<Behavior
             NotificationSpamDetector(thresholds),
             CapabilityRiskDetector(thresholds),
             StorageBloatDetector(thresholds),
-            RiskyInstallSourceDetector(catalog),
+            RiskyInstallSourceDetector(catalog, thresholds),
             DataTheftRiskDetector(),
             RemoteAccessDetector(thresholds, catalog),
             ImpersonationDetector(catalog),
             CanInstallAppsDetector(catalog),
+            ScamChainDetector(thresholds),
         )
     }
 }

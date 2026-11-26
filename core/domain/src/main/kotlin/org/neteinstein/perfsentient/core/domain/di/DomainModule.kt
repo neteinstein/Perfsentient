@@ -15,6 +15,7 @@ import org.neteinstein.perfsentient.core.domain.parental.ParentalRiskAssessor
 import org.neteinstein.perfsentient.core.domain.scam.ScamSignalCatalog
 import org.neteinstein.perfsentient.core.domain.usecase.CheckSecurityChangesUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.GetSmsPartnerStatusUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveBatteryHistoryUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveFlaggedAppsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveLatestReportUseCase
@@ -70,4 +71,5 @@ val domainModule = module {
     factoryOf(::SetParentalAppReviewedUseCase)
     factoryOf(::CheckSecurityChangesUseCase)
     factoryOf(::UpdateSecurityAlertsUseCase)
+    factoryOf(::GetSmsPartnerStatusUseCase)
 }

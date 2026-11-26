@@ -15,6 +15,7 @@ CE QU'IL DÉTECTE
 • Applis gourmandes en stockage (cache énorme)
 • Applis d'arnaque : installées via un lien reçu par message, noms imitant des applis connues, accès à distance installé pendant un appel, applis pouvant lire vos codes, avec une alerte en 15 minutes environ
 • Sécurité : pas de verrouillage d'écran, mise à jour de sécurité ancienne, débogage USB activé
+• Avec SMS Toolbox (gratuit, facultatif) : une alerte si une appli est installée juste après un SMS d'arnaque
 
 VOTRE RAPPORT QUOTIDIEN
 • Un score de santé de 0 à 100 et un verdict clair : bon, moyen ou mauvais
@@ -33,7 +34,7 @@ Un téléphone pour un enfant ? Activez le Mode parental dans les Paramètres et
 • Messageries et réseaux sociaux cités dans des alertes de sextorsion
 • Chat vidéo aléatoire, applis de rencontre pour adultes et de questions anonymes
 • Compagnons IA, diffusion en direct avec cadeaux payants, coffres secrets qui cachent photos ou applis, et jeux d'argent
-Chaque alerte explique pourquoi l'appli est signalée, indique l'âge conseillé et l'âge minimum, et vous dit ce que vous pouvez faire. Marquez une appli comme vérifiée une fois configurée ensemble. Le Mode parental ne demande aucune autorisation supplémentaire et l'âge saisi ne quitte jamais le téléphone.
+Chaque alerte explique pourquoi l'appli est signalée, indique l'âge conseillé et minimum, et ce que vous pouvez faire. Le Mode parental ne demande aucune autorisation et l'âge saisi reste sur le téléphone.
 
 CONFIDENTIEL PAR CONCEPTION
 • Tout est analysé sur votre téléphone

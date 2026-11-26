@@ -64,4 +64,8 @@
         <item quantity="one">%1$d Zeit anzeigen</item>
         <item quantity="other">Alle %1$d Zeiten anzeigen</item>
     </plurals>
+
+    <string name="behavior_scam_link_install_title">Nach einer Betrugs-SMS installiert</string>
+    <string name="behavior_scam_link_install_desc">Wurde außerhalb eines App-Stores installiert, kurz nachdem SMS Toolbox eine SMS mit Link als möglichen Betrug markiert hat. Gefälschte Paket-, Bank- und „Sicherheits“-Apps verbreiten sich so. Wenn eine SMS oder ein Anrufer Sie zur Installation aufgefordert hat, deinstallieren Sie sie sofort und geben Sie nie einen Code ein, den sie verlangt.</string>
+    <string name="evidence_scam_text">Betrugs-SMS erhalten</string>
 </resources>

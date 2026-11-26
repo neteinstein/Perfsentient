@@ -6,6 +6,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import org.neteinstein.perfsentient.core.domain.usecase.GetSmsPartnerStatusUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.MonitoringState
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveMonitoringStateUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObservePermissionsUseCase
@@ -21,10 +22,13 @@ import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
 import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionType
 import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.model.SmsPartnerState
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.testing.FakeMonitoringScheduler
 import org.neteinstein.perfsentient.core.testing.FakePermissionRepository
+import org.neteinstein.perfsentient.core.testing.FakeScamMessageRepository
 import org.neteinstein.perfsentient.core.testing.FakeSettingsRepository
 import org.neteinstein.perfsentient.core.testing.FakeTrustedAppsRepository
 import org.neteinstein.perfsentient.core.testing.MainDispatcherRule
@@ -37,6 +41,7 @@ class SettingsViewModelTest {
     private val permissions = FakePermissionRepository()
     private val settings = FakeSettingsRepository()
     private val scheduler = FakeMonitoringScheduler()
+    private val partner = FakeScamMessageRepository()
     private val trusted = FakeTrustedAppsRepository(
         listOf(TrustedApp("com.zeta.vpn", "Zeta VPN"), TrustedApp("com.alpha.chat", "alpha chat")),
     )
@@ -55,7 +60,18 @@ class SettingsViewModelTest {
             untrustApp = UntrustAppUseCase(trusted),
             updateParentalSettings = UpdateParentalSettingsUseCase(settings),
             updateSecurityAlerts = UpdateSecurityAlertsUseCase(settings),
+            getSmsPartnerStatus = GetSmsPartnerStatusUseCase(partner),
         )
+    }
+
+    @Test
+    fun `sms toolbox status is read again on resume`() = runTest {
+        viewModel.uiState.test {
+            assertEquals(SmsPartnerState.NOT_INSTALLED, expectMostRecentItem().partner.state)
+            partner.status = SmsPartnerStatus("com.neteinstein.smsredirect", true, true, true, 4, 1)
+            viewModel.onPermissionsMaybeChanged()
+            assertEquals(SmsPartnerState.CONNECTED, expectMostRecentItem().partner.state)
+        }
     }
 
     @Test

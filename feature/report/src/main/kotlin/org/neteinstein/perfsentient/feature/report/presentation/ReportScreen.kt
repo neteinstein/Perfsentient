@@ -53,6 +53,7 @@ import org.neteinstein.perfsentient.feature.report.presentation.component.EmptyR
 import org.neteinstein.perfsentient.feature.report.presentation.component.HistoryCard
 import org.neteinstein.perfsentient.feature.report.presentation.component.OffenderDetailsSheet
 import org.neteinstein.perfsentient.feature.report.presentation.component.ReportHeader
+import org.neteinstein.perfsentient.feature.report.presentation.component.ScamMessagesCard
 import org.neteinstein.perfsentient.feature.report.presentation.component.SetupCard
 import org.neteinstein.perfsentient.feature.report.presentation.component.TrustedAppsHiddenNote
 import org.neteinstein.perfsentient.feature.report.presentation.component.VitalsGrid
@@ -157,6 +158,9 @@ private fun ReportContent(
                 itemsIndexed(report.deviceIssues, key = { _, it -> "issue_${it.type}" }) { index, issue ->
                     DeviceIssueCard(issue, itemModifier.staggeredEntrance(index))
                 }
+            }
+            report.scamMessages?.let { summary ->
+                item(key = "scam_texts") { ScamMessagesCard(summary, itemModifier) }
             }
             item(key = "offenders_header") {
                 SectionHeader(

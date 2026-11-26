@@ -73,4 +73,18 @@
     <string name="settings_section_detection_desc">Heuristics based on Google Play policy, Android vitals and published adware research.</string>
     <string name="settings_security_alerts">Security alerts</string>
     <string name="settings_security_alerts_desc">Get a notification within about 15 minutes when a risky app is installed, or an app gets access to your messages or screen. You don\'t have to wait for the daily report.</string>
+
+    <string name="settings_partner_title">Scam text warnings (SMS Toolbox)</string>
+    <string name="settings_partner_connected_cd">Connected</string>
+    <string name="settings_partner_not_installed">SMS Toolbox, the free messaging app from the same developer, flags scam texts on your phone. Connected, Perfsentient warns you when an app is installed right after one. Nothing leaves your phone.</string>
+    <string name="settings_partner_unverified">The SMS Toolbox on this phone isn\'t signed by its developer, so Perfsentient ignores it. Uninstall it and get the real one.</string>
+    <string name="settings_partner_not_connected">SMS Toolbox is installed. Connect it to share the time and type of its scam warnings with Perfsentient. Never your messages or contacts.</string>
+    <string name="settings_partner_not_default">Connected. SMS Toolbox only checks texts while it\'s your default SMS app.</string>
+    <string name="settings_partner_get">Get SMS Toolbox</string>
+    <string name="settings_partner_app_info">Open app info</string>
+    <string name="settings_partner_connect">Connect</string>
+    <plurals name="settings_partner_connected">
+        <item quantity="one">Connected · %1$d text checked today</item>
+        <item quantity="other">Connected · %1$d texts checked today</item>
+    </plurals>
 </resources>

@@ -12,6 +12,7 @@ import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepo
 import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
+import org.neteinstein.perfsentient.core.domain.repository.ScamMessageRepository
 import org.neteinstein.perfsentient.core.domain.repository.SecurityWatchRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
@@ -31,7 +32,9 @@ import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.PermissionType
 import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.model.ScamMessageSignal
 import org.neteinstein.perfsentient.core.model.SecurityWatchState
+import org.neteinstein.perfsentient.core.model.SmsPartnerStatus
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
@@ -213,6 +216,22 @@ class FakeVitalsRepository(var next: VitalSample = TestData.vital(0)) : VitalsRe
 
 class FakeDeviceSecurityRepository(var posture: DeviceSecurityPosture = DeviceSecurityPosture.UNKNOWN) : DeviceSecurityRepository {
     override suspend fun posture(): DeviceSecurityPosture = posture
+}
+
+class FakeScamMessageRepository(
+    var status: SmsPartnerStatus = SmsPartnerStatus.NOT_INSTALLED,
+    var signals: List<ScamMessageSignal> = emptyList(),
+) : ScamMessageRepository {
+    /** The (start, end) window of the last [getSignals] call. */
+    var lastWindow: Pair<Long, Long>? = null
+        private set
+
+    override suspend fun status(): SmsPartnerStatus = status
+
+    override suspend fun getSignals(startMs: Long, endMs: Long): List<ScamMessageSignal> {
+        lastWindow = startMs to endMs
+        return signals.filter { it.receivedAtMs in startMs..endMs }
+    }
 }
 
 class FakeSecurityWatchRepository(var stored: SecurityWatchState? = null) : SecurityWatchRepository {

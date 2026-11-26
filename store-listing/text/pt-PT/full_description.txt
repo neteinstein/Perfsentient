@@ -15,6 +15,7 @@ O QUE DETETA
 • Apps que ocupam muito armazenamento (cache enorme)
 • Apps de burla: instaladas a partir de links em conversas, nomes que imitam apps conhecidas, apps de acesso remoto instaladas durante uma chamada e apps que podem ler os seus códigos, com um alerta em cerca de 15 minutos
 • Segurança do telemóvel: sem bloqueio de ecrã, atualizações de segurança antigas, depuração USB ativa
+• Com o SMS Toolbox (grátis, opcional): um alerta quando é instalada uma app logo após uma SMS de burla
 
 O SEU RELATÓRIO DIÁRIO
 • Uma pontuação de saúde de 0 a 100 e um veredito claro: boa, razoável ou fraca
