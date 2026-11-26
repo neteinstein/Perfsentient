@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ExpandMore
+import androidx.compose.material.icons.rounded.GppMaybe
 import androidx.compose.material.icons.rounded.RemoveCircleOutline
 import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material.icons.rounded.VerifiedUser
@@ -229,6 +230,27 @@ internal fun ReportTimeCard(time: ReportTime, onTimeSelected: (Int, Int) -> Unit
             },
             dismissButton = { TextButton(onClick = { showDialog = false }) { Text(stringResource(R.string.settings_cancel)) } },
         )
+    }
+}
+
+@Composable
+internal fun SecurityAlertsCard(enabled: Boolean, onToggled: (Boolean) -> Unit, modifier: Modifier = Modifier) {
+    SurfaceCard(modifier = modifier.fillMaxWidth(), onClick = { onToggled(!enabled) }) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(Icons.Rounded.GppMaybe, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
+            Spacer(Modifier.width(14.dp))
+            Column(Modifier.weight(1f)) {
+                Text(stringResource(R.string.settings_security_alerts), style = MaterialTheme.typography.titleMedium)
+                Text(
+                    stringResource(R.string.settings_security_alerts_desc),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            Spacer(Modifier.width(8.dp))
+            // The whole card toggles; the switch only mirrors the state for screen readers and sighted users.
+            Switch(checked = enabled, onCheckedChange = onToggled)
+        }
     }
 }
 

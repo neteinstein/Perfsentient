@@ -21,6 +21,7 @@ import org.neteinstein.perfsentient.core.data.repository.NotificationStatsReposi
 import org.neteinstein.perfsentient.core.data.repository.ParentalReviewRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.PermissionRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.ReportRepositoryImpl
+import org.neteinstein.perfsentient.core.data.repository.SecurityWatchRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.SettingsRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.TrustedAppsRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.UsageRepositoryImpl
@@ -37,6 +38,7 @@ import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepo
 import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
+import org.neteinstein.perfsentient.core.domain.repository.SecurityWatchRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
@@ -82,4 +84,5 @@ val dataModule = module {
     singleOf(::DeviceSecurityRepositoryImpl) { bind<DeviceSecurityRepository>() }
     singleOf(::NotificationStatsRepositoryImpl) { bind<NotificationStatsRepository>() }
     singleOf(::ReportRepositoryImpl) { bind<ReportRepository>() }
+    singleOf(::SecurityWatchRepositoryImpl) { bind<SecurityWatchRepository>() }
 }

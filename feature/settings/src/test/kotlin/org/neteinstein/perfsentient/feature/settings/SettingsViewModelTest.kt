@@ -16,6 +16,7 @@ import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateDynamicColorUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateParentalSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateReportTimeUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.UpdateSecurityAlertsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
 import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionType
@@ -53,7 +54,17 @@ class SettingsViewModelTest {
             updateReportTime = UpdateReportTimeUseCase(settings, scheduler),
             untrustApp = UntrustAppUseCase(trusted),
             updateParentalSettings = UpdateParentalSettingsUseCase(settings),
+            updateSecurityAlerts = UpdateSecurityAlertsUseCase(settings),
         )
+    }
+
+    @Test
+    fun `security alerts are on by default and can be turned off`() = runTest {
+        viewModel.uiState.test {
+            assertTrue(expectMostRecentItem().settings.securityAlertsEnabled)
+            viewModel.onSecurityAlertsToggled(false)
+            assertEquals(false, expectMostRecentItem().settings.securityAlertsEnabled)
+        }
     }
 
     @Test

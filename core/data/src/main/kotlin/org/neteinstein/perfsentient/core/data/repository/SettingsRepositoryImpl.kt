@@ -33,6 +33,7 @@ class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : Se
                         childAge = prefs[CHILD_AGE] ?: defaults.parental.childAge,
                     )
                 }.getOrDefault(defaults.parental),
+                securityAlertsEnabled = prefs[SECURITY_ALERTS] ?: defaults.securityAlertsEnabled,
             )
         }
         .distinctUntilChanged()
@@ -63,6 +64,10 @@ class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : Se
         }
     }
 
+    override suspend fun setSecurityAlertsEnabled(enabled: Boolean) {
+        dataStore.edit { it[SECURITY_ALERTS] = enabled }
+    }
+
     private companion object {
         val THEME = stringPreferencesKey("theme_mode")
         val DYNAMIC_COLOR = booleanPreferencesKey("dynamic_color")
@@ -71,5 +76,6 @@ class SettingsRepositoryImpl(private val dataStore: DataStore<Preferences>) : Se
         val MONITORING = booleanPreferencesKey("monitoring_enabled")
         val PARENTAL_ENABLED = booleanPreferencesKey("parental_enabled")
         val CHILD_AGE = intPreferencesKey("parental_child_age")
+        val SECURITY_ALERTS = booleanPreferencesKey("security_alerts_enabled")
     }
 }

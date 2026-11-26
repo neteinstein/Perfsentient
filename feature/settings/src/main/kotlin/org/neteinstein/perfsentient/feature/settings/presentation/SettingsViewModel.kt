@@ -17,6 +17,7 @@ import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateDynamicColorUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateParentalSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateReportTimeUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.UpdateSecurityAlertsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.ReportTime
@@ -47,6 +48,7 @@ class SettingsViewModel(
     private val updateReportTime: UpdateReportTimeUseCase,
     private val untrustApp: UntrustAppUseCase,
     private val updateParentalSettings: UpdateParentalSettingsUseCase,
+    private val updateSecurityAlerts: UpdateSecurityAlertsUseCase,
 ) : ViewModel() {
 
     val uiState: StateFlow<SettingsUiState> = combine(
@@ -82,6 +84,11 @@ class SettingsViewModel(
     /** Turns parental mode on or off; [childAge] is the age installed apps are checked against. */
     fun onParentalModeChanged(enabled: Boolean, childAge: Int) {
         viewModelScope.launch { updateParentalSettings(enabled, childAge) }
+    }
+
+    /** Live security alerts: a notification as soon as a risky app is installed. */
+    fun onSecurityAlertsToggled(enabled: Boolean) {
+        viewModelScope.launch { updateSecurityAlerts(enabled) }
     }
 
     private companion object {

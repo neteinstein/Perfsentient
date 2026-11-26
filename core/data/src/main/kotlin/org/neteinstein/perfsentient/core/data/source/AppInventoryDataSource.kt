@@ -15,12 +15,16 @@ import android.os.Build
 import android.os.PowerManager
 import android.os.Process
 import android.os.UserHandle
+import android.provider.Settings
 import android.provider.Telephony
 import android.telecom.TelecomManager
 import android.view.accessibility.AccessibilityManager
 import androidx.core.app.NotificationManagerCompat
 import org.neteinstein.perfsentient.core.model.AppProfile
+import org.neteinstein.perfsentient.core.model.CapabilityHolders
 import org.neteinstein.perfsentient.core.model.DeviceContext
+import org.neteinstein.perfsentient.core.model.PackageChangeCursor
+import org.neteinstein.perfsentient.core.model.PackageChanges
 import org.neteinstein.perfsentient.core.model.PackageSource
 
 /**
@@ -37,50 +41,89 @@ class AppInventoryDataSource(private val context: Context) {
     private val accessibility = context.getSystemService(AccessibilityManager::class.java)
 
     fun installedApps(): List<AppProfile> {
-        val launcherIntent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
-        val launcherPackages = packagesFor(launcherIntent)
-        // Includes launcher activities the app disabled at runtime (the "hide my icon" trick).
-        val declaredLauncherPackages = packagesFor(launcherIntent, includeDisabled = true)
-        val accessibilityPackages = accessibility
+        val launchers = launchers()
+        val holders = capabilityHolders()
+        val user: UserHandle = Process.myUserHandle()
+        return installedPackages().mapNotNull { info -> profileOf(info, launchers, holders) { app -> cacheBytes(app, user) } }
+    }
+
+    /** Profiles of the installed apps among [packageNames], without storage stats (cheap enough for every sample). */
+    fun profiles(packageNames: Set<String>): List<AppProfile> {
+        if (packageNames.isEmpty()) return emptyList()
+        val launchers = launchers()
+        val holders = capabilityHolders()
+        return packageNames.mapNotNull { pkg ->
+            val info = runCatching { packageInfo(pkg) }.getOrNull() ?: return@mapNotNull null
+            profileOf(info, launchers, holders) { 0L }
+        }
+    }
+
+    /** Who holds accessibility, device admin and notification access, and the default SMS app. */
+    fun capabilityHolders(): CapabilityHolders = CapabilityHolders(
+        accessibility = accessibility
             ?.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK)
             ?.mapNotNull { it.resolveInfo?.serviceInfo?.packageName }
             ?.toSet()
-            .orEmpty()
-        val adminPackages = runCatching { devicePolicy?.activeAdmins?.map { it.packageName }?.toSet() }
-            .getOrNull()
-            .orEmpty()
-        val user: UserHandle = Process.myUserHandle()
-        val notificationListeners = runCatching { NotificationManagerCompat.getEnabledListenerPackages(context) }.getOrDefault(emptySet())
-        val defaultSms = runCatching { Telephony.Sms.getDefaultSmsPackage(context) }.getOrNull()
+            .orEmpty(),
+        deviceAdmins = runCatching { devicePolicy?.activeAdmins?.map { it.packageName }?.toSet() }.getOrNull().orEmpty(),
+        notificationListeners = runCatching { NotificationManagerCompat.getEnabledListenerPackages(context) }.getOrDefault(emptySet()),
+        defaultSms = runCatching { Telephony.Sms.getDefaultSmsPackage(context) }.getOrNull(),
+    )
 
-        return installedPackages().mapNotNull { info ->
-            val app = info.applicationInfo ?: return@mapNotNull null
-            val pkg = info.packageName
-            val isSystem = app.flags and (ApplicationInfo.FLAG_SYSTEM or ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
-            val source = installSourceOf(pkg)
-            AppProfile(
-                packageName = pkg,
-                label = runCatching { app.loadLabel(pm).toString() }.getOrDefault(pkg),
-                isSystemApp = isSystem,
-                hasLauncherIcon = pkg in launcherPackages,
-                installerPackage = source?.installingPackageName,
-                canDrawOverlays = !isSystem && canDrawOverlays(app, info),
-                hasEnabledAccessibilityService = pkg in accessibilityPackages,
-                isDeviceAdmin = pkg in adminPackages,
-                ignoresBatteryOptimizations = !isSystem && runCatching { power.isIgnoringBatteryOptimizations(pkg) }.getOrDefault(false),
-                startsOnBoot = info.requestedPermissions?.contains(Manifest.permission.RECEIVE_BOOT_COMPLETED) == true,
-                cacheBytes = if (isSystem) 0L else cacheBytes(app, user),
-                firstInstallTime = info.firstInstallTime,
-                initiatingPackage = source?.initiatingPackageName,
-                packageSource = source.packageSource(),
-                lastUpdateTime = info.lastUpdateTime,
-                grantedPermissions = grantedSensitivePermissions(info.requestedPermissions, info.requestedPermissionsFlags),
-                hasNotificationAccess = pkg in notificationListeners,
-                isDefaultSmsApp = pkg == defaultSms,
-                canInstallApps = !isSystem && canInstallApps(app, info),
-                launcherIconDisabled = app.enabled && pkg !in launcherPackages && pkg in declaredLauncherPackages,
-            )
-        }
+    /**
+     * Apps installed or updated since [since]. PackageManager's sequence restarts at boot, so after a
+     * reboot (or on the first call) everything changed since boot is returned.
+     */
+    fun changedPackages(since: PackageChangeCursor?): PackageChanges {
+        val bootCount = runCatching { Settings.Global.getInt(context.contentResolver, Settings.Global.BOOT_COUNT, 0) }.getOrDefault(0)
+        val start = if (since == null || since.bootCount != bootCount) 0 else since.sequence
+        val changed = runCatching { pm.getChangedPackages(start) }.getOrNull()
+        return PackageChanges(
+            cursor = PackageChangeCursor(bootCount, changed?.sequenceNumber ?: start),
+            packages = changed?.packageNames.orEmpty().toSet(),
+        )
+    }
+
+    private fun profileOf(
+        info: PackageInfo,
+        launchers: Launchers,
+        holders: CapabilityHolders,
+        cacheBytes: (ApplicationInfo) -> Long,
+    ): AppProfile? {
+        val app = info.applicationInfo ?: return null
+        val pkg = info.packageName
+        val isSystem = app.flags and (ApplicationInfo.FLAG_SYSTEM or ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
+        val source = installSourceOf(pkg)
+        return AppProfile(
+            packageName = pkg,
+            label = runCatching { app.loadLabel(pm).toString() }.getOrDefault(pkg),
+            isSystemApp = isSystem,
+            hasLauncherIcon = pkg in launchers.enabled,
+            installerPackage = source?.installingPackageName,
+            canDrawOverlays = !isSystem && canDrawOverlays(app, info),
+            hasEnabledAccessibilityService = pkg in holders.accessibility,
+            isDeviceAdmin = pkg in holders.deviceAdmins,
+            ignoresBatteryOptimizations = !isSystem && runCatching { power.isIgnoringBatteryOptimizations(pkg) }.getOrDefault(false),
+            startsOnBoot = info.requestedPermissions?.contains(Manifest.permission.RECEIVE_BOOT_COMPLETED) == true,
+            cacheBytes = if (isSystem) 0L else cacheBytes(app),
+            firstInstallTime = info.firstInstallTime,
+            initiatingPackage = source?.initiatingPackageName,
+            packageSource = source.packageSource(),
+            lastUpdateTime = info.lastUpdateTime,
+            grantedPermissions = grantedSensitivePermissions(info.requestedPermissions, info.requestedPermissionsFlags),
+            hasNotificationAccess = pkg in holders.notificationListeners,
+            isDefaultSmsApp = pkg == holders.defaultSms,
+            canInstallApps = !isSystem && canInstallApps(app, info),
+            launcherIconDisabled = app.enabled && pkg !in launchers.enabled && pkg in launchers.declared,
+        )
+    }
+
+    /** Apps with a launcher icon, and apps that declare one even if they disabled it at runtime ("hide my icon"). */
+    private class Launchers(val enabled: Set<String>, val declared: Set<String>)
+
+    private fun launchers(): Launchers {
+        val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+        return Launchers(enabled = packagesFor(intent), declared = packagesFor(intent, includeDisabled = true))
     }
 
     /** Labels of the installed apps among [packageNames]; one cheap lookup per package, no stats. */
@@ -111,6 +154,17 @@ class AppInventoryDataSource(private val context: Context) {
         } else {
             @Suppress("DEPRECATION")
             pm.getInstalledPackages(flags.toInt())
+        }
+    }
+
+    /** Throws [PackageManager.NameNotFoundException] when [pkg] is not installed. */
+    private fun packageInfo(pkg: String): PackageInfo {
+        val flags = PackageManager.GET_PERMISSIONS.toLong()
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            pm.getPackageInfo(pkg, PackageManager.PackageInfoFlags.of(flags))
+        } else {
+            @Suppress("DEPRECATION")
+            pm.getPackageInfo(pkg, flags.toInt())
         }
     }
 

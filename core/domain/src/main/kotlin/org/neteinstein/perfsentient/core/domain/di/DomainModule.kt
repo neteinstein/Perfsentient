@@ -13,6 +13,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.domain.parental.ParentalAppCatalog
 import org.neteinstein.perfsentient.core.domain.parental.ParentalRiskAssessor
 import org.neteinstein.perfsentient.core.domain.scam.ScamSignalCatalog
+import org.neteinstein.perfsentient.core.domain.usecase.CheckSecurityChangesUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveBatteryHistoryUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveFlaggedAppsUseCase
@@ -32,6 +33,7 @@ import org.neteinstein.perfsentient.core.domain.usecase.UntrustAppUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateDynamicColorUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateParentalSettingsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateReportTimeUseCase
+import org.neteinstein.perfsentient.core.domain.usecase.UpdateSecurityAlertsUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
 
 val domainModule = module {
@@ -66,4 +68,6 @@ val domainModule = module {
     factoryOf(::UpdateParentalSettingsUseCase)
     factoryOf(::ObserveParentalScanUseCase)
     factoryOf(::SetParentalAppReviewedUseCase)
+    factoryOf(::CheckSecurityChangesUseCase)
+    factoryOf(::UpdateSecurityAlertsUseCase)
 }

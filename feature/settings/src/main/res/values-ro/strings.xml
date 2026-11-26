@@ -65,6 +65,8 @@
     <string name="settings_section_detection">Ce urmărim</string>
     <string name="settings_footer">Perfsentient • pe dispozitiv • fără permisiune de internet</string>
     <string name="settings_section_detection_desc">Euristici bazate pe politica Google Play, Android vitals și cercetări publicate despre adware.</string>
+    <string name="settings_security_alerts">Alerte de securitate</string>
+    <string name="settings_security_alerts_desc">Primiți o notificare în aproximativ 15 minute când este instalată o aplicație riscantă sau o aplicație primește acces la mesaje ori la ecran, fără să așteptați raportul zilnic.</string>
     <string name="settings_permission_optional">Opțional</string>
     <string name="permission_system_logs_title">Detectare ANR și închideri</string>
     <string name="permission_system_logs_desc">Găsește aplicațiile care se blochează sau se închid des. Necesită o comandă unică de pe un computer.</string>

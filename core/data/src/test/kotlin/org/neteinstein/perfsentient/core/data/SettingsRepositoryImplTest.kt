@@ -37,6 +37,7 @@ class SettingsRepositoryImplTest {
         repository.setReportTime(ReportTime(7, 45))
         repository.setMonitoringEnabled(true)
         repository.setParentalSettings(ParentalSettings(enabled = true, childAge = 8))
+        repository.setSecurityAlertsEnabled(false)
 
         assertEquals(
             UserSettings(
@@ -45,6 +46,7 @@ class SettingsRepositoryImplTest {
                 reportTime = ReportTime(7, 45),
                 monitoringEnabled = true,
                 parental = ParentalSettings(enabled = true, childAge = 8),
+                securityAlertsEnabled = false,
             ),
             repository.settings.first(),
         )

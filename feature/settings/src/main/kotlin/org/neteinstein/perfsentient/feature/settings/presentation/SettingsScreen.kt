@@ -48,6 +48,7 @@ import org.neteinstein.perfsentient.feature.settings.presentation.component.Moni
 import org.neteinstein.perfsentient.feature.settings.presentation.component.ParentalModeCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.PermissionCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.ReportTimeCard
+import org.neteinstein.perfsentient.feature.settings.presentation.component.SecurityAlertsCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.TrustedAppCard
 import org.neteinstein.perfsentient.feature.settings.presentation.component.TrustedAppsEmptyCard
 
@@ -66,6 +67,7 @@ fun SettingsRoute(modifier: Modifier = Modifier, viewModel: SettingsViewModel = 
         onReportTimeSelected = viewModel::onReportTimeSelected,
         onUntrustApp = viewModel::onUntrustApp,
         onParentalModeChanged = viewModel::onParentalModeChanged,
+        onSecurityAlertsToggled = viewModel::onSecurityAlertsToggled,
         modifier = modifier,
     )
 }
@@ -80,6 +82,7 @@ internal fun SettingsScreen(
     onUntrustApp: (packageName: String) -> Unit,
     onParentalModeChanged: (enabled: Boolean, childAge: Int) -> Unit,
     modifier: Modifier = Modifier,
+    onSecurityAlertsToggled: (Boolean) -> Unit = {},
 ) {
     val context = LocalContext.current
     val activity = LocalActivity.current
@@ -159,6 +162,9 @@ internal fun SettingsScreen(
         item(key = "report_header") { SectionHeader(stringResource(R.string.settings_section_report)) }
         item(key = "report_time") {
             ReportTimeCard(time = state.settings.reportTime, onTimeSelected = onReportTimeSelected)
+        }
+        item(key = "security_alerts") {
+            SecurityAlertsCard(enabled = state.settings.securityAlertsEnabled, onToggled = onSecurityAlertsToggled)
         }
         item(key = "parental_header") {
             SectionHeader(

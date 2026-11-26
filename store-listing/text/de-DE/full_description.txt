@@ -13,7 +13,7 @@ WAS ES ERKENNT
 • Benachrichtigungsspam
 • Riskante Zugriffe: Bedienungshilfen, Geräteadministratoren, Akku ohne Einschränkung
 • Speicherfresser (riesiger Cache)
-• Betrugs-Apps: über einen Link im Chat installiert, Namen, die bekannte Apps nachahmen, Fernzugriffs-Apps, die während eines Anrufs installiert wurden, und Apps, die Ihre Codes lesen können
+• Betrugs-Apps: über einen Link im Chat installiert, Namen, die bekannte Apps nachahmen, Fernzugriffs-Apps, die während eines Anrufs installiert wurden, und Apps, die Ihre Codes lesen können, mit einer Warnung binnen etwa 15 Minuten
 • Telefonsicherheit: keine Displaysperre, alte Sicherheitsupdates, aktiviertes USB-Debugging
 
 IHR TAGESBERICHT

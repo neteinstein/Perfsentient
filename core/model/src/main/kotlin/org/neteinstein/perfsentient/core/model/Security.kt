@@ -52,3 +52,40 @@ data class DeviceSecurityPosture(
         val UNKNOWN = DeviceSecurityPosture(hasSecureLock = true, securityPatch = null, adbEnabled = false)
     }
 }
+
+/**
+ * Where the last look at installed-app changes stopped. The sequence comes from
+ * PackageManager.getChangedPackages and restarts at every boot, hence [bootCount].
+ */
+data class PackageChangeCursor(val bootCount: Int, val sequence: Int)
+
+/** Apps installed or updated since a [PackageChangeCursor], and the cursor to use next time. */
+data class PackageChanges(val cursor: PackageChangeCursor, val packages: Set<String>)
+
+/** Apps holding the accesses fraud apps want, read in one cheap pass. */
+data class CapabilityHolders(
+    val accessibility: Set<String>,
+    val deviceAdmins: Set<String>,
+    val notificationListeners: Set<String>,
+    val defaultSms: String?,
+) {
+    /** Packages that hold an access now that they did not hold in [previous]. */
+    fun newlyGrantedSince(previous: CapabilityHolders): Set<String> = buildSet {
+        addAll(accessibility - previous.accessibility)
+        addAll(deviceAdmins - previous.deviceAdmins)
+        addAll(notificationListeners - previous.notificationListeners)
+        if (defaultSms != null && defaultSms != previous.defaultSms) add(defaultSms)
+    }
+
+    companion object {
+        val NONE = CapabilityHolders(emptySet(), emptySet(), emptySet(), defaultSms = null)
+    }
+}
+
+/** What the live security check remembers between runs. */
+data class SecurityWatchState(
+    val cursor: PackageChangeCursor,
+    val holders: CapabilityHolders,
+    /** "package:BEHAVIOR" keys already alerted, oldest first, so an alert is never repeated. */
+    val alerted: List<String>,
+)

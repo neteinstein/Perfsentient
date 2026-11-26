@@ -12,6 +12,7 @@ import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepo
 import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
+import org.neteinstein.perfsentient.core.domain.repository.SecurityWatchRepository
 import org.neteinstein.perfsentient.core.domain.repository.SettingsRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
@@ -19,15 +20,19 @@ import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.AppIssueRecord
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
+import org.neteinstein.perfsentient.core.model.CapabilityHolders
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceContext
 import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.GrantMode
 import org.neteinstein.perfsentient.core.model.NetworkUsage
+import org.neteinstein.perfsentient.core.model.PackageChangeCursor
+import org.neteinstein.perfsentient.core.model.PackageChanges
 import org.neteinstein.perfsentient.core.model.ParentalSettings
 import org.neteinstein.perfsentient.core.model.PermissionState
 import org.neteinstein.perfsentient.core.model.PermissionType
 import org.neteinstein.perfsentient.core.model.ReportTime
+import org.neteinstein.perfsentient.core.model.SecurityWatchState
 import org.neteinstein.perfsentient.core.model.ThemeMode
 import org.neteinstein.perfsentient.core.model.TrustedApp
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
@@ -80,6 +85,10 @@ class FakeSettingsRepository(initial: UserSettings = UserSettings()) : SettingsR
 
     override suspend fun setParentalSettings(parental: ParentalSettings) {
         state.value = state.value.copy(parental = parental)
+    }
+
+    override suspend fun setSecurityAlertsEnabled(enabled: Boolean) {
+        state.value = state.value.copy(securityAlertsEnabled = enabled)
     }
 }
 
@@ -154,7 +163,30 @@ class FakeUsageRepository(
 class FakeAppInventoryRepository(
     var apps: List<AppProfile> = emptyList(),
     var context: DeviceContext = TestData.deviceContext(),
+    var holders: CapabilityHolders = CapabilityHolders.NONE,
 ) : AppInventoryRepository {
+    /** Returned by the next [getChangedPackages] call. */
+    var changes: PackageChanges = PackageChanges(PackageChangeCursor(bootCount = 1, sequence = 0), emptySet())
+
+    /** The cursor [getChangedPackages] was last called with. */
+    var lastChangesSince: PackageChangeCursor? = null
+        private set
+
+    /** Package sets passed to [getProfiles]. */
+    val profileLookups = mutableListOf<Set<String>>()
+
+    override suspend fun getChangedPackages(since: PackageChangeCursor?): PackageChanges {
+        lastChangesSince = since
+        return changes
+    }
+
+    override suspend fun getProfiles(packageNames: Set<String>): List<AppProfile> {
+        profileLookups += packageNames
+        return apps.filter { it.packageName in packageNames }
+    }
+
+    override suspend fun getCapabilityHolders(): CapabilityHolders = holders
+
     var labelLookups = 0
         private set
 
@@ -188,6 +220,14 @@ class FakeVitalsRepository(var next: VitalSample = TestData.vital(0)) : VitalsRe
 
 class FakeDeviceSecurityRepository(var posture: DeviceSecurityPosture = DeviceSecurityPosture.UNKNOWN) : DeviceSecurityRepository {
     override suspend fun posture(): DeviceSecurityPosture = posture
+}
+
+class FakeSecurityWatchRepository(var stored: SecurityWatchState? = null) : SecurityWatchRepository {
+    override suspend fun state(): SecurityWatchState? = stored
+
+    override suspend fun save(state: SecurityWatchState) {
+        stored = state
+    }
 }
 
 class FakeNotificationStatsRepository : NotificationStatsRepository {
