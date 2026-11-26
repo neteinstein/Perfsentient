@@ -93,6 +93,9 @@ class StoreScreenshotsTest {
     fun appsDark() = capture("06-apps-dark", AppTab.APPS, dark = true, scrollToIndex = 3)
 
     @Test
+    fun batteryLight() = capture("09-battery", AppTab.REPORT, dark = false, scrollToIndex = BATTERY_INDEX)
+
+    @Test
     fun parentalLight() = capture("07-parental", AppTab.PARENTAL, dark = false, tabs = AppTab.entries)
 
     @Test
@@ -100,5 +103,8 @@ class StoreScreenshotsTest {
 
     private companion object {
         const val OFFENDERS_INDEX = 4
+
+        /** The "Battery vs time open" header, after the vitals. */
+        const val BATTERY_INDEX = 11
     }
 }

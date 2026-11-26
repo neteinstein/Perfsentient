@@ -90,4 +90,27 @@
     </plurals>
     <string name="report_duration_hm">%1$d h %2$02d min</string>
     <string name="report_duration_m">%1$d min</string>
+
+    <string name="report_section_battery">Batería vs tiempo abierta</string>
+    <string name="report_battery_subtitle" formatted="false">Últimos 7 días · % de una carga completa, estimación</string>
+    <string name="report_battery_sort_most">Más batería</string>
+    <string name="report_battery_sort_per_hour">Por hora abierta</string>
+    <string name="report_battery_usage">%1$s de batería · abierta %2$s</string>
+    <string name="report_battery_rate">%1$s/h abierta</string>
+    <string name="report_battery_percent">%1$s %%</string>
+    <string name="report_battery_bar_battery">Batería usada: %1$s</string>
+    <string name="report_battery_bar_open">Tiempo abierta: %1$s</string>
+    <string name="report_battery_mostly_background">Sobre todo en segundo plano</string>
+    <string name="report_battery_day">%1$s: %2$s de batería, abierta %3$s</string>
+    <string name="report_battery_legend_battery">Batería</string>
+    <string name="report_battery_legend_open">Tiempo abierta</string>
+    <string name="report_battery_footnote">Estimación. Android no permite ver el consumo de batería de cada app, así que Perfsentient reparte cada bajada medida entre las apps que estaban abiertas o trabajando en segundo plano en ese momento. Pantalla de inicio y sistema: %1$s · Reposo: %2$s.</string>
+    <string name="report_battery_empty_title">Recopilando datos de batería</string>
+    <string name="report_battery_empty_desc">Vuelve mañana. La batería se mide cada 15 minutos mientras el teléfono no se está cargando.</string>
+    <string name="report_battery_show_less">Mostrar menos</string>
+    <plurals name="report_battery_show_all">
+        <item quantity="one">Mostrar %1$d app</item>
+        <item quantity="many">Mostrar las %1$d apps</item>
+        <item quantity="other">Mostrar las %1$d apps</item>
+    </plurals>
 </resources>

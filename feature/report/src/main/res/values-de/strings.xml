@@ -81,4 +81,26 @@
     </plurals>
     <string name="report_duration_hm">%1$d Std. %2$02d Min.</string>
     <string name="report_duration_m">%1$d Min.</string>
+
+    <string name="report_section_battery">Akku vs. Nutzungszeit</string>
+    <string name="report_battery_subtitle" formatted="false">Letzte 7 Tage · % einer vollen Ladung, geschätzt</string>
+    <string name="report_battery_sort_most">Höchster Verbrauch</string>
+    <string name="report_battery_sort_per_hour">Pro Stunde geöffnet</string>
+    <string name="report_battery_usage">%1$s Akku · %2$s geöffnet</string>
+    <string name="report_battery_rate">%1$s/h geöffnet</string>
+    <string name="report_battery_percent">%1$s %%</string>
+    <string name="report_battery_bar_battery">Akkuverbrauch: %1$s</string>
+    <string name="report_battery_bar_open">Geöffnet: %1$s</string>
+    <string name="report_battery_mostly_background">Vor allem im Hintergrund</string>
+    <string name="report_battery_day">%1$s: %2$s Akku, %3$s geöffnet</string>
+    <string name="report_battery_legend_battery">Akku</string>
+    <string name="report_battery_legend_open">Geöffnet</string>
+    <string name="report_battery_footnote">Schätzung. Android hält den Akkuverbrauch jeder App privat, daher verteilt Perfsentient jeden gemessenen Rückgang auf die Apps, die zu diesem Zeitpunkt geöffnet oder im Hintergrund aktiv waren. Startbildschirm und System: %1$s · Standby: %2$s.</string>
+    <string name="report_battery_empty_title">Akkudaten werden gesammelt</string>
+    <string name="report_battery_empty_desc">Schauen Sie morgen wieder vorbei. Der Akku wird alle 15 Minuten gemessen, solange das Telefon nicht lädt.</string>
+    <string name="report_battery_show_less">Weniger anzeigen</string>
+    <plurals name="report_battery_show_all">
+        <item quantity="one">%1$d App anzeigen</item>
+        <item quantity="other">Alle %1$d Apps anzeigen</item>
+    </plurals>
 </resources>

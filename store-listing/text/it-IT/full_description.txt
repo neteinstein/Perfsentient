@@ -18,6 +18,7 @@ IL TUO REPORT GIORNALIERO
 • Un punteggio di salute da 0 a 100 e un verdetto chiaro: buona, discreta o scarsa
 • Parametri vitali: consumo della batteria, consumo a schermo spento, temperatura e pressione sulla memoria
 • Un andamento di 7 giorni, per vedere se le cose migliorano
+• Batteria vs tempo di apertura: le app che hanno consumato più batteria negli ultimi 7 giorni, accanto al tempo in cui sono rimaste aperte (stima)
 • Tocca un'app per vedere esattamente cosa ha fatto e aprire le sue informazioni per disinstallarla o limitarla
 
 IL CONTROLLO È TUO

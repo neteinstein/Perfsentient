@@ -10,6 +10,7 @@ import org.neteinstein.perfsentient.core.common.DispatcherProvider
 import org.neteinstein.perfsentient.core.common.MILLIS_IN_HOUR
 import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
+import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.HealthScoreCalculator
@@ -23,8 +24,8 @@ import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.DailyReport
 
 /**
- * Collects the last 24 hours of telemetry, runs every detector, scores the day and persists the
- * report under today's date. Used both by the end-of-day worker and by the "analyse now" button.
+ * Collects the last 24 hours of telemetry, runs every detector, scores the day, estimates each
+ * app's battery use and persists the report under today's date. Used both by the end-of-day worker and by the "analyse now" button.
  *
  * A rolling window (instead of "since midnight") means consecutive daily reports cover the whole
  * day with no gap: the evening after the report time is part of the next report.
@@ -40,6 +41,7 @@ class GenerateDailyReportUseCase(
     private val trustedAppsRepository: TrustedAppsRepository,
     private val behaviorAnalyzer: BehaviorAnalyzer,
     private val deviceHealthAnalyzer: DeviceHealthAnalyzer,
+    private val batteryAttributor: BatteryAttributor,
     private val scoreCalculator: HealthScoreCalculator,
     private val trustedAppsFilter: TrustedAppsFilter,
     private val timeProvider: TimeProvider,
@@ -86,6 +88,7 @@ class GenerateDailyReportUseCase(
             deviceIssues = issues,
             findings = findings,
             appsAnalysed = input.apps.size,
+            battery = batteryAttributor.attribute(input),
         )
         reportRepository.save(report)
         reportRepository.deleteOlderThan(today.minusDays(REPORT_RETENTION_DAYS))

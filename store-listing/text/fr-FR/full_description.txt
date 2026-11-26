@@ -16,9 +16,10 @@ CE QU'IL DÉTECTE
 
 VOTRE RAPPORT QUOTIDIEN
 • Un score de santé de 0 à 100 et un verdict clair : bon, moyen ou mauvais
-• Signes vitaux : consommation de la batterie, consommation écran éteint, température et saturation de la mémoire
+• Signes vitaux : batterie, consommation écran éteint, température et mémoire
 • Une tendance sur 7 jours, pour voir si les choses s'améliorent
-• Touchez une appli pour voir exactement ce qu'elle a fait et ouvrir ses infos pour la désinstaller ou la restreindre
+• Batterie vs temps d'ouverture : les applis les plus gourmandes sur 7 jours, face au temps passé ouvertes (estimation)
+• Touchez une appli pour voir ce qu'elle a fait, puis la désinstaller ou la restreindre
 
 VOUS GARDEZ LE CONTRÔLE
 • L'onglet Applis liste toutes les applis signalées, aujourd'hui ou par le passé
@@ -43,6 +44,6 @@ COMMENT ÇA MARCHE
 Perfsentient a besoin de deux autorisations à activer dans les paramètres d'Android : l'accès aux données d'utilisation (pour savoir quelles applis tournent et combien de temps) et l'accès aux notifications (pour les compter par appli). L'onglet Paramètres explique chacune et vous emmène directement au bon écran. Une vérification légère a lieu toutes les 15 minutes, presque sans consommer de batterie, et votre rapport arrive à l'heure de votre choix.
 
 LANGUES
-Français, anglais, portugais, espagnol, italien, roumain et allemand. Sur Android 13 et versions ultérieures, vous pouvez choisir la langue de l'appli dans les paramètres d'Android.
+Français, anglais, portugais, espagnol, italien, roumain et allemand. Sur Android 13 et plus, choisissez la langue de l'appli dans les paramètres d'Android.
 
 Perfsentient ne supprime pas d'applis à votre place. Il vous dit lesquelles examiner, et pourquoi.

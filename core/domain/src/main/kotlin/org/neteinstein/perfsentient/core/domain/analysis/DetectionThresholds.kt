@@ -52,4 +52,18 @@ data class DetectionThresholds(
     val thermalHigh: Int = 4,
     val lowMemoryRatio: Float = 0.2f,
     val maxSampleGapMs: Long = 1 * MILLIS_IN_HOUR,
+    /*
+     * Battery estimate weights (see BatteryAttributor). Rough, relative costs: an app on screen
+     * keeps the screen, CPU and radio busy; a foreground service off screen (music, navigation)
+     * costs a fraction of that; an idle phone with the screen off costs least.
+     */
+    val batteryForegroundWeight: Float = 1f,
+    val batteryServiceWeight: Float = 0.2f,
+    val batteryIdleWeight: Float = 0.1f,
+    /** How many apps a report keeps in its battery breakdown. */
+    val batteryTopApps: Int = 30,
+    /** Below this time open, "battery per hour open" is too noisy to show. */
+    val batteryMinOpenMsForRate: Long = 5 * MILLIS_IN_MINUTE,
+    /** Share of an app's battery spent off screen from which it is "mostly in background". */
+    val batteryMostlyBackgroundRatio: Float = 0.5f,
 )

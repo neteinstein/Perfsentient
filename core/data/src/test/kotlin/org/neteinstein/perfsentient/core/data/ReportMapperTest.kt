@@ -1,12 +1,14 @@
 package org.neteinstein.perfsentient.core.data
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.neteinstein.perfsentient.core.data.local.entity.ReportEntity
 import org.neteinstein.perfsentient.core.data.mapper.toDomain
 import org.neteinstein.perfsentient.core.data.mapper.toEntity
+import org.neteinstein.perfsentient.core.model.BatteryBreakdown
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
@@ -32,6 +34,31 @@ class ReportMapperTest {
         assertEquals("2026-11-16", entity.day)
         assertEquals(61, entity.score)
         assertEquals(report, entity.toDomain())
+    }
+
+    @Test
+    fun `battery breakdown survives a round trip`() {
+        val report = TestData.report(
+            battery = TestData.battery(
+                TestData.batteryUsage("game", drain = 12.5f, foregroundMs = 3_600_000),
+                TestData.batteryUsage("music", drain = 3f, background = 2.5f, backgroundMs = 7_200_000),
+                screenAndSystem = 1.2f,
+                standby = 0.8f,
+            ),
+        )
+
+        assertEquals(report, report.toEntity().toDomain())
+    }
+
+    @Test
+    fun `reports saved before the battery estimate decode with an empty breakdown`() {
+        val json = TestData.report().toEntity().payload
+        assertFalse("an empty breakdown is not stored", json.contains("\"battery\":{"))
+        val legacy = json.replace(",\"battery\":null", "")
+
+        val decoded = ReportEntity("2026-11-16", 0, 90, legacy).toDomain()!!
+
+        assertEquals(BatteryBreakdown.EMPTY, decoded.battery)
     }
 
     @Test

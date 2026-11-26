@@ -15,6 +15,8 @@ data class VitalSampleEntity(
     val availableMemoryBytes: Long,
     val totalMemoryBytes: Long,
     val isLowMemory: Boolean,
+    /** Added in v3; null for older samples and devices that do not report it. */
+    val chargeCounterUah: Long? = null,
 )
 
 @Entity(tableName = "notification_counts", primaryKeys = ["hourStartMs", "packageName"])

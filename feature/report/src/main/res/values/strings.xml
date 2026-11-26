@@ -90,4 +90,26 @@
     </plurals>
     <string name="report_duration_hm">%1$dh %2$02dm</string>
     <string name="report_duration_m">%1$dm</string>
+
+    <string name="report_section_battery">Battery vs time open</string>
+    <string name="report_battery_subtitle" formatted="false">Last 7 days · % of a full charge, estimated</string>
+    <string name="report_battery_sort_most">Most battery</string>
+    <string name="report_battery_sort_per_hour">Per hour open</string>
+    <string name="report_battery_usage">%1$s battery · %2$s open</string>
+    <string name="report_battery_rate">%1$s/h open</string>
+    <string name="report_battery_percent">%1$s%%</string>
+    <string name="report_battery_bar_battery">Battery used: %1$s</string>
+    <string name="report_battery_bar_open">Time open: %1$s</string>
+    <string name="report_battery_mostly_background">Mostly in background</string>
+    <string name="report_battery_day">%1$s: %2$s battery, open %3$s</string>
+    <string name="report_battery_legend_battery">Battery</string>
+    <string name="report_battery_legend_open">Time open</string>
+    <string name="report_battery_footnote">Estimated. Android keeps each app\'s battery use private, so Perfsentient shares every measured drop between the apps that were open or working in the background at the time. Home screen and system: %1$s · Standby: %2$s.</string>
+    <string name="report_battery_empty_title">Collecting battery data</string>
+    <string name="report_battery_empty_desc">Check back tomorrow. The battery is measured every 15 minutes while the phone isn\'t charging.</string>
+    <string name="report_battery_show_less">Show fewer</string>
+    <plurals name="report_battery_show_all">
+        <item quantity="one">Show all %1$d app</item>
+        <item quantity="other">Show all %1$d apps</item>
+    </plurals>
 </resources>

@@ -3,6 +3,8 @@ package org.neteinstein.perfsentient.screenshots
 import java.time.LocalDate
 import java.time.ZoneOffset
 import org.neteinstein.perfsentient.AppTab
+import org.neteinstein.perfsentient.core.model.AppBatteryUsage
+import org.neteinstein.perfsentient.core.model.BatteryBreakdown
 import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.ConcerningApp
 import org.neteinstein.perfsentient.core.model.DailyReport
@@ -120,6 +122,28 @@ internal object SampleData {
         totalForegroundTimeMs = 4L * 3_600_000,
     )
 
+    private const val HOUR = 3_600_000L
+
+    private fun usage(pkg: String, label: String, drain: Float, background: Float, openMinutes: Long, serviceHours: Long = 0) =
+        AppBatteryUsage(pkg, label, drain, background, openMinutes * 60_000, serviceHours * HOUR)
+
+    /** One day of estimated battery use; [scale] varies it a little from day to day. */
+    private fun battery(scale: Float) = BatteryBreakdown(
+        apps = listOf(
+            usage("com.example.game", "Galaxy Racer", 14f * scale, 0.4f * scale, openMinutes = 95),
+            usage("com.example.video", "StreamBox", 9f * scale, 0.2f * scale, openMinutes = 120),
+            usage("com.example.flashlight", "Flashlight Pro", 6.5f * scale, 6.2f * scale, openMinutes = 1, serviceHours = 9),
+            usage("com.example.chat", "ChatNow", 4f * scale, 0.8f * scale, openMinutes = 70),
+            usage("com.example.musicplayer", "Beat Player", 3.2f * scale, 3f * scale, openMinutes = 4, serviceHours = 3),
+            usage("com.example.maps", "Pathfinder Maps", 2.5f * scale, 0.5f * scale, openMinutes = 25),
+            usage("com.example.notes", "Notes", 0.6f * scale, 0f, openMinutes = 15),
+        ),
+        screenAndSystemPct = 7f * scale,
+        standbyPct = 5f,
+        measuredDrainPct = 52f * scale,
+        measuredHours = 14f,
+    )
+
     /** Seven days of reports, newest = [today], with a score that recovers as the user acts. */
     val reports: List<DailyReport> = listOf(
         Triple(6, 52, todayFindings + trustedFindings),
@@ -145,6 +169,7 @@ internal object SampleData {
             deviceIssues = if (daysAgo == 0) listOf(DeviceIssue(DeviceIssueType.SCREEN_OFF_DRAIN, Severity.MEDIUM, 16)) else emptyList(),
             findings = findings,
             appsAnalysed = 142,
+            battery = battery(scale = 0.8f + (daysAgo % 3) * 0.15f),
         )
     }
 }

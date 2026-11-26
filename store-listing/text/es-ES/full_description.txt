@@ -18,6 +18,7 @@ TU INFORME DIARIO
 • Una puntuación de salud de 0 a 100 y un veredicto claro: buena, regular o mala
 • Constantes del móvil: consumo de batería, consumo con la pantalla apagada, temperatura y presión de memoria
 • Una tendencia de 7 días para ver si las cosas mejoran
+• Batería vs tiempo abierta: las apps que más batería gastaron en los últimos 7 días, junto al tiempo que estuvieron abiertas (estimación)
 • Toca cualquier app para ver exactamente qué hizo y abrir su información para desinstalarla o restringirla
 
 TÚ TIENES EL CONTROL

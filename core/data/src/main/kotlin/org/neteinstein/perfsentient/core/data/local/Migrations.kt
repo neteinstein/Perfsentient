@@ -22,4 +22,11 @@ internal val MIGRATION_1_2 = object : Migration(1, 2) {
     }
 }
 
-internal val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2)
+/** v3 records the battery charge counter with each vital sample, for finer battery estimates. */
+internal val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE `vital_samples` ADD COLUMN `chargeCounterUah` INTEGER")
+    }
+}
+
+internal val ALL_MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3)

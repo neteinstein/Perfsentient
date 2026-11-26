@@ -54,6 +54,7 @@
 - 🔔 **One notification a day.** At a time you choose, it tells you whether the day was good or bad and how many apps caused trouble. Tap it to open the report.
 - 🕵️ **Catches ad tricks.** Pop-up ads, ads after a phone call, apps drawing over other apps, and apps that hide their launcher icon.
 - 🔋 **Finds battery and data hogs.** Apps that run all day in the background, wake up at night, or use a lot of mobile data you never asked for.
+- 📊 **Battery vs time open.** For the last 7 days, which apps used the most battery next to how long you had them open, battery per hour open, and a "Mostly in background" tag for apps that drain it while you're not using them. Tap an app for its day-by-day chart. Android keeps exact per-app battery use private, so this is an estimate.
 - ✅ **Trusted apps (whitelist).** If a flagged app is one you rely on (a VPN, a busy chat app), tap **Trust this app** in the report. It's left out of your reports and score from then on.
 - 📱 **Apps tab.** Every app flagged now or in the last 30 days in one list. Trusted apps are tinted teal. Tap any app to trust it or stop trusting it.
 - 👪 **Parental mode.** Turn it on in Settings, enter your child's age, and a **Parental help** tab appears. It flags installed apps that child-safety groups, regulators and investigations warn about for that age (grooming on Roblox and Discord, sextortion on Snapchat, Instagram and Wizz, random video chat, dating, AI companions, secret vaults…), explains why, and says what you can do. The list and its sources are in [docs/parental-help-research.md](docs/parental-help-research.md).
@@ -76,6 +77,7 @@
 | ♿ | **Accessibility / device admin** | Has an accessibility service or device-admin rights turned on. Rated more serious for apps not installed from a store |
 | 🔓 | **Unrestricted battery** | Exempt from battery optimisation **and** doing heavy background work |
 | 💾 | **Storage hog** | A very large cache (`StorageStatsManager`) |
+| 📊 | **Battery vs time open** (an estimate, not a finding) | Each battery drop between two 15-minute samples taken on battery (from the charge counter when the phone reports it) is shared between the apps open on screen and, at a lower weight, the apps running a foreground service at the time. The rest goes to "home screen & system" and "standby" |
 | 🌡️ | **Device issues** | Battery drain with the screen off, temperature, thermal throttling and memory pressure, sampled every 15 minutes |
 
 Each finding has a severity, and the severities feed the day's health score. The thresholds are in

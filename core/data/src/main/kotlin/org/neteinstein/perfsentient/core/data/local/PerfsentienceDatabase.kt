@@ -11,7 +11,7 @@ import org.neteinstein.perfsentient.core.data.local.entity.VitalSampleEntity
 
 @Database(
     entities = [VitalSampleEntity::class, NotificationCountEntity::class, ReportEntity::class],
-    version = 2,
+    version = 3,
     exportSchema = true,
 )
 abstract class PerfsentienceDatabase : RoomDatabase() {

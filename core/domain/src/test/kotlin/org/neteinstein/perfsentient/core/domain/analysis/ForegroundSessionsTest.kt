@@ -44,6 +44,13 @@ class ForegroundSessionsTest {
     }
 
     @Test
+    fun `an app still open ends at the given time instead of the last event`() {
+        val events = listOf(resumed("a", 0), resumed("b", 10))
+        assertEquals(0L, ForegroundSessions.build(events, emptySet(), 0).last().durationMs)
+        assertEquals(90L, ForegroundSessions.build(events, emptySet(), 0, openUntilMs = 100).last().durationMs)
+    }
+
+    @Test
     fun `empty events produce no sessions`() {
         assertTrue(ForegroundSessions.build(emptyList(), emptySet(), 0).isEmpty())
     }

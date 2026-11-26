@@ -18,6 +18,7 @@ YOUR DAILY REPORT
 • A health score from 0 to 100 and a clear verdict: good, fair or poor
 • Phone vitals: battery drain, screen-off drain, temperature and memory pressure
 • A 7-day trend, so you can see if things are getting better
+• Battery vs time open: the apps that used the most battery in the last 7 days, next to how long you had them open (estimated)
 • Tap any app to see exactly what it did and open its App info to uninstall or restrict it
 
 YOU STAY IN CONTROL

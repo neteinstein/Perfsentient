@@ -20,10 +20,15 @@ data class ForegroundSession(
  * "A -> SystemUI -> A" is not considered an app switch.
  */
 object ForegroundSessions {
+    /**
+     * A session still open after the last event ends at [openUntilMs] when given (e.g. the end of
+     * the analysed window, for an app that is still open), otherwise at the last event.
+     */
     fun build(
         events: List<UsageEventRecord>,
         ignoredPackages: Set<String>,
         unlockWindowMs: Long,
+        openUntilMs: Long? = null,
     ): List<ForegroundSession> {
         val sessions = mutableListOf<ForegroundSession>()
         var currentPkg: String? = null
@@ -56,7 +61,7 @@ object ForegroundSessions {
                 else -> Unit
             }
         }
-        events.maxOfOrNull { it.timestamp }?.let { close(it) }
+        (openUntilMs ?: events.maxOfOrNull { it.timestamp })?.let { close(it) }
         return sessions
     }
 }
