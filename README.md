@@ -71,7 +71,7 @@
 | 👻 | **Hidden app** | Installed by you, has no launcher icon, but runs in the background |
 | ♾️ | **Always running** | Foreground service for ≥ 2 h a day while you use it for < 15 min (Android vitals wake-lock threshold) |
 | 🌙 | **Night owl** | Starts services or screens with the screen off between 00:00 and 06:00 |
-| 📶 | **Background data hog** | ≥ 50 MB a day of background traffic (Android vitals threshold), from `NetworkStatsManager` |
+| 📶 | **Background data hog** | ≥ 50 MB a day of background mobile data (Android vitals threshold), or ≥ 250 MB on any network, from `NetworkStatsManager` |
 | 🔕 | **Notification spam** | Notification counts from a `NotificationListenerService`. The content is never read |
 | ♿ | **Accessibility / device admin** | Has an accessibility service or device-admin rights turned on. Rated more serious for apps not installed from a store |
 | 🔓 | **Unrestricted battery** | Exempt from battery optimisation **and** doing heavy background work |
@@ -97,7 +97,7 @@ flowchart LR
 ```
 
 1. A cheap WorkManager job records device vitals every 15 minutes. There's no foreground service.
-2. At the report time you choose, the analyser reads the day's usage events, network stats, installed apps and the stored samples, and runs every detector.
+2. At the report time you choose, the analyser reads the last 24 hours of usage events, network stats and stored samples, plus the installed apps, and runs every detector. Each report picks up where the previous one stopped, so the evening after the report time is never missed.
 3. The result is saved as the day's report and announced with a single notification.
 
 ## 🚀 Setup

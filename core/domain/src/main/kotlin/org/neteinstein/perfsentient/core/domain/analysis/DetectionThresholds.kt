@@ -17,6 +17,8 @@ data class DetectionThresholds(
     val popupHighCount: Int = 8,
     val unlockPopupWindowMs: Long = 3 * MILLIS_IN_SECOND,
     val afterCallMaxDurationMs: Long = 60 * MILLIS_IN_SECOND,
+    /** The third-party screen must appear at most this long after the call screen closed. */
+    val afterCallMaxGapMs: Long = 10 * MILLIS_IN_SECOND,
     val afterCallMediumCount: Int = 1,
     val afterCallHighCount: Int = 3,
     val rarelyUsedForegroundMs: Long = 15 * MILLIS_IN_MINUTE,
@@ -25,8 +27,12 @@ data class DetectionThresholds(
     val overlaySuspiciousServiceMs: Long = 30 * MILLIS_IN_MINUTE,
     val overlaySuspiciousBytes: Long = 20 * BYTES_IN_MB,
     val hiddenActivityBytes: Long = 1 * BYTES_IN_MB,
-    val backgroundDataMediumBytes: Long = 50 * BYTES_IN_MB,
-    val backgroundDataHighBytes: Long = 200 * BYTES_IN_MB,
+    /** Background *mobile* data (Android vitals threshold: 50 MB/day). */
+    val backgroundMobileMediumBytes: Long = 50 * BYTES_IN_MB,
+    val backgroundMobileHighBytes: Long = 200 * BYTES_IN_MB,
+    /** Background data on any network, Wi-Fi included: more lenient because Wi-Fi rarely costs money. */
+    val backgroundTotalMediumBytes: Long = 250 * BYTES_IN_MB,
+    val backgroundTotalHighBytes: Long = 1 * BYTES_IN_GB,
     val notificationMediumCount: Int = 40,
     val notificationHighCount: Int = 100,
     val notificationAbsoluteCount: Int = 150,

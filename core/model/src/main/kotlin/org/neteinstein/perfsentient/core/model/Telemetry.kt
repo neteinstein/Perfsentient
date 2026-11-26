@@ -11,6 +11,10 @@ data class AppProfile(
     val hasEnabledAccessibilityService: Boolean,
     val isDeviceAdmin: Boolean,
     val ignoresBatteryOptimizations: Boolean,
+    /**
+     * Requests RECEIVE_BOOT_COMPLETED. Not used as a misbehaviour signal on purpose: WorkManager
+     * merges this permission into almost every app, so it says nothing about the app itself.
+     */
     val startsOnBoot: Boolean,
     val cacheBytes: Long,
     val firstInstallTime: Long,
@@ -43,11 +47,15 @@ data class AppUsage(
     val lastTimeUsed: Long,
 )
 
-/** Data transferred by an app in the analysed window, split by foreground/background state. */
+/**
+ * Data transferred by an app in the analysed window, split by foreground/background state.
+ * [backgroundBytes] counts every network; [backgroundMobileBytes] is the mobile-data part of it.
+ */
 data class NetworkUsage(
     val packageName: String,
     val foregroundBytes: Long,
     val backgroundBytes: Long,
+    val backgroundMobileBytes: Long = 0L,
 )
 
 /** Subset of android.app.usage.UsageEvents we care about. */

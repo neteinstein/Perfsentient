@@ -33,6 +33,7 @@ class GenerateDailyReportUseCaseTest {
     private val trusted = FakeTrustedAppsRepository()
     private val thresholds = DetectionThresholds()
     private val calculator = HealthScoreCalculator()
+    private val now = time.now().toEpochMilli()
 
     private val useCase = GenerateDailyReportUseCase(
         usageRepository = usage,
@@ -67,8 +68,7 @@ class GenerateDailyReportUseCaseTest {
     fun `misbehaving apps lower the score and show up as offenders`() = runTest {
         inventory.apps = listOf(TestData.app("adware", overlay = true, launcher = false, installer = null), TestData.app("spammer"))
         usage.network = listOf(TestData.network("adware", background = 300L * 1024 * 1024))
-        notifications.increment("spammer", time.today())
-        repeat(150) { notifications.increment("spammer", time.today()) }
+        repeat(151) { notifications.increment("spammer", now) }
 
         val report = useCase()
 
@@ -79,9 +79,23 @@ class GenerateDailyReportUseCaseTest {
     }
 
     @Test
+    fun `report covers the last 24 hours, including yesterday evening`() = runTest {
+        inventory.apps = listOf(TestData.app("evening-spammer"), TestData.app("old-spammer"))
+        // Yesterday 22:30, after yesterday's 21:30 report: used to fall between two reports.
+        repeat(150) { notifications.increment("evening-spammer", now - 23 * HOUR) }
+        repeat(150) { notifications.increment("old-spammer", now - 25 * HOUR) }
+
+        val report = useCase()
+
+        assertEquals(now - 24 * HOUR to now, usage.lastEventsWindow)
+        assertEquals(listOf("evening-spammer"), report.offenders.map { it.packageName })
+        assertEquals(time.today(), report.date)
+    }
+
+    @Test
     fun `trusted apps are left out of the returned report but kept in storage`() = runTest {
         inventory.apps = listOf(TestData.app("adware", overlay = true, launcher = false, installer = null), TestData.app("spammer"))
-        repeat(150) { notifications.increment("spammer", time.today()) }
+        repeat(150) { notifications.increment("spammer", now) }
         trusted.trust(TrustedApp("spammer", "Spammer"))
 
         val report = useCase()
@@ -93,3 +107,5 @@ class GenerateDailyReportUseCaseTest {
         assertTrue(report.score > stored.score)
     }
 }
+
+private const val HOUR = 3_600_000L

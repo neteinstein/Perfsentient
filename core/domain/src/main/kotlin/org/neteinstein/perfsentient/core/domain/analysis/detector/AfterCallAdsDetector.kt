@@ -12,7 +12,9 @@ import org.neteinstein.perfsentient.core.model.Finding
 /**
  * "After-call" ads: adware listens for the call state going back to idle and immediately
  * launches a full-screen activity (usually using the overlay permission). We see that as a
- * short session of a third-party app directly following the dialer / in-call UI.
+ * short session of a third-party app directly following the dialer / in-call UI. "Directly"
+ * matters: a session that starts long after the call screen closed (e.g. after the screen went
+ * off) is ordinary use, not an after-call ad.
  */
 class AfterCallAdsDetector(private val thresholds: DetectionThresholds) : BehaviorDetector {
     override fun detect(input: AnalysisInput): List<Finding> {
@@ -24,6 +26,7 @@ class AfterCallAdsDetector(private val thresholds: DetectionThresholds) : Behavi
         val counts = sessions.zipWithNext()
             .filter { (previous, current) ->
                 previous.packageName in ctx.dialerPackages &&
+                    current.startMs - previous.endMs <= thresholds.afterCallMaxGapMs &&
                     current.packageName !in excluded &&
                     current.durationMs <= thresholds.afterCallMaxDurationMs
             }

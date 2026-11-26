@@ -69,7 +69,7 @@ class RecordVitalSampleUseCase(
         vitalsRepository.save(vitalsRepository.capture())
         val cutoff = timeProvider.now().toEpochMilli() - RETENTION_HOURS * MILLIS_IN_HOUR
         vitalsRepository.deleteOlderThan(cutoff)
-        notificationStatsRepository.deleteOlderThan(timeProvider.today().minusDays(RETENTION_HOURS / 24))
+        notificationStatsRepository.deleteOlderThan(cutoff)
     }
 
     private companion object {
@@ -81,5 +81,5 @@ class RecordNotificationUseCase(
     private val repository: NotificationStatsRepository,
     private val timeProvider: TimeProvider,
 ) {
-    suspend operator fun invoke(packageName: String) = repository.increment(packageName, timeProvider.today())
+    suspend operator fun invoke(packageName: String) = repository.increment(packageName, timeProvider.now().toEpochMilli())
 }

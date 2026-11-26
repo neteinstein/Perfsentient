@@ -50,8 +50,11 @@ class DailyReportWorker(
             if (runAttemptCount < MAX_RETRIES) {
                 Result.retry()
             } else {
+                // Give up on today's report but keep the chain alive: the next run is appended to
+                // this work, and WorkManager cancels dependents of a *failed* work. Ending in
+                // success lets tomorrow's report run.
                 scheduler.scheduleNextReport(settings.reportTime)
-                Result.failure()
+                Result.success()
             }
         }
     }

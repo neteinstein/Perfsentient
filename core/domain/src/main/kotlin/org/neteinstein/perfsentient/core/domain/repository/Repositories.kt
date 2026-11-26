@@ -83,12 +83,15 @@ interface VitalsRepository {
     suspend fun deleteOlderThan(timestampMs: Long)
 }
 
+/** Notifications posted per app, stored in hourly buckets so any time window can be summed. */
 interface NotificationStatsRepository {
-    suspend fun increment(packageName: String, day: LocalDate)
+    /** Counts one notification from [packageName] in the hour that contains [atMs]. */
+    suspend fun increment(packageName: String, atMs: Long)
 
-    suspend fun getCounts(day: LocalDate): Map<String, Int>
+    /** Notifications per app in every hour that overlaps [startMs]..[endMs]. */
+    suspend fun getCounts(startMs: Long, endMs: Long): Map<String, Int>
 
-    suspend fun deleteOlderThan(day: LocalDate)
+    suspend fun deleteOlderThan(timestampMs: Long)
 }
 
 interface ReportRepository {

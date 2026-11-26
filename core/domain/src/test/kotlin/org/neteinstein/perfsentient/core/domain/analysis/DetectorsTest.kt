@@ -100,6 +100,29 @@ class DetectorsTest {
     }
 
     @Test
+    fun `after-call detector ignores apps opened long after the call screen closed`() {
+        val events = listOf(
+            resumed(DIALER, 0),
+            event("android", UsageEventType.SCREEN_NON_INTERACTIVE, MIN),
+            resumed("game", 30 * MIN),
+            resumed(LAUNCHER, 30 * MIN + 10 * SEC),
+        )
+        assertTrue(AfterCallAdsDetector(thresholds).detect(input(apps = listOf(app("game")), events = events)).isEmpty())
+    }
+
+    @Test
+    fun `after-call detector still flags a screen that appears within the gap`() {
+        val events = listOf(
+            resumed(DIALER, 0),
+            event("android", UsageEventType.KEYGUARD_SHOWN, MIN),
+            resumed("caller-ads", MIN + 5 * SEC),
+            resumed(LAUNCHER, MIN + 15 * SEC),
+        )
+        val result = AfterCallAdsDetector(thresholds).detect(input(apps = listOf(app("caller-ads")), events = events))
+        assertEquals("caller-ads", result.single().packageName)
+    }
+
+    @Test
     fun `after-call detector ignores going home first`() {
         val events = listOf(resumed(DIALER, 0), resumed(LAUNCHER, MIN), resumed("whatsapp", MIN + SEC), resumed(LAUNCHER, MIN + 10 * SEC))
         assertTrue(AfterCallAdsDetector(thresholds).detect(input(apps = listOf(app("whatsapp")), events = events)).isEmpty())
@@ -179,6 +202,26 @@ class DetectorsTest {
         val result = NightActivityDetector(thresholds).detect(input(apps = listOf(app("owl"), app("day")), events = events))
         assertEquals("owl", result.single().packageName)
         assertEquals(4L, result.single().value)
+    }
+
+    @Test
+    fun `background data detector is lenient with Wi-Fi and strict with mobile data`() {
+        val result = BackgroundDataDetector(thresholds).detect(
+            input(
+                apps = listOf(app("wifi-small"), app("wifi-medium"), app("wifi-big"), app("mixed")),
+                network = listOf(
+                    network("wifi-small", background = 100 * MB, mobileBackground = 0),
+                    network("wifi-medium", background = 300 * MB, mobileBackground = 0),
+                    network("wifi-big", background = 1500 * MB, mobileBackground = 0),
+                    network("mixed", background = 100 * MB, mobileBackground = 60 * MB),
+                ),
+            ),
+        ).associateBy { it.packageName }
+        assertEquals(setOf("wifi-medium", "wifi-big", "mixed"), result.keys)
+        assertEquals(Severity.MEDIUM, result.getValue("wifi-medium").severity)
+        assertEquals(Severity.HIGH, result.getValue("wifi-big").severity)
+        assertEquals(Severity.MEDIUM, result.getValue("mixed").severity)
+        assertEquals(100 * MB, result.getValue("mixed").value)
     }
 
     @Test

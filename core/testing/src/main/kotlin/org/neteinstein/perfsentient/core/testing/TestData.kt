@@ -57,7 +57,9 @@ object TestData {
 
     fun usage(pkg: String, foregroundMs: Long = 0, serviceMs: Long = 0) = AppUsage(pkg, foregroundMs, serviceMs, 0)
 
-    fun network(pkg: String, foreground: Long = 0, background: Long = 0) = NetworkUsage(pkg, foreground, background)
+    /** [mobileBackground] defaults to [background]: all background traffic on mobile data. */
+    fun network(pkg: String, foreground: Long = 0, background: Long = 0, mobileBackground: Long = background) =
+        NetworkUsage(pkg, foreground, background, mobileBackground)
 
     fun event(pkg: String, type: UsageEventType, at: Long) = UsageEventRecord(pkg, type, at)
 

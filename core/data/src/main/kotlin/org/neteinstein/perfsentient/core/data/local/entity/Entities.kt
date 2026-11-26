@@ -17,10 +17,10 @@ data class VitalSampleEntity(
     val isLowMemory: Boolean,
 )
 
-@Entity(tableName = "notification_counts", primaryKeys = ["day", "packageName"])
+@Entity(tableName = "notification_counts", primaryKeys = ["hourStartMs", "packageName"])
 data class NotificationCountEntity(
-    /** ISO-8601 date (yyyy-MM-dd); sorts lexicographically. */
-    val day: String,
+    /** Epoch millis of the start of the hour the notifications were posted in. */
+    val hourStartMs: Long,
     val packageName: String,
     val count: Int,
 )
