@@ -4,6 +4,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorDetector
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.ForegroundSessions
+import org.neteinstein.perfsentient.core.domain.analysis.evidence
 import org.neteinstein.perfsentient.core.domain.analysis.finding
 import org.neteinstein.perfsentient.core.domain.scam.ScamSignalCatalog
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -36,9 +37,10 @@ class RemoteAccessDetector(
             .filter { it.packageName in input.context.dialerPackages }
         return fresh.map { app ->
             val installedAt = app.firstInstallTime
-            val duringCall = calls.any { installedAt in it.startMs..(it.endMs + thresholds.remoteAccessAfterCallMs) }
-            val severity = if (duringCall || app.hasEnabledAccessibilityService) Severity.HIGH else Severity.MEDIUM
-            app.finding(BehaviorType.REMOTE_ACCESS, severity, installedAt)
+            val call = calls.firstOrNull { installedAt in it.startMs..(it.endMs + thresholds.remoteAccessAfterCallMs) }
+            val severity = if (call != null || app.hasEnabledAccessibilityService) Severity.HIGH else Severity.MEDIUM
+            // The related app is the dialer when the install followed a call.
+            app.finding(BehaviorType.REMOTE_ACCESS, severity, installedAt, listOf(input.evidence(installedAt, call?.packageName)))
         }
     }
 }

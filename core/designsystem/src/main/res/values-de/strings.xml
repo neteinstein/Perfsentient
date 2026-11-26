@@ -40,6 +40,30 @@
     <string name="verdict_good">Gut</string>
     <string name="verdict_fair">Mittel</string>
     <string name="verdict_poor">Schlecht</string>
+
+    <string name="fix_app_info">App-Info öffnen</string>
+    <string name="fix_overlay">„Über anderen Apps einblenden“ prüfen</string>
+    <string name="fix_accessibility">Bedienungshilfen öffnen</string>
+    <string name="fix_notification_access">Benachrichtigungszugriff prüfen</string>
+    <string name="fix_install_apps">„Unbekannte Apps installieren“ prüfen</string>
+    <string name="fix_app_notifications">Benachrichtigungseinstellungen</string>
+    <string name="fix_background_data">Einstellungen für mobile Daten</string>
+    <string name="fix_battery_optimization">Akkuoptimierung</string>
+    <string name="fix_device_admin">Geräteadministratoren prüfen</string>
+    <string name="fix_screen_lock">Displaysperre einrichten</string>
+    <string name="fix_developer_options">Entwickleroptionen öffnen</string>
+    <string name="fix_system_update">Nach Systemupdates suchen</string>
+    <string name="fix_battery_usage">Akkunutzung ansehen</string>
+    <string name="evidence_last">Zuletzt: %1$s</string>
+    <string name="evidence_over">über %1$s</string>
+    <string name="evidence_over_count">über %1$s ×%2$d</string>
+    <string name="evidence_after_call">direkt nach einem Anruf</string>
+    <string name="evidence_from">aus %1$s</string>
+    <string name="evidence_hide_times">Zeiten ausblenden</string>
+    <plurals name="evidence_show_times">
+        <item quantity="one">%1$d Zeit anzeigen</item>
+        <item quantity="other">Alle %1$d Zeiten anzeigen</item>
+    </plurals>
     <string name="behavior_app_not_responding_title">Reagiert nicht</string>
     <string name="behavior_app_not_responding_desc">Ist heute mehrmals eingefroren und hat „App reagiert nicht“ angezeigt. Häufige ANRs machen das Handy langsam.</string>
     <string name="behavior_app_crashes_title">Stürzt oft ab</string>

@@ -21,7 +21,7 @@ RAPORTUL ZILNIC
 • Semne vitale: consumul bateriei, consumul cu ecranul stins, temperatura și presiunea pe memorie
 • O tendință pe 7 zile, ca să vedeți dacă lucrurile se îmbunătățesc
 • Baterie vs timp deschisă: aplicațiile care au consumat cea mai multă baterie în ultimele 7 zile, alături de cât timp au fost deschise (estimare)
-• Atingeți o aplicație pentru a vedea exact ce a făcut și a-i deschide informațiile, ca s-o dezinstalați sau restricționați
+• Atingeți o aplicație pentru a vedea ce a făcut și când, cu un buton care deschide setarea potrivită
 
 CONTROLUL E AL DVS.
 • Fila Aplicații arată toate aplicațiile semnalate acum sau în trecut

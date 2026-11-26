@@ -40,6 +40,31 @@
     <string name="verdict_good">Buona</string>
     <string name="verdict_fair">Discreta</string>
     <string name="verdict_poor">Scarsa</string>
+
+    <string name="fix_app_info">Apri informazioni app</string>
+    <string name="fix_overlay">Controlla «Mostra sopra altre app»</string>
+    <string name="fix_accessibility">Apri impostazioni di accessibilità</string>
+    <string name="fix_notification_access">Controlla accesso alle notifiche</string>
+    <string name="fix_install_apps">Controlla «Installa app sconosciute»</string>
+    <string name="fix_app_notifications">Impostazioni notifiche</string>
+    <string name="fix_background_data">Impostazioni dati mobili</string>
+    <string name="fix_battery_optimization">Ottimizzazione batteria</string>
+    <string name="fix_device_admin">Controlla app di amministrazione dispositivo</string>
+    <string name="fix_screen_lock">Imposta un blocco schermo</string>
+    <string name="fix_developer_options">Apri opzioni sviluppatore</string>
+    <string name="fix_system_update">Cerca aggiornamenti di sistema</string>
+    <string name="fix_battery_usage">Vedi utilizzo batteria</string>
+    <string name="evidence_last">Ultima volta: %1$s</string>
+    <string name="evidence_over">sopra %1$s</string>
+    <string name="evidence_over_count">sopra %1$s ×%2$d</string>
+    <string name="evidence_after_call">subito dopo una chiamata</string>
+    <string name="evidence_from">da %1$s</string>
+    <string name="evidence_hide_times">Nascondi orari</string>
+    <plurals name="evidence_show_times">
+        <item quantity="one">Mostra %1$d orario</item>
+        <item quantity="many">Mostra tutti i %1$d orari</item>
+        <item quantity="other">Mostra tutti i %1$d orari</item>
+    </plurals>
     <string name="behavior_app_not_responding_title">Non risponde</string>
     <string name="behavior_app_not_responding_desc">Si è bloccata più volte oggi mostrando \"L\'app non risponde\". ANR frequenti rendono il telefono lento.</string>
     <string name="behavior_app_crashes_title">Si arresta spesso</string>

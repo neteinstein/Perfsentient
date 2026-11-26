@@ -21,7 +21,7 @@ YOUR DAILY REPORT
 • Phone vitals: battery drain, screen-off drain, temperature and memory pressure
 • A 7-day trend, so you can see if things are getting better
 • Battery vs time open: the apps that used the most battery in the last 7 days, next to how long you had them open (estimated)
-• Tap any app to see exactly what it did and open its App info to uninstall or restrict it
+• Tap any app to see what it did and when, with a button that opens the exact setting to fix it
 
 YOU STAY IN CONTROL
 • The Apps tab lists every app flagged now or in the past

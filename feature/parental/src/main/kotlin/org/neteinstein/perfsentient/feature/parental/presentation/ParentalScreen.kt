@@ -1,10 +1,6 @@
 package org.neteinstein.perfsentient.feature.parental.presentation
 
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -37,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.compose.viewmodel.koinViewModel
+import org.neteinstein.perfsentient.core.designsystem.behavior.FixAction
+import org.neteinstein.perfsentient.core.designsystem.behavior.openFix
 import org.neteinstein.perfsentient.core.designsystem.component.SectionHeader
 import org.neteinstein.perfsentient.core.designsystem.component.staggeredEntrance
 import org.neteinstein.perfsentient.feature.parental.R
@@ -160,11 +158,4 @@ internal fun ParentalScreen(
 }
 
 /** System "App info" page, where the parent can uninstall the app or change its permissions. */
-private fun Context.openAppInfo(packageName: String) {
-    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", packageName, null))
-    try {
-        startActivity(intent)
-    } catch (_: ActivityNotFoundException) {
-        runCatching { startActivity(Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)) }
-    }
-}
+private fun Context.openAppInfo(packageName: String) = openFix(FixAction.APP_INFO, packageName)

@@ -21,7 +21,7 @@ IHR TAGESBERICHT
 • Gerätewerte: Akkuverbrauch, Verbrauch bei ausgeschaltetem Display, Temperatur und Speicherknappheit
 • Ein 7-Tage-Verlauf, damit Sie sehen, ob es besser wird
 • Akku vs. Nutzungszeit: welche Apps in den letzten 7 Tagen am meisten Akku verbraucht haben, neben ihrer Nutzungszeit (geschätzt)
-• Tippen Sie auf eine App, um genau zu sehen, was sie getan hat, und öffnen Sie die App-Info, um sie zu deinstallieren oder einzuschränken
+• Tippen Sie auf eine App, um zu sehen, was sie wann getan hat, mit einer Schaltfläche zur passenden Einstellung
 
 SIE BEHALTEN DIE KONTROLLE
 • Der Tab Apps zeigt jede App, die jetzt oder früher aufgefallen ist

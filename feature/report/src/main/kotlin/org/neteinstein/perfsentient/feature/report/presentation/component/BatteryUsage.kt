@@ -1,9 +1,6 @@
 package org.neteinstein.perfsentient.feature.report.presentation.component
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Canvas
@@ -62,6 +59,8 @@ import androidx.compose.ui.unit.dp
 import java.text.NumberFormat
 import java.time.format.TextStyle
 import java.util.Locale
+import org.neteinstein.perfsentient.core.designsystem.behavior.FixAction
+import org.neteinstein.perfsentient.core.designsystem.behavior.openFix
 import org.neteinstein.perfsentient.core.designsystem.component.AppIcon
 import org.neteinstein.perfsentient.core.designsystem.component.StatusChip
 import org.neteinstein.perfsentient.core.designsystem.component.SurfaceCard
@@ -233,7 +232,7 @@ private fun BatteryAppRow(
             Column(Modifier.padding(top = 12.dp)) {
                 DailyBatteryChart(app, batteryColor, openColor)
                 Spacer(Modifier.height(8.dp))
-                FilledTonalButton(onClick = { context.openAppInfo(app.packageName) }, modifier = Modifier.fillMaxWidth()) {
+                FilledTonalButton(onClick = { context.openFix(FixAction.APP_INFO, app.packageName) }, modifier = Modifier.fillMaxWidth()) {
                     Text(stringResource(R.string.report_sheet_open_app_info))
                 }
             }
@@ -326,12 +325,6 @@ internal fun Context.formatPercent(value: Float): String {
         minimumFractionDigits = 0
     }
     return getString(R.string.report_battery_percent, format.format(value))
-}
-
-internal fun Context.openAppInfo(packageName: String) {
-    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", packageName, null))
-        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    runCatching { startActivity(intent) }
 }
 
 private const val MIN_SCALE = 0.1f

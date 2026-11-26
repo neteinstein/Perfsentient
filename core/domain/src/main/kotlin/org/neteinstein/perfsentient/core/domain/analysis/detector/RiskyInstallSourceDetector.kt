@@ -2,6 +2,7 @@ package org.neteinstein.perfsentient.core.domain.analysis.detector
 
 import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorDetector
+import org.neteinstein.perfsentient.core.domain.analysis.evidence
 import org.neteinstein.perfsentient.core.domain.analysis.finding
 import org.neteinstein.perfsentient.core.domain.scam.ScamSignalCatalog
 import org.neteinstein.perfsentient.core.model.AppProfile
@@ -33,7 +34,9 @@ class RiskyInstallSourceDetector(private val catalog: ScamSignalCatalog) : Behav
                 risky -> Severity.MEDIUM
                 else -> return@mapNotNull null
             }
-            app.finding(BehaviorType.RISKY_INSTALL_SOURCE, severity, channel.ordinal.toLong())
+            val initiator = app.initiatingPackage ?: app.installerPackage
+            val evidence = if (app.firstInstallTime > 0) listOf(input.evidence(app.firstInstallTime, initiator)) else emptyList()
+            app.finding(BehaviorType.RISKY_INSTALL_SOURCE, severity, channel.ordinal.toLong(), evidence)
         }
 
     private fun channelOf(app: AppProfile): InstallChannel? {

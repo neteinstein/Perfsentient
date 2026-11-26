@@ -81,9 +81,18 @@ object ReadableData {
     const val TEXT_MESSAGES = 2L
 }
 
+/** One observed moment behind a finding, and the other app involved when there is one. */
+data class Evidence(
+    val atMs: Long,
+    /** e.g. the app a pop-up interrupted, the dialer before an after-call ad, the chat app an APK came from. */
+    val relatedPackage: String? = null,
+    val relatedLabel: String? = null,
+)
+
 /**
  * A misbehaviour detected for one app.
  * [value] meaning depends on [type] (ms, bytes or count) – see presentation mapping.
+ * [evidence] holds up to [MAX_EVIDENCE] moments, newest first.
  */
 data class Finding(
     val packageName: String,
@@ -91,7 +100,12 @@ data class Finding(
     val type: BehaviorType,
     val severity: Severity,
     val value: Long,
-)
+    val evidence: List<Evidence> = emptyList(),
+) {
+    companion object {
+        const val MAX_EVIDENCE = 10
+    }
+}
 
 enum class DeviceIssueType {
     SCREEN_OFF_DRAIN,

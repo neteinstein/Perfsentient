@@ -7,6 +7,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.finding
 import org.neteinstein.perfsentient.core.domain.analysis.severityFor
 import org.neteinstein.perfsentient.core.model.BehaviorType
+import org.neteinstein.perfsentient.core.model.Evidence
 import org.neteinstein.perfsentient.core.model.Finding
 import org.neteinstein.perfsentient.core.model.UsageEventType
 
@@ -17,6 +18,7 @@ import org.neteinstein.perfsentient.core.model.UsageEventType
 class NightActivityDetector(private val thresholds: DetectionThresholds) : BehaviorDetector {
     override fun detect(input: AnalysisInput): List<Finding> {
         val counts = mutableMapOf<String, Int>()
+        val times = mutableMapOf<String, MutableList<Evidence>>()
         var screenOn = true
         for (event in input.events.sortedBy { it.timestamp }) {
             when (event.type) {
@@ -29,6 +31,7 @@ class NightActivityDetector(private val thresholds: DetectionThresholds) : Behav
                         // An activity launched with the screen off is worse than a service.
                         val weight = if (event.type == UsageEventType.ACTIVITY_RESUMED) 2 else 1
                         counts.merge(event.packageName, weight, Int::plus)
+                        times.getOrPut(event.packageName) { mutableListOf() } += Evidence(event.timestamp)
                     }
                 }
 
@@ -41,7 +44,7 @@ class NightActivityDetector(private val thresholds: DetectionThresholds) : Behav
             val app = input.candidate(pkg) ?: return@mapNotNull null
             val severity = severityFor(count, thresholds.nightMediumCount, thresholds.nightHighCount)
                 ?: return@mapNotNull null
-            app.finding(BehaviorType.NIGHT_ACTIVITY, severity, count.toLong())
+            app.finding(BehaviorType.NIGHT_ACTIVITY, severity, count.toLong(), times[pkg].orEmpty())
         }
     }
 

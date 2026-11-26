@@ -21,7 +21,7 @@ VOTRE RAPPORT QUOTIDIEN
 • Signes vitaux : batterie, consommation écran éteint, température et mémoire
 • Une tendance sur 7 jours, pour voir si les choses s'améliorent
 • Batterie vs temps d'ouverture : les applis les plus gourmandes sur 7 jours, face au temps passé ouvertes (estimation)
-• Touchez une appli pour voir ce qu'elle a fait, puis la désinstaller ou la restreindre
+• Touchez une appli pour voir ce qu'elle a fait et quand, avec un bouton vers le bon réglage
 
 VOUS GARDEZ LE CONTRÔLE
 • L'onglet Applis liste toutes les applis signalées, aujourd'hui ou par le passé

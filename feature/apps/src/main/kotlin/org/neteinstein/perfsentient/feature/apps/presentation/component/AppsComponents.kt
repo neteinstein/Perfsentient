@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,15 +21,18 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,7 +40,11 @@ import androidx.compose.ui.unit.dp
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import org.neteinstein.perfsentient.core.designsystem.behavior.EvidenceSummary
+import org.neteinstein.perfsentient.core.designsystem.behavior.FixAction
+import org.neteinstein.perfsentient.core.designsystem.behavior.fixAction
 import org.neteinstein.perfsentient.core.designsystem.behavior.label
+import org.neteinstein.perfsentient.core.designsystem.behavior.openFix
 import org.neteinstein.perfsentient.core.designsystem.behavior.presentation
 import org.neteinstein.perfsentient.core.designsystem.component.AppIcon
 import org.neteinstein.perfsentient.core.designsystem.component.StatusChip
@@ -114,6 +122,7 @@ private fun FlaggedApp.flaggedSummary(): String {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun AppDetailsSheet(app: FlaggedApp, onTrust: () -> Unit, onUntrust: () -> Unit, onDismiss: () -> Unit) {
+    val context = LocalContext.current
     val status = PerfsentienceTheme.status
     val scheme = MaterialTheme.colorScheme
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
@@ -147,11 +156,24 @@ internal fun AppDetailsSheet(app: FlaggedApp, onTrust: () -> Unit, onUntrust: ()
                         Text(stringResource(ui.title), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                         StatusChip(stringResource(finding.severity.label), status.forSeverity(finding.severity))
                     }
+                    Column(Modifier.padding(start = 32.dp)) {
+                        EvidenceSummary(finding, expandable = false)
+                        val fix = finding.fixAction
+                        if (fix != FixAction.APP_INFO) {
+                            TextButton(onClick = { context.openFix(fix, finding.packageName) }, contentPadding = PaddingValues(0.dp)) {
+                                Text(stringResource(fix.label))
+                            }
+                        }
+                    }
                 }
                 Spacer(Modifier.height(4.dp))
                 Text(app.flaggedSummary(), style = MaterialTheme.typography.bodySmall, color = scheme.onSurfaceVariant)
             }
             Spacer(Modifier.height(20.dp))
+            FilledTonalButton(onClick = { context.openFix(FixAction.APP_INFO, app.packageName) }, modifier = Modifier.fillMaxWidth()) {
+                Text(stringResource(FixAction.APP_INFO.label))
+            }
+            Spacer(Modifier.height(8.dp))
             if (app.isTrusted) {
                 OutlinedButton(onClick = onUntrust, modifier = Modifier.fillMaxWidth()) {
                     Icon(Icons.Rounded.RemoveCircleOutline, contentDescription = null, modifier = Modifier.size(18.dp))

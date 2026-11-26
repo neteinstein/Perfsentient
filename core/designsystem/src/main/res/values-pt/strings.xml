@@ -40,6 +40,31 @@
     <string name="verdict_good">Boa</string>
     <string name="verdict_fair">Razoável</string>
     <string name="verdict_poor">Fraca</string>
+
+    <string name="fix_app_info">Abrir informações da app</string>
+    <string name="fix_overlay">Rever \"Mostrar sobre outras apps\"</string>
+    <string name="fix_accessibility">Abrir definições de acessibilidade</string>
+    <string name="fix_notification_access">Rever acesso a notificações</string>
+    <string name="fix_install_apps">Rever \"Instalar apps desconhecidas\"</string>
+    <string name="fix_app_notifications">Definições de notificações</string>
+    <string name="fix_background_data">Definições de dados móveis</string>
+    <string name="fix_battery_optimization">Definições de otimização da bateria</string>
+    <string name="fix_device_admin">Rever apps de administração do dispositivo</string>
+    <string name="fix_screen_lock">Definir bloqueio de ecrã</string>
+    <string name="fix_developer_options">Abrir opções de programador</string>
+    <string name="fix_system_update">Procurar atualizações do sistema</string>
+    <string name="fix_battery_usage">Ver utilização da bateria</string>
+    <string name="evidence_last">Última vez: %1$s</string>
+    <string name="evidence_over">sobre %1$s</string>
+    <string name="evidence_over_count">sobre %1$s ×%2$d</string>
+    <string name="evidence_after_call">logo após uma chamada</string>
+    <string name="evidence_from">a partir de %1$s</string>
+    <string name="evidence_hide_times">Ocultar horas</string>
+    <plurals name="evidence_show_times">
+        <item quantity="one">Mostrar %1$d hora</item>
+        <item quantity="many">Mostrar as %1$d horas</item>
+        <item quantity="other">Mostrar as %1$d horas</item>
+    </plurals>
     <string name="behavior_app_not_responding_title">Não responde</string>
     <string name="behavior_app_not_responding_desc">Bloqueou várias vezes hoje e mostrou \"A app não está a responder\". ANR frequentes tornam o telemóvel lento.</string>
     <string name="behavior_app_crashes_title">Falha constantemente</string>

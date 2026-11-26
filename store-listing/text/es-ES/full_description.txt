@@ -21,7 +21,7 @@ TU INFORME DIARIO
 • Constantes del móvil: consumo de batería, consumo con la pantalla apagada, temperatura y presión de memoria
 • Una tendencia de 7 días para ver si las cosas mejoran
 • Batería vs tiempo abierta: las apps que más batería gastaron en los últimos 7 días, junto al tiempo que estuvieron abiertas (estimación)
-• Toca cualquier app para ver exactamente qué hizo y abrir su información para desinstalarla o restringirla
+• Toca cualquier app para ver qué hizo y cuándo, con un botón que abre el ajuste exacto para solucionarlo
 
 TÚ TIENES EL CONTROL
 • La pestaña Apps muestra todas las apps señaladas ahora o en el pasado

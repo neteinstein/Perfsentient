@@ -4,6 +4,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorDetector
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.ForegroundSessions
+import org.neteinstein.perfsentient.core.domain.analysis.evidence
 import org.neteinstein.perfsentient.core.domain.analysis.finding
 import org.neteinstein.perfsentient.core.domain.analysis.unsolicitedLaunchSeverity
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -26,7 +27,7 @@ class AfterCallAdsDetector(private val thresholds: DetectionThresholds) : Behavi
         val sessions = ForegroundSessions.build(input.events, ctx.systemUiPackages, thresholds.unlockPopupWindowMs)
         val excluded = ctx.launcherPackages + ctx.dialerPackages + ctx.selfPackage
 
-        val counts = sessions.indices
+        val afterCalls = sessions.indices
             .filter { index ->
                 val previous = sessions.getOrNull(index - 1) ?: return@filter false
                 val current = sessions[index]
@@ -38,14 +39,14 @@ class AfterCallAdsDetector(private val thresholds: DetectionThresholds) : Behavi
                     !returnedToInterruptedApp &&
                     current.durationMs <= thresholds.afterCallMaxDurationMs
             }
-            .groupingBy { sessions[it].packageName }
-            .eachCount()
+            .groupBy({ sessions[it].packageName }, { input.evidence(sessions[it].startMs, sessions[it - 1].packageName) })
 
-        return counts.mapNotNull { (pkg, count) ->
+        return afterCalls.mapNotNull { (pkg, evidence) ->
             val app = input.candidate(pkg) ?: return@mapNotNull null
+            val count = evidence.size
             val severity = app.unsolicitedLaunchSeverity(count, thresholds.afterCallMediumCount, thresholds.afterCallHighCount)
                 ?: return@mapNotNull null
-            app.finding(BehaviorType.AFTER_CALL_ADS, severity, count.toLong())
+            app.finding(BehaviorType.AFTER_CALL_ADS, severity, count.toLong(), evidence)
         }
     }
 }
