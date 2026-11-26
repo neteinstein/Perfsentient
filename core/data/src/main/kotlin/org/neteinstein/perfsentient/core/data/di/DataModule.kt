@@ -16,6 +16,7 @@ import org.neteinstein.perfsentient.core.common.TimeProvider
 import org.neteinstein.perfsentient.core.data.local.ALL_MIGRATIONS
 import org.neteinstein.perfsentient.core.data.local.PerfsentienceDatabase
 import org.neteinstein.perfsentient.core.data.repository.AppInventoryRepositoryImpl
+import org.neteinstein.perfsentient.core.data.repository.DeviceSecurityRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.NotificationStatsRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.ParentalReviewRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.PermissionRepositoryImpl
@@ -25,11 +26,13 @@ import org.neteinstein.perfsentient.core.data.repository.TrustedAppsRepositoryIm
 import org.neteinstein.perfsentient.core.data.repository.UsageRepositoryImpl
 import org.neteinstein.perfsentient.core.data.repository.VitalsRepositoryImpl
 import org.neteinstein.perfsentient.core.data.source.AppInventoryDataSource
+import org.neteinstein.perfsentient.core.data.source.DeviceSecurityDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceVitalsDataSource
 import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
 import org.neteinstein.perfsentient.core.data.source.SystemErrorLogDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
+import org.neteinstein.perfsentient.core.domain.repository.DeviceSecurityRepository
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
 import org.neteinstein.perfsentient.core.domain.repository.ParentalReviewRepository
 import org.neteinstein.perfsentient.core.domain.repository.PermissionRepository
@@ -67,6 +70,7 @@ val dataModule = module {
     single { AppInventoryDataSource(androidContext()) }
     single { SystemErrorLogDataSource(androidContext()) }
     singleOf(::DeviceVitalsDataSource)
+    single { DeviceSecurityDataSource(androidContext()) }
 
     single<PermissionRepository> { PermissionRepositoryImpl(androidContext(), get()) }
     singleOf(::SettingsRepositoryImpl) { bind<SettingsRepository>() }
@@ -75,6 +79,7 @@ val dataModule = module {
     singleOf(::UsageRepositoryImpl) { bind<UsageRepository>() }
     singleOf(::AppInventoryRepositoryImpl) { bind<AppInventoryRepository>() }
     singleOf(::VitalsRepositoryImpl) { bind<VitalsRepository>() }
+    singleOf(::DeviceSecurityRepositoryImpl) { bind<DeviceSecurityRepository>() }
     singleOf(::NotificationStatsRepositoryImpl) { bind<NotificationStatsRepository>() }
     singleOf(::ReportRepositoryImpl) { bind<ReportRepository>() }
 }

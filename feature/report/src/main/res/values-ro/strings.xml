@@ -113,6 +113,26 @@
         <item quantity="few">Afișați toate cele %1$d aplicații</item>
         <item quantity="other">Afișați toate cele %1$d de aplicații</item>
     </plurals>
+
+    <string name="report_value_install_messaging">Instalată dintr-o aplicație de mesagerie sau e-mail</string>
+    <string name="report_value_install_browser">Descărcată de pe internet</string>
+    <string name="report_value_install_file">Instalată dintr-un fișier de pe telefon</string>
+    <string name="report_value_reads_texts">Vă poate citi SMS-urile</string>
+    <string name="report_value_reads_notifications">Vă poate citi notificările</string>
+    <string name="report_value_reads_both">Vă poate citi SMS-urile și notificările</string>
+    <string name="report_value_installed_at">Instalată pe %1$s</string>
+    <string name="report_value_impersonation">Poartă numele unei aplicații cunoscute</string>
+    <string name="report_value_can_install">Are voie să instaleze alte aplicații</string>
+    <string name="report_issue_no_screen_lock_title">Fără blocarea ecranului</string>
+    <string name="report_issue_no_screen_lock">Oricine vă ia telefonul vă poate deschide aplicațiile, citi codurile și reseta conturile. Setați un PIN, un model sau o parolă.</string>
+    <string name="report_issue_security_patch_title">Actualizare de securitate veche</string>
+    <string name="report_issue_usb_debugging_title">Remedierea erorilor prin USB este activată</string>
+    <string name="report_issue_usb_debugging">Un computer conectat prin USB poate instala și controla aplicații. Dezactivați-o din Opțiuni pentru dezvoltatori când nu o folosiți.</string>
+    <plurals name="report_issue_security_patch">
+        <item quantity="one">Ultima actualizare de securitate Android are %1$d zi. Căutați o actualizare de sistem.</item>
+        <item quantity="few">Ultima actualizare de securitate Android are %1$d zile. Căutați o actualizare de sistem.</item>
+        <item quantity="other">Ultima actualizare de securitate Android are %1$d de zile. Căutați o actualizare de sistem.</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d blocare (ANR) azi</item>
         <item quantity="few">%1$d blocări (ANR) azi</item>

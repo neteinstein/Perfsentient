@@ -13,6 +13,8 @@ CE DETECTEAZĂ
 • Spam de notificări
 • Acces riscant: servicii de accesibilitate, administratori de dispozitiv, baterie fără restricții
 • Aplicații care ocupă mult spațiu (cache uriaș)
+• Aplicații de înșelătorie: instalate dintr-un link primit în chat, nume care imită aplicații cunoscute, aplicații de acces la distanță instalate în timpul unui apel și aplicații care vă pot citi codurile
+• Securitatea telefonului: fără blocarea ecranului, actualizări de securitate vechi, remedierea erorilor prin USB activată
 
 RAPORTUL ZILNIC
 • Un scor de sănătate de la 0 la 100 și un verdict clar: bună, acceptabilă sau slabă
@@ -23,8 +25,7 @@ RAPORTUL ZILNIC
 
 CONTROLUL E AL DVS.
 • Fila Aplicații arată toate aplicațiile semnalate acum sau în trecut
-• Marcați de încredere aplicațiile despre care știți că sunt în regulă: sunt excluse din rapoarte, nu vă scad scorul și apar în altă culoare
-• Vă puteți răzgândi oricând: atingeți o aplicație de încredere pentru a renunța
+• Marcați ca de încredere aplicațiile sigure: sunt excluse din rapoarte și din scor, apar în altă culoare și vă puteți răzgândi oricând
 
 MOD PARENTAL
 Pregătiți un telefon pentru un copil? Activați Modul parental din Setări și introduceți vârsta lui. O filă Părinți va lista aplicațiile instalate despre care organizațiile pentru protecția copilului, autoritățile și anchetele avertizează pentru acea vârstă:
@@ -41,7 +42,7 @@ PRIVAT PRIN DESIGN
 • Notificările sunt doar numărate pe aplicație. Conținutul lor nu este citit niciodată
 
 CUM FUNCȚIONEAZĂ
-Perfsentient are nevoie de două permisiuni pe care le activați în setările Android: acces la datele de utilizare (pentru a vedea ce aplicații rulează și cât timp) și acces la notificări (pentru a le număra pe aplicație). Fila Setări explică fiecare permisiune și vă duce direct la ecranul potrivit. O verificare ușoară rulează la fiecare 15 minute, cu un consum de baterie aproape nul, iar raportul sosește la ora aleasă de dvs.
+Activați accesul la datele de utilizare și accesul la notificări în setările Android: fila Setări le explică și deschide ecranul potrivit. O verificare ușoară rulează la fiecare 15 minute, iar raportul sosește la ora aleasă.
 
 LIMBI
 Română, engleză, portugheză, franceză, spaniolă, italiană și germană. Pe Android 13 și versiunile ulterioare puteți alege limba aplicației din setările Android.

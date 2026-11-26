@@ -7,10 +7,12 @@ import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
+import org.neteinstein.perfsentient.core.domain.analysis.DeviceSecurityAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.HealthScoreCalculator
 import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.domain.parental.ParentalAppCatalog
 import org.neteinstein.perfsentient.core.domain.parental.ParentalRiskAssessor
+import org.neteinstein.perfsentient.core.domain.scam.ScamSignalCatalog
 import org.neteinstein.perfsentient.core.domain.usecase.GenerateDailyReportUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveBatteryHistoryUseCase
 import org.neteinstein.perfsentient.core.domain.usecase.ObserveFlaggedAppsUseCase
@@ -34,8 +36,10 @@ import org.neteinstein.perfsentient.core.domain.usecase.UpdateThemeModeUseCase
 
 val domainModule = module {
     single { DetectionThresholds() }
-    single { BehaviorAnalyzer(thresholds = get()) }
+    single { ScamSignalCatalog() }
+    single { BehaviorAnalyzer(thresholds = get(), catalog = get()) }
     singleOf(::DeviceHealthAnalyzer)
+    singleOf(::DeviceSecurityAnalyzer)
     singleOf(::BatteryAttributor)
     single { HealthScoreCalculator() }
     singleOf(::TrustedAppsFilter)

@@ -13,6 +13,8 @@ COSA RILEVA
 • Spam di notifiche
 • Accessi a rischio: servizi di accessibilità, amministratori del dispositivo, batteria senza restrizioni
 • App che occupano molto spazio (cache enorme)
+• App truffa: installate da un link in chat, nomi che imitano app note, app di accesso remoto installate durante una chiamata e app che possono leggere i tuoi codici
+• Sicurezza del telefono: nessun blocco schermo, aggiornamenti di sicurezza vecchi, debug USB attivo
 
 IL TUO REPORT GIORNALIERO
 • Un punteggio di salute da 0 a 100 e un verdetto chiaro: buona, discreta o scarsa
@@ -23,8 +25,7 @@ IL TUO REPORT GIORNALIERO
 
 IL CONTROLLO È TUO
 • La scheda App elenca tutte le app segnalate ora o in passato
-• Considera attendibili le app che sai essere a posto: sono escluse dai report, non abbassano il punteggio e compaiono in un altro colore
-• Cambia idea quando vuoi: tocca un'app attendibile per non considerarla più tale
+• Fidati delle app che sai essere a posto: restano fuori dai report e dal punteggio, appaiono in un altro colore e puoi cambiare idea quando vuoi
 
 MODALITÀ GENITORI
 Stai preparando un telefono per tuo figlio? Attiva la Modalità genitori nelle Impostazioni e indica la sua età. Una scheda Genitori elenca le app installate su cui organizzazioni per la tutela dei minori, autorità e inchieste mettono in guardia per quell'età:
@@ -41,7 +42,7 @@ PRIVATO PER PROGETTO
 • Le notifiche vengono solo contate per app. Il contenuto non viene mai letto
 
 COME FUNZIONA
-Perfsentient ha bisogno di due autorizzazioni da attivare nelle impostazioni di Android: l'accesso ai dati di utilizzo (per vedere quali app sono in esecuzione e per quanto tempo) e l'accesso alle notifiche (per contarle per app). La scheda Impostazioni spiega ciascuna e ti porta direttamente alla schermata giusta. Un controllo leggero gira ogni 15 minuti, consumando pochissima batteria, e il report arriva all'ora che scegli.
+Attiva l'accesso ai dati di utilizzo e l'accesso alle notifiche nelle impostazioni di Android: la scheda Impostazioni spiega ciascuno e apre la schermata giusta. Un controllo leggero gira ogni 15 minuti e il report arriva all'ora che scegli.
 
 LINGUE
 Italiano, inglese, portoghese, francese, spagnolo, rumeno e tedesco. Da Android 13 puoi scegliere la lingua dell'app nelle impostazioni di Android.

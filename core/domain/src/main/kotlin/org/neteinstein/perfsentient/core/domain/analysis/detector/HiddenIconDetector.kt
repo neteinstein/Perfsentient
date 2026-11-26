@@ -30,6 +30,7 @@ class HiddenIconDetector(private val thresholds: DetectionThresholds) : Behavior
                 app.canDrawOverlays,
                 app.hasEnabledAccessibilityService,
                 app.isDeviceAdmin,
+                app.hasNotificationAccess,
             ).count { it }
             val active = activeSignals > 0
             when {

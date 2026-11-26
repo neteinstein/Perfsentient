@@ -8,18 +8,26 @@ import android.app.usage.StorageStatsManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
+import android.content.pm.InstallSourceInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.PowerManager
 import android.os.Process
 import android.os.UserHandle
+import android.provider.Telephony
 import android.telecom.TelecomManager
 import android.view.accessibility.AccessibilityManager
+import androidx.core.app.NotificationManagerCompat
 import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.DeviceContext
+import org.neteinstein.perfsentient.core.model.PackageSource
 
-/** Builds an [AppProfile] for every installed app using only public, Play-compliant APIs. */
+/**
+ * Builds an [AppProfile] for every installed app using only public, Play-compliant APIs: install
+ * source, granted permissions and special accesses come from PackageManager, AppOps and the
+ * notification-listener and default-SMS settings, all readable without extra permissions.
+ */
 class AppInventoryDataSource(private val context: Context) {
     private val pm: PackageManager = context.packageManager
     private val appOps = context.getSystemService(AppOpsManager::class.java)
@@ -42,17 +50,20 @@ class AppInventoryDataSource(private val context: Context) {
             .getOrNull()
             .orEmpty()
         val user: UserHandle = Process.myUserHandle()
+        val notificationListeners = runCatching { NotificationManagerCompat.getEnabledListenerPackages(context) }.getOrDefault(emptySet())
+        val defaultSms = runCatching { Telephony.Sms.getDefaultSmsPackage(context) }.getOrNull()
 
         return installedPackages().mapNotNull { info ->
             val app = info.applicationInfo ?: return@mapNotNull null
             val pkg = info.packageName
             val isSystem = app.flags and (ApplicationInfo.FLAG_SYSTEM or ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
+            val source = installSourceOf(pkg)
             AppProfile(
                 packageName = pkg,
                 label = runCatching { app.loadLabel(pm).toString() }.getOrDefault(pkg),
                 isSystemApp = isSystem,
                 hasLauncherIcon = pkg in launcherPackages,
-                installerPackage = installerOf(pkg),
+                installerPackage = source?.installingPackageName,
                 canDrawOverlays = !isSystem && canDrawOverlays(app, info),
                 hasEnabledAccessibilityService = pkg in accessibilityPackages,
                 isDeviceAdmin = pkg in adminPackages,
@@ -60,6 +71,13 @@ class AppInventoryDataSource(private val context: Context) {
                 startsOnBoot = info.requestedPermissions?.contains(Manifest.permission.RECEIVE_BOOT_COMPLETED) == true,
                 cacheBytes = if (isSystem) 0L else cacheBytes(app, user),
                 firstInstallTime = info.firstInstallTime,
+                initiatingPackage = source?.initiatingPackageName,
+                packageSource = source.packageSource(),
+                lastUpdateTime = info.lastUpdateTime,
+                grantedPermissions = grantedSensitivePermissions(info.requestedPermissions, info.requestedPermissionsFlags),
+                hasNotificationAccess = pkg in notificationListeners,
+                isDefaultSmsApp = pkg == defaultSms,
+                canInstallApps = !isSystem && canInstallApps(app, info),
                 launcherIconDisabled = app.enabled && pkg !in launcherPackages && pkg in declaredLauncherPackages,
             )
         }
@@ -115,9 +133,24 @@ class AppInventoryDataSource(private val context: Context) {
         return resolved.mapNotNull { it.activityInfo?.packageName }.toSet()
     }
 
-    private fun installerOf(pkg: String): String? = runCatching {
-        pm.getInstallSourceInfo(pkg).installingPackageName
-    }.getOrNull()
+    private fun installSourceOf(pkg: String): InstallSourceInfo? = runCatching { pm.getInstallSourceInfo(pkg) }.getOrNull()
+
+    private fun InstallSourceInfo?.packageSource(): PackageSource = when {
+        this == null -> PackageSource.UNKNOWN
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> packageSourceOf(packageSource)
+        else -> PackageSource.UNKNOWN
+    }
+
+    /** "Install unknown apps" is an app op; only an explicit allow counts (the default is "ask / denied"). */
+    private fun canInstallApps(app: ApplicationInfo, info: PackageInfo): Boolean {
+        val requested = info.requestedPermissions?.contains(Manifest.permission.REQUEST_INSTALL_PACKAGES) == true
+        if (!requested) return false
+        val mode = runCatching {
+            @Suppress("DEPRECATION") // Only public API able to query another app's op mode.
+            appOps.unsafeCheckOpNoThrow(OPSTR_REQUEST_INSTALL_PACKAGES, app.uid, app.packageName)
+        }.getOrDefault(AppOpsManager.MODE_DEFAULT)
+        return mode == AppOpsManager.MODE_ALLOWED
+    }
 
     private fun canDrawOverlays(app: ApplicationInfo, info: PackageInfo): Boolean {
         val requested = info.requestedPermissions?.contains(Manifest.permission.SYSTEM_ALERT_WINDOW) == true
@@ -141,6 +174,9 @@ class AppInventoryDataSource(private val context: Context) {
     }.getOrDefault(0L)
 
     private companion object {
+        /** AppOpsManager.OPSTR_REQUEST_INSTALL_PACKAGES is hidden from the SDK; the op name is stable since Android 8. */
+        const val OPSTR_REQUEST_INSTALL_PACKAGES = "android:request_install_packages"
+
         val KNOWN_CALL_UI_PACKAGES = setOf(
             "com.android.server.telecom",
             "com.android.incallui",

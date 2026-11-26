@@ -24,6 +24,16 @@
     <string name="behavior_unrestricted_battery_desc">Está isenta da otimização de bateria e trabalha muito em segundo plano.</string>
     <string name="behavior_storage_bloat_title">Ocupa muito armazenamento</string>
     <string name="behavior_storage_bloat_desc">Mantém uma cache muito grande. Limpá-la liberta espaço e pode tornar o telemóvel mais rápido.</string>
+    <string name="behavior_risky_install_source_title">Origem de instalação arriscada</string>
+    <string name="behavior_risky_install_source_desc">Não veio de uma loja de apps: foi instalada a partir de um link numa conversa ou email, ou de um ficheiro transferido. É assim que as apps de burla chegam aos telemóveis, sobretudo as que pedem acesso às mensagens ou ao ecrã.</string>
+    <string name="behavior_data_theft_risk_title">Pode ler os seus códigos</string>
+    <string name="behavior_data_theft_risk_desc">Pode ler as suas SMS ou notificações, onde chegam os códigos do banco e de início de sessão. As apps de fraude pedem isto para roubar contas. Retire o acesso a não ser que confie totalmente na app.</string>
+    <string name="behavior_remote_access_title">App de acesso remoto</string>
+    <string name="behavior_remote_access_desc">Foi instalada recentemente uma app de controlo remoto. Burlões que se fazem passar pelo seu banco ou pelo apoio técnico pedem que instale uma para verem o seu ecrã. Se alguém lhe pediu para a instalar, desligue a chamada e desinstale-a.</string>
+    <string name="behavior_impersonation_title">App falsificada</string>
+    <string name="behavior_impersonation_desc">Não veio de uma loja de apps, mas tem o nome de uma app conhecida ou de uma parte do Android (\"Atualização do sistema\", um banco, WhatsApp). As apps falsas usam nomes de confiança.</string>
+    <string name="behavior_can_install_apps_title">Pode instalar apps</string>
+    <string name="behavior_can_install_apps_desc">Tem autorização para instalar outras apps. O malware usa isto para transferir mais apps depois de instalado. Desative nas Definições se não precisar.</string>
     <string name="severity_low">Baixo</string>
     <string name="severity_medium">Médio</string>
     <string name="severity_high">Alto</string>

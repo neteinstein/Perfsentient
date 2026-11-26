@@ -13,6 +13,8 @@ WAS ES ERKENNT
 • Benachrichtigungsspam
 • Riskante Zugriffe: Bedienungshilfen, Geräteadministratoren, Akku ohne Einschränkung
 • Speicherfresser (riesiger Cache)
+• Betrugs-Apps: über einen Link im Chat installiert, Namen, die bekannte Apps nachahmen, Fernzugriffs-Apps, die während eines Anrufs installiert wurden, und Apps, die Ihre Codes lesen können
+• Telefonsicherheit: keine Displaysperre, alte Sicherheitsupdates, aktiviertes USB-Debugging
 
 IHR TAGESBERICHT
 • Ein Gesundheitswert von 0 bis 100 und ein klares Urteil: gut, mittel oder schlecht
@@ -23,8 +25,7 @@ IHR TAGESBERICHT
 
 SIE BEHALTEN DIE KONTROLLE
 • Der Tab Apps zeigt jede App, die jetzt oder früher aufgefallen ist
-• Vertrauen Sie Apps, von denen Sie wissen, dass sie in Ordnung sind: Sie werden aus Ihren Berichten ausgenommen, senken Ihren Wert nicht und erscheinen in einer anderen Farbe
-• Ändern Sie Ihre Meinung jederzeit: Tippen Sie auf eine vertraute App, um ihr nicht mehr zu vertrauen
+• Vertrauen Sie Apps, die Sie kennen: Sie fehlen in Berichten und Wertung, erscheinen in einer anderen Farbe, und Sie können es jederzeit ändern
 
 ELTERNMODUS
 Richten Sie ein Handy für ein Kind ein? Schalten Sie in den Einstellungen den Elternmodus ein und geben Sie sein Alter an. Ein Tab Eltern listet dann die installierten Apps, vor denen Kinderschutzorganisationen, Behörden und Recherchen für dieses Alter warnen:
@@ -41,7 +42,7 @@ PRIVAT AUS PRINZIP
 • Benachrichtigungen werden nur pro App gezählt. Ihr Inhalt wird nie gelesen
 
 SO FUNKTIONIERT ES
-Perfsentient braucht zwei Berechtigungen, die Sie in den Android-Einstellungen einschalten: Zugriff auf Nutzungsdaten (um zu sehen, welche Apps wie lange laufen) und Benachrichtigungszugriff (um Benachrichtigungen pro App zu zählen). Der Tab Einstellungen erklärt beide und führt Sie direkt zum richtigen Bildschirm. Alle 15 Minuten läuft eine leichte Prüfung, die kaum Akku verbraucht, und Ihr Bericht kommt zur gewünschten Uhrzeit.
+Schalten Sie in den Android-Einstellungen den Zugriff auf Nutzungsdaten und den Benachrichtigungszugriff ein: Der Tab Einstellungen erklärt beides und öffnet den richtigen Bildschirm. Alle 15 Minuten läuft eine leichte Prüfung, und Ihr Bericht kommt zur gewünschten Uhrzeit.
 
 SPRACHEN
 Deutsch, Englisch, Portugiesisch, Französisch, Spanisch, Italienisch und Rumänisch. Ab Android 13 können Sie die Sprache der App in den Android-Einstellungen wählen.

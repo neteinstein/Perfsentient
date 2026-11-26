@@ -25,7 +25,7 @@ hidden icons, background hogs, notification spam, …).
 app                    -> Application, MainActivity, root navigation, Koin graph assembly
 core/common            -> (JVM) dispatchers, time provider, constants
 core/model             -> (JVM) pure domain models – no Android imports
-core/domain            -> (JVM) repository interfaces, use cases, detection heuristics (analysis/)
+core/domain            -> (JVM) repository interfaces, use cases, detection heuristics (analysis/), scam lists (scam/)
 core/data              -> (Android) repository implementations, Room, DataStore, system data sources
 core/designsystem      -> (Android) theme (light/dark/dynamic), animated components, behaviour copy
 core/testing           -> (JVM) fakes, builders and rules shared by all unit tests
@@ -56,6 +56,8 @@ Dependency rules (enforced by module boundaries):
   Brand-only strings use `translatable="false"`. `generateLocaleConfig` exposes the languages in Android 13+ per-app language settings.
 - **Parental catalogue**: concerning apps live in `core/domain/parental/ParentalAppCatalog` (verified package names, ages,
   concerns); every addition needs a source in `docs/parental-help-research.md`. Copy/icons are in `feature/parental`'s `ParentalPresentation.kt`.
+- **Scam catalogue**: messaging/browser installers, remote-access apps and impersonated names live in
+  `core/domain/scam/ScamSignalCatalog`; every addition needs a source in `docs/scam-signals-research.md`.
 - **Detection heuristics** go in `core/domain/analysis/detector`, implement `BehaviorDetector`, use thresholds from `DetectionThresholds`, are registered in `BehaviorAnalyzer.defaultDetectors` and **must** have unit tests (positive, negative and severity-escalation cases). Add UI copy/icon in `core/designsystem/behavior/BehaviorPresentation.kt`.
 - Version numbers go in `gradle/libs.versions.toml` only. Shared build config goes in `build-logic` convention plugins, not copy-pasted into module scripts.
 

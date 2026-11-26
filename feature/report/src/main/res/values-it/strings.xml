@@ -113,6 +113,26 @@
         <item quantity="many">Mostra tutte le %1$d app</item>
         <item quantity="other">Mostra tutte le %1$d app</item>
     </plurals>
+
+    <string name="report_value_install_messaging">Installata da una chat o email</string>
+    <string name="report_value_install_browser">Scaricata dal web</string>
+    <string name="report_value_install_file">Installata da un file sul telefono</string>
+    <string name="report_value_reads_texts">Può leggere i tuoi SMS</string>
+    <string name="report_value_reads_notifications">Può leggere le tue notifiche</string>
+    <string name="report_value_reads_both">Può leggere i tuoi SMS e le notifiche</string>
+    <string name="report_value_installed_at">Installata il %1$s</string>
+    <string name="report_value_impersonation">Ha il nome di un\'app nota</string>
+    <string name="report_value_can_install">Può installare altre app</string>
+    <string name="report_issue_no_screen_lock_title">Nessun blocco schermo</string>
+    <string name="report_issue_no_screen_lock">Chiunque prenda il telefono può aprire le tue app, leggere i tuoi codici e reimpostare i tuoi account. Imposta un PIN, una sequenza o una password.</string>
+    <string name="report_issue_security_patch_title">Aggiornamento di sicurezza vecchio</string>
+    <string name="report_issue_usb_debugging_title">Debug USB attivo</string>
+    <string name="report_issue_usb_debugging">Un computer collegato via USB può installare e controllare app. Disattivalo nelle Opzioni sviluppatore quando non lo usi.</string>
+    <plurals name="report_issue_security_patch">
+        <item quantity="one">L\'ultimo aggiornamento di sicurezza di Android risale a %1$d giorno fa. Cerca un aggiornamento di sistema.</item>
+        <item quantity="many">L\'ultimo aggiornamento di sicurezza di Android risale a %1$d giorni fa. Cerca un aggiornamento di sistema.</item>
+        <item quantity="other">L\'ultimo aggiornamento di sicurezza di Android risale a %1$d giorni fa. Cerca un aggiornamento di sistema.</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d blocco (ANR) oggi</item>
         <item quantity="many">%1$d blocchi (ANR) oggi</item>

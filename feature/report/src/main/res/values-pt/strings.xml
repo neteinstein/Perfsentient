@@ -113,6 +113,26 @@
         <item quantity="many">Mostrar todas as %1$d apps</item>
         <item quantity="other">Mostrar todas as %1$d apps</item>
     </plurals>
+
+    <string name="report_value_install_messaging">Instalada a partir de uma app de conversas ou email</string>
+    <string name="report_value_install_browser">Transferida da Internet</string>
+    <string name="report_value_install_file">Instalada a partir de um ficheiro no telemóvel</string>
+    <string name="report_value_reads_texts">Pode ler as suas SMS</string>
+    <string name="report_value_reads_notifications">Pode ler as suas notificações</string>
+    <string name="report_value_reads_both">Pode ler as suas SMS e notificações</string>
+    <string name="report_value_installed_at">Instalada em %1$s</string>
+    <string name="report_value_impersonation">Nome igual ao de uma app conhecida</string>
+    <string name="report_value_can_install">Autorizada a instalar outras apps</string>
+    <string name="report_issue_no_screen_lock_title">Sem bloqueio de ecrã</string>
+    <string name="report_issue_no_screen_lock">Qualquer pessoa que pegue no telemóvel pode abrir as suas apps, ler os seus códigos e repor as suas contas. Defina um PIN, padrão ou palavra-passe.</string>
+    <string name="report_issue_security_patch_title">Atualização de segurança antiga</string>
+    <string name="report_issue_usb_debugging_title">Depuração USB ativa</string>
+    <string name="report_issue_usb_debugging">Um computador ligado por USB pode instalar e controlar apps. Desative-a nas Opções de programador quando não a estiver a usar.</string>
+    <plurals name="report_issue_security_patch">
+        <item quantity="one">A última atualização de segurança do Android tem %1$d dia. Procure uma atualização do sistema.</item>
+        <item quantity="many">A última atualização de segurança do Android tem %1$d dias. Procure uma atualização do sistema.</item>
+        <item quantity="other">A última atualização de segurança do Android tem %1$d dias. Procure uma atualização do sistema.</item>
+    </plurals>
     <plurals name="report_value_anrs">
         <item quantity="one">%1$d bloqueio (ANR) hoje</item>
         <item quantity="many">%1$d bloqueios (ANR) hoje</item>

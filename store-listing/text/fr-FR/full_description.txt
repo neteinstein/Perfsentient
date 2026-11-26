@@ -13,6 +13,8 @@ CE QU'IL DÉTECTE
 • Spam de notifications
 • Accès à risque : services d'accessibilité, administrateurs de l'appareil, batterie sans restriction
 • Applis gourmandes en stockage (cache énorme)
+• Applis d'arnaque : installées via un lien reçu par message, noms imitant des applis connues, accès à distance installé pendant un appel, applis pouvant lire vos codes
+• Sécurité : pas de verrouillage d'écran, mise à jour de sécurité ancienne, débogage USB activé
 
 VOTRE RAPPORT QUOTIDIEN
 • Un score de santé de 0 à 100 et un verdict clair : bon, moyen ou mauvais
@@ -23,8 +25,7 @@ VOTRE RAPPORT QUOTIDIEN
 
 VOUS GARDEZ LE CONTRÔLE
 • L'onglet Applis liste toutes les applis signalées, aujourd'hui ou par le passé
-• Faites confiance aux applis que vous savez fiables : elles sont exclues de vos rapports, ne font pas baisser votre score et s'affichent dans une autre couleur
-• Changez d'avis à tout moment : touchez une appli approuvée pour ne plus lui faire confiance
+• Faites confiance aux applis fiables : elles sont exclues des rapports et du score, affichées dans une autre couleur, et vous pouvez changer d'avis à tout moment
 
 MODE PARENTAL
 Vous préparez un téléphone pour un enfant ? Activez le Mode parental dans les Paramètres et indiquez son âge. Un onglet Aide parentale liste alors les applis installées sur lesquelles des organismes de protection de l'enfance, des régulateurs et des enquêtes mettent en garde pour cet âge :
@@ -41,7 +42,7 @@ CONFIDENTIEL PAR CONCEPTION
 • Les notifications sont seulement comptées par appli. Leur contenu n'est jamais lu
 
 COMMENT ÇA MARCHE
-Perfsentient a besoin de deux autorisations à activer dans les paramètres d'Android : l'accès aux données d'utilisation (pour savoir quelles applis tournent et combien de temps) et l'accès aux notifications (pour les compter par appli). L'onglet Paramètres explique chacune et vous emmène directement au bon écran. Une vérification légère a lieu toutes les 15 minutes, presque sans consommer de batterie, et votre rapport arrive à l'heure de votre choix.
+Activez l'accès aux données d'utilisation et l'accès aux notifications dans les paramètres d'Android : l'onglet Paramètres explique chacun et ouvre le bon écran. Une vérification légère a lieu toutes les 15 minutes et votre rapport arrive à l'heure choisie.
 
 LANGUES
 Français, anglais, portugais, espagnol, italien, roumain et allemand. Sur Android 13 et plus, choisissez la langue de l'appli dans les paramètres d'Android.

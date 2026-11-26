@@ -12,11 +12,13 @@ import org.neteinstein.perfsentient.core.data.local.dao.VitalSampleDao
 import org.neteinstein.perfsentient.core.data.mapper.toDomain
 import org.neteinstein.perfsentient.core.data.mapper.toEntity
 import org.neteinstein.perfsentient.core.data.source.AppInventoryDataSource
+import org.neteinstein.perfsentient.core.data.source.DeviceSecurityDataSource
 import org.neteinstein.perfsentient.core.data.source.DeviceVitalsDataSource
 import org.neteinstein.perfsentient.core.data.source.NetworkStatsDataSource
 import org.neteinstein.perfsentient.core.data.source.SystemErrorLogDataSource
 import org.neteinstein.perfsentient.core.data.source.UsageStatsDataSource
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
+import org.neteinstein.perfsentient.core.domain.repository.DeviceSecurityRepository
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
 import org.neteinstein.perfsentient.core.domain.repository.UsageRepository
@@ -26,6 +28,7 @@ import org.neteinstein.perfsentient.core.model.AppProfile
 import org.neteinstein.perfsentient.core.model.AppUsage
 import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceContext
+import org.neteinstein.perfsentient.core.model.DeviceSecurityPosture
 import org.neteinstein.perfsentient.core.model.NetworkUsage
 import org.neteinstein.perfsentient.core.model.UsageEventRecord
 import org.neteinstein.perfsentient.core.model.VitalSample
@@ -59,6 +62,13 @@ class AppInventoryRepositoryImpl(
         withContext(dispatchers.io) { dataSource.installedAppLabels(packageNames) }
 
     override suspend fun getDeviceContext(): DeviceContext = withContext(dispatchers.io) { dataSource.deviceContext() }
+}
+
+class DeviceSecurityRepositoryImpl(
+    private val dataSource: DeviceSecurityDataSource,
+    private val dispatchers: DispatcherProvider,
+) : DeviceSecurityRepository {
+    override suspend fun posture(): DeviceSecurityPosture = withContext(dispatchers.io) { dataSource.posture() }
 }
 
 class VitalsRepositoryImpl(

@@ -13,9 +13,11 @@ import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BatteryAttributor
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.DeviceHealthAnalyzer
+import org.neteinstein.perfsentient.core.domain.analysis.DeviceSecurityAnalyzer
 import org.neteinstein.perfsentient.core.domain.analysis.HealthScoreCalculator
 import org.neteinstein.perfsentient.core.domain.analysis.TrustedAppsFilter
 import org.neteinstein.perfsentient.core.domain.repository.AppInventoryRepository
+import org.neteinstein.perfsentient.core.domain.repository.DeviceSecurityRepository
 import org.neteinstein.perfsentient.core.domain.repository.NotificationStatsRepository
 import org.neteinstein.perfsentient.core.domain.repository.ReportRepository
 import org.neteinstein.perfsentient.core.domain.repository.TrustedAppsRepository
@@ -24,7 +26,8 @@ import org.neteinstein.perfsentient.core.domain.repository.VitalsRepository
 import org.neteinstein.perfsentient.core.model.DailyReport
 
 /**
- * Collects the last 24 hours of telemetry, runs every detector, scores the day, estimates each
+ * Collects the last 24 hours of telemetry and the device's security settings, runs every detector,
+ * scores the day, estimates each
  * app's battery use and persists the report under today's date. Used both by the end-of-day worker and by the "analyse now" button.
  *
  * A rolling window (instead of "since midnight") means consecutive daily reports cover the whole
@@ -37,11 +40,13 @@ class GenerateDailyReportUseCase(
     private val inventoryRepository: AppInventoryRepository,
     private val vitalsRepository: VitalsRepository,
     private val notificationStatsRepository: NotificationStatsRepository,
+    private val deviceSecurityRepository: DeviceSecurityRepository,
     private val reportRepository: ReportRepository,
     private val trustedAppsRepository: TrustedAppsRepository,
     private val behaviorAnalyzer: BehaviorAnalyzer,
     private val deviceHealthAnalyzer: DeviceHealthAnalyzer,
     private val batteryAttributor: BatteryAttributor,
+    private val deviceSecurityAnalyzer: DeviceSecurityAnalyzer,
     private val scoreCalculator: HealthScoreCalculator,
     private val trustedAppsFilter: TrustedAppsFilter,
     private val timeProvider: TimeProvider,
@@ -60,6 +65,7 @@ class GenerateDailyReportUseCase(
             val network = async { usageRepository.getNetworkUsage(start, end) }
             val notifications = async { notificationStatsRepository.getCounts(start, end) }
             val vitals = async { vitalsRepository.getSamples(start, end) }
+            val security = async { deviceSecurityRepository.posture() }
             val appIssues = async { usageRepository.getAppIssues(start, end) }
             AnalysisInput(
                 windowStartMs = start,
@@ -72,13 +78,14 @@ class GenerateDailyReportUseCase(
                 notifications = notifications.await(),
                 vitals = vitals.await(),
                 context = context.await(),
+                security = security.await(),
                 appIssues = appIssues.await(),
             )
         }
 
         val findings = behaviorAnalyzer.analyze(input)
         val metrics = deviceHealthAnalyzer.metrics(input)
-        val issues = deviceHealthAnalyzer.issues(metrics)
+        val issues = deviceHealthAnalyzer.issues(metrics) + deviceSecurityAnalyzer.issues(input.security, today)
         val score = scoreCalculator.score(findings, issues)
 
         val report = DailyReport(

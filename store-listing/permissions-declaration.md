@@ -12,14 +12,19 @@ Suggested text for the "Describe your use" field:
 
 > Perfsentient is an on-device phone-health monitor. Its single purpose is to find installed apps that
 > misbehave: pop-up and after-call ads, overlay abuse, hidden launcher icons, background data and battery
-> hogs, notification spam, risky accessibility or device-admin access. To do that it must see the complete
-> list of installed apps, including apps without a launcher icon (a hidden icon is itself one of the signals
-> we report). A narrower `<queries>` list cannot work because the apps we need to inspect are unknown in
+> hogs, notification spam, risky accessibility or device-admin access, and the signs of phone scams: apps
+> installed from a link in a chat, apps named like a bank or a system update, remote-access apps installed
+> during a call, and apps that can read one-time codes. To do that it must see the complete list of
+> installed apps, including apps without a launcher icon (a hidden icon is itself one of the signals we
+> report), and how each one was installed. A narrower `<queries>` list cannot work because the apps we need to inspect are unknown in
 > advance. The optional parental mode uses the same audit to warn a parent about installed apps that
 > child-safety organisations flag for the child's age (for example random video chat or adult dating apps).
 > The list is processed only on the device and is never transmitted: the app has no INTERNET permission.
 
-Notes for the reviewer: the permission is used by `AppInventoryDataSource` in `core:data`. The app name
+Notes for the reviewer: the permission is used by `AppInventoryDataSource` in `core:data`. Besides the
+package list it reads each app's install source (`getInstallSourceInfo`), granted permission flags, the
+enabled notification listeners, the default SMS app and the "install unknown apps" app op, all public APIs
+that need no further permission. The app name
 and package are shown to the user in the report and in the Apps tab. When parental mode is on,
 `AppInventoryDataSource.installedAppLabels` looks up only the ~100 package names of the built-in parental
 catalogue (`ParentalAppCatalog`) to fill the Parental help tab; nothing about the result leaves the device.
@@ -41,6 +46,9 @@ Granted by the user in **Settings → Notifications → Device & app notificatio
 notifications per app per day (to detect notification spam). The service never reads, stores or forwards
 titles, text or any content. Declare this in the listing description (already done) and in the in-app
 rationale.
+
+Perfsentient also reads three device settings for its security check, none of which needs a permission:
+`KeyguardManager.isDeviceSecure`, `Build.VERSION.SECURITY_PATCH` and `Settings.Global.ADB_ENABLED`.
 
 ## 4. Other permissions
 
