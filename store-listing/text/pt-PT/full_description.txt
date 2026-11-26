@@ -21,7 +21,7 @@ O SEU RELATÓRIO DIÁRIO
 • Sinais vitais: consumo de bateria, consumo com o ecrã desligado, temperatura e pressão de memória
 • Uma tendência de 7 dias, para ver se as coisas estão a melhorar
 • Bateria vs tempo aberta: as apps que mais gastaram bateria nos últimos 7 dias, ao lado do tempo que estiveram abertas (estimativa)
-• Toque numa app para ver exatamente o que fez e abrir as suas Informações da app para desinstalar ou restringir
+• Toque numa app para ver o que fez e quando, com um botão que abre a definição certa para o resolver
 
 O CONTROLO É SEU
 • O separador Apps lista todas as apps sinalizadas agora ou no passado

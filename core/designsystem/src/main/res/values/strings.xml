@@ -43,4 +43,29 @@
     <string name="verdict_good">Good</string>
     <string name="verdict_fair">Fair</string>
     <string name="verdict_poor">Poor</string>
+
+    <string name="fix_app_info">Open app info</string>
+    <string name="fix_overlay">Review \"Display over other apps\"</string>
+    <string name="fix_accessibility">Open accessibility settings</string>
+    <string name="fix_notification_access">Review notification access</string>
+    <string name="fix_install_apps">Review \"Install unknown apps\"</string>
+    <string name="fix_app_notifications">Notification settings</string>
+    <string name="fix_background_data">Mobile data settings</string>
+    <string name="fix_battery_optimization">Battery optimisation settings</string>
+    <string name="fix_device_admin">Review device admin apps</string>
+    <string name="fix_screen_lock">Set a screen lock</string>
+    <string name="fix_developer_options">Open developer options</string>
+    <string name="fix_system_update">Check for system updates</string>
+    <string name="fix_battery_usage">See battery usage</string>
+    <string name="evidence_last">Last: %1$s</string>
+    <string name="evidence_over">over %1$s</string>
+    <string name="evidence_over_count">over %1$s ×%2$d</string>
+    <string name="evidence_after_call">right after a call</string>
+    <string name="evidence_from">from %1$s</string>
+    <string name="evidence_hide_times">Hide times</string>
+    <string name="evidence_joined" translatable="false">%1$s · %2$s</string>
+    <plurals name="evidence_show_times">
+        <item quantity="one">Show %1$d time</item>
+        <item quantity="other">Show all %1$d times</item>
+    </plurals>
 </resources>

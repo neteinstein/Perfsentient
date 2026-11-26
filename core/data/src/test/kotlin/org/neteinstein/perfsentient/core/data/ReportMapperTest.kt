@@ -13,6 +13,7 @@ import org.neteinstein.perfsentient.core.model.BehaviorType
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.DeviceMetrics
+import org.neteinstein.perfsentient.core.model.Evidence
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
 import org.neteinstein.perfsentient.core.testing.TestData
@@ -59,6 +60,19 @@ class ReportMapperTest {
         val decoded = ReportEntity("2026-11-16", 0, 90, legacy).toDomain()!!
 
         assertEquals(BatteryBreakdown.EMPTY, decoded.battery)
+    }
+
+    @Test
+    fun `finding evidence survives a round trip and old findings decode without it`() {
+        val finding = TestData.finding("adware", BehaviorType.OUT_OF_CONTEXT_ADS).copy(
+            evidence = listOf(Evidence(2_000, "com.chat", "Chat"), Evidence(1_000)),
+        )
+        val report = TestData.report(findings = listOf(finding))
+        assertEquals(report, report.toEntity().toDomain())
+
+        val legacy = TestData.report(findings = listOf(finding.copy(evidence = emptyList()))).toEntity().payload
+            .replace(",\"evidence\":[]", "")
+        assertTrue(ReportEntity("2026-11-16", 0, 90, legacy).toDomain()!!.findings.single().evidence.isEmpty())
     }
 
     @Test

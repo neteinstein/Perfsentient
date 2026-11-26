@@ -51,6 +51,7 @@
 ## ✨ Highlights
 
 - 🩺 **Daily health report.** An animated health score, a one-line verdict, the apps that misbehaved (with the reason for each), device vitals and a 7-day trend.
+- 🔧 **Evidence and one-tap fixes.** Each finding shows when it happened and which app was involved ("Last: 14:02 · over Chrome ×5", "from WhatsApp", "right after a call"), and a button that opens the exact Android setting to fix it: overlay permission, notification access, "Install unknown apps", background data, screen lock, developer options… falling back to App info where a phone lacks that screen.
 - 🔔 **One notification a day.** At a time you choose, it tells you whether the day was good or bad and how many apps caused trouble. Tap it to open the report.
 - 🚨 **Live security alerts.** Within about 15 minutes of a risky install (a fake app, a remote-access app installed during a call, an app that can read your codes), a high-priority notification names the app and what to do. Each app and behaviour alerts once; trusted apps never do. You can turn alerts off in Settings.
 - 🛡️ **Spots scam apps.** Apps installed from a link in a chat, look-alike names ("System Update", a fake bank or WhatsApp), remote-access apps installed during a call, apps that can read your one-time codes, and phone settings that make scams easier (no screen lock, an old security patch, USB debugging left on).

@@ -4,9 +4,11 @@ import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorDetector
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.ForegroundSessions
+import org.neteinstein.perfsentient.core.domain.analysis.evidence
 import org.neteinstein.perfsentient.core.domain.analysis.finding
 import org.neteinstein.perfsentient.core.domain.analysis.severityFor
 import org.neteinstein.perfsentient.core.model.BehaviorType
+import org.neteinstein.perfsentient.core.model.Evidence
 import org.neteinstein.perfsentient.core.model.Finding
 
 /**
@@ -23,7 +25,7 @@ class PopupAdsDetector(private val thresholds: DetectionThresholds) : BehaviorDe
             ignoredPackages = ctx.systemUiPackages,
             unlockWindowMs = thresholds.unlockPopupWindowMs,
         )
-        val counts = mutableMapOf<String, Int>()
+        val seen = mutableMapOf<String, MutableList<Evidence>>()
         val excluded = ctx.launcherPackages + ctx.dialerPackages + ctx.selfPackage
 
         sessions.forEachIndexed { index, current ->
@@ -37,15 +39,17 @@ class PopupAdsDetector(private val thresholds: DetectionThresholds) : BehaviorDe
                 previous.packageName !in ctx.launcherPackages &&
                 previous.endMs == current.startMs
             if (interruptedAnotherApp || current.startedRightAfterUnlock) {
-                counts.merge(current.packageName, 1, Int::plus)
+                val interrupted = previous?.packageName?.takeIf { interruptedAnotherApp }
+                seen.getOrPut(current.packageName) { mutableListOf() } += input.evidence(current.startMs, interrupted)
             }
         }
 
-        return counts.mapNotNull { (pkg, count) ->
+        return seen.mapNotNull { (pkg, evidence) ->
             val app = input.candidate(pkg) ?: return@mapNotNull null
+            val count = evidence.size
             val severity = severityFor(count, thresholds.popupMediumCount, thresholds.popupHighCount)
                 ?: return@mapNotNull null
-            app.finding(BehaviorType.OUT_OF_CONTEXT_ADS, severity, count.toLong())
+            app.finding(BehaviorType.OUT_OF_CONTEXT_ADS, severity, count.toLong(), evidence)
         }
     }
 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -55,7 +56,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import java.time.format.TextStyle
+import org.neteinstein.perfsentient.core.designsystem.behavior.EvidenceSummary
+import org.neteinstein.perfsentient.core.designsystem.behavior.FixAction
+import org.neteinstein.perfsentient.core.designsystem.behavior.fixAction
 import org.neteinstein.perfsentient.core.designsystem.behavior.label
+import org.neteinstein.perfsentient.core.designsystem.behavior.openFix
 import org.neteinstein.perfsentient.core.designsystem.behavior.presentation
 import org.neteinstein.perfsentient.core.designsystem.component.AnimatedCheck
 import org.neteinstein.perfsentient.core.designsystem.component.AppIcon
@@ -170,6 +175,11 @@ internal fun DeviceIssueCard(issue: DeviceIssue, modifier: Modifier = Modifier) 
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                issue.type.fixAction?.let { action ->
+                    TextButton(onClick = { context.openFix(action) }, contentPadding = PaddingValues(0.dp)) {
+                        Text(stringResource(action.label))
+                    }
+                }
             }
             Spacer(Modifier.width(8.dp))
             StatusChip(stringResource(issue.severity.label), color)
@@ -243,12 +253,19 @@ internal fun OffenderDetailsSheet(assessment: AppAssessment, onTrust: () -> Unit
                             StatusChip(stringResource(finding.severity.label), color)
                         }
                         Text(context.describeValue(finding), style = MaterialTheme.typography.labelLarge, color = color)
+                        EvidenceSummary(finding)
                         Spacer(Modifier.height(4.dp))
                         Text(
                             stringResource(ui.description),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
+                        val fix = finding.fixAction
+                        if (fix != FixAction.APP_INFO) {
+                            TextButton(onClick = { context.openFix(fix, finding.packageName) }, contentPadding = PaddingValues(0.dp)) {
+                                Text(stringResource(fix.label))
+                            }
+                        }
                     }
                 }
                 if (index < assessment.findings.lastIndex) HorizontalDivider(Modifier.padding(vertical = 14.dp))
@@ -261,7 +278,7 @@ internal fun OffenderDetailsSheet(assessment: AppAssessment, onTrust: () -> Unit
             )
             Spacer(Modifier.height(12.dp))
             FilledTonalButton(
-                onClick = { context.openAppInfo(assessment.packageName) },
+                onClick = { context.openFix(FixAction.APP_INFO, assessment.packageName) },
                 modifier = Modifier.fillMaxWidth(),
             ) { Text(stringResource(R.string.report_sheet_open_app_info)) }
             Spacer(Modifier.height(8.dp))

@@ -40,4 +40,29 @@
     <string name="verdict_good">Bună</string>
     <string name="verdict_fair">Acceptabilă</string>
     <string name="verdict_poor">Slabă</string>
+
+    <string name="fix_app_info">Deschide informațiile aplicației</string>
+    <string name="fix_overlay">Verificați „Afișare peste alte aplicații”</string>
+    <string name="fix_accessibility">Deschide setările de accesibilitate</string>
+    <string name="fix_notification_access">Verificați accesul la notificări</string>
+    <string name="fix_install_apps">Verificați „Instalare aplicații necunoscute”</string>
+    <string name="fix_app_notifications">Setări pentru notificări</string>
+    <string name="fix_background_data">Setări pentru date mobile</string>
+    <string name="fix_battery_optimization">Optimizarea bateriei</string>
+    <string name="fix_device_admin">Verificați aplicațiile de administrare a dispozitivului</string>
+    <string name="fix_screen_lock">Setați blocarea ecranului</string>
+    <string name="fix_developer_options">Deschide opțiunile pentru dezvoltatori</string>
+    <string name="fix_system_update">Căutați actualizări de sistem</string>
+    <string name="fix_battery_usage">Vedeți utilizarea bateriei</string>
+    <string name="evidence_last">Ultima dată: %1$s</string>
+    <string name="evidence_over">peste %1$s</string>
+    <string name="evidence_over_count">peste %1$s ×%2$d</string>
+    <string name="evidence_after_call">imediat după un apel</string>
+    <string name="evidence_from">din %1$s</string>
+    <string name="evidence_hide_times">Ascunde orele</string>
+    <plurals name="evidence_show_times">
+        <item quantity="one">Afișați %1$d oră</item>
+        <item quantity="few">Afișați toate cele %1$d ore</item>
+        <item quantity="other">Afișați toate cele %1$d de ore</item>
+    </plurals>
 </resources>

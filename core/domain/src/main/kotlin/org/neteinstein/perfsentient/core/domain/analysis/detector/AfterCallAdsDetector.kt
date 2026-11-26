@@ -4,6 +4,7 @@ import org.neteinstein.perfsentient.core.domain.analysis.AnalysisInput
 import org.neteinstein.perfsentient.core.domain.analysis.BehaviorDetector
 import org.neteinstein.perfsentient.core.domain.analysis.DetectionThresholds
 import org.neteinstein.perfsentient.core.domain.analysis.ForegroundSessions
+import org.neteinstein.perfsentient.core.domain.analysis.evidence
 import org.neteinstein.perfsentient.core.domain.analysis.finding
 import org.neteinstein.perfsentient.core.domain.analysis.severityFor
 import org.neteinstein.perfsentient.core.model.BehaviorType
@@ -23,21 +24,21 @@ class AfterCallAdsDetector(private val thresholds: DetectionThresholds) : Behavi
         val sessions = ForegroundSessions.build(input.events, ctx.systemUiPackages, thresholds.unlockPopupWindowMs)
         val excluded = ctx.launcherPackages + ctx.dialerPackages + ctx.selfPackage
 
-        val counts = sessions.zipWithNext()
+        val afterCalls = sessions.zipWithNext()
             .filter { (previous, current) ->
                 previous.packageName in ctx.dialerPackages &&
                     current.startMs - previous.endMs <= thresholds.afterCallMaxGapMs &&
                     current.packageName !in excluded &&
                     current.durationMs <= thresholds.afterCallMaxDurationMs
             }
-            .groupingBy { it.second.packageName }
-            .eachCount()
+            .groupBy({ it.second.packageName }, { (call, ad) -> input.evidence(ad.startMs, call.packageName) })
 
-        return counts.mapNotNull { (pkg, count) ->
+        return afterCalls.mapNotNull { (pkg, evidence) ->
             val app = input.candidate(pkg) ?: return@mapNotNull null
+            val count = evidence.size
             val severity = severityFor(count, thresholds.afterCallMediumCount, thresholds.afterCallHighCount)
                 ?: return@mapNotNull null
-            app.finding(BehaviorType.AFTER_CALL_ADS, severity, count.toLong())
+            app.finding(BehaviorType.AFTER_CALL_ADS, severity, count.toLong(), evidence)
         }
     }
 }

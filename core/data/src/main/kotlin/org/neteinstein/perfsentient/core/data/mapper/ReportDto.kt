@@ -12,6 +12,7 @@ import org.neteinstein.perfsentient.core.model.DailyReport
 import org.neteinstein.perfsentient.core.model.DeviceIssue
 import org.neteinstein.perfsentient.core.model.DeviceIssueType
 import org.neteinstein.perfsentient.core.model.DeviceMetrics
+import org.neteinstein.perfsentient.core.model.Evidence
 import org.neteinstein.perfsentient.core.model.Finding
 import org.neteinstein.perfsentient.core.model.Severity
 import org.neteinstein.perfsentient.core.model.Verdict
@@ -73,7 +74,12 @@ internal data class FindingDto(
     val type: String,
     val severity: String,
     val value: Long,
+    /** Added with evidence; older reports decode with none. */
+    val evidence: List<EvidenceDto> = emptyList(),
 )
+
+@Serializable
+internal data class EvidenceDto(val atMs: Long, val relatedPackage: String? = null, val relatedLabel: String? = null)
 
 internal val reportJson = Json {
     ignoreUnknownKeys = true
@@ -106,7 +112,16 @@ internal fun DailyReport.toDto() = ReportDto(
         )
     },
     deviceIssues = deviceIssues.map { DeviceIssueDto(it.type.name, it.severity.name, it.value) },
-    findings = findings.map { FindingDto(it.packageName, it.appLabel, it.type.name, it.severity.name, it.value) },
+    findings = findings.map { finding ->
+        FindingDto(
+            finding.packageName,
+            finding.appLabel,
+            finding.type.name,
+            finding.severity.name,
+            finding.value,
+            finding.evidence.map { EvidenceDto(it.atMs, it.relatedPackage, it.relatedLabel) },
+        )
+    },
     appsAnalysed = appsAnalysed,
     battery = battery.takeIf { it != BatteryBreakdown.EMPTY }?.let { breakdown ->
         BatteryDto(
@@ -140,7 +155,14 @@ internal fun ReportDto.toDomain() = DailyReport(
     findings = findings.mapNotNull { dto ->
         val type = enumOrNull<BehaviorType>(dto.type) ?: return@mapNotNull null
         val severity = enumOrNull<Severity>(dto.severity) ?: return@mapNotNull null
-        Finding(dto.packageName, dto.appLabel, type, severity, dto.value)
+        Finding(
+            dto.packageName,
+            dto.appLabel,
+            type,
+            severity,
+            dto.value,
+            dto.evidence.take(Finding.MAX_EVIDENCE).map { Evidence(it.atMs, it.relatedPackage, it.relatedLabel) },
+        )
     },
     appsAnalysed = appsAnalysed,
     battery = battery?.let { dto ->
