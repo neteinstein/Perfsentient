@@ -14,6 +14,18 @@
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
+    <!-- Optional, never requested at runtime: development permissions the user can grant with
+         `adb shell pm grant <package> <permission>`. Only used to read the system error log
+         (DropBox) for app ANR / crash counts; the app degrades gracefully without them.
+         Android 14 and older check READ_LOGS; Android 15+ checks READ_DROPBOX_DATA instead for
+         apps targeting it (when the platform's enable_read_dropbox_permission flag is on). -->
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.READ_DROPBOX_DATA"
+        tools:ignore="ProtectedPermissions" />
+
     <queries>
         <intent>
             <action android:name="android.intent.action.MAIN" />

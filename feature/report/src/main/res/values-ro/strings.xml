@@ -133,4 +133,14 @@
         <item quantity="few">Ultima actualizare de securitate Android are %1$d zile. Căutați o actualizare de sistem.</item>
         <item quantity="other">Ultima actualizare de securitate Android are %1$d de zile. Căutați o actualizare de sistem.</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d blocare (ANR) azi</item>
+        <item quantity="few">%1$d blocări (ANR) azi</item>
+        <item quantity="other">%1$d de blocări (ANR) azi</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d închidere neașteptată azi</item>
+        <item quantity="few">%1$d închideri neașteptate azi</item>
+        <item quantity="other">%1$d de închideri neașteptate azi</item>
+    </plurals>
 </resources>

@@ -37,7 +37,10 @@ class AppInventoryDataSource(private val context: Context) {
     private val accessibility = context.getSystemService(AccessibilityManager::class.java)
 
     fun installedApps(): List<AppProfile> {
-        val launcherPackages = packagesFor(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER))
+        val launcherIntent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+        val launcherPackages = packagesFor(launcherIntent)
+        // Includes launcher activities the app disabled at runtime (the "hide my icon" trick).
+        val declaredLauncherPackages = packagesFor(launcherIntent, includeDisabled = true)
         val accessibilityPackages = accessibility
             ?.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK)
             ?.mapNotNull { it.resolveInfo?.serviceInfo?.packageName }
@@ -75,6 +78,7 @@ class AppInventoryDataSource(private val context: Context) {
                 hasNotificationAccess = pkg in notificationListeners,
                 isDefaultSmsApp = pkg == defaultSms,
                 canInstallApps = !isSystem && canInstallApps(app, info),
+                launcherIconDisabled = app.enabled && pkg !in launcherPackages && pkg in declaredLauncherPackages,
             )
         }
     }
@@ -118,12 +122,13 @@ class AppInventoryDataSource(private val context: Context) {
         pm.getApplicationInfo(pkg, 0)
     }
 
-    private fun packagesFor(intent: Intent): Set<String> {
+    private fun packagesFor(intent: Intent, includeDisabled: Boolean = false): Set<String> {
+        val flags = PackageManager.MATCH_ALL or if (includeDisabled) PackageManager.MATCH_DISABLED_COMPONENTS else 0
         val resolved = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_ALL.toLong()))
+            pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(flags.toLong()))
         } else {
             @Suppress("DEPRECATION")
-            pm.queryIntentActivities(intent, PackageManager.MATCH_ALL)
+            pm.queryIntentActivities(intent, flags)
         }
         return resolved.mapNotNull { it.activityInfo?.packageName }.toSet()
     }

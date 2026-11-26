@@ -9,9 +9,11 @@ import org.neteinstein.perfsentient.core.model.Finding
 import org.neteinstein.perfsentient.core.model.Severity
 
 /**
- * Adware frequently hides its launcher icon (e.g. by swapping an activity-alias) so the user
- * cannot find and uninstall it. A user-installed app without a launcher entry that is active
- * in the background is a strong red flag.
+ * Adware frequently hides its launcher icon (e.g. by disabling its launcher activity-alias) so
+ * the user cannot find and uninstall it. Many legitimate store apps never had an icon at all
+ * (watch/companion plugins, keyboards, wallpapers, TTS engines), so a missing icon alone is not
+ * enough: the app must have actively disabled its icon, come from outside a trusted store, or
+ * hold a risky capability.
  */
 class HiddenIconDetector(private val thresholds: DetectionThresholds) : BehaviorDetector {
     override fun detect(input: AnalysisInput): List<Finding> = input.candidates
@@ -30,10 +32,12 @@ class HiddenIconDetector(private val thresholds: DetectionThresholds) : Behavior
                 app.isDeviceAdmin,
                 app.hasNotificationAccess,
             ).count { it }
+            val active = activeSignals > 0
             when {
-                activeSignals == 0 && riskyCapabilities == 0 -> null
-                app.isSideloaded || riskyCapabilities > 0 -> app.finding(BehaviorType.HIDDEN_ICON, Severity.HIGH, activeSignals.toLong())
-                else -> app.finding(BehaviorType.HIDDEN_ICON, Severity.MEDIUM, activeSignals.toLong())
+                riskyCapabilities > 0 -> app.finding(BehaviorType.HIDDEN_ICON, Severity.HIGH, activeSignals.toLong())
+                active && app.isSideloaded -> app.finding(BehaviorType.HIDDEN_ICON, Severity.HIGH, activeSignals.toLong())
+                active && app.launcherIconDisabled -> app.finding(BehaviorType.HIDDEN_ICON, Severity.MEDIUM, activeSignals.toLong())
+                else -> null
             }
         }
 }

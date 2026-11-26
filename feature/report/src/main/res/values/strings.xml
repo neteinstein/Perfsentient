@@ -131,4 +131,12 @@
         <item quantity="one">The last Android security update is %1$d day old. Check for a system update.</item>
         <item quantity="other">The last Android security update is %1$d days old. Check for a system update.</item>
     </plurals>
+    <plurals name="report_value_anrs">
+        <item quantity="one">%1$d freeze (ANR) today</item>
+        <item quantity="other">%1$d freezes (ANRs) today</item>
+    </plurals>
+    <plurals name="report_value_crashes">
+        <item quantity="one">%1$d crash today</item>
+        <item quantity="other">%1$d crashes today</item>
+    </plurals>
 </resources>

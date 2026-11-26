@@ -66,6 +66,7 @@ class GenerateDailyReportUseCase(
             val notifications = async { notificationStatsRepository.getCounts(start, end) }
             val vitals = async { vitalsRepository.getSamples(start, end) }
             val security = async { deviceSecurityRepository.posture() }
+            val appIssues = async { usageRepository.getAppIssues(start, end) }
             AnalysisInput(
                 windowStartMs = start,
                 windowEndMs = end,
@@ -78,6 +79,7 @@ class GenerateDailyReportUseCase(
                 vitals = vitals.await(),
                 context = context.await(),
                 security = security.await(),
+                appIssues = appIssues.await(),
             )
         }
 
